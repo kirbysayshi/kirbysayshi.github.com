@@ -5,7 +5,7 @@ title: "The First Post for Testing"
 
 h1. {{ page.title }}
 
-<script language="javascript">
+notextile.. <script language="javascript">
 	if (AC_FL_RunContent == 0) {
 		alert("This page requires AC_RunActiveContent.js.");
 	} else {
@@ -40,3 +40,5 @@ h1. {{ page.title }}
 	<param name="movie" value="http://johnnytatlock.com/svn/smashmmo/trunk/fleas.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="fleas.swf" quality="high" bgcolor="#ffffff" width="800" height="600" name="fleas" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 	</object>
 </noscript>
+
+p. This is below a flash movie.
