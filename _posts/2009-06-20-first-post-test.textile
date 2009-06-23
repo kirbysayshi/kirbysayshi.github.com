@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "The First Post for Testing"
-images: 
+image: 
   - src: "google.com"
     alt: "this is google"
   - src: "johnnytatlock.com"
@@ -10,7 +10,7 @@ images:
 
 h1. {{ page.title }}
 
-p. {{ page.image[0]['alt'] }}
+p. {{ page.image }}
 
 p. This is below a flash movie.
 
