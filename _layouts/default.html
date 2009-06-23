@@ -16,7 +16,7 @@
       {{ content }}
 		<div id="thumbbar">
 			{% for image in page.images %}
-				<p>image.src</p>
+				<p>{{ image['src'] }}</p>
 			{% endfor %}
 		</div>
       <div id="footer">
