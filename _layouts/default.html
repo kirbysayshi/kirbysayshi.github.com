@@ -17,7 +17,11 @@
 		<p>Images are here</p>
 	{% endif %}
 
-	
+	<div id="thumbbar">
+		{% for image in post.image %}
+			<p>{{ image.alt }}</p>
+		{% endfor %}
+	</div>
 
     <div id="wrapper">
       {{ content }}
