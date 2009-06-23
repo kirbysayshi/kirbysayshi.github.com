@@ -2,10 +2,10 @@
 layout: default
 title: "The First Post for Testing"
 images: 
-	- src: "google.com"
-	  alt: "this is google"
-	- src: "johnnytatlock.com"
-	  alt: "this is johnnytatlock"
+  - src: "google.com"
+    alt: "this is google"
+  - src: "johnnytatlock.com"
+    alt: "this is johnnytatlock"
 ---
 
 h1. {{ page.title }}
