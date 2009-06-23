@@ -1,10 +1,15 @@
 ---
 layout: default
 title: "The First Post for Testing"
-
+images: 
+	- src: "google.com"
+	  alt: "this is google"
+	- src: "johnnytatlock.com"
+	  alt: "this is johnnytatlock"
 ---
 
 h1. {{ page.title }}
 
 p. This is below a flash movie.
+
 p. The previous line is a lie!
