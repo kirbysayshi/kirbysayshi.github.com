@@ -12,13 +12,19 @@
     <h1 id="title">
       
     </h1>
+
+	{% if page.image %}
+		<p>Images are here</p>
+	{% endif %}
+
+	<div id="thumbbar">
+		{% for image in page.image %}
+			<p>{{ image['src'] }}</p>
+		{% endfor %}
+	</div>
+
     <div id="wrapper">
       {{ content }}
-		<div id="thumbbar">
-			{% for image in page.images %}
-				<p>{{ image['src'] }}</p>
-			{% endfor %}
-		</div>
       <div id="footer">
         <a href="/" title="Home">Home</a> &bull;
         <a href="/about.html" title="About the author and site">About</a> &bull;

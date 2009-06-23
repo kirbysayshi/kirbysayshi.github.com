@@ -10,6 +10,8 @@ images:
 
 h1. {{ page.title }}
 
+p. {{ page.image[0]['alt'] }}
+
 p. This is below a flash movie.
 
 p. The previous line is a lie!
