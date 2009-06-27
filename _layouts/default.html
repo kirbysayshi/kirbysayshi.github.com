@@ -5,41 +5,56 @@
     <meta content="en-us" http-equiv="Content-Language" />
     <meta content="The collected works of Andrew Petersen" name="description" />
     <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <title>Andrew Petersen &mdash; {{ page.title }}</title>
+    <link href="../css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <title>apetersen &mdash; {{ page.title }}</title>
   </head>
   <body>
-    <h1 id="title">
-      
-    </h1>
-
-	{% if page.image %}
-		<p>Images are here</p>
-	{% endif %}
-
-	<div id="thumbbar">
-		<h2>From template.</h2>
-		{% for image in post.image %}
-			<p>{{ image.alt }}</p>
-		{% endfor %}
-	</div>
-
-    <div id="wrapper">
-      {{ content }}
-      <div id="footer">
-        <a href="/" title="Home">Home</a> &bull;
-        <a href="/about.html" title="About the author and site">About</a> &bull;
-        <a href="/archive.html" title="Archived writing">Archive</a> &bull;
-        <a href="/books_talks.html" title="Books and talks">Books & Talks</a>
-        <form action="http://www.google.com/cse" id="cse-search-box">
-          <div>
-            <input type="hidden" name="cx" value="000652178004161548235:gnplrkdmhbu" />
-            <input type="hidden" name="ie" value="UTF-8" />
-            <input type="text" name="q" size="40" />
-            <input type="submit" name="sa" value="Search" />
-          </div>
-        </form>
-      </div>
+    
+	<div id="wrapper">
+		<div id="header">
+			<div id="banner">
+				<div id="nav">
+					<table>
+						<tr>
+							<td><a title="Me" href="index.html">Me</a></td>
+							<td><a title="Flash" href="flash.html">Flash</a></td>
+							<td><a title="Web" href="web.html">Web</a></td>
+							<td><a title="Else" href="else.html">Else</a></td>
+							
+						</tr>
+					</table>
+				</div>
+			</div>
+			<h1 id="title">apetersen</h1>			
+		</div>
+		<div id="contentwrapper">
+			<div id="thumbbar">
+				{% for image in post.image %}
+					<div class="imgholder">
+						<div class="leftbracket"></div>
+						<img src="../images/thumbs/gevil.png" />
+						<div class="rightbracket"></div>
+					</div>
+					<div class="imgholder">
+						<div class="leftbracket"></div>
+						<img src="../images/thumbs/gevil.png" />
+						<div class="rightbracket"></div>
+					</div>
+					<p>{{ image.alt }}</p>
+				{% endfor %}
+			</div>
+			<div id="textwrapper">
+				<h2>From template.</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			  
+				{{ content }}
+			</div>
+		</div>
+        <div id="footer">
+        	
+      	</div>
     </div>
     <script type="text/javascript">
     
