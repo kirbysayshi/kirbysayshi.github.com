@@ -35,6 +35,13 @@
 						<div class="rightbracket"></div>
 					</div>
 				{% endfor %}
+				{% for image in post.image %}
+					<div class="imgholder">
+						<div class="leftbracket"></div>
+						<img src="{{ image.src }}" alt="{{ image.alt }}"/>
+						<div class="rightbracket"></div>
+					</div>
+				{% endfor %}
 			</div>
 			<div id="textwrapper">
 				<h2>{{ page.title }}</h2>
