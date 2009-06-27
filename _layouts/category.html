@@ -27,17 +27,8 @@
 			<h1 id="title">apetersen</h1>			
 		</div>
 		<div class="contentwrapper">
-			<div id="thumbbar">
-				{% for image in page.image %}
-					<div class="imgholder">
-						<div class="leftbracket"></div>
-						<img src="{{ image.src }}" alt="{{ image.alt }}"/>
-						<div class="rightbracket"></div>
-					</div>
-				{% endfor %}
-			</div>
 			<div id="textwrapper">
-				<h2>{{ page.title }}</h2>
+				<h2><a href="{{ post.url }}">{{ page.title }}</a></h2>
 				{{ content }}
 			</div>
 		</div>

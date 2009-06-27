@@ -1,6 +1,17 @@
 ---
 layout: default
 ---
+
+<div id="thumbbar">
+	{% for image in post.image %}
+		<div class="imgholder">
+			<div class="leftbracket"></div>
+			<img src="{{ image.src }}" alt="{{ image.alt }}"/>
+			<div class="rightbracket"></div>
+		</div>
+	{% endfor %}
+</div>
+
 <h2 id="intro">An individual post follows.</h2>
 <div class="post">
 {{ content }}
