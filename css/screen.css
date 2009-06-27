@@ -31,7 +31,7 @@ div#wrapper {
 	background-color: #421A09;
 	min-height: 100%;
 }
-div#contentwrapper{
+div.contentwrapper{
 	width: 750px;
 	padding-left: 90px;
 	padding-right: 90px;
