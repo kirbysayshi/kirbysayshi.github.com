@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "The First Post for Testing"
+category: test
 image: 
   - src: "/images/thumbs/gevil.png"
     alt: "Thumbnail of the Google Evil Meter"
