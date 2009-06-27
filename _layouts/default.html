@@ -19,8 +19,7 @@
 							<td><a title="Me" href="index.html">Me</a></td>
 							<td><a title="Flash" href="flash.html">Flash</a></td>
 							<td><a title="Web" href="web.html">Web</a></td>
-							<td><a title="Else" href="else.html">Else</a></td>
-							
+							<td><a title="Else" href="else.html">Else</a></td>							
 						</tr>
 					</table>
 				</div>
@@ -32,19 +31,13 @@
 				{% for image in post.image %}
 					<div class="imgholder">
 						<div class="leftbracket"></div>
-						<img src="/images/thumbs/gevil.png" />
+						<img src="{{ image.src }}" alt="{{ image.alt }}"/>
 						<div class="rightbracket"></div>
 					</div>
-					<div class="imgholder">
-						<div class="leftbracket"></div>
-						<img src="/images/thumbs/gevil.png" />
-						<div class="rightbracket"></div>
-					</div>
-					<p>{{ image.alt }}</p>
 				{% endfor %}
 			</div>
 			<div id="textwrapper">
-			  
+				<h2>{{ page.title }}</h2>
 				{{ content }}
 			</div>
 		</div>
