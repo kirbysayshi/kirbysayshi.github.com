@@ -6,5 +6,4 @@ image:
   - src: "/images/thumbs/gevil.png"
     alt: "Thumbnail of the Google Evil Meter"
 ---
-
 p. The previous line is a lie!
