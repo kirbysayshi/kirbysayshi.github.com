@@ -13,7 +13,7 @@ title: FLASH
 		</div>
 	</div>
 	
-  {{ truncate(post.content, 2) }}
+  {{ post.content | html_truncatewords: 1 }}
   <p class="signoff">
     &mdash;<a href="{{ post.url }}">{{ post.date | date: "%b %d, %Y" }}</a>
   </p>
