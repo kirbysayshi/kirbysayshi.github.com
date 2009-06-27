@@ -16,10 +16,10 @@
 				<div id="nav">
 					<table>
 						<tr>
-							<td><a title="Me" href="index.html">Me</a></td>
-							<td><a title="Flash" href="flash.html">Flash</a></td>
-							<td><a title="Web" href="web.html">Web</a></td>
-							<td><a title="Else" href="else.html">Else</a></td>							
+							<td><a title="Me" href="/index.html">Me</a></td>
+							<td><a title="Flash" href="/flash.html">Flash</a></td>
+							<td><a title="Web" href="/web.html">Web</a></td>
+							<td><a title="Else" href="/else.html">Else</a></td>							
 						</tr>
 					</table>
 				</div>
@@ -27,7 +27,7 @@
 			<h1 id="title">apetersen</h1>			
 		</div>
 		<div class="contentwrapper">
-			{% if page.image %}
+			{% if page %}
 			<div id="thumbbar">
 				{% for image in page.image %}
 					<div class="imgholder">
@@ -37,11 +37,16 @@
 					</div>
 				{% endfor %}
 			</div>
-			{% endif %}
 			<div id="textwrapper">
 				<h2>{{ page.title }}</h2>
 				{{ content }}
 			</div>
+			{% endif %}
+			{% if post %}
+			<div id="textwrapper">
+				{{ content }}
+			</div>
+			{% endif %}
 		</div>
         <div id="footer">
         	
