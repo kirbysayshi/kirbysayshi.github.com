@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-
+<h2>{{ post.category }}</h2>
 <div id="thumbbar">
 	{% for image in post.image %}
 		<div class="imgholder">
@@ -12,7 +12,6 @@ layout: default
 	{% endfor %}
 </div>
 
-<h2 id="intro">An individual post follows.</h2>
 <div class="post">
 {{ content }}
 <p class="signoff">
