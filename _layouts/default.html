@@ -37,7 +37,13 @@
 				{% endfor %}
 			</div>
 			<div id="textwrapper">
-				<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+				{% if page.category %}
+					<h2>{{ page.category | capitalize }}</h2>
+					<h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
+				{% else %}
+					<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+				{% endif %}
+				
 				{{ content }}
 			</div>
 		</div>
