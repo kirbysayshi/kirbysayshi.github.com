@@ -8,10 +8,6 @@ image:
     alt: "this is johnnytatlock"
 ---
 
-h2. {{ page.title }}
-
-p. {{ page.image }}
-
 p. This is below a flash movie.
 
 p. The previous line is a lie!
