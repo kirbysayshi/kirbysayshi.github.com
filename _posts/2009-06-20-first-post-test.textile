@@ -2,12 +2,8 @@
 layout: default
 title: "The First Post for Testing"
 image: 
-  - src: "google.com"
-    alt: "this is google"
-  - src: "johnnytatlock.com"
-    alt: "this is johnnytatlock"
+  - src: "/images/thumbs/gevil.png"
+    alt: "Thumbnail of the Google Evil Meter"
 ---
-
-p. This is below a flash movie.
 
 p. The previous line is a lie!
