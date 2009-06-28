@@ -35,7 +35,7 @@ div.contentwrapper{
 	width: 750px;
 	padding-left: 90px;
 	padding-right: 90px;
-	padding-top: 80px;
+	padding-top: 40px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -106,4 +106,8 @@ div.rightbracket{
 	float: right;
 	border-left: none;
 	border-top: none;
+}
+div.post {
+	background-color: white;
+	-webkit-border-radius: 5px;
 }
