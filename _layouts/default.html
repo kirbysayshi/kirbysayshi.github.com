@@ -27,7 +27,8 @@
 			<h1 id="title">apetersen</h1>			
 		</div>
 		<div class="contentwrapper">
-		{% if page.category != 'flash' and page.category != 'web' and page.category != 'else' %}	
+		<!-- if it's a post, loop through the images -->
+		{% if post.id or page.title contains 'Me' %}	
 			<div id="thumbbar">
 				{% for image in page.image %}
 					<div class="imgholder">
@@ -37,7 +38,6 @@
 					</div>
 				{% endfor %}
 			</div>
-		{% endif %}
 		{% if page.category %}
 			<h2>{{ page.category | capitalize }}</h2>
 			<div id="textwrapper">
