@@ -108,6 +108,7 @@ div.rightbracket{
 	border-top: none;
 }
 div.post {
-	background-color: white;
+	border: solid #52A3B5 3px;
 	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 }
