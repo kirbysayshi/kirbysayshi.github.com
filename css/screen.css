@@ -75,40 +75,34 @@ div#footer {
 	line-height: 1.4em;
 	clear: both;
 }
-div#thumbbar {
-	float: left;
-	width: 280px;
-	margin-right: 40px;
-	margin-bottom: 30px;
-}
-div#thumbbar img {
-	display: block;
-	position: absolute;
-	margin-top: 16px;
-	margin-left: 17px;
-}
 div.imgholder{
-	position: relative;
-	width: 100%;
-	height: 214px;
-}
-div.leftbracket, div.rightbracket {
-	width: 51%;
-	height: 107px;
-	border: 3px solid #52A3B5;
-}
-div.leftbracket{
 	float: left;
-	border-bottom: none;
-	border-right: none;
-}
-div.rightbracket{
-	float: right;
-	border-left: none;
-	border-top: none;
+	height: 74px;
+	width: 74px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-color: white;
+	margin: 5px;
+	padding: 5px;
 }
 div.post {
 	border: solid #52A3B5 3px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	overflow: hidden;
+}
+div.clear {
+	clear: both;
+}
+div.post h3 {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+div.postcontent {
+	display: none;
+}
+div.portrait {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
 }
