@@ -31,7 +31,7 @@ h3 span.projecturl a, h2 span.projecturl a {
 	font-size: 0.5em;
 }
 
-div.project h3 {
+div.project h3, div.post h3 {
 	font-size: 1.5em;
 	margin-bottom: 14px;
 }
@@ -102,10 +102,10 @@ div.imgholder img {
 	height: 74px;
 }
 div.post {
-	border: solid #52A3B5 3px;
+	/*border: solid #52A3B5 3px;*/
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 div.clear {
 	clear: both;
