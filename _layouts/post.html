@@ -2,9 +2,9 @@
 layout: default
 ---
 <div class="post">
-	<h2>{{ page.title }} <span class='projecturl'><a href="{{ post.projecturl }}">{{ post.projecturl }}</a></h2>
-{{ content }}
-<p class="signoff">
-  &mdash;{{ page.date | date: "%b %d, %Y" }}
-</p>
+  <h2>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h2>
+    {{ content }}
+  <p class="signoff">
+    &mdash;{{ page.date | date: "%b %d, %Y" }}
+  </p>
 </div>
