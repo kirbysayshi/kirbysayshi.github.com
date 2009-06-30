@@ -1,0 +1,18 @@
+---
+layout: post
+title: Pristine
+categories:
+  - flash
+type: project
+projecturl: http://code.google.com/p/pristine
+oneliner: A Flash-based, Papervision3D powered, space combat simulator in the vein of the X-Wing series with Battlestar Galactica mechanics.
+image: 
+  - src: /images/thumbs/pristine.png
+    alt: Icon for Pristine, the AS3 space combat simulator.
+---
+
+p. Pristine is the name I've given to the prototype for a space combat simulator written in ActionScript3 using "Papervision3D":http://code.google.com/p/papervision3d/. The name is derived from the spotless condition of Capt. Kara Thrace's (Starbuck) Viper MKII after her mysterious return to the fleet. If you have no idea what I'm talking about, that's ok!
+
+p. This project started because I got really fired up about making a desktop-quality game work in a browser. Since I know AS3, Flash seemed like the medium. Unfortunately, it was also my first foray into 3D game programming of any sort. Thus, I'm currently in the process of rewriting this engine.
+
+p. The end result will hopefully be a multiplayer-enabled dogfighting game that runs pretty well on a medium-end computer.

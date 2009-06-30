@@ -1,0 +1,48 @@
+---
+layout: default
+title: Projects
+---
+
+<h2>Flash</h2>
+{% for post in site.categories.flash %}
+	{% if post.type == 'project' %}
+	  <div class="project">
+		<div class="imgholder">
+			<a href="{{ post.url }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
+		</div>
+		<h3>{{ post.title }} <span class='projecturl'><a href="{{ post.projecturl }}">{{ post.projecturl }}</a></h3>
+		<p>{{ post.oneliner }} <a href="{{ post.url }}" class="more">MORE</a></p>
+		<div class="clear"></div>
+	  </div>
+	{% endif %}
+{% endfor %}
+
+<h2>Web</h2>
+{% for post in site.categories.web %}
+	{% if post.type == 'project' %}
+	  <div class="project">
+		<div class="imgholder">
+			<a href="{{ post.url }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
+		</div>
+		<h3>{{ post.title }} <span class='projecturl'><a href="{{ post.projecturl }}">{{ post.projecturl }}</a></h3>
+		{{ post.oneliner }}
+		<a href="{{ post.url }}" class="more">MORE</a>
+		<div class="clear"></div>
+	  </div>
+	{% endif %}
+{% endfor %}
+
+<h2>Else</h2>
+{% for post in site.categories.else %}
+	{% if post.type == 'project' %}
+	  <div class="project">
+		<div class="imgholder">
+			<a href="{{ post.url }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
+		</div>
+		<h3>{{ post.title }} <span class='projecturl'><a href="{{ post.projecturl }}">{{ post.projecturl }}</a></h3>
+		{{ post.oneliner }}
+		<a href="{{ post.url }}" class="more">MORE</a>
+		<div class="clear"></div>
+	  </div>
+	{% endif %}
+{% endfor %}

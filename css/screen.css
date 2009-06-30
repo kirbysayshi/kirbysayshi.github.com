@@ -14,14 +14,26 @@ a:active, a:hover {
 	text-decoration: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	color: #FF6A14;
+}
+
 h2 {
 	font-size: 36px;
 	color: #FF6A14;
-	margin-top: 0px;
 }
 
 h1#title{
 	display: none;
+}
+
+h3 span.projecturl a, h2 span.projecturl a {
+	font-size: 0.5em;
+}
+
+div.project h3 {
+	font-size: 1.5em;
+	margin-bottom: 14px;
 }
 
 div#wrapper {
@@ -35,7 +47,7 @@ div.contentwrapper{
 	width: 750px;
 	padding-left: 90px;
 	padding-right: 90px;
-	padding-top: 40px;
+	padding-top: 25px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -82,8 +94,12 @@ div.imgholder{
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	background-color: white;
-	margin: 5px;
+	margin-right: 5px;
 	padding: 5px;
+}
+div.imgholder img {
+	width: 74px;
+	height: 74px;
 }
 div.post {
 	border: solid #52A3B5 3px;
@@ -94,13 +110,12 @@ div.post {
 div.clear {
 	clear: both;
 }
-div.post h3 {
+div.post h4 {
 	margin-top: 0px;
 	padding-top: 0px;
+	display: inline;
 }
-div.postcontent {
-	display: none;
-}
+
 div.portrait {
 	float: left;
 	margin-right: 20px;

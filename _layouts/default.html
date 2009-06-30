@@ -29,24 +29,6 @@
 			<h1 id="title">apetersen</h1>			
 		</div>
 		<div class="contentwrapper">
-		{% if page.category == 'structure' %}
-			<div id="textwrapper">
-				<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
-		{% else %}	
-		<!-- if it's a post, loop through images -->
-			<div id="thumbbar">
-				{% for image in page.image %}
-					<div class="imgholder">
-						<div class="leftbracket"></div>
-						<a href="{{ image.full }}"><img src="{{ image.src }}" alt="{{ image.alt }}"/></a>
-						<div class="rightbracket"></div>
-					</div>
-				{% endfor %}
-			</div>
-			<div id="textwrapper">
-				<h3><a href="{{ page.url }}">{{ page.title }}</a></h3>
-		{% endif %}
-			
 			{{ content }}
 			</div>
 		</div>
