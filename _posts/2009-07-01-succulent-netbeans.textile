@@ -12,7 +12,7 @@ image:
 tags:
   - NetBeans
   - Textmate
---
+---
 
 p. "Textmate":http://macromates.com is easily my favorite tool to use everyday. Put there are times when I would like a little more. Things like actual code completion, debugging, etc. Many of these things are possible with Textmate, but sometimes they're just a little too complicated, or just take to long to get up and running. 
 
