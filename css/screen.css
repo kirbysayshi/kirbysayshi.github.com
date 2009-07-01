@@ -63,16 +63,16 @@ div.contentwrapper{
 	margin-right: auto;
 }
 div#nav table{
-	font-size: 30px;
+	font-size: 25px;
 	text-transform: uppercase;
 	width: 100%;
 	text-align: center;
 }
 div#nav {
 	position: relative;
-	width: 466px;
+	width: 480px;
 	margin-left: 285px;
-	top: 210px;
+	top: 215px;
 }
 div#nav a:link, div#nav a:visited{
 	color: #421A09;
