@@ -30,6 +30,7 @@ h2 {
 	/*background-color: #52A3B5;*/
 	border-bottom: solid #52A3B5 3px;
 	font-weight: normal;
+	text-transform: uppercase;
 }
 
 h1#title{
