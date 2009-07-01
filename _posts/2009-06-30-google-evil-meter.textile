@@ -25,4 +25,4 @@ p. In addition to the data aggregation, it has to be displayed in a meaningful w
 
 p. Next step: add a few more meters, displaying various averages, and maybe even put in a live feed of the tweets gathered.
 
-fn1. Ok, end the crazy, but keep in mind: Google has all (or at least much of) the information created by the human race. It's only a matter of time before one if it's data centers becomes sentient!
+fn1. Ok, end the crazy, but keep in mind: Google has all (or at least much of) the information created by the human race. It's only a matter of time before one if its data centers becomes sentient!

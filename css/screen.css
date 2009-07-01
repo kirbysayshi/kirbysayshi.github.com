@@ -38,7 +38,9 @@ h3 span.tags a {
 	font-size: 0.5em;
 }
 
-
+#fn1, #fn2, #fn3, #fn4, #fn5, #fn6, #fn7 {
+	font-size: 50%;
+}
 
 div.project h3, div.post h3 {
 	font-size: 1.5em;
