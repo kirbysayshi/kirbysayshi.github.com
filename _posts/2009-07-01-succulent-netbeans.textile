@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Succulent Theme (from Textmate) for NetBeans
+title: Dark Theme for NetBeans
 type: project
 categories:
   - else
