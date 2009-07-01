@@ -46,3 +46,18 @@ title: Projects
 	  </div>
 	{% endif %}
 {% endfor %}
+
+<h2>In Progress</h2>
+{% for post in site.categories.inprogress %}
+	{% if post.type == 'project' %}
+	  <div class="project">
+		<div class="imgholder">
+			<a href="{{ post.url }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
+		</div>
+		<h3>{{ post.title }} <span class='projecturl'><a href="{{ post.projecturl }}">{{ post.projecturl }}</a></span></h3>
+		{{ post.oneliner }}
+		<a href="{{ post.url }}" class="more">MORE</a>
+		<div class="clear"></div>
+	  </div>
+	{% endif %}
+{% endfor %}

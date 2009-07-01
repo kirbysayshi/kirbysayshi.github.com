@@ -1,0 +1,29 @@
+---
+layout: post
+title: Chess, That Most Curious of Pastimes...
+categories:
+  - inprogress
+type: project
+oneliner: A stab at an online multiplayer game, based on chess. Throw in RPG elements, steampunk aesthetics, and a socket server, and you've almost got a game!
+tags:
+  - AS3
+  - GFSServer
+  - Steampunk
+  - Flex
+---
+
+p. The assignment from my independent study was to create some sort of Flash-based _something_ that had a strong visual aspect. I decided it was time to create an MMORPG single-handedly, in one semester...
+
+p. The premise was that a player would create a "team" of chess pieces. Each piece would have a name. Also, the player would be given some allocation points, which could be assigned to a chess piece, increasing its battle statistics (attack, speed, defense, health). A player would challenge another player, and the two would commence with a standard game of chess. 
+
+p. _But not quite..._
+
+p. The difference was when two pieces on the board would meet. Rather than the attacking piece automatically capturing the opposing piece, there was a battle. Thus, the opposing piece could actually defeat the attacking piece, and remain on the board! The battle consisted of pressing a key in sync with a rising gauge on screen. If you hit the key at the right point, you would get an attack bonus. If you pressed the same key when you were being attacked, you would get a defense bonus. Each piece had different types of gauges, some filling faster, slower, or even erratically.
+
+p. I used a Java-based socket server called "GFSServer":http://code.google.com/p/gfs-server/ for the network communication. I could have gone with something like "Red5":http://code.google.com/p/red5/ or "SmartFoxServer":http://www.smartfoxserver.com/ (which I did test out), but they seemed much too complicated for what I wanted to do.
+
+p. While I had to place the project on hold at the completion of my independent study, I did get a demo working, complete with multiplayer, chat, chess movement, and player customization. The only component that remains incomplete is the battle system.
+
+p. Technologies Involved:
+* Adobe Flex (for user interface)
+* GFSServer (socket server)
