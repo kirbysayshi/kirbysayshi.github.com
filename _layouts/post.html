@@ -2,9 +2,12 @@
 layout: default
 ---
 <div class="post">
-  <h3>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
-    {{ content }}
-  <p class="signoff">
-    &mdash;{{ page.date | date: "%b %d, %Y" }}
-  </p>
+	<div class="imgholder">
+		<a href="{{ post.url }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
+	</div>
+  	<h3>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
+	  {{ content }}
+	<p class="signoff">
+	  &mdash;{{ page.date | date: "%b %d, %Y" }}
+	</p>
 </div>
