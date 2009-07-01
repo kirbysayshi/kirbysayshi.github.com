@@ -2,7 +2,7 @@
 layout: post
 title: Succulent Theme (from Textmate) for NetBeans
 type: project
-category:
+categories:
   - else
 projecturl: /stuff/succulent-netbeans.zip
 oneliner: I translated the Succulent theme that ships with Textmate to NetBeans for PHP/Javascript/HTML development. Try it out here.
