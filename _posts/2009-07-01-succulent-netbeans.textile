@@ -25,7 +25,8 @@ p. You can download it "here":/stuff/succulent-netbeans.zip.
 p. You should be able to import it using the "Import" button on the Fonts & Colors tab of preferences, but if you can't merge the contents of the config folder in the zip file with the contents of ~/.netbeans/6.7/config. The 6.7 in my case is my version. If you're using an older version of netbeans, check the contents of your .netbeans folder first.
 
 p. On OS X there is no merge functionality using the Finder (!). To get around this, use the following terminal command, modified appropriately (this assumes that you're inside of the succulent-netbeans folder):
-{% highlight bash %}
+
+{% highlight sh %}
 cp ./config/* ~/.netbeans/6.7/config/
 {% endhighlight %}
 
