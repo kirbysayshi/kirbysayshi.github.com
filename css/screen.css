@@ -19,10 +19,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-	font-size: 36px;
-	color: #421A09;
-	background: url('/images/bannergreen.png');
-	background-color: #52A3B5;
+	font-size: 24px;
+	/*color: #421A09;*/
+	color: #FF6A14;
+	/*background: url('/images/bannergreen.png');*/
+	/*background-color: #52A3B5;*/
+	border-bottom: solid #52A3B5 3px;
 }
 
 h1#title{
@@ -84,10 +86,13 @@ div#header {
 	background-color: #52A3B5;
 }
 div#footer {
-	height: 14.6em;
+	height: 100px;
 	padding-bottom: 4em;
 	line-height: 1.4em;
 	clear: both;
+	background: url('/images/bannergreen.png');
+	background-color: #52A3B5;
+	margin-top: 300px;
 }
 div.imgholder{
 	float: left;
@@ -117,7 +122,9 @@ div.post h4 {
 	padding-top: 0px;
 	display: inline;
 }
-
+div.project h3 {
+	color: white;
+}
 div.portrait {
 	float: left;
 	margin-right: 20px;
