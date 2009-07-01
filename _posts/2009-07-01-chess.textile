@@ -3,6 +3,7 @@ layout: post
 title: Chess, That Most Curious of Pastimes...
 categories:
   - inprogress
+  - flash
 type: project
 oneliner: A stab at an online multiplayer game, based on chess. Throw in RPG elements, steampunk aesthetics, and a socket server, and you've almost got a game!
 tags:
