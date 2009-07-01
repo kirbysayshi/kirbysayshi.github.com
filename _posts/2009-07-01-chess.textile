@@ -13,6 +13,10 @@ tags:
   - Flex
 ---
 
+p. Technologies Involved:
+* Adobe Flex (for user interface)
+* GFSServer (socket server)
+
 p. The assignment from my independent study was to create some sort of Flash-based _something_ that had a strong visual aspect. I decided it was time to create an MMORPG single-handedly, in one semester...
 
 p. The premise was that a player would create a "team" of chess pieces. Each piece would have a name. Also, the player would be given some allocation points, which could be assigned to a chess piece, increasing its battle statistics (attack, speed, defense, health). A player would challenge another player, and the two would commence with a standard game of chess. 
@@ -23,8 +27,4 @@ p. The difference was when two pieces on the board would meet. Rather than the a
 
 p. I used a Java-based socket server called "GFSServer":http://code.google.com/p/gfs-server/ for the network communication. I could have gone with something like "Red5":http://code.google.com/p/red5/ or "SmartFoxServer":http://www.smartfoxserver.com/ (which I did test out), but they seemed much too complicated for what I wanted to do.
 
-p. While I had to place the project on hold at the completion of my independent study, I did get a demo working, complete with multiplayer, chat, chess movement, and player customization. The only component that remains incomplete is the battle system.
-
-p. Technologies Involved:
-* Adobe Flex (for user interface)
-* GFSServer (socket server)
+p. While I had to place the project on hold at the completion of my independent study, I did get a demo working, complete with multiplayer, chat, chess movement, and player customization. The only component that remains incomplete is the battle system. As the socket server is required, and I don't have the resources to keep a server running, the demo is unable to be played. At some point in the future I may put the code up on Google Code or Github.
