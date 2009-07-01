@@ -1,0 +1,30 @@
+---
+layout: post
+title: Succulent Theme (from Textmate) for NetBeans
+type: project
+category:
+  - else
+projecturl: /stuff/succulent-netbeans.zip
+oneliner: I translated the Succulent theme that ships with Textmate to NetBeans for PHP/Javascript/HTML development. Try it out here.
+image:
+  - src: #
+  - alt: Example of syntax highlighting using my Succulent theme for NetBeans (PHP)
+tags:
+  - NetBeans
+  - Textmate
+--
+
+p. "Textmate":http://macromates.com is easily my favorite tool to use everyday. Put there are times when I would like a little more. Things like actual code completion, debugging, etc. Many of these things are possible with Textmate, but sometimes they're just a little too complicated, or just take to long to get up and running. 
+
+p. For PHP/Javascript/HTML/CSS development, nothing beats NetBeans (at the moment...). It is easily the greatest IDE I've ever used for PHP, especially of the free ones. I've tried Eclipse and its children (Aptana, PDT), Komodo (really great second, and the default dark theme it comes with is GREAT), Visual Studio (no Mac version == not for me), and a handful of other text editors (jEdit, BBEdit, TextWrangler, etc). This list by no means makes me an expert, but I've found my IDE for now: NetBeans. Oh yeah, AND, with 6.7 they've totally revamped the layout and appearance of the IDE itself, so it actually looks like an OS X application! Yay!
+
+p. The one thing NetBeans is lacking in, however, is dark color schemes. Sure, there's the Extra Ruby Color Themes available from the Plugin Manager in NetBeans, but they're for *Ruby*. In PHP, they're pretty abysmal. One day, I decided to take the plunge and recreate the Succulent theme from Textmate in NetBeans. 
+
+p. You can download it "here":/stuff/succulent-netbeans.zip.
+
+p. You should be able to import it using the "Import" button on the Fonts & Colors tab of preferences, but if you can't merge the contents of the config folder in the zip file with the contents of ~/.netbeans/6.7/config. The 6.7 in my case is my version. If you're using an older version of netbeans, check the contents of your .netbeans folder first.
+
+p. On OS X there is no merge functionality using the Finder (!). To get around this, use the following terminal command, modified appropriately (this assumes that you're inside of the succulent-netbeans folder):
+{% highlight bash %}
+cp ./config/* ~/.netbeans/6.7/config/
+{% endhighlight %}
