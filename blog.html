@@ -10,7 +10,7 @@ title: Writings
 		<div class="imgholder">
 			<img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/>
 		</div>
-		<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+		<h3><a href="{{ post.url }}">{{ post.title }}</a> <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
 		{{ post.content }}
 	</div>
 {% endfor %}
