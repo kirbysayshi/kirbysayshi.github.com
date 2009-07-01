@@ -63,15 +63,15 @@ div#nav table{
 }
 div#nav {
 	position: relative;
-	width: 628px;
-	margin-left: 160px;
+	width: 466px;
+	margin-left: 285px;
 	top: 210px;
 }
 div#nav a:link, div#nav a:visited{
 	color: #421A09;
 }
 div#nav a:active, div#nav a:hover {
-	color: #FF6A14;
+	color: white;
 }
 div#banner {
 	background: url('/images/headerlogo.png') no-repeat 50% 100%;
