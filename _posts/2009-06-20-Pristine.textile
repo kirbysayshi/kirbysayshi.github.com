@@ -7,7 +7,7 @@ type: project
 projecturl: http://code.google.com/p/pristine
 oneliner: A Flash-based, Papervision3D powered, space combat simulator in the vein of the X-Wing series with Battlestar Galactica mechanics.
 image: 
-  - src: /images/thumbs/pristine.png
+  - src: /images/icons/pristine.png
     alt: Icon for Pristine, the AS3 space combat simulator.
 tags:
   - AS3
