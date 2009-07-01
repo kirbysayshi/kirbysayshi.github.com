@@ -29,6 +29,7 @@ h2 {
 	/*background: url('/images/bannergreen.png');*/
 	/*background-color: #52A3B5;*/
 	border-bottom: solid #52A3B5 3px;
+	font-weight: normal;
 }
 
 h1#title{
