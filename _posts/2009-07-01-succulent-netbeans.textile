@@ -14,7 +14,7 @@ tags:
   - Textmate
 ---
 
-p. "Textmate":http://macromates.com is easily my favorite tool to use everyday. Put there are times when I would like a little more. Things like actual code completion, debugging, etc. Many of these things are possible with Textmate, but sometimes they're just a little too complicated, or just take to long to get up and running. 
+p. "Textmate":http://macromates.com is easily my favorite tool to use everyday. But there are times when I would like a little more: actual code completion, debugging, etc. Many of these things are possible with Textmate, but sometimes they're just a little too complicated, or take to long to get up and running.
 
 p. For PHP/Javascript/HTML/CSS development, nothing beats NetBeans (at the moment...). It is easily the greatest IDE I've ever used for PHP, especially of the free ones. I've tried Eclipse and its children (Aptana, PDT), Komodo (really great second, and the default dark theme it comes with is GREAT), Visual Studio (no Mac version == not for me), and a handful of other text editors (jEdit, BBEdit, TextWrangler, etc). This list by no means makes me an expert, but I've found my IDE for now: NetBeans. Oh yeah, AND, with 6.7 they've totally revamped the layout and appearance of the IDE itself, so it actually looks like an OS X application! Yay!
 
