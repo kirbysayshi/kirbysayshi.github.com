@@ -6,11 +6,13 @@ image:
     alt: A drawn picture of Andrew Petersen
 ---
 
+h2. Hello!
+
 <div class="portrait">
 	<img src="{{ page.image[0].src }}" alt="{{ post.image[0].alt }}" />
 </div>
 
-p. Hello, I'm Andrew Petersen. Yes, Petersen is spelled with an 'E'. Yes, there are a lot of us. Go ahead, do a search for Andrew Petersen. What's that? 3.2 million results? 
+p. I'm Andrew Petersen. Yes, _Petersen_ is spelled with an *e*. Yes, there are a lot of us. Go ahead, Google Andrew Petersen. What's that? 3.2 million results? 
 
 p. "No, I didn't.":/images/no.png 
 
