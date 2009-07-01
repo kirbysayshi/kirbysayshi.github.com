@@ -5,6 +5,10 @@ body{
 	padding: 0px;
 }
 
+p {
+	font-size: 0.9em;
+}
+
 a:link, a:visited{
 	color: #FF6A14;
 	text-decoration: none;
@@ -39,7 +43,7 @@ span.tags {
 }
 
 #fn1, #fn2, #fn3, #fn4, #fn5, #fn6, #fn7 {
-	font-size: 50%;
+	font-size: 80%;
 }
 
 div.project h3, div.post h3 {
