@@ -1,0 +1,4 @@
+# ignore ds_store stuff
+*.DS_Store
+# ignore local _site folder
+_site
