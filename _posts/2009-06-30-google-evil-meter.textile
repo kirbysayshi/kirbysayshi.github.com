@@ -19,10 +19,8 @@ tags:
 
 p. I use Google everyday, and many of its services are invaluable for my work. But we must be vigilant! We cannot allow Google to slowly pull the wool over our heads with innovation![1]
 
-p. The Google Evil Meter is fun and silly, yet slightly meaningful, experiment in Twitter data mining and HTML5. Every 15 minutes or so, the GEM gropes the Twitter search API with a few _secret_ terms (if the GEM were a hamburger, this would be the secret sauce!) and then stores all the tweets it finds in a database. During the groping, it also flags each tweet as either *good* or *evil*. Based on these tweets, we get a number!
+p. The Google Evil Meter is a fun and silly, yet slightly meaningful, experiment in Twitter data mining and HTML5. Every 15 minutes or so, the GEM gropes the Twitter search API with a few _secret_ terms (if the GEM were a hamburger, this would be the secret sauce!) and then stores all the tweets it finds in a database. During the groping, it also flags each tweet as either *good* or *evil*. Based on these tweets, we get a number! The GEM has been keeping track of Google's current level of evil since May 30, 2009.
 
-p. In addition to the data aggregation, it has to be displayed in a meaningful way. While the interface is not complete, it did give me an opportunity to try out the newish HTML5 Canvas tag, and it's awesome graphics API. It's very much like drawing in AS3. Using an old Apollo-era gauge as my inspiration, I used Javascript/Canvas to animate the sliders of the gauge.
-
-p. Next step: add a few more meters, displaying various averages, and maybe even put in a live feed of the tweets gathered.
+p. If you're wondering why nothing is showing up, click one of the *CHECK* toggle switches! 
 
 fn1. Ok, end the crazy, but keep in mind: Google has all (or at least much of) the information created by the human race. It's only a matter of time before one if its data centers becomes sentient!
