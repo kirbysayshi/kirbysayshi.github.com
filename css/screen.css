@@ -33,10 +33,6 @@ h2 {
 	text-transform: uppercase;
 }
 
-h3 a:link, h3 a:visited {
-	color: white;
-}
-
 h1#title{
 	display: none;
 }
@@ -46,7 +42,7 @@ h2 span.projecturl a,
 h2 span.archivelink a,
 span.tags {
 	font-size: 0.5em;
-	color: #FF6A14;
+	color: white;
 }
 
 #fn1, #fn2, #fn3, #fn4, #fn5, #fn6, #fn7 {
