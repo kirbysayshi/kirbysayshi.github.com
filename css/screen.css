@@ -33,6 +33,14 @@ h2 {
 	text-transform: uppercase;
 }
 
+h3 a:link, h3 a:visited {
+	color: white;
+}
+
+h3 a:active, h3 a:hover {
+	color: #FF6A14;
+}
+
 h1#title{
 	display: none;
 }
