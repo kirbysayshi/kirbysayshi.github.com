@@ -2,7 +2,7 @@
 layout: post
 title: SmashMMO
 categories:
-  - flase
+  - flash
 type: project
 projecturl: 
 oneliner: A fighting engine demo using the mechanics of Super Smash Bros. as the base inspiration.
