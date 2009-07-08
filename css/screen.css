@@ -5,7 +5,7 @@ body{
 	padding: 0px;
 }
 
-p {
+p, li {
 	font-size: 0.9em;
 }
 

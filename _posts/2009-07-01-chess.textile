@@ -13,11 +13,7 @@ tags:
   - Flex
 ---
 
-p. Technologies Involved:
-* Adobe Flex (for user interface)
-* GFSServer (socket server)
-
-p. The assignment from my independent study was to create some sort of Flash-based _something_ that had a strong visual aspect. I decided it was time to create an MMORPG single-handedly, in one semester...
+p. The assignment from my independent study was to create some sort of Flash-based _something_ that had a strong visual aspect. I decided it was time to create an MMORPG single-handedly, in one semester... I ended up using Flex.
 
 p. The premise was that a player would create a "team" of chess pieces. Each piece would have a name. Also, the player would be given some allocation points, which could be assigned to a chess piece, increasing its battle statistics (attack, speed, defense, health). A player would challenge another player, and the two would commence with a standard game of chess. 
 

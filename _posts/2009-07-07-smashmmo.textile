@@ -1,0 +1,23 @@
+---
+layout: post
+title: SmashMMO
+categories:
+  - flase
+type: project
+projecturl: 
+oneliner: A fighting engine demo using the mechanics of Super Smash Bros. as the base inspiration.
+tags:
+  - AS3
+---
+
+p. Disclaimer: _This "game" was made in a week._
+
+p. SmashMMO began as an assignment to create a Flash animation with a strong interactive emphasis. Given two weeks, I said to myself, "_Sure_, I can make a Massively-Multiplayer Online fighting game." Although I quickly scaled back my aspirations, the name that I originally conceived stuck: SmashMMO. 
+
+p. The goal is to knock your opponent off the screen and have them *kersplode*. It's a little unbalanced (ok, maybe a lot).
+
+p. The controls are simple enough, but there are some things not readily apparent. It's basically a big game of rock paper scissors. You have three attacks, yellow, purple, and red. You also have three directions, forward, up, and down (you have to be in the air for up and down attacks to work). If both players attack each other with the same color, the damage done is minimal. If one player attacks with a relatively higher attack (ie. attack with rock, opponent attacks with scissors), then double damage. 
+
+p. There are also two bonus hidden attacks. Each time you attack your opponent and land a hit, you'll hear a horn hit, each sounding a successively higher note in the scale. The highest sounding hit gives you and attack bonus! The other hidden attack is when performing the up attack. If you jump and attack upwards, you'll do a rotating upward kick. *However!* There is a little spark that appears near your shoe. If you hit your opponent while that spark is showing, you'll deal double damage and get a special sound effect. Yay!
+
+p. P.S. They're fleas.

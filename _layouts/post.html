@@ -7,7 +7,10 @@ layout: default
 	</div>
   	<h3>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
 	  {{ content }}
+	
+	{% if(page.type != 'project') %}
 	<p class="signoff">
 	  &mdash;{{ page.date | date: "%b %d, %Y" }}
 	</p>
+	{% endif %}
 </div>
