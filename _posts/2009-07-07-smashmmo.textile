@@ -4,7 +4,10 @@ title: SmashMMO
 categories:
   - flash
 type: project
-projecturl: 
+image:
+  - src: /images/icons/smashmmo.png
+  - alt: The titular character from Smashmmo, the Savior.
+projecturl: /flash/smashmmo/
 oneliner: A fighting engine demo using the mechanics of Super Smash Bros. as the base inspiration.
 tags:
   - AS3
@@ -13,6 +16,10 @@ tags:
 p. Disclaimer: _This "game" was made in a week._
 
 p. SmashMMO began as an assignment to create a Flash animation with a strong interactive emphasis. Given two weeks, I said to myself, "_Sure_, I can make a Massively-Multiplayer Online fighting game." Although I quickly scaled back my aspirations, the name that I originally conceived stuck: SmashMMO. 
+
+p. You may notice that on the title screen, the game has the subtitle of _The Return_. Originally, there was a huge storyline that I created, involving a ministry and populace that worshiped the Twelve Tones, who sought to discover the true meaning of the universe, life, etc by devoting their lives to said tones. One minister sought enlightenment by leaving the main community and traveling the world. When he returned, his prized pupil, who had since matured and become a minister himself, noticed a change in his former master that eluded all others. The master had somehow become corrupted, and had fallen from the righteous path of the true Twelve Tones. His pupil decided it was his responsibility to prevent his former master's corruption from enslaving the rest of the world.
+
+p. But I didn't have time to flesh out the story aspect. 
 
 p. The goal is to knock your opponent off the screen and have them *kersplode*. It's a little unbalanced (ok, maybe a lot).
 
