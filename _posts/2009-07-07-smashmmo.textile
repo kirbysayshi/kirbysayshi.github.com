@@ -11,6 +11,7 @@ projecturl: /flash/smashmmo/
 oneliner: A fighting engine demo using the mechanics of Super Smash Bros. as the base inspiration.
 tags:
   - AS3
+  - Flash
 ---
 
 p. Disclaimer: _This "game" was made in a week._

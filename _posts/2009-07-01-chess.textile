@@ -11,6 +11,7 @@ tags:
   - GFSServer
   - Steampunk
   - Flex
+  - Flash
 ---
 
 p. The assignment from my independent study was to create some sort of Flash-based _something_ that had a strong visual aspect. I decided it was time to create an MMORPG single-handedly, in one semester... I ended up using Flex.
