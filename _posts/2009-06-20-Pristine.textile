@@ -14,6 +14,7 @@ tags:
   - Papervision3D
   - BSG
   - Space
+  - Flash
 ---
 
 p. Pristine is the name I've given to the prototype for a space combat simulator written in ActionScript3 using "Papervision3D":http://code.google.com/p/papervision3d/. The name is derived from the spotless condition of Capt. Kara Thrace's (Starbuck) Viper MKII after her mysterious return to the fleet. If you have no idea what I'm talking about, that's ok!
