@@ -9,6 +9,9 @@ image:
 h2. Hello!
 
 <div class="portrait">
+	Andrew Petersen<br />
+	1.920.858.3080<br />
+	sen.of.peter@gmail.com<br />
 	<img src="{{ page.image[0].src }}" alt="{{ post.image[0].alt }}" />
 </div>
 
@@ -16,6 +19,6 @@ p. I'm Andrew Petersen. Yes, _Petersen_ is spelled with an *e*. Yes, there are a
 
 p. "No, I didn't.":/images/no.png 
 
-p. I'm not a dead "Senator":http://en.wikipedia.org/wiki/Andrew_Petersen, "dentist":http://healthprofs.com/cam/name/Andrew+Petersen++Michael+Greding,+DDS_Phoenix_Arizona_509659, "laywer":http://lawyers.justia.com/lawyer/andrew-petersen-671296, "archeologist":http://www.questia.com/PM.qst;jsessionid=LbjZTnhypzh71w2XC140p8MXChJWb4WNScHxY4VYJcvyTYGxnyz0!2307961?a=o&d=5008102847, "CIO":http://www.transecurity.com/about/andrew-petersen.php, or "musician":http://www.myspace.com/andrewpetersen. Wait, I am a bit of a "musician":http://www.myspace.com/charkdocolate, but not one that's been heard of.
+p. I'm not a "dead senator":http://en.wikipedia.org/wiki/Andrew_Petersen, "dentist":http://healthprofs.com/cam/name/Andrew+Petersen++Michael+Greding,+DDS_Phoenix_Arizona_509659, "laywer":http://lawyers.justia.com/lawyer/andrew-petersen-671296, "archeologist":http://www.questia.com/PM.qst;jsessionid=LbjZTnhypzh71w2XC140p8MXChJWb4WNScHxY4VYJcvyTYGxnyz0!2307961?a=o&d=5008102847, "CIO":http://www.transecurity.com/about/andrew-petersen.php, or "musician":http://www.myspace.com/andrewpetersen. Wait, I am a bit of a "musician":http://www.myspace.com/charkdocolate, but not one that's been heard of.
 
 p. Anywho, there's only one of me, really. I'm a twenty-two year old (at the time of this writing) web developer who likes to challenge myself whenever possible, often with projects that are "way above my head":flash/2009/06/20/Pristine.html.
