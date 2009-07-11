@@ -5,7 +5,7 @@ oneliner: Drarwings, performance, installation.
 type: project
 categories:
   - else
-images:
+image:
   - src:
   - alt: Art icon, a thumbnail of a drawing of myself wearing flight goggles.
 tags:

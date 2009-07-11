@@ -6,7 +6,7 @@ type: project
 projecturl: http://www.youtube.com/watch?v=jYF0U6XxHeo
 categories:
   - else
-images:
+image:
   - src: /images/icons/lr.png
   - alt: The face of the creature, the star of Lightning Rock.
 tags:
