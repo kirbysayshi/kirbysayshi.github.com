@@ -1,0 +1,16 @@
+---
+layout: post
+title: Finer Art
+oneliner: Drarwings, performance, installation.
+type: project
+categories:
+  - else
+images:
+  - src:
+  - alt: Art icon, a thumbnail of a drawing of myself wearing flight goggles.
+tags:
+  - Steampunk
+  - Goggles
+  - Tattoos
+  - Comics
+---
