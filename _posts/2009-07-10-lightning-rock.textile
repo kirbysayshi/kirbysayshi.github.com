@@ -3,7 +3,7 @@ layout: post
 title: The Lightning that Rocked
 oneliner: A hand-drawn (Charcoal == Analog) animation about a rock, some lightning, and a squirrel.
 type: project
-projecturl: http://youtube.com
+projecturl: http://www.youtube.com/watch?v=jYF0U6XxHeo
 categories:
   - else
 images:
