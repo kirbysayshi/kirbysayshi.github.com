@@ -9,10 +9,10 @@ image:
 h2. Hello!
 
 <div class="portrait">
+	<img src="{{ page.image[0].src }}" alt="{{ post.image[0].alt }}" /><br />
 	Andrew Petersen<br />
 	1.920.858.3080<br />
-	sen.of.peter@gmail.com<br />
-	<img src="{{ page.image[0].src }}" alt="{{ post.image[0].alt }}" />
+	sen.of.peter@gmail.com
 </div>
 
 p. I'm Andrew Petersen. Yes, _Petersen_ is spelled with an *e*. Yes, there are a lot of us. Go ahead, Google Andrew Petersen. What's that? 3.2 million results? 
