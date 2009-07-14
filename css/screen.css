@@ -43,6 +43,7 @@ h2 span.archivelink a,
 span.tags {
 	font-size: 0.5em;
 	color: white;
+	text-decoration: underline;
 }
 
 #fn1, #fn2, #fn3, #fn4, #fn5, #fn6, #fn7 {
