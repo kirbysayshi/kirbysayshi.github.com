@@ -145,6 +145,6 @@ div.portrait {
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
-div.portrait p:first {
+div.portrait p {
 	margin: 0;
 }
