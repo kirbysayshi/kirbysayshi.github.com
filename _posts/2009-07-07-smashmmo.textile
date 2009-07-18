@@ -14,9 +14,11 @@ tags:
   - Flash
 ---
 
-p. Disclaimer: _This "game" was made in a week._
+p. Disclaimer: _This demo was made in a week._
 
 p. SmashMMO began as an assignment to create a Flash animation with a strong interactive emphasis. Given two weeks, I said to myself, "_Sure_, I can make a Massively-Multiplayer Online fighting game." Although I quickly scaled back my aspirations, the name that I originally conceived stuck: SmashMMO. 
+
+p. Two things that I'm particularly proud of: the camera, and the physics engine. Although it's a little hard to tell (since there are *SO* many characters...), there is a fairly sophisticated bit of code in there that allows each character to have a different mass and levels of power, causing other characters to be thrown accordingly. Of the two characters in the demo, each are unique, even though they look similar. The one on the left is light, quick, and medium powered. The one on the right is very powerful, yet also very heavy, which can be noticed the most in his movements. It takes a lot more to get him going.
 
 p. You may notice that on the title screen, the game has the subtitle of _The Return_. Originally, there was a huge storyline that I created, involving a ministry and populace that worshiped the Twelve Tones, who sought to discover the true meaning of the universe, life, etc by devoting their lives to said tones. One minister sought enlightenment by leaving the main community and traveling the world. When he returned, his prized pupil, who had since matured and become a minister himself, noticed a change in his former master that eluded all others. The master had somehow become corrupted, and had fallen from the righteous path of the true Twelve Tones. His pupil decided it was his responsibility to prevent his former master's corruption from enslaving the rest of the world.
 

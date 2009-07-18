@@ -5,7 +5,7 @@ categories:
   - flash
 type: project
 projecturl: /flash/justtheidea/
-oneliner: An animation short about an idea about a conversation had while smoking while talking about an idea.
+oneliner: An animation short about an idea about a conversation about everything, had while smoking while talking about something else.
 image: 
   - src: /images/icons/justtheidea.png
     alt: Icon for a Flash animation short called "Just the Idea"
