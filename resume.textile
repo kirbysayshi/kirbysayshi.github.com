@@ -4,11 +4,27 @@ title: Resume.
 ---
 
 h2. WORK HISTORY
-| Oct 2004 - Jan 2009 | *Software Training for Students* Web Admin / Student Manager |
-| | Maintaining and implementing new features of an ASP.NET (C#) website with Oracle DB, such as student registration and scheduling. Responsibilities also included developing new curriculum, training new faculty, and leading classes of approximately 15 students |
-| Jan 2006 - Current | *Information Technology Acacdemy* Instructor and Lead Web Developer |
-| | |  
 
+<table>
+	<tr>
+		<td class="dates">Oct 2004 - Jan 2009</td>
+		<td class="title">*Software Training for Students* Web Admin / Student Manager</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td class="description">Maintaining and implementing new features of an ASP.NET (C#) website with Oracle DB, such as student registration and scheduling. Responsibilities also included developing new curriculum, training new faculty, and leading classes of approximately 15 students.</td>
+	</tr>
+	<tr><td></td></tr>
+	<tr>
+		<td class="dates">Jan 2006 - Current</td>
+		<td class="title">*Information Technology Academy* Instructor and Lead Web Developer</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td class="description">Preparing and implementing technology-oriented lesson plans to worthy high-school students from low-income families every other week. Leading a team through the creation and implementation of a custom web application (PHP/MySQ/AJAX) that manages student test scores, project progress, and overall progress of students in the ITA program. Working in concert with other instructional staff members to plan and create technology oriented curriculum.</td>
+	</tr>
+	<tr><td></td></tr>
+</table>
 
 h2. SKILLS
 
