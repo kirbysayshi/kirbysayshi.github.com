@@ -149,3 +149,20 @@ div.portrait {
 div.portrait p {
 	margin: 0;
 }
+/* Resume styles */
+div.entry {
+	margin-bottom: 30px;
+}
+div.entry h3 {
+	float: left;
+	margin: 0px;
+}
+div.entry span.dates {
+	float: right;
+}
+div.clear {
+	clear: both;
+}
+div.entry p {
+	margin: 0px;
+}
