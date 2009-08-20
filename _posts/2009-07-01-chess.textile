@@ -6,6 +6,9 @@ categories:
 type: project
 projecturl:
 oneliner: A stab at an online multiplayer game, based on chess. Throw in RPG elements, steampunk aesthetics, and a socket server, and you've almost got a game!
+image:
+  - src: /images/icons/chess.png
+  - alt: The stand-in icon for the BLACK BISHOP!
 tags:
   - AS3
   - GFSServer
