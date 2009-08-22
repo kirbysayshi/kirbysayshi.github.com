@@ -30,9 +30,9 @@ p. One of the best features of PANDA is the HTML helper functions. As each page 
 {% highlight php %}
 echo row(2);
 	echo cell_h(3, "Flash",	array('class' => 'topictitle'));
-	echo cell(3, 90,		array('class' => 'btw score'));
-	echo cell(3, 78.87,		array('class' => 'permit score'));
-	echo cell(3, 80, 		array('class' => 'rt score'));
+	echo cell(3, 90,	array('class' => 'btw score'));
+	echo cell(3, 78.87,	array('class' => 'permit score'));
+	echo cell(3, 80, 	array('class' => 'rt score'));
 	echo cell(3, 248.87,	array('class' => 'total score'));
 echo row_close(2);
 {% endhighlight %}
