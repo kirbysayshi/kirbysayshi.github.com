@@ -7,7 +7,7 @@ categories:
   - web
 projecturl: 
 image:
-  - src: images/icons/panda.png
+  - src: /images/icons/panda.png
   - alt: A panda cub.
 tags:
   - PHP
@@ -15,9 +15,7 @@ tags:
   - MySQL
 ---
 
-p. PANDA is actually two components: 
-  * A web framework for creating pages with different functionality easily and extensibly
-  * Extra code that is only meant to be used internally at "ITA":http://ita.wisc.edu.
+p. PANDA is actually two components, a web framework for creating pages with different functionality easily and extensibly, and extra code that is only meant to be used internally at "ITA":http://ita.wisc.edu (note: I have nothing to do with the public site).
 
 p. I envision PANDA as being similar to Ruby on Rails, in the sense that RoR was extracted from "Basecamp":http://www.basecamphq.com/. I definitely don't plan on this being as popular, or having as great an effect on the web as RoR! But the idea is similar. 
 
