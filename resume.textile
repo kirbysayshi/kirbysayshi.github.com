@@ -43,7 +43,7 @@ h2. FREELANCE
 	<h3>Sector Five Records</h3>
 	<span class="dates">Summer 2005</span>
 	<div class="clear"></div>
-	</p>Flash and Web Designer<br />
+	<p>Flash and Web Designer<br />
 	Madison, WI</p>
 </div>
 
@@ -64,5 +64,5 @@ h2. EDUCATION
 	<h3>University of Wisconsin Madison</h3>
 	<span class="dates">Fall 2004 - Spring 2009</span>
 	<div class="clear"></div>
-	</p></p>
+	<p>Graphic Design</p>
 </div>
