@@ -60,4 +60,9 @@ h2. SKILLS
 
 h2. EDUCATION
 
-p. Currently pursuing a Bachelor of Science degree in the Art Department at the University of Wisconsin.
+<div class="entry">
+	<h3>University of Wisconsin Madison</h3>
+	<span class="dates">Fall 2004 - Spring 2009</span>
+	<div class="clear"></div>
+	</p></p>
+</div>
