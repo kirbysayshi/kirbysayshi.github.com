@@ -5,7 +5,7 @@ oneliner: A web framework and application that tracks student scores, projects, 
 type: project
 categories:
   - web
-projecturl: http://kirbysayshi.github.com/web/2009/08/21/panda.html
+projecturl: http://panda.johnnytatlock.com
 image:
   - src: /images/icons/panda.png
   - alt: A panda cub.
