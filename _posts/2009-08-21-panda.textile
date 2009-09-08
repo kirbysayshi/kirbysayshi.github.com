@@ -15,6 +15,8 @@ tags:
   - MySQL
 ---
 
+p. _Note: The link for this project is a demo page, where you are automatically logged in as me._
+
 p. PANDA is actually two components, a web framework for creating pages with different functionality easily and extensibly, and extra code that is only meant to be used internally at "ITA":http://ita.wisc.edu (note: I have nothing to do with the public site).
 
 p. I envision PANDA as being similar to Ruby on Rails, in the sense that RoR was extracted from "Basecamp":http://www.basecamphq.com/. I definitely don't plan on this being as popular, or having as great an effect on the web as RoR! But the idea is similar. 
