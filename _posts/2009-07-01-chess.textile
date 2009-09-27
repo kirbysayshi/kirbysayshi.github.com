@@ -4,7 +4,7 @@ title: Chess, That Most Curious of Pastimes...
 categories:
   - inprogress
 type: project
-projecturl:
+projecturl: http://kirbysayshi.github.com/inprogress/2009/07/01/chess.html
 oneliner: A stab at an online multiplayer game, based on chess. Throw in RPG elements, steampunk aesthetics, and a socket server, and you've almost got a game!
 image:
   - src: /images/icons/chess.png
