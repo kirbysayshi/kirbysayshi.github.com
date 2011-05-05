@@ -1,0 +1,80 @@
+---
+layout: post
+title: JSConf 2011 Day 1
+oneliner: Talks of the epic awesome
+type: post
+categories:
+  - JavaScript
+image:
+  - src:
+  - alt:
+tags:
+  - JavaScript
+---
+
+h4. Bytes and Blobs
+
+XHR2 will eventually have a blob datatype, which will allow JS-controlled manipulation of binary data. This combined with the Drag-Drop API is really exciting. Blob URLs will also be possible (URL.createObjectURL), allowing a user to choose a file using a standard input tag, convert the input to a URL, and assign it to an image tag. WITHOUT canvas!
+
+FileReader object allows for reading in binary data from the filesystem.
+
+Typed arrays have been around for a while because of WebGL, but UInt/Float 8, 16, 32, 64 bits are available as well. They use native endianness of your platform. This could be a problem in network transport. WebGL needed native endianness for speed.
+
+webkitRequestFileSystem(): allow JS to talk to the local filesystem. Have to request a specific amount of memory. This gives you a file system. Then you request a file entry, followed by an actual file.
+
+Soon we'll be able to assign blobs to localStorage and sessionStorage.
+
+h4. Conference WiFi Redux
+
+WiFi at a conference is hard. You have to bring in all of your own materials. Use node to route!
+
+h4. Going Steady with the Chrome Developer Tools
+
+CSS and Script edits are now revisioned. Save directly from the dev tools to the file system for CSS!
+
+    copy(something) // output of something is copied to clipboard
+    dir() // log properties, not DOM element
+    inspect() // highlight DOM element in inspect tab
+
+Press ? to get a hint panel.
+CMD + L jumps to a specific line.
+Live edit JS
+Pretty print minified JS with a right click!
+
+h4. Batman.js
+
+Goals:
+* Fast: faster than ryan changes the node apis
+* ruby-like: shape is important
+* maximize developer happiness
+* maximize designer happiness: let them use jquery
+* convention over configuration: where do you put your stuff? path of least resistance
+* powerful bindings
+* no templates??
+* be a framework, not a library
+
+Batman: all of the above
+
+h4. Online Code Editing
+
+ACE (Ajax.org Code Editor) is awesome. Super easy to get going, and is easily extensible.
+
+h4. Code Quality Tools
+
+Three laws of code quality:
+
+#
+#
+#
+
+h4. Everything is permitted: extending built-ins
+
+Shouldn't treat coding practices like morality. Be precise in evangelism and tutorials.
+
+Wear shorts more often.
+
+Code has social customs. Talk more about what's polite or not, rather than right vs wrong.
+
+Who owns the built-ins? We all do. They are shared. Mine to use, and there is trust to not screw them up for other people. Social customs are a proven way to manage shared property. Java is like Singapore. JavaScript is more like Ruby, which has evolved through the influence of community norms.
+
+Let's all use the Bind polyfill. Let's all hope for refine/classboxes.
