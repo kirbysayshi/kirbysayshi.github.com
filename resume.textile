@@ -6,8 +6,16 @@ title: Resume.
 h2. WORK HISTORY
 
 <div class="entry">
+	<h3>R/GA</h3>
+	<span class="dates">October 2009 -- Current</span>
+	<div class="clear"></div>
+	<p>Open Standards Developer<br />
+	New York, NY</p>
+</div>
+
+<div class="entry">
 	<h3>Information Technology Academy</h3>
-	<span class="dates">January 2006 -- Current</span>
+	<span class="dates">January 2006 -- November 2009</span>
 	<div class="clear"></div>
 	<p>Instructor and Lead Web Developer<br />
 	Madison, WI</p>
@@ -29,34 +37,15 @@ h2. WORK HISTORY
 	Madison, WI</p>
 </div>
 
-h2. FREELANCE
-
-<div class="entry">
-	<h3>QuadCapital</h3>
-	<span class="dates">Summer 2007</span>
-	<div class="clear"></div>
-	<p>Flash Developer & Project Consultant<br />
-	Madison, WI</p>
-</div>
-
-<div class="entry">
-	<h3>Sector Five Records</h3>
-	<span class="dates">Summer 2005</span>
-	<div class="clear"></div>
-	<p>Flash and Web Designer<br />
-	Madison, WI</p>
-</div>
-
 h2. SKILLS
 
-* Object Oriented PHP
-* JavaScript, jQuery, Prototype
-* SQL (MySQL, Oracle 10g)
-* Flash / Flex 
-* Photoshop, Illustrator, InDesign (CS4)
-* ASP.NET (C#)
-* RESTful Data Retrieval (Twitter API)
-* Revision Control (Subversion, GIT)
+* nodejs
+* JavaScript (vanilla, jQuery)
+* MongoDB
+* PHP5
+* ASP.NET MVC (C#)
+* SQL (MySQL, MSSQL 2008, Oracle 10g)
+* Photoshop, Illustrator, InDesign (CS5)
 
 h2. EDUCATION
 
