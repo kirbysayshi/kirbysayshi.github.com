@@ -2,7 +2,7 @@
 layout: default
 ---
 <div class="post">
-	{% if page.image[0].src %}
+	{% if page.image != null %}
 	<div class="imgholder">
 		<a href="{{ page.url }}"><img src="{{ page.image[0].src }}" alt="{{ page.image[0].alt }}"/></a>
 	</div>
