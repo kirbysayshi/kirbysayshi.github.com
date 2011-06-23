@@ -52,7 +52,8 @@ span.tags {
 
 div.project h3, div.post h3 {
 	font-size: 1.5em;
-	margin-bottom: 18px;
+	margin-bottom: 25px;
+	line-height: 1em;
 }
 
 div#wrapper {
@@ -63,7 +64,7 @@ div#wrapper {
 	min-height: 100%;
 }
 div.contentwrapper{
-	width: 545px;
+	width: 600px;
 	padding-left: 90px;
 	padding-right: 90px;
 	padding-top: 25px;
@@ -115,8 +116,10 @@ div.imgholder{
 	width: 74px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 	background-color: white;
-	margin-right: 5px;
+	margin-right: 22px;
+	margin-bottom: 5px;
 	padding: 5px;
 }
 div.imgholder img {
@@ -127,6 +130,7 @@ div.post {
 	/*border: solid #52A3B5 3px;*/
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
+	border-radius: 5px;
 	/*overflow: hidden;*/
 	line-height: 1em;
 }
@@ -137,9 +141,6 @@ div.post h4 {
 	margin-top: 0px;
 	padding-top: 0px;
 	display: inline;
-}
-div.project h3. div.post h3 {
-	color: white;
 }
 div.portrait {
 	float: left;
