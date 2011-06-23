@@ -6,7 +6,7 @@ title: Projects
 <h2>Flash</h2>
 {% for post in site.categories.flash %}
 	{% if post.type == 'project' %}
-	  <div class="project">
+	  <div class="project smallentry">
 		<div class="imgholder">
 			<a href="{{ post.projecturl }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
 		</div>
@@ -20,7 +20,7 @@ title: Projects
 <h2>Web</h2>
 {% for post in site.categories.web %}
 	{% if post.type == 'project' %}
-	  <div class="project">
+	  <div class="project smallentry">
 		<div class="imgholder">
 			<a href="{{ post.projecturl }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
 		</div>
@@ -34,7 +34,7 @@ title: Projects
 <h2>Else</h2>
 {% for post in site.categories.else %}
 	{% if post.type == 'project' %}
-	  <div class="project">
+	  <div class="project smallentry">
 		<div class="imgholder">
 			<a href="{{ post.projecturl }}"><img src="{{ post.image[0].src }}" alt="{{ post.image[0].alt }}"/></a>
 		</div>

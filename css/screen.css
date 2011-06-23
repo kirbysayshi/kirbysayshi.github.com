@@ -154,6 +154,13 @@ div.portrait {
 div.portrait p {
 	margin: 0;
 }
+.project.smallentry h3 {
+	margin-bottom: 0;
+}
+.project.smallentry p {
+	margin-top: 0;
+}
+
 /* Resume styles */
 div.entry {
 	margin-bottom: 30px;
