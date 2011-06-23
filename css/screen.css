@@ -132,7 +132,11 @@ div.post {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	/*overflow: hidden;*/
-	line-height: 1em;
+	line-height: 1.2em;
+	padding-bottom: 80px;
+}
+div.post ul li {
+	padding-bottom: 18px;
 }
 div.clear {
 	clear: both;
