@@ -10,6 +10,7 @@ h2. Hello!
 
 <div class="portrait">
 	<img src="{{ page.image[0].src }}" alt="{{ post.image[0].alt }}" /><br />
+	"@KirbySaysHi":http://twitter.com/kirbysayshi<br />
 	Andrew Petersen<br />
 	1.920.858.3080<br />
 	sen.of.peter@gmail.com
@@ -19,7 +20,7 @@ p. The domain reads KirbySaysHi, but that's just who the internet thinks I am. R
 
 p. "No, I didn't.":/images/no.png 
 
-p. I'm not a "dead senator":http://en.wikipedia.org/wiki/Andrew_Petersen, "dentist":http://healthprofs.com/cam/name/Andrew+Petersen++Michael+Greding,+DDS_Phoenix_Arizona_509659, "laywer":http://lawyers.justia.com/lawyer/andrew-petersen-671296, "archeologist":http://www.questia.com/PM.qst;jsessionid=LbjZTnhypzh71w2XC140p8MXChJWb4WNScHxY4VYJcvyTYGxnyz0!2307961?a=o&d=5008102847, "CIO":http://www.transecurity.com/about/andrew-petersen.php, or "musician":http://www.myspace.com/andrewpetersen. Wait, I am a bit of a "piano player":http://www.myspace.com/charkdocolate, but not one that's been heard of (or perhaps should be...).
+p. I'm not a "dead senator":http://en.wikipedia.org/wiki/Andrew_Petersen, "dentist":http://healthprofs.com/cam/name/Andrew+Petersen++Michael+Greding,+DDS_Phoenix_Arizona_509659, "laywer":http://lawyers.justia.com/lawyer/andrew-petersen-671296, "archeologist":http://www.questia.com/PM.qst;jsessionid=LbjZTnhypzh71w2XC140p8MXChJWb4WNScHxY4VYJcvyTYGxnyz0!2307961?a=o&d=5008102847, "CIO":http://www.transecurity.com/about/andrew-petersen.php, or "musician":http://www.myspace.com/andrewpetersen. Wait, I am a bit of a "piano player":http://www.myspace.com/charkdocolate, but not one that's been heard of (or even should be...).
 
-p. Anywho, there's only one of me, really. I'm a twenty-two year old (at the time of this writing) web developer, who likes to challenge myself whenever possible, often with projects that are "really ambitious":flash/2009/06/20/Pristine.html.
+p. Anywho, there's only one of me, really.
 
