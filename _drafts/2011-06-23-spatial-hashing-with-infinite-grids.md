@@ -1,3 +1,4 @@
+---
 layout: post
 title: Spatial Hashing with Infinite Grids
 oneliner: Set grid flux to maximum!
