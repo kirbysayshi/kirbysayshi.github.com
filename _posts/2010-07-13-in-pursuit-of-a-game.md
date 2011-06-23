@@ -7,7 +7,7 @@ categories:
   - JavaScript, Game Design
 image:
   - src: /images/icons/ct.png
-  - alt: Old Man: Do you dare challenge Lavos? Do you dare to change what has been set in motion?
+  - alt: Do you dare challenge Lavos? Do you dare to change what has been set in motion?
 tags:
   - Chrono Trigger
 ---
