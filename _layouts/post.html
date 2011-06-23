@@ -2,9 +2,11 @@
 layout: default
 ---
 <div class="post">
+	{% if page.image[0] %}
 	<div class="imgholder">
 		<a href="{{ page.url }}"><img src="{{ page.image[0].src }}" alt="{{ page.image[0].alt }}"/></a>
 	</div>
+	{% endif %}
   	<h3>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
 	  {{ content }}
 	
