@@ -7,8 +7,6 @@ categories:
   - JavaScript
   - Future-Hopes
 image:
-  - src:
-  - alt:
 tags:
   - JavaScript
 ---
