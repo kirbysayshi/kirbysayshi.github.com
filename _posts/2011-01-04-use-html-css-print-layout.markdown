@@ -19,7 +19,7 @@ If you like this idea, get ready for the events that inspired it.
 
 My mother, over Christmas break, asked me to help create her Christmas card address labels. She had all the names entered into a Word document, but we didn't have Word on that computer anymore (long story), just OpenOffice.org. Thinking it was fine, I attempted to print the labels.
 
-### It was not fine.
+#### It was not fine.
 
 First off, the template that OpenOffice claimed would fit the packaged labels my mother bought did not fit. I had to make a custom template by measuring the physical labels and doing a lot of guesswork as to how OpenOffice calculated things. It was a lot of trial and error. Even once the template was complete, the labels still had formatting issues that were seemingly impossible to rectify as a whole. They were in a weird table... thing... that didn't act like a table (no way to auto-justify the columns or even precisely adjust the columns or rows, you could not turn off borders, etc).
 
@@ -27,7 +27,7 @@ Eventually, I gave up on the previously existing document, and had my mother ent
 
 However, still things were not perfect, as there was no easy way to make fields, if null/blank (like salutation), not appear on the label. Thus, an extra space would be on the label, and that drove me nuts. Eventually I gave up, and my mother said that she could live with an extra space.
 
-### There is a point here...
+#### There is a point here...
 
 This was actually not meant to be a rant about OpenOffice (which has some major interface issues, but it's FREE), but rather a question: could the web be used for print?
 
@@ -39,7 +39,7 @@ Part of this issue is the lack of forcing a user to outline their document with 
 
 Wait a minute. Styles? Block-elements? That sounds like...
 
-### HTML and CSS
+#### HTML and CSS
 
 Buh buh buuuuuh!
 
@@ -51,7 +51,7 @@ So the question that I asked [on Twitter today](http://twitter.com/#!/kirbysaysh
 
 This is possible, right now.
 
-### What needs to happen
+#### What needs to happen
 
 Creating an app for this is probably not that hard to do. I say app in a native, not web sense. The main reason for this is that CSS can do some pretty cool things for print but needs more browser-options to bolster its ability. For example, the print dialogue box cannot do complex margins, and insists on leaving space for things like page numbers, urls, dates, etc. This isn't really something that can be fixed by CSS or JavaScript libraries, but could be by the browser shell.
 
