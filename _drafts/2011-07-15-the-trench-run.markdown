@@ -19,7 +19,7 @@ You are a young child, about ten years old. In this slightly-too-warm white Dodg
 
 It is July, and it is only ten minutes until the six and a half hour drive to your grandmother's lakeside cabin in the middle of the Wisconsin northwoods is over.
 
-Two hours ago, when your Game Boy AA batteries wore out, all hope was lost. Reaching this fabled land of BB Guns, fishing boats, stumps with imaginary creatures living inside, a night sky so bright with stars that they were blinding, and a grandmother who could make the best strawberry rhubarb pie ever, was impossible. Highway 53 would never end, corn farm after corn farm would streak by, and you would be doomed forever to be slightly nauseous and impossibly tired, unable to ever sleep again. 
+Two hours ago, when your Game Boy AA batteries wore out, all hope was lost. Reaching this fabled land of BB Guns, fishing boats, and stumps with imaginary creatures living inside was impossible. Highway 53 would never end, corn farm after corn farm would streak by, and you would be doomed forever to be slightly nauseous and impossibly tired, unable to ever sleep again. 
 
 Since then you have been in a drowsy stupor, never fully asleep nor awake, where every bump in the road lasts an internal hour, and the only thing affected by the infernal gravity is your neck.
 
@@ -29,7 +29,7 @@ But there is no time for stopping now. As the van rumbles down highway E, you ar
 
 Your father again slows down, just enough to prevent the van from rolling, and careens right, onto highway K. K has not been repaved in 20 years, and its asphalt is colored salted pepper from the years of boat trailers, farm trackers, and the persistent sun beating down upon it.
 
-__This is it. Lock S-Foils in attack position.__
+_This is it. Lock S-Foils in attack position._
 
 As a ten year old, Star Wars is nearly the only thing you think about. Any long cylindrical object becomes a Lightsaber, and any blank piece of paper becomes a detailed plan of how to construct said Lightsaber. No fulfilled dream would be greater than to fly an X-Wing in the battle of Yavin alongside Wedge, Biggs, and Luke. Today you'll settle to be in the backseat.
 
@@ -53,5 +53,5 @@ Your father decelerates and turns off of the highway, onto a dead-end access roa
 
 You throw open the heavy sliding side-door of the van as hard as your tiny arms can, and jump out onto the grass-filled sand. You cannot believe that any place on earth could ever smell more green (until it rains). A place where a single cricket will literally play only for you all night. A place where wild blueberries grow twenty feet outside the front door. A place where bears eat said wild blueberries twenty feet outside the front door. A place where turtles taunt your wormed-hooks by lurking just below your bobbers. A place with legendary names like "Gibble's Cove", "Chafee's Pond", and "Mrs. Fischer's Island". A place with late-night card games that you rarely participate in, but always watch. A place that is only habitable for three months because otherwise the pipes would freeze. A place where the stove never quite works right because it's fifty years old. A place where Loons hauntingly howl for their mate at four in the morning. A place where there are only three fuzzy TV channels. A place with ticks, ground wasps, bald eagles, a den of foxes, deer, woodpeckers, and whip-o-wheels. A place where you have to change the fuses after a bad storm. A place where you have to take your garbage into town to get rid of it. A place where there is no table, only a huge painted picnic bench that fits fifteen. A place where in the morning, you light a fire and eat toast and watch the sun burn diamonds into the lake.
 
-This is the place that took 4 AA batteries, car sickness, an attack on the galaxy's most fully-armed battle station, and almost seven hours to get here. And you think to yourself, __I would have gone through worse__.
+This is the place that took 4 AA batteries, car sickness, an attack on the galaxy's most fully-armed battle station, and almost seven hours to get here. And you think to yourself, _I would have gone through worse_.
 
