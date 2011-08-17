@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Death Start Trench Run
+title: The Death Star Trench Run
 oneliner: Lock S-Foils in attack position, accelerate to attack speed. Set your deflector on double front.
 type: post
 categories:
