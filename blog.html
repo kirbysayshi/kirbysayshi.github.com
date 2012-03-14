@@ -14,5 +14,11 @@ title: Writings
 		{% endif %}
 		<h3><a href="{{ post.url }}">{{ post.title }}</a> <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
 		{{ post.content }}
+
+		{% if(page.type != 'project') %}
+		<p class="signoff">
+			&mdash; <a href="http://twitter.com/kirbysayshi">@KirbySaysHi</a> {{ post.date | date: "%b %d, %Y" }}
+		</p>
+		{% endif %}
 	</div>
 {% endfor %}
