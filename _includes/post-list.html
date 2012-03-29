@@ -1,0 +1,14 @@
+<ul class="post-list">
+	{% for post in site.posts %}
+	<li class="post-summary lined-block row">
+		<h3 class="col span_4"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+		<time class="col span_2" datetime="{{ post.date }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+
+		<div class="row">
+			<div class="post-tags col span_5">{% include inline-tags.html %}</div>
+			<div class="post-category col span_1">{{ post.category }}</div>
+		</div>
+
+	</li>
+	{% endfor %}
+</ul>

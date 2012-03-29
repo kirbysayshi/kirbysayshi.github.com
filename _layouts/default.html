@@ -1,52 +1,176 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <meta content="en-us" http-equiv="Content-Language" />
-    <meta content="The collected works of Andrew Petersen" name="description" />
-    <link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="/css/syntax.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-	<script type="text/javascript" src="./scripts/sitescripts.js"></script>
-	<title>apetersen &mdash; {{ page.title }}</title>
-  </head>
-  <body>  
-	<div id="wrapper">
-	  <div id="header">
-        <div id="banner">
-          <div id="nav">
-            <table>
-              <tr>
-                <td><a title="Me" href="/me.html">Me</a></td>
-				<td><a title="Projects" href="/projects.html">Projects</a></td>
-                <td><a title="Blog" href="/blog.html">Blog</a></td>
-                <td><a title="Resume" href="/resume.html">Resume</a></td>							
-              </tr>
-            </table>
-          </div>
-        </div>
-        <h1 id="title">apetersen</h1>			
-      </div>
-      <div class="contentwrapper">
-        {{ content }}
-      </div>
-      <div id="footer">
-        &nbsp;
-      </div>
-    </div>
-	<!-- Google Analytics Start -->
-	<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-9588164-1']);
-	_gaq.push(['_trackPageview']);
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="The collected works of Andrew Petersen" name="description" />
+		<!-- TODO: open graph tags -->
 
-	(function() {
-	  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-	</script>
-	<!-- Google Analytics End -->
-  </body>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+
+		<title>{{ page.title }} &mdash; KSH</title>
+	</head>
+	<body class="{{ page.classname }}">
+		<div id="header-container">
+			<header>
+				<a href="/">
+					{% include ascii-kirby.html %}
+					<h1>Hi.</h1>
+				</a>
+			</header>	
+		</div>
+		<div id="content-container">
+			<article class="cf">
+				<div id="social-contacts-header" class="row lined-block cf">
+					<h2 class="col span_3"><a class="header-contact" href="#contact">Contact</a> 
+						| <a target="_blank" href="http://careers.stackoverflow.com/senofpeter">Resume</a></h2>
+					<h2 class="social-icons col span_3">
+						<a target="_blank" class="icon-large icon-twitter-sign" href="http://twitter.com/kirbysayshi"></a>
+						<a target="_blank" class="icon-large icon-github-sign" href="https://github.com/kirbysayshi"></a>
+						<a class="icon-large icon-envelope" href="mailto:senofpeter@gmail.com"></a>
+					</h2>
+				</div>
+
+				
+				{{ content }}
+				
+			</article>
+		</div>
+
+		<div id="footer-container">
+			<footer class="row">
+
+				<h3 id="contact" class="lined-block col span_6">What? Who?</h3>
+				<div class="row">
+
+					<img class="lined-block col span_3" src="/images/me.jpg" alt="Me, drawn in the cockpit of an aircraft that definitely doesn't exist.">
+					<div class="bio-short col span_3">
+
+						<p>This is the personal blog of Andrew Petersen. I code as much as I can, and
+							sometimes write about it.</p>
+
+						<p>I built <a href="https://citational.com">Citational.com</a>, which can be used to
+							quote things on nearly any website. Also mischief.</p>
+
+						<ul class="contact-list">
+							<li class="icon-large icon-twitter-sign"><a href="http://twitter.com/kirbysayshi">@KirbySaysHi</a></li>
+							<li class="icon-large icon-github-sign"><a href="https://github.com/kirbysayshi">Github</a></li>
+							<li class="icon-large icon-envelope"><a href="mailto:senofpeter@gmail.com">senofpeter@gmail.com</a></li>
+						</ul>
+							
+					</div>
+
+				</div>
+
+				{% if page.url == '/index.html' %}
+				<div class="social-activity row">
+					<div class="feed lined-block col span_3">
+						<h3><a href="https://github.com/kirbysayshi"><i class="icon-large icon-github-sign"></i> Github</a></h3>
+						<ul class="github-feed"></ul>
+					</div>
+					<div class="feed col span_3">
+						<h3><a href="http://twitter.com/kirbysayshi"><i class="icon-large icon-twitter-sign"></i> Twitter</a></h3>
+						<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+						<script>
+							new TWTR.Widget({
+								version: 2,
+								type: 'profile',
+								rpp: 5,
+								interval: 30000,
+								width: 250,
+								height: 300,
+								theme: {
+									shell: {
+										background: '#f9d0d0',
+										color: '#939598'
+									},
+									tweets: {
+										background: '#f6f6f6',
+										color: '#4d4d4d',
+										links: '#c46568'
+									}
+								},
+								features: {
+									scrollbar: true,
+									loop: false,
+									live: true,
+									behavior: 'all'
+								}
+							}).render().setUser('kirbysayshi').start();
+						</script>
+					</div>
+				</div>
+				{% endif %}
+
+			</footer>
+		</div>
+
+		<script type="text/tpl-vash" id="tpl-github-feed-item">
+			<li>
+
+				@if(model.type === 'CreateEvent'){
+					<text>
+						@model.actor created a @model.payload.ref_type named 
+						<a target="_blank" href="@model.repository.url/tree/@model.payload.ref">@model.payload.ref</a>
+						at <a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					</text>
+				}
+
+				@if(model.type === 'WatchEvent'){
+					@model.actor began watching 
+					<a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+				}
+
+				@if(model.type === 'PushEvent'){
+					<text>
+						@model.actor pushed <a target="_blank" href="@model.url">@model.payload.head.substring(0, 6)</a> 
+						to @model.payload.ref.split('/').pop() 
+						at <a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					</text>
+				}
+
+				@if(model.type === 'GistEvent'){
+					<text>
+						@model.actor @(model.payload.action === 'update' ? 'updated' : 'created')
+						<a target="_blank" href="@model.url">@model.payload.name</a> (@(model.payload.desc.substring(0, 90) + '...')).
+					</text>
+				}
+
+				@if(model.type === 'IssuesEvent'){
+					<text>
+						@model.actor @(model.payload.action + 'ed') 
+						on <a target="_blank" href="@model.url">Issue @model.payload.number</a> 
+						on <a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					</text>
+				}
+
+				<br />
+				<time datetime="@model.created_at">@model.created_at</time>
+
+			</li>
+		</script>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/vash.js"></script>
+		<script type="text/javascript" src="/scripts/main.js"></script>
+
+		<script type="text/javascript">
+			jQuery(function(){ ksh.defaultInit(); })
+		</script>
+
+		<!-- Google Analytics Start -->
+		<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-9588164-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		</script>
+		<!-- Google Analytics End -->
+	</body>
 </html>

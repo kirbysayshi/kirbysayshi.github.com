@@ -1,0 +1,27 @@
+desc 'Generate category pages'
+task :categories do
+  puts "Generating category pages..."
+  require 'jekyll'
+  
+  options = Jekyll.configuration({})
+  site = Jekyll::Site.new(options)
+  site.read_posts('')
+  site.categories.sort.each do |category, posts|
+    html = ''
+    html << <<-HTML
+---
+layout: default
+title: Posts in #{category} category
+classname: page-home
+---
+<h1 class="lined-block col span_6">Showing Posts in #{category}</h1>
+
+{% include post-list.html %}
+    HTML
+    File.open("category/#{category}.html", 'w+') do |file|
+      file.puts html
+    end
+    puts 'category/#{category}.html generated!'
+  end
+  puts 'Done!'
+end

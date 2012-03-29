@@ -1,18 +1,73 @@
 ---
 layout: default
 ---
-<div class="post">
-	{% if page.image[0].src != null %}
-	<div class="imgholder">
-		<a href="{{ page.url }}"><img src="{{ page.image[0].src }}" alt="{{ page.image[0].alt }}"/></a>
+
+{% comment %} make post variable available for includes {% endcomment %}
+{% assign post = page %}
+
+{% if page.image[0].src != null %}
+	{% assign has_icon = true %}
+{% endif %}
+
+<article class="post">
+
+	<header class="row">
+
+		<div class="title-wrap lined-block col {% if has_icon %}span_5{% endif %}">
+			<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
+
+			<div class="post-meta">
+				{{ post.date | date: '%Y-%m-%d' }}
+
+				{% if post.category %}
+					in <a href="">{{ post.category }}</a>
+				{% endif %}
+
+				{% include inline-tags.html %}
+			</div>
+		</div>
+
+		{% if has_icon %}
+		<div class="post-icon col span_1">
+			<a href="{{ page.url }}"><img src="{{ page.image[0].src }}" alt="{{ page.image[0].alt }}"/></a>
+		</div>
+		{% endif %}
+
+	</header>
+
+	<div class="post-content row">
+
+		<div class="lined-block col">
+
+			{% if post.oneliner %}
+			<aside class="col span_3">
+				{{ post.oneliner }}
+
+				{% if post.projecturl %}<br />
+				<a class="project-url" href="{{ post.projecturl }}">{{ post.projecturl }}</a>
+				{% endif %}
+			</aside>
+			{% endif %}
+
+			{{ content }}
+
+		</div>
 	</div>
-	{% endif %}
-  	<h3>{{ page.title }} <span class='projecturl'><a href="{{ page.projecturl }}">{{ page.projecturl }}</a></span></h3>
-	  {{ content }}
 	
 	{% if(page.type != 'project') %}
-	<p class="signoff">
-	  &mdash; <a href="http://twitter.com/kirbysayshi">@KirbySaysHi</a> {{ page.date | date: "%b %d, %Y" }}
-	</p>
+	<div class="row">
+		<p class="signoff lined-block col">
+			&mdash; <a href="http://twitter.com/kirbysayshi">@KirbySaysHi</a> {{ page.date | date: "%b %d, %Y" }}
+		</p>
+	</div>
 	{% endif %}
-</div>
+
+	<div class="row">
+		{% if(page.hnlink == null) %}
+		<p class="hn-prompt lined-block col">Like this? Why not submit it to <a href="javascript:window.location=%22http://news.ycombinator.com/submitlink?u=%22+encodeURIComponent(document.location)+%22&t=%22+encodeURIComponent(document.title)">Hacker News?</a></p>
+		{% else %}
+		<p class="hn-prompt lined-block col">Have something to say about this? Let's discuss it on <a href="{{ page.hnlink }}">Hacker News</a></p>
+		{% endif %}
+	</div>
+
+</article>
