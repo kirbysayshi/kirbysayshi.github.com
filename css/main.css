@@ -473,7 +473,8 @@ li {}
 .post-list {}
 .post-list h3 { margin: 0; font-size: 14pt; }
 .post-list time { /*padding-right: 0;*/ font-size: 14pt; text-align: right; }
-.post-list .post-tags { font-size: 9pt; }
+.post-list .post-tags, .post-list .post-category { font-size: 9pt; }
+.post-list .post-category { text-align: right; }
 .post-list .post-summary { 
 	margin-bottom: 0em;
 	/*margin-left: 2.75%;*/
@@ -504,7 +505,7 @@ h5 { font-size: 14pt; }
 h6 { font-size: 11pt; }
 
 h1, h2, h3, h4, h5, h6, time, aside, 
-.post header .post-meta, .post-summary .post-tags, .post blockquote {
+.post header .post-meta, .post-summary .post-tags, .post-summary .post-category, .post blockquote {
 	color: #939598; /* or: #A7A9AC; */
 }
 

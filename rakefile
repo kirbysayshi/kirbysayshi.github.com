@@ -3,25 +3,69 @@ task :categories do
   puts "Generating category pages..."
   require 'jekyll'
   
+  # nuke old tags pages, recreate
+  FileUtils.rm_rf("category")
+  FileUtils.mkdir_p("category")
+
   options = Jekyll.configuration({})
   site = Jekyll::Site.new(options)
   site.read_posts('')
   site.categories.sort.each do |category, posts|
+    cslug = category.sub(' ', '-').downcase
     html = ''
     html << <<-HTML
 ---
 layout: default
 title: Posts in #{category} category
 classname: page-home
+selectedcategory: #{category}
 ---
 <h1 class="lined-block col span_6">Showing Posts in #{category}</h1>
 
 {% include post-list.html %}
     HTML
-    File.open("category/#{category}.html", 'w+') do |file|
+    File.open("category/#{cslug}.html", 'w+') do |file|
       file.puts html
     end
-    puts 'category/#{category}.html generated!'
+    puts "category/#{cslug}.html generated!"
   end
   puts 'Done!'
+end
+
+desc 'Generate tag pages'
+task :tags do
+  puts "Generating tag pages..."
+  require 'jekyll'
+  
+  FileUtils.rm_rf("tag")
+  FileUtils.mkdir_p("tag")
+
+  options = Jekyll.configuration({})
+  site = Jekyll::Site.new(options)
+  site.read_posts('')
+  site.tags.sort.each do |tag, posts|
+    tslug = tag.sub(' ', '-').downcase
+    html = ''
+    html << <<-HTML
+---
+layout: default
+title: Posts Tagged With #{tag}
+classname: page-home
+selectedtag: #{tag}
+---
+<h1 class="lined-block col span_6">Showing Posts Tagged With #{tag}</h1>
+
+{% include post-list.html %}
+    HTML
+    File.open("tag/#{tslug}.html", 'w+') do |file|
+      file.puts html
+    end
+    puts "tag/#{tslug}.html generated!"
+  end
+  puts 'Done!'
+end
+
+desc 'default, get ready for deploy'
+task :default => [:tags, :categories] do
+  puts "Built site!"
 end
