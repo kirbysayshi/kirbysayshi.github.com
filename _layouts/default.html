@@ -88,6 +88,16 @@
 			</div>
 		</script>
 
+		<script type="text/tpl-vash" id="tpl-hn-link-found">
+			<p class="hn-prompt lined-block col">Have something to say about this? 
+			Discuss it on <a href="@model.hnlink">Hacker News</a>!</p>
+		</script>
+
+		<script type="text/tpl-vash" id="tpl-hn-link-none">			
+			<p class="hn-prompt lined-block col">Like this? Why not submit it to 
+			<a href="javascript:window.location=%22http://news.ycombinator.com/submitlink?u=%22+encodeURIComponent(document.location)+%22&t=%22+encodeURIComponent(document.title)">Hacker News?</a></p>
+		</script>
+
 		<script type="text/tpl-vash" id="tpl-github-feed-item">
 			<li>
 

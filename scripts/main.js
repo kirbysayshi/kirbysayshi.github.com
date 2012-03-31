@@ -119,6 +119,24 @@ ksh.defaultInit = function(){
 		ksh.redirector();
 	}
 
+	if($('body').hasClass('page-post')){
+
+		ksh.hasHN(function(err, item){
+
+			var id = '';
+
+			if(!err){
+				id = 'found'
+			} else {
+				id = 'none'
+			}
+
+			var tpl = vash.compile($('#tpl-hn-link-' + id).html())
+
+			$('.hn-link').append( tpl( { hnlink: item.url } ) )
+		})
+	}
+
 	$('#social-contacts-header .header-contact').on('click', function(e){
 		e.preventDefault();
 		e.stopPropagation();
