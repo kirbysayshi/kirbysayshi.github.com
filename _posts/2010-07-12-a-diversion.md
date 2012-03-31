@@ -9,7 +9,10 @@ image:
   - src:
   - alt:
 tags:
-  - Lost, Avatar, Titanic, Trigun
+  - Lost
+  - Avatar
+  - Titanic
+  - Trigun
 ---
 
 

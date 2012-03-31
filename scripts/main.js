@@ -91,12 +91,12 @@ ksh.hasHN = function(cb, url){
 ksh.redirector = function(){
 
 	var routes = {
-		'else/2009/07/01/succulent-netbeans.html': '2009/07/01/succulent-netbeans.html'
+		'/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
 
 	}
 
-	if(window.pathname in routes){
-		window.location = routes[window.pathname];
+	if(window.location.pathname in routes){
+		window.location = routes[window.location.pathname];
 	}
 }
 

@@ -13,7 +13,7 @@ tags:
   - Skynet
   - Twitter
   - PHP
-  - MySql
+  - MySQL
   - HTML5
 ---
 
