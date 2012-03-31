@@ -94,7 +94,7 @@ ksh.redirector = function(){
 		'/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
 	}
 
-	var tpl = vash.compile($('#tpl-404-match'))
+	var tpl = vash.compile($('#tpl-404-match').html())
 		matched;
 
 	if(window.location.pathname in routes){
