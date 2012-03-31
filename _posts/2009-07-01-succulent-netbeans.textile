@@ -27,10 +27,12 @@ p. You should be able to import it using the "Import" button on the Fonts & Colo
 p. On Mac OS X there is no merge functionality using the Finder (!). To get around this, use the following terminal command, modified appropriately (this assumes that you're inside of the succulent-netbeans folder):
 
 {% highlight sh %}
+#!/bin/bash
 cp ./config/* ~/.netbeans/6.7/config/
 {% endhighlight %}
 
 p. I bet you can barely tell the two apart:
+
 | !/images/netbeans-succulent.png! | !/images/textmate-sunburst.png! |
 
 p. Ok, not really... but they're close, right? 

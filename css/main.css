@@ -450,6 +450,8 @@ body {
 .exploded-url .exploded-url-part { width: 40%; }
 .exploded-url .exploded-url-value { width: 55%; }
 
+.highlight { padding: 2.75%; }
+
 /*** Long Form Post */
 .post {}
 .post header h1 { margin-top: 2.75%; margin-bottom: 0; font-size: 30pt; line-height: 34pt; }
@@ -460,7 +462,7 @@ body {
 .post header .post-meta { font-size: 11pt; }
 .post aside { float: right; padding-right: 0; border-left: 1.5pt #F9D0D0 solid; font-size: 18pt; line-height: 145%; }
 .post .row aside:first-child { margin-left: 2.75%; margin-bottom: 2.75%; padding-top: 2.75%; padding-bottom: 2.75%; }
-.post aside .project-url { font-size: 11pt; line-height: 14pt; }
+.post aside .project-url { display: block; margin-top: 5.5%; font-size: 11pt; line-height: 14pt; }
 .post .post-content { font-family:; }
 .post .hn-prompt { margin-top: 0; }
 .post ul { font-size: 0.8em; }
