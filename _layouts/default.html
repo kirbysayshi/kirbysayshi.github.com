@@ -71,34 +71,7 @@
 					</div>
 					<div class="feed col span_3">
 						<h3><a href="http://twitter.com/kirbysayshi"><i class="icon-large icon-twitter-sign"></i> Twitter</a></h3>
-						<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-						<script>
-							new TWTR.Widget({
-								version: 2,
-								type: 'profile',
-								rpp: 5,
-								interval: 30000,
-								width: 250,
-								height: 300,
-								theme: {
-									shell: {
-										background: '#f9d0d0',
-										color: '#939598'
-									},
-									tweets: {
-										background: '#f6f6f6',
-										color: '#4d4d4d',
-										links: '#c46568'
-									}
-								},
-								features: {
-									scrollbar: true,
-									loop: false,
-									live: true,
-									behavior: 'all'
-								}
-							}).render().setUser('kirbysayshi').start();
-						</script>
+						<ul class="twitter-feed"></ul>
 					</div>
 				</div>
 				{% endif %}
@@ -120,6 +93,11 @@
 				@if(model.type === 'WatchEvent'){
 					@model.actor began watching 
 					<a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+				}
+
+				@if(model.type === 'FollowEvent'){
+					@model.actor began following 
+					<a target="_blank" href="@model.url">@model.payload.target.login</a>.
 				}
 
 				@if(model.type === 'PushEvent'){
@@ -148,6 +126,18 @@
 				<br />
 				<time datetime="@model.created_at">@model.created_at</time>
 
+			</li>
+		</script>
+
+		<script type="text/tpl-vash" id="tpl-twitter-feed-item">
+			<li class="cf">
+				<div class="twitter-profile-img">
+					<img src="@model.user.profile_image_url_https" alt="@model.user.screen_name" />
+				</div>
+				<p class="tweet-text">@model.text</p>
+				<a class="created-at" href="https://twitter.com/#!/@model.user.screen_name/status/@model.id_str">
+					<time datetime="@model.created_at">@model.created_at</time>
+				</a>
 			</li>
 		</script>
 

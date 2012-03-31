@@ -435,6 +435,11 @@ body {
 #footer-container .bio-short .contact-list { padding-left: 9.75%; }
 #footer-container .social-activity .github-feed { font-size: 0.7em; }
 #footer-container .social-activity .github-feed li { padding-bottom: 1.2em; }
+#footer-container .social-activity .twitter-feed { font-size: 0.7em; }
+#footer-container .social-activity .twitter-feed li { padding-bottom: 1.2em; }
+#footer-container .social-activity .twitter-feed li .twitter-profile-img { display: none; float: left; margin-right: 0.7em; }
+#footer-container .social-activity .twitter-feed li .tweet-text { margin: 0; }
+
 
 /*** Shared */
 .lined-block { /*margin-bottom: 1.4em;*/ border-left: 1.5pt #F9D0D0 solid; }
@@ -509,7 +514,7 @@ h1, h2, h3, h4, h5, h6, time, aside,
 	color: #939598; /* or: #A7A9AC; */
 }
 
-a { color: #C46568; text-decoration: none; }
+a, a > time { color: #C46568; text-decoration: none; }
 a:hover {  }
 
 p { line-height: 135%; }
