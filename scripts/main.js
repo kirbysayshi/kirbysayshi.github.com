@@ -101,7 +101,7 @@ ksh.redirector = function(){
 
 		matched = routes[window.location.pathname];
 
-		$('#content-container').append( tpl({ redirect: matched }) );
+		$('#content-container article').append( tpl({ redirect: matched }) );
 
 		setTimeout(function(){
 			window.location = matched;
