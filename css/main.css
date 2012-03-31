@@ -450,7 +450,7 @@ body {
 .exploded-url .exploded-url-part { width: 40%; }
 .exploded-url .exploded-url-value { width: 55%; }
 
-.highlight { padding: 2.75%; }
+.highlight { padding: 2.75%; background-color: #F6F6F6; }
 
 /*** Long Form Post */
 .post {}
