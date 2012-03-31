@@ -95,7 +95,7 @@ ksh.redirector = function(){
 	}
 
 	var tpl = vash.compile($('#tpl-404-match').html())
-		matched;
+		,matched;
 
 	if(window.location.pathname in routes){
 
