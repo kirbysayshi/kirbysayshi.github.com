@@ -92,11 +92,20 @@ ksh.redirector = function(){
 
 	var routes = {
 		'/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
-
 	}
 
+	var tpl = vash.compile($('#tpl-404-match'))
+		matched;
+
 	if(window.location.pathname in routes){
-		window.location = routes[window.location.pathname];
+
+		matched = routes[window.location.pathname];
+
+		$('.content-container').append( tpl({ redirect: matched }) );
+
+		setTimeout(function(){
+			window.location = matched;
+		}, 3000);
 	}
 }
 
