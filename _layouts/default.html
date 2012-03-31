@@ -81,7 +81,10 @@
 
 		<script type="text/tpl-vash" id="tpl-404-match">
 			<div class="row lined-block">
-				<p class="col">But I bet you were looking for @model.redirect! Going there in 3 seconds...</p>
+				<p class="col">But I bet you were looking for 
+					<a href="@model.redirect">@model.redirect</a>! 
+					Going there in 3 seconds...
+				</p>
 			</div>
 		</script>
 
