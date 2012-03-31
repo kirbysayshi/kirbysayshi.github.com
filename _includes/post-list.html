@@ -16,7 +16,7 @@
 			<div class="post-tags col span_4">{% include inline-tags.html %}</div>
 			<div class="post-category col span_2">
 				{% for category in post.categories %}
-				<a href="/category/{{ category | downcase | replace:' ','-' }}.html">{{ category }}</a>{% if forloop.last %} {% else %}, {% endif %}
+				<a href="/category/{{ category | downcase | replace:' ','-' }}.html">{{ category | capitalize }}</a>{% if forloop.last %} {% else %}, {% endif %}
 				{% endfor %}
 			</div>
 		</div>

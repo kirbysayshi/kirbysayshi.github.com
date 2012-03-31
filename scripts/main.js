@@ -88,11 +88,27 @@ ksh.hasHN = function(cb, url){
     }
 }
 
+ksh.redirector = function(){
+
+	var routes = {
+		'else/2009/07/01/succulent-netbeans.html': '2009/07/01/succulent-netbeans.html'
+
+	}
+
+	if(window.pathname in routes){
+		window.location = routes[window.pathname];
+	}
+}
+
 ksh.defaultInit = function(){
 	ksh.githubFeed( $('.github-feed'), vash.compile($('#tpl-github-feed-item').html()) );
 	ksh.twitterFeed( $('.twitter-feed'), vash.compile($('#tpl-twitter-feed-item').html()) );
 
 	ksh.explodeUrl( $('.post .project-url') );
+
+	if($('body').hasClass('page-404')){
+		ksh.redirector();
+	}
 
 	$('#social-contacts-header .header-contact').on('click', function(e){
 		e.preventDefault();
