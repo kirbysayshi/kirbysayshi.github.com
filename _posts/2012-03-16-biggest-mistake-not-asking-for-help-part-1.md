@@ -2,6 +2,7 @@
 title: The Biggest Mistake You Can Make is Not Asking For Help (Part 1)
 oneliner: Want to work at web scale? Solve education.
 layout: post
+published: false
 ---
 
 I spent around 5 years in college and didn't graduate.

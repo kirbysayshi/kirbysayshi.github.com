@@ -2,6 +2,7 @@
 title: The Biggest Mistake You Can Make is Not Asking For Help (Part 2)
 oneliner: Want to work at web scale? Solve education.
 layout: post
+published: false
 ---
 
 experimenting takes money!
