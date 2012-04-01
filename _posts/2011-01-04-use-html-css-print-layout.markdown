@@ -5,7 +5,7 @@ oneliner: It was not fine.
 type: post
 categories:
   - JavaScript
-  - Future-Hopes
+  - Future Hopes
 image:
 tags:
   - JavaScript
