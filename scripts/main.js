@@ -91,8 +91,14 @@ ksh.hasHN = function(cb, url){
 ksh.redirector = function(){
 
 	var routes = {
-		'/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
+		 '/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
 		,'/JavaScript/2012/03/14/introducing-twitter-sequencer.html': '/2012/03/14/introducing-twitter-sequencer.html'
+		,'/flash/2009/07/07/smashmmo.html': '/2009/07/07/smashmmo.html'
+		,'/flash/2009/07/08/portable-spacetime-displacement-unit-01.html': '/2009/07/08/portable-spacetime-displacement-unit-01.html'
+		,'/projects.html': '/'
+		,'/blog.html': '/'
+		,'/me.html': '#contact'
+		,'/resume.html': 'http://careers.stackoverflow.com/senofpeter'
 	}
 
 	var tpl = vash.compile($('#tpl-404-match').html())
