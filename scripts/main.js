@@ -92,6 +92,7 @@ ksh.redirector = function(){
 
 	var routes = {
 		'/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
+		,'/JavaScript/2012/03/14/introducing-twitter-sequencer.html': '/2012/03/14/introducing-twitter-sequencer.html'
 	}
 
 	var tpl = vash.compile($('#tpl-404-match').html())
