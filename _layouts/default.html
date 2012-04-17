@@ -161,6 +161,14 @@
 					</text>
 				}
 
+				@if(model.type === 'IssueCommentEvent'){
+					<text>
+						@model.actor commented on
+						<a target="_blank" href="@model.url">Issue @model.payload.issue_id</a> 
+						on <a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					</text>
+				}
+
 				<br />
 				<time datetime="@model.created_at">@model.created_at</time>
 
