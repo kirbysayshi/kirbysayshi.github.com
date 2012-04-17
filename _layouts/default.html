@@ -155,7 +155,7 @@
 
 				@if(model.type === 'IssuesEvent'){
 					<text>
-						@model.actor @(model.payload.action + 'ed') 
+						@model.actor @model.payload.action 
 						on <a target="_blank" href="@model.url">Issue @model.payload.number</a> 
 						on <a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
 					</text>
