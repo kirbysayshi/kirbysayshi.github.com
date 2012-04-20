@@ -144,7 +144,7 @@ module Jekyll
     #    is output for this property.
     def entry(path, date, changefreq, site)
       # Remove the trailing slash from the baseurl if it is present, for consistency.
-      baseurl = site.config['baseurl'] or 'http://kirbysayshi.github.com'
+      baseurl = 'http://kirbysayshi.github.com/' # site.config['baseurl'] or 'http://kirbysayshi.github.com/'
       baseurl = baseurl[0..-2] if baseurl=~/\/$/
       
       "
