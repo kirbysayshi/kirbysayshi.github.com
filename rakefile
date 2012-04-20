@@ -65,7 +65,22 @@ selectedtag: #{tag}
   puts 'Done!'
 end
 
+desc 'Generate sitemap.xml'
+task :sitemap do
+  puts "Generating sitemap..."
+  require '_buildscripts/generate_sitemap'
+  require 'jekyll'
+
+  options = Jekyll.configuration({})
+  site = Jekyll::Site.new(options)
+  site.read_directories('')
+
+  gen = Jekyll::SitemapGenerator.new();
+  gen.generate(site)
+  puts "Sitemap generated!"
+end
+
 desc 'default, get ready for deploy'
-task :default => [:tags, :categories] do
+task :default => [:tags, :categories, :sitemap] do
   puts "Built site!"
 end
