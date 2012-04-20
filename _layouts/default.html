@@ -82,6 +82,18 @@
 
 				</div>
 
+				<div class="row">
+					This blog is hosted on <a href="http://pages.github.com/">Github Pages</a>,
+					and uses <a href="https://github.com/mojombo/jekyll">Jekyll</a>, 
+					<a href="http://github.com/necolas/normalize.css">normalize.css</a>, 
+					<a href="http://nicolasgallagher.com/micro-clearfix-hack/">micro clearfix</a>, 
+					<a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a>, 
+					<a href="http://gridpak.com/">Gridpak</a>, 
+					<a href="https://github.com/kirbysayshi">Vash</a>, 
+					<a href="http://www.google.com/webfonts">Google Web Fonts</a>,
+					and <a href="http://jquery.com">jQuery</a>.
+				</div>
+
 				{% if page.url == '/index.html' %}
 				<div class="social-activity row">
 					<div class="feed lined-block col span_3">
@@ -129,13 +141,17 @@
 				}
 
 				@if(model.type === 'WatchEvent'){
-					@model.actor began watching 
-					<a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					<text>
+						@model.actor began watching 
+						<a target="_blank" href="@model.repository.url">@model.repository.owner/@model.repository.name</a>.
+					</text>
 				}
 
 				@if(model.type === 'FollowEvent'){
-					@model.actor began following 
-					<a target="_blank" href="@model.url">@model.payload.target.login</a>.
+					<text>
+						@model.actor began following 
+						<a target="_blank" href="@model.url">@model.payload.target.login</a>.
+					</text>
 				}
 
 				@if(model.type === 'PushEvent'){
@@ -188,7 +204,6 @@
 		</script>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script type="text/javascript" src="/scripts/vash.js"></script>
 		<script type="text/javascript" src="/scripts/main.js"></script>
 
 		<script type="text/javascript">

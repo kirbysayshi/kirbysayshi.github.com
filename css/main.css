@@ -450,7 +450,10 @@ body {
 .exploded-url .exploded-url-part { width: 40%; }
 .exploded-url .exploded-url-value { width: 55%; }
 
-.highlight { padding: 2.75%; background-color: #F6F6F6; }
+.highlight { padding: 2.75% 0; background-color: #F6F6F6; }
+.highlight pre { margin: 0; }
+.highlight pre code { font-size: 0.8em; }
+.highlight .lineno:after { content: '|'; }
 
 /*** Long Form Post */
 .post {}
@@ -466,7 +469,8 @@ body {
 .post .post-content {  }
 .post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
 .post ul { font-size: 0.8em; }
-.post ul li { padding: 1.25% 2.75%; border-left: 2px solid #F9D0D0; }
+.post ul li { padding: 1.25% 2.75%; }
+.post ul li:before { content: '> '; margin-left: -1em; font-size: 1.1em; }
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
 
