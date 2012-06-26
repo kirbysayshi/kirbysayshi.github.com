@@ -18,7 +18,7 @@ tags:
 
 ![Portals are surprisingly tough!](/images/impact-portal.png)
 
-There are lots of bugs, but it's in a playable state for now.
+There are lots of bugs, but it's in a playable state for now. Aside from the portals themselves, all the graphics come with ImpactJS's demos.
 
 Portals can be shot onto any surface using WASD. I wanted to try something different than the typical mouse-controlled targeting. I've always found mouse controlled aiming to be difficult and cumbersome in a smaller screen size, especially when attempting to do the tight movements required for Portal. My initial experimentation is that WASD works well, allowing for extremely swift shots. I eventually hope to add diagonals too.
 
