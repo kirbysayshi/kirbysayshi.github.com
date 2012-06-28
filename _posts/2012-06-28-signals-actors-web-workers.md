@@ -23,6 +23,8 @@ Using a bastardized [Actor Model][] (I'm barely even using the concept properly)
 
 There are two components to the experiment, the primary script, and the worker script. This could be expanded to two-way communication.
 
+DISCLAIMER: There isn't any security implicitly built in here. Ideally you'd put a property that is shared and only known by trusted scripts to know that events are legit.
+
 <figure>
 	<img src="/images/sky-signal.png" alt="It's a different kind of signal" />
 	<figcaption>It's a different kind of signal</figcaption>
