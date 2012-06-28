@@ -474,6 +474,9 @@ body {
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
 
+.post figure { text-align: center; }
+.post figcaption { font-size: 0.8em; }
+
 .footnotes { font-size: 0.7em; }
 .footnotes hr { opacity: 0.1; }
 .footnotes ol p { display: inline; }
@@ -495,7 +498,7 @@ li {}
 .post-list .post-summary .col:first-child {  }
 
 /*/////// TYPOGRAPHY */
-h1,h2,h3,h4,h5,h6,a,time,aside,
+h1,h2,h3,h4,h5,h6,a,time,aside,figcaption,
 .post header .post-meta, .post-summary .post-tags {
 	font-family: 'Open Sans Condensed', sans-serif;
 	vertical-align: baseline;
@@ -515,7 +518,7 @@ h4 { font-size: 14pt; }
 h5 { font-size: 14pt; }
 h6 { font-size: 11pt; }
 
-h1, h2, h3, h4, h5, h6, time, aside, 
+h1, h2, h3, h4, h5, h6, time, aside, figcaption, 
 .post header .post-meta, .post-summary .post-tags, .post-summary .post-category, .post blockquote {
 	color: #939598; /* or: #A7A9AC; */
 }
