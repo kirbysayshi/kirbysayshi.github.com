@@ -16,7 +16,10 @@ tags:
 
 [ImpactJS][] is a great game engine. I'm still working on this, but wanted to share some basic portal-like teleportation using ImpactJS. 
 
-![Portals are surprisingly tough!](/images/impact-portal.png)
+<figure>
+	<img src="/images/impact-portal.png" alt="Portals are surprisingly tough!" />
+	<figcaption>Portals are surprisingly tough!</figcaption>
+</figure>
 
 There are lots of bugs, but it's in a playable state for now. Aside from the portals themselves, all the graphics come with ImpactJS's demos.
 
@@ -26,7 +29,10 @@ The strange translucent cones are a hint of phase 2 of this experiment. They are
 
 Below is a GIF demonstrating how the view cones might work in Impact. The only thing I did not animate were the view cones themselves, which would naturally expand and contract as you approached or distanced.
 
-![Hopefully this helps explain](/images/traversal_mockup.gif)
+<figure>
+	<img src="/images/traversal_mockup.gif" alt="Hopefully this helps explain" />
+	<figcaption>Hopefully this helps explain</figcaption>
+</figure>
 
 [Portile][] implemented this mechanic first (painting what you can "see" beyond the portal on the other end), but I found it extremely confusing (although really neat to look at!) to figure out the actual level geometry. [ASCII Portal][] took it one step further, by limiting what you could see via view cones. Neither of these incorporated actual physics, which is why I started on this experiment.
 
