@@ -14,6 +14,8 @@ tags:
 
 ---
 
+UPDATE 06-29-2012: The demo now shows the what you can "see" through the portals in a limited way!
+
 [ImpactJS][] is a great game engine. I'm still working on this, but wanted to share some basic portal-like teleportation using ImpactJS. 
 
 <figure>
