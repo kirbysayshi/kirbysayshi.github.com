@@ -1,2 +1,5 @@
 pygments: true
 permalink: /:year/:month/:day/:title.html
+name: KSH
+description: Thoughts, posts, and projects by KirbySaysHi (Andrew Petersen)
+url: http://kirbysayshi.github.com
