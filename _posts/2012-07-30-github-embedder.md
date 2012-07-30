@@ -33,7 +33,7 @@ into:
 	data-ghlines="329-348"
 	data-ghtabsize="2"></div>
 
-In the above example, both `ghref` and `ghlines` are optional. The only required params are `ghuserrepo` and `ghpath`. There may be bugs, but it works for now! You can also see a live demo at [JSBin][].
+In the above example, `ghref`, `ghlines`, and `ghtabsize` are optional. The only required params are `ghuserrepo` and `ghpath`. There may be bugs, but it works for now! You can also see a live demo at [JSBin][].
 
 [ghembedder]: https://github.com/kirbysayshi/ghembedder
 [google-code-prettify]: https://code.google.com/p/google-code-prettify/
