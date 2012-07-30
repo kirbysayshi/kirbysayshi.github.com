@@ -19,10 +19,11 @@ It turns this:
 
 {% highlight html %}
 <div data-ghuserrepo="kirbysayshi/ghembedder"
-	data-ghpath="src/ghembedder.js"
-	data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
-	data-ghlines="329-348"
-	data-ghtabsize="2"></div>
+    data-ghpath="src/ghembedder.js"
+    data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
+    data-ghlines="329-348"
+    data-ghtabsize="2">
+</div>
 {% endhighlight %}
 
 into:
@@ -31,7 +32,8 @@ into:
 	data-ghpath="src/ghembedder.js"
 	data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
 	data-ghlines="329-348"
-	data-ghtabsize="2"></div>
+	data-ghtabsize="2">&nbsp;
+</div>
 
 In the above example, `ghref`, `ghlines`, and `ghtabsize` are optional. The only required params are `ghuserrepo` and `ghpath`. There may be bugs, but it works for now! You can also see a live demo at [JSBin][].
 
