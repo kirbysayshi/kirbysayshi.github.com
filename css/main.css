@@ -593,3 +593,6 @@ a, a > time { color: #C46568; text-decoration: none; }
 a:hover {  }
 
 p { line-height: 135%; }
+
+/* DISQUS */
+#disqus_thread { padding-left: 2.75%; min-height: 330px; } 
