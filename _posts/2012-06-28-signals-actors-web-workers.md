@@ -32,7 +32,7 @@ DISCLAIMER: There isn't any security implicitly built in here. Ideally you'd put
 
 ### Usage (The Prestige!)
 
-We're going to be making a web worker (out "actor") that computes fibonacci sequences (yes, I know that this is... sigh), and when it has computed the next number in sequence, will emit a `stepped` event. When it finishes, it will emit a `stopped` event. This will be controlled by the primary script, which will listen for these events.
+We're going to be making a web worker (our "actor") that computes fibonacci sequences (yes, I know that this is... sigh), and when it has computed the next number in sequence, will emit a `stepped` event. When it finishes, it will emit a `stopped` event. This will be controlled by the primary script, which will listen for these events.
 
 {% highlight javascript %}
 // primary.js
