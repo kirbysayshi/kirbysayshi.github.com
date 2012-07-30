@@ -498,6 +498,7 @@ body {
 #footer-container .bio-short { /*margin-left: 0;*/ margin-bottom: 1em; }
 #footer-container .bio-short p:first-child { margin-top: 0; }
 #footer-container .bio-short .contact-list { padding-left: 9.75%; }
+#footer-container .social-activity { margin-top: 1em; }
 #footer-container .social-activity .github-feed { font-size: 0.7em; }
 #footer-container .social-activity .github-feed li { padding-bottom: 1.2em; }
 #footer-container .social-activity .twitter-feed { font-size: 0.7em; }

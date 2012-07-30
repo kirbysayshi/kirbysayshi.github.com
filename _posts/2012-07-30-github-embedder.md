@@ -17,20 +17,21 @@ So I created [ghembedder][], which is a simple way to declaratively embed any fi
 
 It turns this:
 
-````
+{% highlight html %}
 <div data-ghuserrepo="kirbysayshi/ghembedder"
 	data-ghpath="src/ghembedder.js"
 	data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
-	data-ghlines="325-348"></div>
-
-````
+	data-ghlines="329-348"
+	data-ghtabsize="2"></div>
+{% endhighlight %}
 
 into:
 
-<div data-ghuserrepo="kirbysayshi/ghembedder"
+<div class="highlight" data-ghuserrepo="kirbysayshi/ghembedder"
 	data-ghpath="src/ghembedder.js"
 	data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
-	data-ghlines="325-348"></div>
+	data-ghlines="329-348"
+	data-ghtabsize="2"></div>
 
 In the above example, both `ghref` and `ghlines` are optional. The only required params are `ghuserrepo` and `ghpath`. There may be bugs, but it works for now! You can also see a live demo at [JSBin][].
 
