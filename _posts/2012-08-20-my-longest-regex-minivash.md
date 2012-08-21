@@ -32,7 +32,7 @@ Given these requirements, and knowing that I wasn't going to be relying on a tru
 
 ## The Longest Regex I've Ever Written
 
-I recently read a great SO answer saying that regexps are [readable only by the one who wrote it][], and that this means we should treat complex ones as a write only language. After writing the following regex, I agree. It is broken up by whitespace below to be readable in this narrow space. As one valid JS regex, it's pretty tricky looking.
+I recently read a great SO answer saying that regexps are [readable only by the one who wrote it][], and that this means we should treat complex ones as a write only language. After writing the following regex, I agree. It is broken up by whitespace below to be readable in this narrow space. Written as one valid JS regex, it's pretty tricky looking. Yes, there have been much longer regexes, but this is definitely a personal record.
 
 <pre><code class="regex">(
 	@
@@ -69,7 +69,6 @@ I recently read a great SO answer saying that regexps are [readable only by the 
 	@\(.*?\)@
 )
 </code></pre>
-
 
 This regex is divided into two primary components, and several secondaries. Substituting each section for a label of the form `<this is a label>`, it looks like this:
 
