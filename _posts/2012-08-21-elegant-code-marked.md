@@ -43,7 +43,7 @@ Looking through the source history, at one point it was literally just sequentia
 
 I think it's very interesting to study how code evolves over time.
 
-As an experiment, I applied that replace function to the regex I wrote for [minivash][]. For a one-shot use like this, breaking the regex up is not worth the size increase. However the comprehension and readability improve immensely:
+As an experiment, I applied that replace function to the regex I wrote for [MiniVash][]. For a one-shot use like this, breaking the regex up is not worth the size increase. However the comprehension and readability improve immensely:
 
 {% highlight js %}
 var re = {};
@@ -65,5 +65,5 @@ re.combined = replace( re.combined, 'g' )
 	();
 {% endhighlight %}
 
-[minivash]: http://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
+[MiniVash]: http://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
 [marked]: https://github.com/chjj/marked

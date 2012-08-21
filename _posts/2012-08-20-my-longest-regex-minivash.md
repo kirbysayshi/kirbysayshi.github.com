@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Minivash, or My Longest Regular Expression Ever 
+title: MiniVash, or My Longest Regular Expression Ever 
 oneliner: How else are you supposed to become adept with regex without abusing them?
 type: project
 projecturl: https://gist.github.com/3411585 
@@ -130,13 +130,14 @@ Unfortunately, this trick cannot work for nested parentheses in `valid expressio
 
 ## HTML Escaping?
 
-I guess this is a required feature of templates these days, so I made sure minivash could do it too. Thanks to a [recent patch][] to Vash by [rjgotten][], this was easy to do without being too hacky! Minivash of course supports `vash.raw` to avoid HTML escaping a value.
+I guess this is a required feature of templates these days, so I made sure MiniVash
+could do it too. Thanks to a [recent patch][] to Vash by [rjgotten][], this was easy to do without being too hacky! MiniVash of course supports `vash.raw` to avoid HTML escaping a value.
 
 ## What? Implicit Iteration!?
 
-What surprised me about this project, was that limiting minivash to only expressions and explicit expressions mean that it would be impossible to iterate within a template. So composition of, say, a list, would have to happen outside of the template.
+What surprised me about this project, was that limiting MiniVash to only expressions and explicit expressions mean that it would be impossible to iterate within a template. So composition of, say, a list, would have to happen outside of the template.
 
-But a neat way around this is implicit iteration. This means that if an array is passed as a model to a minivash template, it will automatically iterate through the array, and apply the template to each one, returning the total output. For example:
+But a neat way around this is implicit iteration. This means that if an array is passed as a model to a MiniVash template, it will automatically iterate through the array, and apply the template to each one, returning the total output. For example:
 
 	// template
 	<li>@it.value</li>
