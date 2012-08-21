@@ -531,7 +531,8 @@ body {
 .post header .post-meta { font-size: 11pt; }
 .post aside { float: right; padding-right: 0; border-left: 1.5pt #F9D0D0 solid; font-size: 18pt; line-height: 145%; }
 .post .row aside:first-child { margin-left: 2.75%; margin-bottom: 2.75%; padding-top: 2.75%; padding-bottom: 2.75%; }
-.post aside .project-url { display: block; margin-top: 5.5%; font-size: 11pt; line-height: 14pt; }
+.post aside .project-url { display: block; position: relative; margin-top: 5.5%; font-size: 11pt; line-height: 14pt; }
+.post aside .project-url:before { content: "<"; font-size: 10em; position: absolute; right: -7px; top: 14px; }
 .post .post-content {  }
 .post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
 .post ul { font-size: 1em; }
