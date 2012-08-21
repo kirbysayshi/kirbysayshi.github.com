@@ -130,6 +130,19 @@ ksh.defaultInit = function(){
 		ksh.redirector();
 	}
 
+	var $projectUrl = $('.project-url');
+
+	if( $projectUrl.length ){
+
+		$projectUrl.on('click', function(e){
+			e.preventDefault();
+			_gaq.push(['_trackEvent', 'project-url', 'click', e.currentTarget.href]);
+			setTimeout(function(){
+				window.location = e.currentTarget.href;
+			}, 100);
+		});
+	}
+
 	if($('body').hasClass('page-post')){
 
 		ksh.hasHN(function(err, item){
