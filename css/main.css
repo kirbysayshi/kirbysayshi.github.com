@@ -606,8 +606,8 @@ body {
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
 
-.post figure { text-align: center; }
-.post figcaption { font-size: 0.8em; }
+.post figure, .post [data-role=figure] { margin-bottom: 2.75%; text-align: center; }
+.post figcaption, .post [data-role=figcaption] { display: block; font-size: 0.8em; }
 
 .footnotes { font-size: 0.7em; }
 .footnotes hr { opacity: 0.1; }
@@ -630,7 +630,7 @@ li {}
 .post-list .post-summary .col:first-child {  }
 
 /*/////// TYPOGRAPHY */
-h1,h2,h3,h4,h5,h6,a,time,aside,figcaption,
+h1,h2,h3,h4,h5,h6,a,time,aside,figcaption,[data-role=figcaption],
 .post header .post-meta, .post-summary .post-tags {
 	font-family: 'Open Sans Condensed', sans-serif;
 	vertical-align: baseline;
@@ -650,7 +650,7 @@ h4 { font-size: 14pt; }
 h5 { font-size: 14pt; }
 h6 { font-size: 11pt; }
 
-h1, h2, h3, h4, h5, h6, time, aside, figcaption, 
+h1, h2, h3, h4, h5, h6, time, aside, figcaption, [data-role=figcaption],
 .post header .post-meta, .post-summary .post-tags, .post-summary .post-category, .post blockquote {
 	color: #939598; /* or: #A7A9AC; */
 }
