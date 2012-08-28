@@ -1,0 +1,223 @@
+#!/usr/bin/env node
+
+var  _fs = require('fs')
+	,_url = require('url')
+	,_colors = require('colors')
+	,_cmd = require('commander')
+	,_moment = require('moment')
+	,_yaml = require('yamlish')
+	,_OAuth = require('oauth').OAuth
+	,_Tumblr = require('tumblrwks')
+	
+	,ENC = 'utf8'
+
+	,credsFile = process.cwd() + '/.jekyll-helper'
+
+	,creds 
+
+
+var t = []
+t.push(
+	 '---'
+	,'layout: post'
+	,'title: ' 
+	,'oneliner: '
+	,'published: false'
+	,'type: project'
+	,'projecturl: ' 
+	,'categories:'
+	,'tags:'
+	,'---\n' 
+);
+t = t.join('\n');
+
+var gmtFromFile = function( file ){
+	var moDate = _moment( /\d{4}-\d{2}-\d{2}/.exec(file)[0] );
+	return moDate.utc().format( 'YYYY-MM-DD HH:mm:ss GMT' )
+}
+
+var slugFromFile = function( file ){
+	var slug = /\d{4}-\d{2}-\d{2}-([^.]+)/.exec(file)[1];
+	return slug;
+}
+
+var loadCreds = function(){
+	creds = _fs.readFileSync( credsFile, ENC );
+	if( !creds ){
+		console.error( "Credentials file not found" );
+		console.log( "Run ".grey + 'jekyll-helper init' + 'first'.grey )
+		process.exit(1);
+	}
+
+	creds = JSON.parse(creds);
+}
+
+_cmd
+	.command('init')
+	.description('create a dummy configuration file in this directory')
+	.action(function(){
+		
+		var dummy = {
+			tumblr: {
+				consumerKey: ""
+				,consumerSecret: ""
+				,home: ""
+			}
+		}
+
+		if( !_fs.existsSync( process.cwd() + '/.jekyll-helper' ) ){
+			_fs.writeFileSync( process.cwd() + '/.jekyll-helper', JSON.stringify(dummy, null, '  '), ENC );
+		} else {
+			console.error( ".jekyll-helper already exists in this directory".red )
+			process.exit();
+		}
+
+		console.log("Wrote .jekyll-helper".green)
+		console.log("Add your Tumblr app's consumerKey, consumerSecret, and home.")
+		console.log("Home is your Tumblr's URI (no http). For example, mine is: kirbysayshi.tumblr.com.")
+	});
+
+_cmd
+	.command('new <slug>')
+	.description('make a new post')
+	.action(function(title){
+		var date = _moment().format('YYYY-MM-DD');
+		_fs.writeFileSync( process.cwd() + '/_posts/' + date + '-' + title + '.md', t, ENC );
+	});
+
+_cmd
+	.command('tumblr-auth')
+	.description('Initialize Tumblr oauth credentials. Requires creation of a Tumblr app: http://www.tumblr.com/oauth/apps')
+	.action(function(){
+
+		loadCreds();
+
+		var oa = new _OAuth(
+			 "http://www.tumblr.com/oauth/request_token"
+			,"http://www.tumblr.com/oauth/access_token"
+			,creds.tumblr.consumerKey
+			,creds.tumblr.consumerSecret
+			,"1.0a"
+			,null
+			,"HMAC-SHA1")
+
+		console.log('Using credentials'.grey, creds.tumblr.consumerKey.grey, creds.tumblr.consumerSecret.grey)
+
+		oa.getOAuthRequestToken(function( err, oauth_token, oauth_token_secret, results ){
+
+			if( err ){
+				console.error( err )
+				return;
+			}
+		
+			var authorize = 'http://www.tumblr.com/oauth/authorize?oauth_token=' + oauth_token;
+
+			console.log('You must authorize your app via a web browser')
+			console.log('Visit ' + authorize.green)
+			console.log('After clicking "Allow", you will be redirected to a URL (it will probably error).')
+			_cmd.prompt('Copy that URL, and paste it here: ', function(url){
+
+				var  parsedUrl = _url.parse(url, true)
+					,oauth_verifier = parsedUrl.query.oauth_verifier;
+
+
+				oa.getOAuthAccessToken( 
+					 oauth_token
+					,oauth_token_secret
+					,oauth_verifier
+					,function( err, access_token, access_token_secret, results ){
+
+						if( err ){
+							console.log( err.red )
+							return;
+						}
+
+						creds.tumblr.accessToken = access_token;
+						creds.tumblr.accessSecret = access_token_secret;
+
+						var fsresult = _fs.writeFile( credsFile, JSON.stringify(creds, null, '  '), ENC, function(err){
+							if( !err ){
+								console.log('Authorization Successful!'.green);
+							} else {
+								console.error(err);	
+							}
+							process.exit();
+						});
+
+					}
+				);
+			
+			})
+		});
+	
+	});
+
+_cmd
+	.command('tumblr-push <file>')
+	.description('create or update a post on Tumblr')
+	.action(function(file){
+
+		loadCreds();
+
+		var tumblr = new _Tumblr( creds.tumblr, creds.tumblr.home )
+
+		// read in file
+		var contents = _fs.readFileSync( process.cwd() + '/' + file, ENC )
+		// parse date to GMT
+			,date = gmtFromFile( file )
+			,contentsParts = contents.split('---')
+		// get front matter
+			,front = _yaml.decode( contentsParts[1] )
+
+			,tags = front.tags ? front.tags.concat(front.categories || []) : ''
+
+			,endpoint
+
+		// remove empty elements
+		for(var i in front){
+			if( !i ){
+				delete front[i];
+			} 
+		}
+
+		var tumblrData = {
+			type: 'text'
+			,title: front.title
+			,body: contentsParts[2].trim()
+			,tags: front.tags.join(',')
+			,format: 'markdown'
+			,date: date
+			,slug: slugFromFile( file )
+		}
+
+		if( front.tumblrid ){
+			console.info( 'Post exists on Tumblr. Updating.'.green )	
+			tumblrData.id = front.tumblrid;
+			endpoint = '/post/edit';
+		
+		} else {
+			console.info( 'Post is new to Tumblr.'.green )
+			endpoint = '/post';
+		}
+
+		tumblr.post(endpoint, tumblrData, function(resp){
+
+			if( resp && resp.id ){
+
+				front.tumblrid = resp.id;
+
+				// I have no idea why yamlish adds an extra tab in the beginning...
+				var frontStr = _yaml.encode(front).replace(/^(\t| {4})/gm, '');
+
+				_fs.writeFileSync( process.cwd() + '/' + file
+					,'---' + frontStr + '\n\n---' + contentsParts[2]
+					,ENC )
+
+				console.log( "Sent post to Tumblr. Tumblr ID: ".green + (resp.id + '').grey );
+			}
+		});
+	});
+
+_cmd.parse(process.argv);
+
+if (process.argv.length < 3) console.log( _cmd.helpInformation() );
