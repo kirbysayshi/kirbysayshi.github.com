@@ -53,6 +53,9 @@ var loadCreds = function(){
 }
 
 _cmd
+	.version('0.0.1');
+
+_cmd
 	.command('init')
 	.description('create a dummy configuration file in this directory')
 	.action(function(){
@@ -63,10 +66,19 @@ _cmd
 				,consumerSecret: ""
 				,home: ""
 			}
+			,templates: {
+				post: {
+					 layout: 'post'
+					,title: '' 
+					,published: false
+					,categories: []
+					,tags: []
+				}
+			}
 		}
 
-		if( !_fs.existsSync( process.cwd() + '/.jekyll-helper' ) ){
-			_fs.writeFileSync( process.cwd() + '/.jekyll-helper', JSON.stringify(dummy, null, '  '), ENC );
+		if( !_fs.existsSync( credsFile ) ){
+			_fs.writeFileSync( credsFile, JSON.stringify(dummy, null, '  '), ENC );
 		} else {
 			console.error( ".jekyll-helper already exists in this directory".red )
 			process.exit();
@@ -75,14 +87,22 @@ _cmd
 		console.log("Wrote .jekyll-helper".green)
 		console.log("Add your Tumblr app's consumerKey, consumerSecret, and home.")
 		console.log("Home is your Tumblr's URI (no http). For example, mine is: kirbysayshi.tumblr.com.")
+		console.log("To create a Tumblr app, visit http://www.tumblr.com/oauth/apps")
 	});
 
 _cmd
 	.command('new <slug>')
 	.description('make a new post')
 	.action(function(title){
-		var date = _moment().format('YYYY-MM-DD');
-		_fs.writeFileSync( process.cwd() + '/_posts/' + date + '-' + title + '.md', t, ENC );
+
+		loadCreds();
+
+		var  date = _moment().format('YYYY-MM-DD')
+			,frontStr = _yaml.encode(creds.templates.post).replace(/^(\t| {4})/gm, '');
+
+		_fs.writeFileSync( process.cwd() + '/_posts/' + date + '-' + title + '.md'
+			,'---' + frontStr + '\n\n---\n'
+			,ENC );
 	});
 
 _cmd
