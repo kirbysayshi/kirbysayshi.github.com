@@ -4,3 +4,4 @@ name: KSH
 description: Thoughts, posts, and projects by KirbySaysHi (Andrew Petersen)
 url: http://kirbysayshi.github.com
 markdown: rdiscount
+exclude: ['node_modules']
