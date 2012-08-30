@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false
 title: MiniVash, or My Longest Regular Expression Ever 
 oneliner: How else are you supposed to become adept with regex without abusing them?
 type: project
@@ -11,9 +12,9 @@ tags:
   - Regex
 ---
 
-I was planning out a new project, and the time came to pull in a templating engine. I was trying to keep things self-contained, and thought it would be a neat challenge to allow a subset of [Vash][] syntax, without the bulk of the entire Vash lexer/parser/compiler. By bulk, I mean about 10k... I think I just wanted an excuse to try this out! 
+> NOTE: Since writing this initially, MiniVash's primary regex has changed. This information is still valid as a learning resource, however.
 
-I wanted to enable the following features of Vash:
+Here's a challenge: how small can I make a self-contained version of [Vash][]? If I limit it to the following features, the answer is about [800 bytes][]!
 
 * _Expressions_: The feature that arguably gives Vash its reason for existence. Examples:
 	* `@something.what`
@@ -22,11 +23,16 @@ I wanted to enable the following features of Vash:
 	* `@( model.doIt ? 'Yes, you should' : 'Nope!' )`
 	* `@( it.total + it.tax )` 
 
-Noticeably left out is block support, which is Vash's most complex feature To fully implement it requires a full lexer/parser. This means NO:
+Noticeably left out is block support, which is Vash's most complex feature. To fully implement it requires a full lexer/parser. This means NO:
 
 * `@for(i; i<0; i++){ <markup> }`
 * `@if(){ <markup> } else {}`
 * `@it.forEach(function(){ <markup> })`
+
+One more change in approach had to be made. Typically, JS templates are a big string concatenated together, and then compiled using the `Function` constructor, which is basically `eval`. For this experiment, I tried two alternatives:
+
+1. Parse the template at render time. Each time an expression or interpolation was discovered, create and cache a function that returns the value of that expression. This allows for very simple handling of both expressions and interpolations, with relatively minimal overhead after the first rendering of the template. The mini version uses this technique.
+2. Parse the template at render time. When an interpolation is encountered, parse the property expression, and manually "look it up" using a loop. This does not support explicit expressions, only interpolations. The micro version uses this technique.
 
 Given these requirements, and knowing that I wasn't going to be relying on a true lexer, I had to embark on a great journey...
 
@@ -235,4 +241,4 @@ Wow, did you really make it all the way down here? If so, I congratulate you! [M
 [YAPE Regex Explain]: http://search.cpan.org/~gsullivan/YAPE-Regex-Explain-4.01/Explain.pm
 [MiniVash]: https://gist.github.com/3411585
 [a gist]: https://gist.github.com/3411585
-
+[800 bytes]: https://gist.github.com/3411585 
