@@ -157,7 +157,9 @@ ksh.defaultInit = function(){
 
 			var tpl = vash.compile($('#tpl-hn-link-' + id).html())
 
-			$('.hn-link').append( tpl( { hnlink: item.url } ) )
+			$('.hn-link').append( tpl( { 
+				hnlink: 'http://news.ycombinator.com/item?id=' + item.id 
+			} ) )
 		})
 	}
 
