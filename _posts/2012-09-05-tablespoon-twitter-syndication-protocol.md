@@ -50,7 +50,7 @@ Once the new Twitter user is created, then it would be trivial to add a [Follow]
 
 I like the idea of calling it "Tablespoon", because I think it sounds cute. It could stand for "Twitter Syndication Protocol", except that it's not really a true protocol... 
 
-Anyway, this is just an idea. Maybe I'll build an implementation, maybe not. Ideas?
+Anyway, this is just an idea. Maybe I'll build an implementation, maybe not. Ideas? Does this already exist?
 
 [Fever]: http://feedafever.com/
 [@TrinAndTonic]: https://twitter.com/TrinAndTonic
