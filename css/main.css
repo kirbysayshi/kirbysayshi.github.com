@@ -564,6 +564,7 @@ body {
 #footer-container .bio-short p:first-child { margin-top: 0; }
 #footer-container .bio-short .contact-list { padding-left: 9.75%; }
 #footer-container .social-activity { margin-top: 1em; }
+#footer-container .social-activity ul { list-style-type: none; }
 #footer-container .social-activity .github-feed { font-size: 0.7em; }
 #footer-container .social-activity .github-feed li { padding-bottom: 1.2em; }
 #footer-container .social-activity .twitter-feed { font-size: 0.7em; }
@@ -599,10 +600,11 @@ body {
 .post aside .project-url:before { content: "<"; font-size: 10em; position: absolute; right: -7px; top: 14px; }
 .post .post-content {  }
 .post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
-.post ul { font-size: 1em; }
-.post ul li { padding: 1% 2.75%; }
-.post ul li:before { content: '> '; margin-left: -1em; font-size: 1.1em; }
+.post ul { padding: 0 2.75%; font-size: 1em; }
+.post ul li { padding: 1% 0; }
+/*.post ul li:before { content: '> '; margin-left: -1em; font-size: 1.1em; }
 .post ul li ul li:before { content: ''; }
+.post .twt-actions li:before { content: ''; margin-left: 0; }*/
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
 
@@ -614,9 +616,9 @@ body {
 .footnotes ol p { display: inline; }
 
 /*** Lists */
-ul { margin: 0; padding: 0; list-style-type: none; }
+ul { margin: 0; padding: 0; }
 li {}
-.post-list {}
+.post-list { list-style-type: none; }
 .post-list h3 { margin: 0; font-size: 14pt; }
 .post-list time { /*padding-right: 0;*/ font-size: 14pt; text-align: right; }
 .post-list .post-tags, .post-list .post-category { font-size: 9pt; }
