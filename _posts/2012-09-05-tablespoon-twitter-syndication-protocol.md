@@ -1,7 +1,6 @@
 ---
 layout:     post
 title: "Tablespoon: Twitter Syndication Protocol"
-oneliner:   
 categories: 
   - Blabbering Musings
 tags:       
@@ -37,7 +36,7 @@ Wouldn't it be awesome to have a bookmarklet or service that could attach an RSS
 
 Then... The TSP server would poll the feeds at regular intervals (or even use something super cool like [PubSubHubbub][]!). When a new entry was detected in the feed, TSP would tweet it as itself. You would follow TSP, so it would then appear in your Twitter feed. You could even have the service check various sources for a Klout-like rating. Is it on [Hacker News][]? What about already in your Twitter feed? If so, either don't tweet it, or add a rating value to the tweet itself. 
 
-But what if this were a service... wouldn't the whole world be following the same Twitter user? Nope, because each TSP user would have a corresponding "internal" Twitter user. For me, it would be something like @TSPKirbySaysHi. Or, it could even be nonsense, like a hash, @TSPa0bc34daf, so it wouldn't appear in search results for users. 
+But if this were a service... wouldn't the whole world be following the same Twitter user? Nope, because each TSP user would have a corresponding "internal" Twitter user. For me, it would be something like @TSPKirbySaysHi. Or, it could even be nonsense, like a hash, @TSPa0bc34daf, so it wouldn't appear in search results for users. 
 
 User register/setup flow:
 
