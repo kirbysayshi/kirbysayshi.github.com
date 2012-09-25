@@ -3,7 +3,7 @@ layout: post
 title: Portal Experiments Using ImpactJS
 oneliner: Keep thinking with portals... in 2D!
 type: project
-projecturl: https://dl.dropbox.com/u/52514/games/impact-portal/index.html
+projecturl: https://dl.dropbox.com/u/52514/games/impact-portal-4/index.html
 categories:
   - JavaScript
   - Game Design
@@ -14,7 +14,8 @@ tags:
 
 ---
 
-UPDATE 06-29-2012: The demo now shows the what you can "see" through the portals in a limited way!
+> UPDATE 06-29-2012: The demo now shows the what you can "see" through the portals in a limited way!
+> UPDATE 06-30-2012: A bit of slowmo as you approach and exit the portals. There is a slight visual glitch, but it's definitely pretty close to what I was looking for.
 
 [ImpactJS][] is a great game engine. I'm still working on this, but wanted to share some basic portal-like teleportation using ImpactJS. 
 
