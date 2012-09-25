@@ -1,6 +1,6 @@
 ---
 layout:     post
-title: "Tablespoon: Twitter Syndication Protocol"
+title: "Teaspoon: Twitter Syndication Protocol"
 categories: 
   - Blabbering Musings
 tags:       
@@ -47,7 +47,7 @@ User register/setup flow:
 
 Once the new Twitter user is created, then it would be trivial to add a [Follow][] button that the user could click from the TSP settings page. 
 
-I like the idea of calling it "Tablespoon", because I think it sounds cute. It could stand for "Twitter Syndication Protocol", except that it's not really a true protocol... 
+I like the idea of calling it "Teaspoon", because I think it sounds cute. It could stand for "Twitter Syndication Protocol", except that it's not really a true protocol... 
 
 Anyway, this is just an idea. Maybe I'll build an implementation, maybe not. Ideas? Does this already exist?
 

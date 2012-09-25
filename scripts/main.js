@@ -99,6 +99,7 @@ ksh.redirector = function(){
 		,'/blog.html': '/'
 		,'/me.html': '#contact'
 		,'/resume.html': 'http://careers.stackoverflow.com/senofpeter'
+		,'2012/09/05/tablespoon-twitter-syndication-protocol.html': '2012/09/05/teaspoon-twitter-syndication-protocol.html'
 	}
 
 	var tpl = vash.compile($('#tpl-404-match').html())
