@@ -121,7 +121,7 @@ while( p < _length){
 }
 {% endhighlight %}
 
-This discards any alpha channel, since we assumed we were using photos. It also groups pixels based on tilesize. `px` is the "pixel index", which assumes that pixels are indexed from the top left to right, one row at a time. [ImageData](https://developer.mozilla.org/en-US/DOM/ImageData) is a single array, with the R, G, B, and A values one after another, hence the need to increment `p` by `4` each step. One other note is that `~~()` is a [faster](http://jsperf.com/math-floor-vs-math-round-vs-parseint/5) shorthand for `Math.floor`.
+This discards any alpha channel, since we assumed we were using photos. It also groups pixels based on tilesize. `px` is the "pixel index", which assumes that pixels are indexed from the top left to right, one row at a time. The raw pixel data, [_idata](https://developer.mozilla.org/en-US/docs/DOM/CanvasPixelArray), is a single array with the R, G, B, and A values one after another. Therefore `p` is incremented by `4` each step. One other note is that `~~()` is a [faster](http://jsperf.com/math-floor-vs-math-round-vs-parseint/8) shorthand for `Math.floor`.
 
 Once the pixels were converted to a form of bicolor, the next step was to make the tilemap in a format that [ImpactJS][] expected.
 
@@ -265,7 +265,7 @@ ig.module( 'game.levels.dynamic' )
 });
 {% endhighlight %}
 
-Referencing these global variables allows [ImpactJS][] to still do it's thing regarding its internal loading system.
+Referencing these global variables allows [ImpactJS][] to still do its thing regarding its internal loading system.
 
 This is a bare minimum [ImpactJS][] level, containing three layers: background, collision, and main. We used the uploaded image (stored temporarily on the server) as the background. The collision layer is invisible, but [ImpactJS][] uses an image to represent the collision layer when using its level editor, [Weltmeister](http://impactjs.com/documentation/weltmeister). The main layer uses a custom tileset we created that contains only two tiles: a translucent square, and an empty tile. You can see this in the screencast; tiles that are solid are slightly grey compared to those that aren't.
 
