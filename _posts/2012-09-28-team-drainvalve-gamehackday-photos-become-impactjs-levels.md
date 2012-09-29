@@ -5,7 +5,6 @@ oneliner: Shatner actually worked really well.
 type:       project
 projecturl: http://vimeo.com/25640233
 categories:
-  - Game Design
   - JavaScript
   - Experiments
 tags:
