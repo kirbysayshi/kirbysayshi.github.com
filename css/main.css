@@ -660,7 +660,8 @@ h1, h2, h3, h4, h5, h6, time, aside, figcaption, [data-role=figcaption],
 a, a > time { color: #C46568; text-decoration: none; }
 a:hover {  }
 
-p, pre { line-height: 135%; }
+p { line-height: 135%; }
+pre { line-height: 100%; }
 code { font-size: 0.8em; }
 
 /* DISQUS */
