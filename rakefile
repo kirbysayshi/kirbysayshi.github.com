@@ -2,7 +2,7 @@ desc 'Generate category pages'
 task :categories do
   puts "Generating category pages..."
   require 'jekyll'
-  
+
   # nuke old tags pages, recreate
   FileUtils.rm_rf("category")
   FileUtils.mkdir_p("category")
@@ -36,7 +36,7 @@ desc 'Generate tag pages'
 task :tags do
   puts "Generating tag pages..."
   require 'jekyll'
-  
+
   FileUtils.rm_rf("tag")
   FileUtils.mkdir_p("tag")
 
@@ -68,7 +68,7 @@ end
 desc 'Generate sitemap.xml'
 task :sitemap do
   puts "Generating sitemap..."
-  require '_buildscripts/generate_sitemap'
+  require './_buildscripts/generate_sitemap'
   require 'jekyll'
 
   options = Jekyll.configuration({})
