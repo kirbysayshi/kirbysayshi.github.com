@@ -2,9 +2,9 @@
 layout:     post
 title: Maintaining Scroll Position When Adding Content to the Top of a Container
 oneliner: Sometimes libraries complicate your task.
-published:  false
+published:  true
 type:       project
-projecturl: http://jsfiddle.net/kirbysayshi/eELv4/
+projecturl: http://jsfiddle.net/kirbysayshi/57HbV/
 categories:
   - JavaScript
 tags:
@@ -56,7 +56,7 @@ This involves a two step process of:
 
 And of course hope that you can do that between repaints of the browser so that the user doesn't notice anything :).
 
-I setup a small test case to try this out using [jsfiddle][]. Click the buttons to add content above and below, and see that new content does not affect the position of the existing content in the viewport:
+I setup a small test case to [try this out][] using [jsfiddle][]. Click the buttons to add content above and below, and see that new content does not affect the position of the existing content in the viewport:
 
 <iframe
 	width="100%"
@@ -82,7 +82,7 @@ ScrollPosition.prototype.restore = function () {
         this.node.scrollTop = this.node.scrollHeight
         	- this.previousScrollHeightMinusTop;
     }
-    
+
     // 'down' doesn't need to be special cased unless the
     // content was flowing upwards, which would only happen
     // if the container is position: absolute, bottom: 0 for
@@ -114,10 +114,12 @@ self.unshift = function () {
 
 The `setTimeout` is there to simulate asynchronicity, as I've noticed that KO is sometimes inconsistent with when DOM elements are added, especially with nested structures containing `foreach`. I was also loading in content from the server in the actual app, so this was a cheap way to simulate that too.
 
+In the demo, checking "Monitor Scroll Events" will call `unshift` and `push` when scrolling up and downwards respectively. If you fiercely scroll on OS X, you may see the scroll position "jump" when the new content is added. This is actually the OS's inertial scrolling still decelerating!
+
 There is one primary caveat to this technique. Content can only come in from one direction (up or down) at one time. If content is loading from the top and bottom at the same time, then there's no way for the `ScrollPosition` helper to know how to affect the viewport.
 
 That's it! Let me know if you have a better way to do this in the comments, and as always, questions are welcome!
 
 [KnockoutJS]: http://knockoutjs.com/
 [jsfiddle]: http://jsfiddle.net
-[completed example]: http://jsfiddle.net/kirbysayshi/eELv4/
+[try this out]: http://jsfiddle.net/kirbysayshi/57HbV/
