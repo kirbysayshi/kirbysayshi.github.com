@@ -4,7 +4,7 @@ title: The Death Star Trench Run
 oneliner: Lock S-Foils in attack position, accelerate to attack speed. Set your deflector on double front.
 type: post
 categories:
-  - stories
+  - Stories
 image:
 tags:
   - Trego
@@ -20,7 +20,7 @@ You are a young child, about ten years old. In this slightly-too-warm white Dodg
 
 It is July, and it is only ten minutes until the six and a half hour drive to your grandmother's lakeside cabin in the middle of the Wisconsin northwoods is over.
 
-Two hours ago, when your Game Boy AA batteries wore out, all hope was lost. Reaching this fabled land of BB Guns, fishing boats, and stumps with imaginary creatures living inside was impossible. Highway 53 would never end, corn farm after corn farm would streak by, and you would be doomed forever to be slightly nauseous and impossibly tired, unable to ever sleep again. 
+Two hours ago, when your Game Boy AA batteries wore out, all hope was lost. Reaching this fabled land of BB Guns, fishing boats, and stumps with imaginary creatures living inside was impossible. Highway 53 would never end, corn farm after corn farm would streak by, and you would be doomed forever to be slightly nauseous and impossibly tired, unable to ever sleep again.
 
 Since then you have been in a drowsy stupor, never fully asleep nor awake, where every bump in the road lasts an internal hour, and the only thing affected by the infernal gravity is your neck.
 
@@ -38,9 +38,9 @@ You place your hand on the red vinyl handle of the van's sliding side-door to st
 
 The beginning of the Death Star Trench Run.
 
-The white, boxy Caravan has now become a sleek Incom T-65 X-Wing starfighter, with a red stripe running longitudinally, signifying its affiliation with Rogue Squadron. Your father has Luke Skywalker hair, and you are the lowly Astromech droid keeping that stabilizer from breaking loose. Luke urges his flight stick, and the craft banks left and down, aiming for the huge trench that has destroyed every other fighter that has attempted to enter it. 
+The white, boxy Caravan has now become a sleek Incom T-65 X-Wing starfighter, with a red stripe running longitudinally, signifying its affiliation with Rogue Squadron. Your father has Luke Skywalker hair, and you are the lowly Astromech droid keeping that stabilizer from breaking loose. Luke urges his flight stick, and the craft banks left and down, aiming for the huge trench that has destroyed every other fighter that has attempted to enter it.
 
-The previously smooth flight of the dogfight is interrupted as the road suddenly becomes rough at the exact moment Highway K crosses Rappy Lake Road. The fifty-foot trees, usually haphazard and covered with bramble on either side of the road, are suddenly in completely parallel, straight rows, remnants from an attempt at reforestation. The perfectly straight Norway Pines wiz by so quickly they become a solid wall, boxing the road in. 
+The previously smooth flight of the dogfight is interrupted as the road suddenly becomes rough at the exact moment Highway K crosses Rappy Lake Road. The fifty-foot trees, usually haphazard and covered with bramble on either side of the road, are suddenly in completely parallel, straight rows, remnants from an attempt at reforestation. The perfectly straight Norway Pines wiz by so quickly they become a solid wall, boxing the road in.
 
 The music swells. The trumpeteer takes the forefront.
 
