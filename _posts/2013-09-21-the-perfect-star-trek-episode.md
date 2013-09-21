@@ -50,4 +50,4 @@ And this is why this episode is perfect: it simultaneously shows the positive po
 There isn't a single space battle. The only special effects are the transporter sparkles and a stock shot of the runabout banking. This is Star Trek at its finest: an episode that could have been filmed today, 50 years ago, or tomorrow. The human descriptions outlined here are ones that both haunt and drive us to great heights. The lens of Star Trek has the potential for an amazingly sharp view of ourselves.
 
 
-[The Federation](http://en.wikipedia.org/wiki/Federation_%28Star_Trek%29)
+[The Federation]: http://en.wikipedia.org/wiki/Federation_%28Star_Trek%29
