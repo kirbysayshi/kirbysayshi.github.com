@@ -45,6 +45,16 @@ What follows is code that does exactly that, [inspired][] [from][] [several][] [
 
 This allows our game to render as fast as the platform allows (in the case of [requestAnimationFrame][], hopefully 60fps as long as drawing doesn't take too long), while allowing physics and/or game state updates to happen at another arbitrarily less frequency.
 
+It also handles accumulation of time between frames. In the real world, your deltas between frames will likely be dirty (16.666666ms target frame time, 33.333333ms physics timestep):
+
+	Delta   Total   
+	10ms  :  10ms     not enough for physics update
+	15ms  :  25ms     not enough for physics update
+	18ms  :  43ms     physics tick, leaving ~9.666666 remaining
+	16ms  : ~25ms     not enough for physics update
+
+If physics are running at 30fps (33.333333 ms), then there will always be time left over that is less than a full physics timestep. That is why the delta is added to `this.accumulator` above: unused time is carried over until it is able to be consumed.
+
 But there's still one more problem to solve. Won't the game look jittery if renders are happening at 60fps, while physics are only being updated every other frame (30fps)?
 
 ASCII Diagrams Might Help.
