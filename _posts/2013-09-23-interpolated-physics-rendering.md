@@ -13,6 +13,7 @@ tags:
   - Timestep
   - Game Loop
   - Multi-threaded Game Engines
+
 ---
 
 There are several articles online that attempt to explain good patterns and gotchas for a game loop. Two of the most oft-quoted and referenced, at least according to my informal analysis, are [Fix Your Timestep][] and [deWiTTERS Game Loop][]. They are both excellent resources, and I recommend reading them. What follows is my own interpretation of a game loop that attempts to keep rendering updates independent of physics updates, with actual running examples in JS.
