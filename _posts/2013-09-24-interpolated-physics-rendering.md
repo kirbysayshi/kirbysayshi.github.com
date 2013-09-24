@@ -15,7 +15,7 @@ tags:
 
 ---
 
-There are several articles online that attempt to explain good patterns and gotchas for a game loop. Two of the most oft-quoted and referenced, at least according to my informal analysis, are [Fix Your Timestep][] and [deWiTTERS Game Loop][]. They are both excellent resources, and I recommend reading them. What follows is my own interpretation of a game loop that attempts to keep rendering updates independent of physics updates, with actual running examples in JS.
+There are several articles online that attempt to explain good patterns and gotchas for a game loop. Two of the most oft-quoted and referenced, at least according to my informal analysis, are [Fix Your Timestep][] and [deWiTTERS Game Loop][]. They are both excellent resources, and I recommend reading them. What follows is my own interpretation of a basic game loop that attempts to keep rendering updates independent of physics updates, with actual running examples in JS.
 
 Why Independence?
 -----------------
@@ -52,7 +52,8 @@ var ssi = new StepStateInterpolator(100, function logics(dt) {
   // Do logical or physics updates here, this will only be called
   // every 100ms (in this example).
 }, function draws(dt, ratio) {
-  // Draw stuff here, it will be executed as often as `update` is called.
+  // Draw stuff here, it will be executed as often as
+  // `update` is called.
 });
 
 // And then kick off your game loop like:
@@ -69,7 +70,7 @@ var lastTime = Date.now() - 16.666666;
 
 It also handles accumulation of time between frames. In the real world, your deltas between frames will likely be dirty (16.666666ms target frame time, 33.333333ms physics timestep):
 
-	Delta   Total
+	Delta   Total     What Does the Engine Say?
 	10ms  :  10ms     not enough for physics update
 	15ms  :  25ms     not enough for physics update
 	18ms  :  43ms     physics tick, leaving ~9.666666 remaining
