@@ -7,11 +7,11 @@ projecturl: http://codepen.io/kirbysayshi/full/tfDmk
 categories:
   - JavaScript
   - Game Design
-  - Physics
 tags:
   - Timestep
   - Game Loop
   - Multi-threaded Game Engines
+  - Physics
 
 ---
 
