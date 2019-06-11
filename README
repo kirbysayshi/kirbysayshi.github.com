@@ -1,1 +1,8 @@
 Some stuff I've made.
+
+Remember to regen the tags and categories with:
+
+```
+node _buildscripts/generate-categories.js
+node _buildscripts/generate-tags.js
+```
