@@ -10,4 +10,5 @@ tags:
   - nodejs
 ---
 
-p. For about a month now I've been working on a new service called Citational.
+For about a month now I’ve been working on a new service called
+Citational.
