@@ -40,7 +40,7 @@ A possible solution is to separate your game code into two segments:
 
 What follows is code that does exactly that, [inspired][] [from][] [several][] [sources][]:
 
-<script src="http://gist.github.com/kirbysayshi/6654845.js?file=stepstate.js"></script>
+<script src="https://gist.github.com/kirbysayshi/6654845.js?file=stepstate.js"></script>
 
 This allows our game to render as fast as the platform allows (in the case of [requestAnimationFrame][], hopefully 60fps as long as drawing doesn't take too long), while allowing physics and/or game state updates to happen at another arbitrarily less frequency.
 
@@ -98,7 +98,7 @@ Or even something crazy, like every few frames (every 100 milliseconds):
 However, even if you're rendering at 60fps (16.666666ms between steps), if physics are only being calculated every 100ms, then the animations will appear very jittery, as the following example demonstrates:
 
 <p data-height="268" data-theme-id="1340" data-slug-hash="iwxvk" data-user="kirbysayshi" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/kirbysayshi/pen/iwxvk'>Current Position, 100ms step at 60fps</a> by Andrew Petersen (<a href='http://codepen.io/kirbysayshi'>@kirbysayshi</a>) on <a href='http://codepen.io'>CodePen</a></p>
-<script async src="http://codepen.io/assets/embed/ei.js"></script>
+<script async src="https://codepen.io/assets/embed/ei.js"></script>
 
 There Is a Solution.
 --------------------
@@ -120,7 +120,7 @@ The formula for linear interpolation of two positions given the ratio of time pr
 And if we apply this to the previous demo:
 
 <p data-height="416" data-theme-id="1340" data-slug-hash="tfDmk" data-user="kirbysayshi" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/kirbysayshi/pen/tfDmk'>Current Position vs Interpolated Position</a> by Andrew Petersen (<a href='http://codepen.io/kirbysayshi'>@kirbysayshi</a>) on <a href='http://codepen.io'>CodePen</a></p>
-<script async src="http://codepen.io/assets/embed/ei.js"></script>
+<script async src="https://codepen.io/assets/embed/ei.js"></script>
 
 Pretty smooth, eh? Any jumping near the edges are just because of crappy bounds checking.
 

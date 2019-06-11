@@ -61,7 +61,7 @@ I setup a small test case to [try this out][] using [jsfiddle][]. Click the butt
 <iframe
 	width="100%"
 	height="450"
-	src="http://jsfiddle.net/kirbysayshi/57HbV/embedded/result,js,html,css"
+	src="https://jsfiddle.net/kirbysayshi/57HbV/embedded/result,js,html,css"
 	allowfullscreen="allowfullscreen"
 	frameborder="0"
 	scrolling="no"></iframe>

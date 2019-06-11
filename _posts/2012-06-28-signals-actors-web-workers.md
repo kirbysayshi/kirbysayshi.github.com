@@ -39,7 +39,7 @@ We're going to be making a web worker (our "actor") that computes fibonacci sequ
 
 // define our actors.. there's only one for now!
 var actors = {
-   'Fibonacci': { path: 'http://jsbin.com/orexal/15/js' }
+   'Fibonacci': { path: 'https://jsbin.com/orexal/15/js' }
    // P.S. Did you know that JS Bin can output a raw JS file?
    // Pretty awesome!
 };

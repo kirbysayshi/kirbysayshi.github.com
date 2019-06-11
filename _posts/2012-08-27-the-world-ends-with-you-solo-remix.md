@@ -14,7 +14,7 @@ tags:
 Last night, at 11pm EST, [The World Ends With You][] was released for iPad and iOS. I found out about the release yesterday morning. For a week there was a teaser site up with a countdown (which plays a major role in the game itself), and there was rife speculation: could a long-awaited sequel be in the works?
 
 <div data-role="figure">
-	<img alt="The teaser countdown." src="http://gamefans.com/wp-content/uploads/2012/08/The-World-Ends-With-You-Countdown.jpg" />
+	<img alt="The teaser countdown." src="https://gamefans.com/wp-content/uploads/2012/08/The-World-Ends-With-You-Countdown.jpg" />
 	<span data-role="figcaption">The teaser countdown. Image via <a href="https://gamefans.com">gamefans</a>.</span>
 </div>
 
@@ -27,14 +27,14 @@ More importantly, they're also forgetting that the controls in the original were
 The dual screen mode was dynamic, and difficult to control. I remember ignoring the card system (not the combo system) almost completely, and just worrying about coordinating attacks with the lower screen. My girlfriend, who actually introduced the game to me, has said that she, for the most part, completely ignored the upper screen. 
 
 <div data-role="figure">
-	<img alt="See those cards at the top? Yep, totally ignored them." src="http://i.imgur.com/2vVRW.png" />
+	<img alt="See those cards at the top? Yep, totally ignored them." src="https://i.imgur.com/2vVRW.png" />
 	<span data-role="figcaption">See those cards at the top? Yep, totally ignored them.</span>
 </div>
 
 The battle system was an experiment, and one that was successful. Players could ignore the top completely if they wanted, because the point of the game was not to train you to be amazing at something you might not be (such as multitasking and viewing two screens at once). Instead, players were allowed to focus on where they personally found fun in the game. Perhaps you hated the battles, but liked collecting new equipment? What about just discovering new types of delicious-looking ramen?
 
 <div data-role="figure">
-	<img alt="Regular old ramen? Anything but, Neku, anything but." src="http://i.imgur.com/eLJHz.png" />
+	<img alt="Regular old ramen? Anything but, Neku, anything but." src="https://i.imgur.com/eLJHz.png" />
 	<span data-role="figcaption">Anything but, Neku, anything but.</span>
 </div>
 
@@ -46,7 +46,7 @@ I do have two criticisms. All of the art, with the exception of pixel-based icon
 
 <div data-role="figure">
 	<a href="https://i.imgur.com/QCE2m.jpg">
-		<img width="512" src="http://i.imgur.com/QCE2ml.jpg" alt="TWEWY Bitmapping" />
+		<img width="512" src="https://i.imgur.com/QCE2ml.jpg" alt="TWEWY Bitmapping" />
 	</a>
 	<span data-role="figcaption">Click to view at full size (required to see what I'm talking about). On a retina iPad, the inconsisten bitmapping leaves the fonts looking like victims of JPEG compression.</span>
 </div>
