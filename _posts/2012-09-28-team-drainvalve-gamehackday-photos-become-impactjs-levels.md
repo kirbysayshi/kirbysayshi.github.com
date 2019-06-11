@@ -3,7 +3,7 @@ layout:     post
 title: Turning Photos into ImpactJS Platform Levels
 oneliner: Shatner actually worked really well.
 type:       project
-projecturl: http://vimeo.com/25640233
+projecturl: https://vimeo.com/25640233
 categories:
   - JavaScript
   - Experiments
@@ -13,9 +13,9 @@ tags:
   - Edge Detection
 ---
 
-More than a year ago [@tiegz](http://twitter.com/tiegz), [@shinyee_au](http://twitter.com/shinyee_au), and I participated in [gamehackday](http://gamehackday.org). We started off with this idea for importing photos from a foursquare location into a game, and then battling your friends that were also at the same location.
+More than a year ago [@tiegz](https://twitter.com/tiegz), [@shinyee_au](https://twitter.com/shinyee_au), and I participated in [gamehackday](https://gamehackday.org). We started off with this idea for importing photos from a foursquare location into a game, and then battling your friends that were also at the same location.
 
-Eventually our overambitious hack was whittled down into just taking a photo and turning it into a platforming level for [ImpactJS][], without any user-authoring. I've recorded a [screencast](http://vimeo.com/25640233) about it (I highly suggest you watch it to understand what's going on), but never got a chance to explore some of the code involved.
+Eventually our overambitious hack was whittled down into just taking a photo and turning it into a platforming level for [ImpactJS][], without any user-authoring. I've recorded a [screencast](https://vimeo.com/25640233) about it (I highly suggest you watch it to understand what's going on), but never got a chance to explore some of the code involved.
 
 <iframe src="http://player.vimeo.com/video/25640233" width="548" height="343" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
@@ -120,7 +120,7 @@ while( p < _length){
 }
 {% endhighlight %}
 
-This discards any alpha channel, since we assumed we were using photos. It also groups pixels based on tilesize. `px` is the "pixel index", which assumes that pixels are indexed from the top left to right, one row at a time. The raw pixel data, [_idata](https://developer.mozilla.org/en-US/docs/DOM/CanvasPixelArray), is a single array with the R, G, B, and A values one after another. Therefore `p` is incremented by `4` each step. One other note is that `~~()` is a [faster](http://jsperf.com/math-floor-vs-math-round-vs-parseint/8) shorthand for `Math.floor`.
+This discards any alpha channel, since we assumed we were using photos. It also groups pixels based on tilesize. `px` is the "pixel index", which assumes that pixels are indexed from the top left to right, one row at a time. The raw pixel data, [_idata](https://developer.mozilla.org/en-US/docs/DOM/CanvasPixelArray), is a single array with the R, G, B, and A values one after another. Therefore `p` is incremented by `4` each step. One other note is that `~~()` is a [faster](https://jsperf.com/math-floor-vs-math-round-vs-parseint/8) shorthand for `Math.floor`.
 
 Once the pixels were converted to a form of bicolor, the next step was to make the tilemap in a format that [ImpactJS][] expected.
 
@@ -266,11 +266,11 @@ ig.module( 'game.levels.dynamic' )
 
 Referencing these global variables allows [ImpactJS][] to still do its thing regarding its internal loading system.
 
-This is a bare minimum [ImpactJS][] level, containing three layers: background, collision, and main. We used the uploaded image (stored temporarily on the server) as the background. The collision layer is invisible, but [ImpactJS][] uses an image to represent the collision layer when using its level editor, [Weltmeister](http://impactjs.com/documentation/weltmeister). The main layer uses a custom tileset we created that contains only two tiles: a translucent square, and an empty tile. You can see this in the screencast; tiles that are solid are slightly grey compared to those that aren't.
+This is a bare minimum [ImpactJS][] level, containing three layers: background, collision, and main. We used the uploaded image (stored temporarily on the server) as the background. The collision layer is invisible, but [ImpactJS][] uses an image to represent the collision layer when using its level editor, [Weltmeister](https://impactjs.com/documentation/weltmeister). The main layer uses a custom tileset we created that contains only two tiles: a translucent square, and an empty tile. You can see this in the screencast; tiles that are solid are slightly grey compared to those that aren't.
 
 Conclusion
 ----------
 
 And that's basically it! We'd always wanted to release the source, but due to a few reasons (tired of it after the hack, [ImpactJS][] isn't open source, etc) we just never got around to it. But now, hopefully, this explains how it worked! Definitely let me know if things could be clarified.
 
-[ImpactJS]: http://impactjs.com/
+[ImpactJS]: https://impactjs.com/

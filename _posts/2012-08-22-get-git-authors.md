@@ -18,6 +18,6 @@ git log --pretty=format:'%an <%ae>' | sort | uniq
 {% endhighlight %}
 
 [Vash]: https://github.com/kirbysayshi/vash
-[kind of difficult]: http://stackoverflow.com/a/4262780/169491
-[commits NOT by a particular author]: http://stackoverflow.com/a/4262780/169491
-[linuxforums.org]: http://www.linuxforums.org/forum/newbie/70975-how-print-unique-lines-file.html#post370515
+[kind of difficult]: https://stackoverflow.com/a/4262780/169491
+[commits NOT by a particular author]: https://stackoverflow.com/a/4262780/169491
+[linuxforums.org]: https://www.linuxforums.org/forum/newbie/70975-how-print-unique-lines-file.html#post370515

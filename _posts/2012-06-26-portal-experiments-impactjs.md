@@ -41,6 +41,6 @@ Below is a GIF demonstrating how the view cones might work in Impact. The only t
 [Portile][] implemented this mechanic first (painting what you can "see" beyond the portal on the other end), but I found it extremely confusing (although really neat to look at!) to figure out the actual level geometry. [ASCII Portal][] took it one step further, by limiting what you could see via view cones. Neither of these incorporated actual physics, which is why I started on this experiment.
 
 
-[ImpactJS]: http://impactjs.com/
-[Portile]: http://www.increpare.com/2008/11/portile/
-[ASCII Portal]: http://cymonsgames.com/asciiportal/
+[ImpactJS]: https://impactjs.com/
+[Portile]: https://www.increpare.com/2008/11/portile/
+[ASCII Portal]: https://cymonsgames.com/asciiportal/

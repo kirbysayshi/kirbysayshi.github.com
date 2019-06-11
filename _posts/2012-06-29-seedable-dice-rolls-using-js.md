@@ -31,7 +31,7 @@ dice.d6(2, true); // returns two rolls as an array
 {% endhighlight %}
 
 
-[pseudo random number generator]: http://en.wikipedia.org/wiki/Pseudorandom_number_generator
-[really difficult to do]: http://baagoe.com/en/RandomMusings/javascript
+[pseudo random number generator]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
+[really difficult to do]: https://baagoe.com/en/RandomMusings/javascript
 [JavaScript doesn't have access to a PRNG]: https://bugzilla.mozilla.org/show_bug.cgi?id=440046
-[Johannes Baagøe]: http://baagoe.com/en/RandomMusings/javascript/
+[Johannes Baagøe]: https://baagoe.com/en/RandomMusings/javascript/

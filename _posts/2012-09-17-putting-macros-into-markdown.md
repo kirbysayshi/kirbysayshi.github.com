@@ -65,10 +65,10 @@ Some other crazy stuff you could do is add footnote support **[WHERE THERE IS NO
 One other thing to keep in mind is that there is nothing preventing this sort of workflow with other JS/HTML templating languages, but Vash is really tailored to it because it provides a pretty seamless transition from text to code.
 
 
-[LaTeX]: http://www.latex-project.org/
+[LaTeX]: https://www.latex-project.org/
 [Vash]: https://github.com/kirbysayshi/vash
 [gist]: https://gist.github.com/3740308
 [WHERE THERE IS NONE]: https://gist.github.com/3740308
-[Markdown]: http://daringfireball.net/projects/markdown
+[Markdown]: https://daringfireball.net/projects/markdown
 [helper API]: https://github.com/kirbysayshi/Vash/blob/master/src/vhelpers.js 
 [view engine]: https://github.com/kirbysayshi/Vash/blob/master/src/vhelpers.layout.js

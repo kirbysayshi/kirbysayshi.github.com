@@ -232,13 +232,13 @@ As you can see, it's pretty useful with longer expressions.
 
 Wow, did you really make it all the way down here? If so, I congratulate you! [MiniVash][] is available as [a gist][]. I don't anticipate it being used, but it was a fun challenge!
 
-[Vash]: http://github.com/kirbysayshi/vash
-[readable only by the one who wrote it]: http://stackoverflow.com/a/708284/169491
+[Vash]: https://github.com/kirbysayshi/vash
+[readable only by the one who wrote it]: https://stackoverflow.com/a/708284/169491
 [recent patch]: https://github.com/kirbysayshi/Vash/pull/5
 [rjgotten]: https://github.com/rjgotten
-[regexpal]: http://www.regexpal.com/
-[Steven Levithan]: http://blog.stevenlevithan.com/
-[YAPE Regex Explain]: http://search.cpan.org/~gsullivan/YAPE-Regex-Explain-4.01/Explain.pm
+[regexpal]: https://www.regexpal.com/
+[Steven Levithan]: https://blog.stevenlevithan.com/
+[YAPE Regex Explain]: https://search.cpan.org/~gsullivan/YAPE-Regex-Explain-4.01/Explain.pm
 [MiniVash]: https://gist.github.com/3411585
 [a gist]: https://gist.github.com/3411585
 [800 bytes]: https://gist.github.com/3411585 

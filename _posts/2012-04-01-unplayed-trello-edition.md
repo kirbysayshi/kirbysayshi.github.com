@@ -17,10 +17,10 @@ I haven't really had a PHP server up and running for hosting random stuff like t
 
 I also have one for [board games][], which I share with [Cindy Au][]
 
-[Shaun Inman]: http://shauninman.com
-[Unplayed]: http://shauninman.com/unplayed/
-[his blog]: http://shauninman.com/archive/2011/04/18/unplayed
-[Trello]: http://trello.com
+[Shaun Inman]: https://shauninman.com
+[Unplayed]: https://shauninman.com/unplayed/
+[his blog]: https://shauninman.com/archive/2011/04/18/unplayed
+[Trello]: https://trello.com
 [Unplayed: Trello Edition]: https://trello.com/board/unplayed/4f28b9b689c9bdd93629f09d
 [board games]: https://trello.com/board/unplayed-board-games/4f2c0d8db3eb95a45b27c050
-[Cindy Au]: http://ensignau.tumblr.com/
+[Cindy Au]: https://ensignau.tumblr.com/

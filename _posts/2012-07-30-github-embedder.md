@@ -39,5 +39,5 @@ In the above example, `ghref`, `ghlines`, and `ghtabsize` are optional. The only
 
 [ghembedder]: https://github.com/kirbysayshi/ghembedder
 [google-code-prettify]: https://code.google.com/p/google-code-prettify/
-[JSBin]: http://jsbin.com/ekises/latest
-[gist-it]: http://gist-it.appspot.com/
+[JSBin]: https://jsbin.com/ekises/latest
+[gist-it]: https://gist-it.appspot.com/

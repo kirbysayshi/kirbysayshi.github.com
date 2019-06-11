@@ -202,12 +202,12 @@ exports.ksh = ksh;
 
 /**
  * jQuery.ScrollTo
- * Copyright (c) 2007-2009 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+ * Copyright (c) 2007-2009 Ariel Flesler - aflesler(at)gmail(dot)com | https://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
  * Date: 5/25/2009
  *
  * @projectDescription Easy element scrolling using jQuery.
- * http://flesler.blogspot.com/2007/10/jqueryscrollto.html
+ * https://flesler.blogspot.com/2007/10/jqueryscrollto.html
  * Works with jQuery +1.2.6. Tested on FF 2/3, IE 6/7/8, Opera 9.5/6, Safari 3, Chrome 1 on WinXP.
  *
  * @author Ariel Flesler
@@ -219,8 +219,8 @@ exports.ksh = ksh;
 /*!
 	es5-shim
 
-    Copyright (c) 2009, 280 North Inc. http://280north.com/
-    MIT License. http://github.com/280north/narwhal/blob/master/README.md
+    Copyright (c) 2009, 280 North Inc. https://280north.com/
+    MIT License. https://github.com/280north/narwhal/blob/master/README.md
 */
 ;(function(n){"function"==typeof define?define(n):n()})(function(){function n(a){try{return Object.defineProperty(a,"sentinel",{}),"sentinel"in a}catch(d){}}if(!Function.prototype.bind)Function.prototype.bind=function(a){var d=this;if("function"!=typeof d)throw new TypeError;var b=p.call(arguments,1),c=function(){if(this instanceof c){var e=function(){};e.prototype=d.prototype;var e=new e,g=d.apply(e,b.concat(p.call(arguments)));return null!==g&&Object(g)===g?g:e}return d.apply(a,b.concat(p.call(arguments)))};
 return c};var l=Function.prototype.call,f=Object.prototype,p=Array.prototype.slice,m=l.bind(f.toString),h=l.bind(f.hasOwnProperty),t,u,q,r,o;if(o=h(f,"__defineGetter__"))t=l.bind(f.__defineGetter__),u=l.bind(f.__defineSetter__),q=l.bind(f.__lookupGetter__),r=l.bind(f.__lookupSetter__);if(!Array.isArray)Array.isArray=function(a){return"[object Array]"==m(a)};if(!Array.prototype.forEach)Array.prototype.forEach=function(a,d){var b=i(this),c=0,e=b.length>>>0;if("[object Function]"!=m(a))throw new TypeError;
@@ -241,7 +241,7 @@ if(!String.prototype.trim||j.trim()){j="["+j+"]";var A=RegExp("^"+j+j+"*"),B=Reg
 
 /*!
  * JSON 3.1
- * http://bestiejs.github.com/json3
+ * https://bestiejs.github.com/json3
  *
  * Copyright 2012, Kit Cambridge.
  *

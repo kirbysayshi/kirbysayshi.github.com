@@ -1,4 +1,4 @@
-/*! normalize.css 2012-03-06T10:21 UTC - http://github.com/necolas/normalize.css */
+/*! normalize.css 2012-03-06T10:21 UTC - https://github.com/necolas/normalize.css */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}
 audio,canvas,video{display:inline;zoom:1;}
 audio:not([controls]){display:none;height:0;}
@@ -46,7 +46,7 @@ table{border-collapse:collapse;border-spacing:0;}
 body,figure,form{margin:0;}
 p,pre,dl,menu,ol,ul{margin:1em 0;}
 
-/* micro-clearfix: http://nicolasgallagher.com/micro-clearfix-hack/ */
+/* micro-clearfix: https://nicolasgallagher.com/micro-clearfix-hack/ */
 /* For modern browsers */
 .cf:before,
 .cf:after { content:""; display:table; }
@@ -62,13 +62,13 @@ p,pre,dl,menu,ol,ul{margin:1em 0;}
     the iconic font designed for use with Twitter Bootstrap
     -------------------------------------------------------
     The full suite of pictographic icons, examples, and documentation
-    can be found at: http://fortawesome.github.com/Font-Awesome/
+    can be found at: https://fortawesome.github.com/Font-Awesome/
 
     License
     -------------------------------------------------------
     The Font Awesome webfont, CSS, and LESS files are licensed under CC BY 3.0:
-    http://creativecommons.org/licenses/by/3.0/ A mention of
-    'Font Awesome - http://fortawesome.github.com/Font-Awesome' in human-readable
+    https://creativecommons.org/licenses/by/3.0/ A mention of
+    'Font Awesome - https://fortawesome.github.com/Font-Awesome' in human-readable
     source code is considered acceptable attribution (most common on the web).
     If human readable source code is not available to the end user, a mention in
     an 'About' or 'Credits' screen is considered acceptable (most common in desktop
@@ -77,8 +77,8 @@ p,pre,dl,menu,ol,ul{margin:1em 0;}
     Contact
     -------------------------------------------------------
     Email: dave@davegandy.com
-    Twitter: http://twitter.com/fortaweso_me
-    Work: http://lemonwi.se co-founder
+    Twitter: https://twitter.com/fortaweso_me
+    Work: https://lemonwi.se co-founder
 
     */
 @font-face {
@@ -437,7 +437,7 @@ li[class^="icon-"].icon-large:before, li[class*=" icon-"].icon-large:before {
 /*!
  * Gridpak Beta CSS
  *
- * Generator - http://gridpak.com/
+ * Generator - https://gridpak.com/
  * Created by @erskinedesign
  */
  

@@ -15,7 +15,7 @@ Last night, at 11pm EST, [The World Ends With You][] was released for iPad and i
 
 <div data-role="figure">
 	<img alt="The teaser countdown." src="http://gamefans.com/wp-content/uploads/2012/08/The-World-Ends-With-You-Countdown.jpg" />
-	<span data-role="figcaption">The teaser countdown. Image via <a href="http://gamefans.com">gamefans</a>.</span>
+	<span data-role="figcaption">The teaser countdown. Image via <a href="https://gamefans.com">gamefans</a>.</span>
 </div>
 
 Now we know that the countdown was for an iOS port. SquareEnix has gotten flack for overhyping and the high prices ($17.99 and $19.99). But no one complaining seems to have played the game, and thinks that because it is on iOS, it must therefore be horrible.
@@ -45,7 +45,7 @@ This "port" shouldn't really be called that. It should actually be called a rema
 I do have two criticisms. All of the art, with the exception of pixel-based icons, have been redrawn, or at least resampled from the originals. However, there are always pixelated lines around everything, even fonts. Occasionally there are extremely straight, unpixelated lines. It's not the worst thing in the world, but I find it distracting, especially when the original artwork is very likely vector-based to begin with. I'm playing on a retina iPad, so this may not be noticeable at all on the iPhone or iPad 2.
 
 <div data-role="figure">
-	<a href="http://i.imgur.com/QCE2m.jpg">
+	<a href="https://i.imgur.com/QCE2m.jpg">
 		<img width="512" src="http://i.imgur.com/QCE2ml.jpg" alt="TWEWY Bitmapping" />
 	</a>
 	<span data-role="figcaption">Click to view at full size (required to see what I'm talking about). On a retina iPad, the inconsisten bitmapping leaves the fonts looking like victims of JPEG compression.</span>
@@ -54,7 +54,7 @@ My other criticism is what has been said by others: this should be a universal a
 
 I'm only about an hour in, but man am I excited to continue!
 
-[The World Ends With You]: http://www.square-enix.co.jp/subarashiki-solo-remix/en/new.html
-[Kotaku]: http://kotaku.com/5937977/the-world-ends-with-yous-ios-version-arrives-tomorrow-costs-20-for-ipad
-[No button controls]: http://www.ign.com/articles/2012/08/24/the-world-ends-with-you-coming-to-ios#comment-627738204
+[The World Ends With You]: https://www.square-enix.co.jp/subarashiki-solo-remix/en/new.html
+[Kotaku]: https://kotaku.com/5937977/the-world-ends-with-yous-ios-version-arrives-tomorrow-costs-20-for-ipad
+[No button controls]: https://www.ign.com/articles/2012/08/24/the-world-ends-with-you-coming-to-ios#comment-627738204
 

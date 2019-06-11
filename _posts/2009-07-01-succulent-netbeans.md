@@ -14,7 +14,7 @@ tags:
   - Textmate
 ---
 
-[Textmate](http://macromates.com) is easily my favorite tool to use
+[Textmate](https://macromates.com) is easily my favorite tool to use
 everyday. But there are times when I would like a little more: actual
 code completion, debugging, etc. Many of these things are possible with
 Textmate, but sometimes they’re just a little too complicated, or take

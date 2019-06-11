@@ -3,7 +3,7 @@ layout: post
 title: Using Signals and Actors with Web Workers
 oneliner: Avoid strings! Do your best! 
 type: project
-projecturl: http://jsbin.com/eremoc/latest
+projecturl: https://jsbin.com/eremoc/latest
 categories:
   - JavaScript
   - Experiments
@@ -203,8 +203,8 @@ Signals are a really interesting paradigm to me, so expect a post soon with more
 
 
 
-[Actor Model]: http://en.wikipedia.org/wiki/Actor_model
+[Actor Model]: https://en.wikipedia.org/wiki/Actor_model
 [Signals]: https://citational.com/v/5mx/signals-vs-eventemitter-vs-pubsub
 [Web Workers]: https://developer.mozilla.org/Using_DOM_workers
-[js-signals]: http://millermedeiros.github.com/js-signals/
+[js-signals]: https://millermedeiros.github.com/js-signals/
 [k-signals]: https://gist.github.com/1296822

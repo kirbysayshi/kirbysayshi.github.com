@@ -65,5 +65,5 @@ re.combined = replace( re.combined, 'g' )
 	();
 {% endhighlight %}
 
-[MiniVash]: http://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
+[MiniVash]: https://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
 [marked]: https://github.com/chjj/marked

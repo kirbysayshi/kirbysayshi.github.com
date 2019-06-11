@@ -54,7 +54,7 @@ Please note that none of these things are what people typically assume you're go
 But it's easy to look back now, and know that I made the right choice to leave. It was a lot harder back then.
 
 
-[^1]: All of my previous games had been made using [The Games Factory](http://en.wikipedia.org/wiki/Klik), one of the most buggy pieces of software ever created.
+[^1]: All of my previous games had been made using [The Games Factory](https://en.wikipedia.org/wiki/Klik), one of the most buggy pieces of software ever created.
 
 [^2]: I had the mistaken idea that all software development was performed by souless beasts that never saw daylight, always wore shortsleeved button-downs, and lacked any social skills.
 

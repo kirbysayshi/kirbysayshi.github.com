@@ -45,7 +45,7 @@ True, MS Word does use some proprietary XML format for storing its documents, bu
 
 InDesign is a powerful program, but is it possible to connect data to it?
 
-So the question that I asked [on Twitter today](http://twitter.com/#!/kirbysayshi/status/22378251343106048) was an attempt to investigate if anyone has seriously considered using HTML/CSS for print. I'm not talking about [print stylesheets](http://twitter.com/#!/nathanstilwell/status/22390970444152832). Well, I sort of am, but I'm not talking about printing web pages. I'm talking about printing something like labels.
+So the question that I asked [on Twitter today](https://twitter.com/#!/kirbysayshi/status/22378251343106048) was an attempt to investigate if anyone has seriously considered using HTML/CSS for print. I'm not talking about [print stylesheets](https://twitter.com/#!/nathanstilwell/status/22390970444152832). Well, I sort of am, but I'm not talking about printing web pages. I'm talking about printing something like labels.
 
 This is possible, right now.
 
@@ -53,8 +53,8 @@ This is possible, right now.
 
 Creating an app for this is probably not that hard to do. I say app in a native, not web sense. The main reason for this is that CSS can do some pretty cool things for print but needs more browser-options to bolster its ability. For example, the print dialogue box cannot do complex margins, and insists on leaving space for things like page numbers, urls, dates, etc. This isn't really something that can be fixed by CSS or JavaScript libraries, but could be by the browser shell.
 
-So I see the main challenge being to take something like [Mozilla](http://en.wikipedia.org/wiki/Mozilla_application_framework) (the platform, not the browser, see [Komodo](http://mozillalinks.org/wp/2007/09/activestate-announces-open-komodo-project) [Edit](http://www.activestate.com/komodo-edit)), and add some print-specific extensions to it. This would be difficult.
+So I see the main challenge being to take something like [Mozilla](https://en.wikipedia.org/wiki/Mozilla_application_framework) (the platform, not the browser, see [Komodo](https://mozillalinks.org/wp/2007/09/activestate-announces-open-komodo-project) [Edit](https://www.activestate.com/komodo-edit)), and add some print-specific extensions to it. This would be difficult.
 
-Another challenge is the data aspect. That is, getting your data into this environment. This should actually not be too much of a problem. We've got [IndexedDB](http://hacks.mozilla.org/2010/06/comparing-indexeddb-and-webdatabase)! As long as something, like Google Contacts, can export as text, then parsers can be written to create. Not to mention that if we're hacking on Mozilla, you could package another database, like [MongoDb](http://www.mongodb.org/), as an extension, and offer a JS interface.
+Another challenge is the data aspect. That is, getting your data into this environment. This should actually not be too much of a problem. We've got [IndexedDB](https://hacks.mozilla.org/2010/06/comparing-indexeddb-and-webdatabase)! As long as something, like Google Contacts, can export as text, then parsers can be written to create. Not to mention that if we're hacking on Mozilla, you could package another database, like [MongoDb](https://www.mongodb.org/), as an extension, and offer a JS interface.
 
 There are a lot more challenges, but mostly this is about the idea. Does anyone else think this might be valid or useful?

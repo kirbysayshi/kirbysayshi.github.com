@@ -17,7 +17,7 @@ I've tried things like [Fever][], which while admirable, still isn't quite it. T
 
 There are times when Twitter alone doesn't suffice. This is usually because the content author doesn't use Twitter consistently, or expects people to be subscribing via RSS/ATOM. I found this just today when [@TrinAndTonic][] tweeted:
 
-<blockquote class="twitter-tweet tw-align-center"><p>Remember a long time ago when I talked about Space-Mullet? So far, it is cooler than I ever imagined: <a href="http://t.co/EorD7qcQ" title="http://www.space-mullet.com/2012/06/30/page-1-7/">space-mullet.com/2012/06/30/pag…</a></p>&mdash; Trin (@TrinAndTonic) <a href="https://twitter.com/TrinAndTonic/status/243354070612582400" data-datetime="2012-09-05T14:25:06+00:00">September 5, 2012</a></blockquote>
+<blockquote class="twitter-tweet tw-align-center"><p>Remember a long time ago when I talked about Space-Mullet? So far, it is cooler than I ever imagined: <a href="https://t.co/EorD7qcQ" title="http://www.space-mullet.com/2012/06/30/page-1-7/">space-mullet.com/2012/06/30/pag…</a></p>&mdash; Trin (@TrinAndTonic) <a href="https://twitter.com/TrinAndTonic/status/243354070612582400" data-datetime="2012-09-05T14:25:06+00:00">September 5, 2012</a></blockquote>
 <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 So I checked out [Space Mullet][], and thought it was awesome. But then I realized I had no way to know when a new page was published. To do so, I'd have to search for the author's Twitter handle, which wasn't readily seen on the page itself. 
@@ -51,9 +51,9 @@ I like the idea of calling it "Teaspoon", because I think it sounds cute. It cou
 
 Anyway, this is just an idea. Maybe I'll build an implementation, maybe not. Ideas? Does this already exist?
 
-[Fever]: http://feedafever.com/
+[Fever]: https://feedafever.com/
 [@TrinAndTonic]: https://twitter.com/TrinAndTonic
-[Space Mullet]: http://www.space-mullet.com/
-[PubSubHubbub]: http://en.wikipedia.org/wiki/PubSubHubbub
-[Hacker News]: http://news.ycombinator.com/
+[Space Mullet]: https://www.space-mullet.com/
+[PubSubHubbub]: https://en.wikipedia.org/wiki/PubSubHubbub
+[Hacker News]: https://news.ycombinator.com/
 [Follow]: https://twitter.com/about/resources/buttons#follow

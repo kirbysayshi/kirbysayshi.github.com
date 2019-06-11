@@ -40,4 +40,4 @@ Very rarely do I see, “Hey audience, here’s a swift recap in the form of dia
 
 But back to my initial thought. All of this means that the roles have reversed. Where once a person might prefer a movie as their big experience, their commitment, their quick hit, they now go for the serial for a sustained high that ultimately is more rewarding, yet a lot more effort on the part of the audience. And sometimes, I just want to relax. Who knew staying entertained was so much work these days.
 
-P.S. Points to anyone who got that the title referenced [this amazing moment](http://www.youtube.com/watch?v=XdIJv2SU4VY).
+P.S. Points to anyone who got that the title referenced [this amazing moment](https://www.youtube.com/watch?v=XdIJv2SU4VY).

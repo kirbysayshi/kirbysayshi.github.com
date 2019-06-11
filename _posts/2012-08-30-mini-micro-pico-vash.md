@@ -132,8 +132,8 @@ Conclusions
 
 Templates are fun... for some reason. One of really neat things about this project was that I got to push my regular expression knowledge to the limit, while also learning more. I still have a long ways to go, but couldn't have done it without [RegexPal's][] wonderful [syntax highlighting][]. 
 
-[Vash]: http://github.com/kirbysayshi/vash
+[Vash]: https://github.com/kirbysayshi/vash
 [800 bytes]: https://gist.github.com/3411585 
 [extremely small]: https://gist.github.com/1075080
-[RegexPal's]: http://www.regexpal.com/
-[syntax highlighting]: http://stevenlevithan.com/regex/colorizer/
+[RegexPal's]: https://www.regexpal.com/
+[syntax highlighting]: https://stevenlevithan.com/regex/colorizer/

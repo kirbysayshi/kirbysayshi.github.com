@@ -3,7 +3,7 @@ layout: post
 title: Interpolated Physics Rendering
 oneliner: Not everything has to run at 60fps.
 type: project
-projecturl: http://codepen.io/kirbysayshi/full/tfDmk
+projecturl: https://codepen.io/kirbysayshi/full/tfDmk
 categories:
   - JavaScript
   - Game Design
@@ -130,17 +130,17 @@ Finally.
 Where to go from here? Well... to multithreaded land via web workers and beyond! Eventually. Ask questions!
 
 
-[Fixed-Time-Step Implementation]: http://lspiroengine.com/?p=378
+[Fixed-Time-Step Implementation]: https://lspiroengine.com/?p=378
 
-[Fix Your Timestep]: http://gafferongames.com/game-physics/fix-your-timestep/
-[deWiTTERS Game Loop]: http://www.koonsolo.com/news/dewitters-gameloop/
-[Animate Your Way to Glory]: http://acko.net/blog/animate-your-way-to-glory/
+[Fix Your Timestep]: https://gafferongames.com/game-physics/fix-your-timestep/
+[deWiTTERS Game Loop]: https://www.koonsolo.com/news/dewitters-gameloop/
+[Animate Your Way to Glory]: https://acko.net/blog/animate-your-way-to-glory/
 [requestAnimationFrame]: https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame
 
-[inspired]: http://www.unagames.com/blog/daniele/2010/06/fixed-time-step-implementation-box2d
-[from]: http://www.koonsolo.com/news/dewitters-gameloop/
-[several]: http://blog.allanbishop.com/box-2d-2-1a-tutorial-part-10-fixed-time-step/
-[sources]: http://gafferongames.com/game-physics/fix-your-timestep/
+[inspired]: https://www.unagames.com/blog/daniele/2010/06/fixed-time-step-implementation-box2d
+[from]: https://www.koonsolo.com/news/dewitters-gameloop/
+[several]: https://blog.allanbishop.com/box-2d-2-1a-tutorial-part-10-fixed-time-step/
+[sources]: https://gafferongames.com/game-physics/fix-your-timestep/
 
-[Linear interpolation]: http://en.wikipedia.org/wiki/Linear_interpolation
-[Verlet integration]: http://codeflow.org/entries/2010/nov/29/verlet-collision-with-impulse-preservation/
+[Linear interpolation]: https://en.wikipedia.org/wiki/Linear_interpolation
+[Verlet integration]: https://codeflow.org/entries/2010/nov/29/verlet-collision-with-impulse-preservation/

@@ -17,36 +17,36 @@ tags:
 
 To gain a better understanding of the decisions [knockoutjs][] made in terms of implementation, I decided to try and build my own version. I named it `sea` as a homonym for 'see' which is _somehow_ related to [observable properties][], I swear. I started with a simple HTML page that basically contained a series of "things that should work". The first was a simple `div` that followed the mouse cursor using two observables to track position.
 
-[knockoutjs]: http://knockoutjs.com/
-[observable properties]: http://knockoutjs.com/documentation/observables.html
+[knockoutjs]: https://knockoutjs.com/
+[observable properties]: https://knockoutjs.com/documentation/observables.html
 
 After a few more examples similar to that, I realized this library had two testable aspects: the [frp][] parts, which can exist in any JS enviroment, and the data binding parts, which require a DOM. I decided to formalize and write some actual tests using [mocha][], because I'd heard you could use it in a browser and node.
 
-[frp]: http://en.wikipedia.org/wiki/Functional_reactive_programming
-[mocha]: http://visionmedia.github.com/mocha/
+[frp]: https://en.wikipedia.org/wiki/Functional_reactive_programming
+[mocha]: https://visionmedia.github.com/mocha/
 
 And that's when things got difficult. Sure, mocha supports [browser-based tests][], but it leaves the part about _getting_ your tests into the HTML harness up to you. You could just load a single JS file, but I bet your library is a bit more complex than just one file, and you're probably using a module system to help keep things... modular (such as `require`ing your `assert` library). So if you're using [requirejs][] or [browserify][], it's up to you to write a build step to make it easy to consume the tests.
 
-[browser-based tests]: http://visionmedia.github.io/mocha/#browser-support
-[requirejs]: http://www.requirejs.org/
+[browser-based tests]: https://visionmedia.github.io/mocha/#browser-support
+[requirejs]: https://www.requirejs.org/
 [browserify]: https://github.com/substack/node-browserify
 
 I also looked into using [phantomjs][] or [one of][] [myriad][] [modules][] that purported to easily get mocha working in phantomjs. The problem is that they all assume a build system (like [grunt][]), assume you're writing non-`require`able code, or assume you're [using requirejs][]. Then there's the problem of getting the test output... out... of phantomjs. So for now, that will wait.
 
-[phantomjs]: http://phantomjs.org
+[phantomjs]: https://phantomjs.org
 [one of]: https://github.com/kmiyashiro/grunt-mocha
 [myriad]: https://github.com/metaskills/mocha-phantomjs
 [modules]: https://npmjs.org/package/grunt-mocha-phantomjs
 [grunt]: https://github.com/cowboy/grunt
-[using requirejs]: http://projectpoppycock.com/the-best-way-to-test-requirejs-code-with-mocha-phantomjs-and-grunt/
+[using requirejs]: https://projectpoppycock.com/the-best-way-to-test-requirejs-code-with-mocha-phantomjs-and-grunt/
 
 There was one more problem that greatly exacerbated my troubles: I wanted to use the `exports` interface that mocha provides. Every example I've seen of using mocha in a browser uses either the [tdd interface][] or the [bdd interface][]. These are especially suited for the browser because it's relatively easy to expose the interfaces globally in the browser environment, while the `exports` interface requires a more complex shim. I find both of them a little verbose, expecially after writing so many tests for [vash][] using [vows][].
 
-[tdd interface]: http://visionmedia.github.io/mocha/#interfaces
-[bdd interface]: http://visionmedia.github.io/mocha/#interfaces
+[tdd interface]: https://visionmedia.github.io/mocha/#interfaces
+[bdd interface]: https://visionmedia.github.io/mocha/#interfaces
 
-[vash]: http://github.com/kirbysayshi/vash
-[vows]: http://vowsjs.org/
+[vash]: https://github.com/kirbysayshi/vash
+[vows]: https://vowsjs.org/
 
 Here is the typical bdd interface:
 
@@ -94,8 +94,8 @@ Final goals for this testing environment:
 * Be able to `require` the in-progress library, along with anything else needed, like `assert` or [chaijs][] or [sinonjs][]
 * Write the tests without caring if they'll be running in a browser or node
 
-[chaijs]: http://chaijs.com/
-[sinonjs]: http://sinonjs.org/
+[chaijs]: https://chaijs.com/
+[sinonjs]: https://sinonjs.org/
 
 ### Step 1: Project Structure
 

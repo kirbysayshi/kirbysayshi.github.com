@@ -5,7 +5,7 @@ oneliner: "Powered by Twitter: Want to know when Google's going to channel Skyne
 type: project
 categories:
   - web
-projecturl: http://johnnytatlock.com/gem
+projecturl: https://johnnytatlock.com/gem
 image:
   - src: /images/icons/gem.png
   - alt: The Google Evil Meter logo.

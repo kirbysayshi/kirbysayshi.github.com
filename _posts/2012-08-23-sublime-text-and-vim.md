@@ -40,8 +40,8 @@ I am absolutely not saying that Vim or Sublime Text 2 is better than the other. 
 
 I'm still using Vim, but should it be this hard?  
 
-[Sublime Text 2]: http://www.sublimetext.com/2
-[jsbin]: http://jsbin.com
-[jsfiddle]: http://jsfiddle.net
+[Sublime Text 2]: https://www.sublimetext.com/2
+[jsbin]: https://jsbin.com
+[jsfiddle]: https://jsfiddle.net
 [I've been building my Vim setup for about the same amount of time.]: https://github.com/kirbysayshi/dotvim
 [project drawer]: https://github.com/jistr/vim-nerdtree-tabs

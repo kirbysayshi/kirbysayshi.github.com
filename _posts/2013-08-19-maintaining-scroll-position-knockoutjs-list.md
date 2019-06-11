@@ -4,7 +4,7 @@ title: Maintaining Scroll Position When Adding Content to the Top of a Container
 oneliner: Sometimes libraries complicate your task.
 published:  true
 type:       project
-projecturl: http://jsfiddle.net/kirbysayshi/57HbV/
+projecturl: https://jsfiddle.net/kirbysayshi/57HbV/
 categories:
   - JavaScript
 tags:
@@ -120,6 +120,6 @@ There is one primary caveat to this technique. Content can only come in from one
 
 That's it! Let me know if you have a better way to do this in the comments, and as always, questions are welcome!
 
-[KnockoutJS]: http://knockoutjs.com/
-[jsfiddle]: http://jsfiddle.net
-[try this out]: http://jsfiddle.net/kirbysayshi/57HbV/
+[KnockoutJS]: https://knockoutjs.com/
+[jsfiddle]: https://jsfiddle.net
+[try this out]: https://jsfiddle.net/kirbysayshi/57HbV/
