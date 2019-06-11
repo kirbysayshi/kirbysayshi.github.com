@@ -28,36 +28,6 @@ ksh.explodeUrl = function($el){
 	$el.html(all);
 }
 
-ksh.githubFeed = function($container, tpl){
-
-	function render(feed){
-		//console.log(feed);
-
-		var all = feed.slice(0, 8).map(function(item){ return tpl(item) });
-		$container.append(all.join('\n'));
-	}
-
-	var  url = 'https://github.com/kirbysayshi.json'
-		,req = $.ajax({ url: url, type: 'GET', dataType: 'jsonp' });
-
-	req.done(render);
-}
-
-ksh.twitterFeed = function($container, tpl){
-
-	function render(feed){
-		//console.log(feed);
-
-		var all = feed.slice(0, 8).map(function(item){ return tpl(item) });
-		$container.append(all.join('\n'));
-	}
-
-	var  url = 'http://api.twitter.com/1/statuses/user_timeline/kirbysayshi.json'
-		,req = $.ajax({ url: url, type: 'GET', dataType: 'jsonp' });
-
-	req.done(render);
-}
-
 ksh.hasHN = function(cb, url){
 
     url = encodeURIComponent(url || document.location);
@@ -121,9 +91,6 @@ ksh.defaultInit = function(){
 
 	ghe.autoload();
 	RegexColorizer.colorizeAll(); // defaults to .regex
-
-	ksh.githubFeed( $('.github-feed'), vash.compile($('#tpl-github-feed-item').html()) );
-	ksh.twitterFeed( $('.twitter-feed'), vash.compile($('#tpl-twitter-feed-item').html()) );
 
 	ksh.explodeUrl( $('.post .project-url') );
 
