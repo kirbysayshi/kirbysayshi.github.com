@@ -608,7 +608,10 @@ body {
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
 
-.post figure, .post [data-role=figure] { margin-bottom: 2.75%; text-align: center; }
+/* These are both generated syntax highlighting and hand-written "figures", apparently */
+.post figure, .post [data-role=figure] { margin-bottom: 2.75%; }
+/* We only want to center the content within hand-written "figures" */
+.post [data-role=figure] { text-align: center; }
 .post figcaption, .post [data-role=figcaption] { display: block; font-size: 0.8em; }
 
 .footnotes { font-size: 0.7em; }
