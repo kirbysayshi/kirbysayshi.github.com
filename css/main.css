@@ -519,7 +519,7 @@ body {
 #header-container header,
 #content-container article,
 #footer-container footer { 
-	width: 580px;
+	max-width: 580px;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
