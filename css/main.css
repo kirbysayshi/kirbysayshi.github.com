@@ -547,6 +547,10 @@ body {
 	color: #F9D0D0;
 }
 
+@media screen and (min-width: 0px) and (max-width: 560px) {
+	#header-container header h1 { display: none; }
+}
+
 #social-contacts-header { margin-bottom: 1em; }
 
 #social-contacts-header h2 {
