@@ -12,7 +12,7 @@ tags:
 
 For a few years at work, some of my friends started what eventually became the Fancy Film Foundation. It was simple: one person picks a movie and a pairing (food or drink) and then we all watch the movie. At the time we had a dark room at the office we could sneak into.
 
-One of the "films" I hosted was FLCL, which is actually a six episode experimental anime about growing up. I [removed the credits from each using `ffmpeg`](stuff/flcl-recut-cuts.sh), and cut down what would have been nearly three hours into two hours seventeen minutes!
+One of the "films" I hosted was FLCL, which is actually a six episode experimental anime about growing up. I [removed the credits from each using `ffmpeg`](/stuff/flcl-recut-cuts.sh), and cut down what would have been nearly three hours into two hours seventeen minutes!
 
 And of course I had to have a drink, so I modified something to make it a little more special. It's lived on only as a text file until now. Presenting, the "Spicy FLCL Manhattan", otherwise known as the "Medical Mechanica Manhattan".
 
