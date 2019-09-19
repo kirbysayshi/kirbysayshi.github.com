@@ -28,36 +28,6 @@ ksh.explodeUrl = function($el){
 	$el.html(all);
 }
 
-ksh.hasHN = function(cb, url){
-
-    url = encodeURIComponent(url || document.location);
-
-    var  head = document.head || document.getElementsByTagName( "head" )[0] || document.documentElement
-        ,callbackName = 'hasHN_' + ((Math.random() * 100000)|0)
-        ,src = 'http://api.thriftdb.com/api.hnsearch.com/items/_search'
-            + '?callback=' + callbackName
-            + '&filter[fields][url]=' + url
-        ,tag = document.createElement('script');
-
-    tag.async = 'async';
-    tag.src = src;
-    head.insertBefore( tag, head.firstChild );
-
-    window[callbackName] = function(response){
-
-        if(!response){
-            cb(new Error('unknown error'), response);
-            return;
-        }
-
-        if(response.hits > 0 && response.results.length > 0){
-            cb(null, response.results[0].item )
-        } else {
-            cb(new Error('no results found'), response);
-        }
-    }
-}
-
 ksh.redirector = function(){
 
 	var routes = {
@@ -68,7 +38,6 @@ ksh.redirector = function(){
 		,'/projects.html': '/'
 		,'/blog.html': '/'
 		,'/me.html': '#contact'
-		,'/resume.html': 'http://careers.stackoverflow.com/senofpeter'
 		,'/2012/09/05/tablespoon-twitter-syndication-protocol.html': '/2012/09/05/teaspoon-twitter-syndication-protocol.html'
 	}
 
@@ -109,26 +78,6 @@ ksh.defaultInit = function(){
 				window.location = e.currentTarget.href;
 			}, 100);
 		});
-	}
-
-	if($('body').hasClass('page-post')){
-
-		ksh.hasHN(function(err, item){
-
-			var id = '';
-
-			if(!err){
-				id = 'found'
-			} else {
-				id = 'none'
-			}
-
-			var tpl = vash.compile($('#tpl-hn-link-' + id).html())
-
-			$('.hn-link').append( tpl( { 
-				hnlink: 'http://news.ycombinator.com/item?id=' + item.id 
-			} ) )
-		})
 	}
 
 	$('#social-contacts-header .header-contact').on('click', function(e){
