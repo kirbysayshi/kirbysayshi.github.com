@@ -3,7 +3,7 @@ layout: post
 title: Keeping My Digital Desk Clean Through Rules and Tools
 oneliner: If you set rules, the tools decide for you.
 type: post
-projecturl: /stuff/_archiver.sh
+projecturl: /stuff/archiver.sh
 categories:
   - Blabbering Musings
   - Tools
@@ -17,7 +17,7 @@ This weekend, confronted with ~300 project folders in various states, I decided 
 
 After doing some manual trash culling (_this is just a github clone! DELETE_), I wrote a script to divide my projects into "recently worked on it" and "wow this is old": the equivalent of an assistant always trying to clear the clutter from my desk.
 
-The [fragile bash script](/stuff/_archiver.sh) looks at every file in every project (minus some exclusions like `node_modules`, `.git`, `.DS_Store`, etc.), and moves any project folder with files unmodified for the last X days into an `_Archive` folder. If I want to work on a project again, I just grab it from the archive, and move it back! Just like a desk of papers or books.
+The [fragile bash script](/stuff/archiver.sh) looks at every file in every project (minus some exclusions like `node_modules`, `.git`, `.DS_Store`, etc.), and moves any project folder with files unmodified for the last X days into an `_Archive` folder. If I want to work on a project again, I just grab it from the archive, and move it back! Just like a desk of papers or books.
 
 Initially I set a limit of 30 days. My list of ~300 projects went down to 2! Wait, am I that unproductive? I compromised and set a limit, for now, of 180 days (~half a year). Nine folders! Even seeing this simple data point, similar to [the considerations caused by rewriting your TODO list every week](https://bulletjournal.com/blogs/bulletjournalist/migration), was enlightening. Look, it's only a few incomplete things instead of hundreds!
 
