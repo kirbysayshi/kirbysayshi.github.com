@@ -1,5 +1,9 @@
 Some stuff I've made.
 
+```
+bundle exec jekyll serve
+```
+
 Remember to regen the tags and categories with:
 
 ```
