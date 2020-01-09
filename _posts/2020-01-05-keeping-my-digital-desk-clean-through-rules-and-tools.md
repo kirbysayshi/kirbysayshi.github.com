@@ -11,6 +11,8 @@ tags:
   - Bash
 ---
 
+UPDATE 2020/01/09: [I created a packaged, rewritten version of the tool described here. GET IT!](https://www.npmjs.com/package/@kirbysayshi/idier)
+
 Projects. I start them. I learn from them. I finish them. More often, I abandon them. Sometimes I return to them. They are typically a folder on my laptop that stares me in the face each time I try to start something new or work on something existing. _Hey! You should work on me! Don't you think I'm important anymore? Why are you choosing that other thing over ME!?_ Decision paralysis sets in, and I end up avoiding making any progress at all. Plus, it's too easy to see failure in the mere list of these projects, even the ones considered completed: they were completed with imperfections. Perfectionism sucks.
 
 This weekend, confronted with ~300 project folders in various states, I decided to work through this problem by setting rules. I acknowledged that I would always have unfinished projects, and that I tend to work deeply on projects only to abandon them for months on end. And that is ok. Also, project artifacts tend to be a form of machine memory backup: markers of what has happened in my life. So deleting everything was out of the question.
