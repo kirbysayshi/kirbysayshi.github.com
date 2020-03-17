@@ -19,7 +19,7 @@ When I start coding or fleshing out a new idea, I tend to oscillate between two 
 
 And along the way, I often wish I'd kept a developer log of all those obstacles I faced and overcame, both to remind me that the journey was long but worth it, and to perhaps help others that might be curious about the same problems. Plus once you're done with a project, it's exceedingly more difficult to reverse-document it than if you'd done it as you went along.
 
-Others are way better at this than me (see YouTube)! But I find that a huge problem is just getting started. Or having a structure and place to put it. If it start off with the intent to write a blog post, sometimes I'll just give up because the details (the title, the structure, the story, the outcome, the approach) all become overwhelming: I really struggle to focus on what matters and instead default to everything at once.
+Others are way better at this than me (see YouTube)! But I find that a huge problem is just getting started. Or having a structure and place to put it. If I start off with the intent to write a blog post, sometimes I'll just give up because the details (the title, the structure, the story, the outcome, the approach) all become overwhelming: I really struggle to focus on what matters and instead default to everything at once.
 
 So. Motivation. Logging. Stories. Blogging. What if I could avoid overwhelming myself by hiding away as many details as possible until the last possible moment? AND help motivate myself with some make-believe excitement?
 
