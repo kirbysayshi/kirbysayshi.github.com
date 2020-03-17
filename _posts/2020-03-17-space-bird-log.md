@@ -7,6 +7,8 @@ categories:
   - Blabbering Musings
   - Tools
 tags:
+  - Metroid
+  - Star Trek
 ---
 
 Motivation is often difficult for me, even when it's something I want to do or will have measurably positive outcomes. So it always helps to have a little bit of external motivation, even if it's in my head...
