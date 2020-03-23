@@ -10,6 +10,8 @@ tags:
   - Pokemon
   - React
   - JSX
+  - DevOps
+  - Dashboards
 ---
 
 What follows is an exploration into strongly-typed alternatives to writing YAML by hand. If you just want the answers, skip ahead. But part of this realization is the journey, as with most things.
