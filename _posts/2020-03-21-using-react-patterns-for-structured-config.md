@@ -47,7 +47,7 @@ A list:
 
 And finally, it's tough to know what's truly valid according to an arbitrary schema. Take a snippet from a typical [.travis.yml](https://github.com/spotify/NFPlayerJS/blob/master/.travis.yml):
 
-```
+```yaml
 language: node_js
 before_install:
 - npm i -g npm@6.8
@@ -63,14 +63,16 @@ To be fair, the majority of these issues are not unique to YAML. JSON, HTML, XML
 I've seen these issues worked around using several methods:
 
 1. A validation tool, script, or build process that runs after the user has authored the YAML.
-1. Extensive documentation for 1.
+1. [Extensive documentation for 1](https://docs.travis-ci.com/user/customizing-the-build).
 1. A CLI wizard or prompt that walks the user through the possibilities and then generates YAML.
 
 ## But Then Someone Needs Logic
 
-Have you ever seen someone do something like this:
+Have you ever seen someone do this:
 
+{% raw  %}
 ```yaml
+# dashboards.yml
 Dashboards:
 {% for board in dashboards %}
   - name: {{ board.name }}
@@ -79,8 +81,9 @@ Dashboards:
     query: SELECT {{ board.metric }} as m1 FROM data.time_series WHERE timestamp > {{ page.timestamp }}
 {% endfor %}
 ```
+{% endraw  %}
 
-And then described like this:
+And then consumed like this:
 
 ```yaml
 template: dashboards.yml
@@ -95,7 +98,7 @@ Effectively, templated YAML.
 
 For the user, it's not the worst, but still has all of the problems stated before.
 
-For the developer of these templates (which _might_ be the same person as the user...), it's a nightmare. You are both defining a schema and producing some YAML that must conform to some _other_ schema because presumably the final generated YAML is consumed by a system you're not also writing. Additionally, most code editors and tools choke, since how could they be prepared to handle the exact combination of language (YAML) and string-template syntax (in this case something like [Jinja](https://jinja.palletsprojects.com/) or [Mustache](https://mustache.github.io/))? Most editors work around this today by creating specific modes for editing HTML in PHP, for example.
+For the developer of these templates (which _might_ be the same person as the user...), it's a nightmare. You are both defining a schema and producing some YAML that must conform to some _other_ schema because presumably the final generated YAML is consumed by a system you're _not_ writing. Additionally, most code editors and tools choke, since how could they be prepared to handle the exact combination of language (YAML) and string-template syntax (in this case something like [Jinja](https://jinja.palletsprojects.com/) or [Mustache](https://mustache.github.io/))? Most editors work around this today by creating specific modes for editing HTML in PHP, for example.
 
 Again, this is not specific to YAML: PHP generating HTML, and even my own [Vash](https://github.com/kirbysayshi/vash/) come to mind.
 
@@ -152,18 +155,19 @@ import { Page, Dashboard, Dashboards } from 'shared-templates';
 // so the "renderer" doesn't need to know the name of this root component.
 // "Page" would come from whatever system is rendering this thing.
 export default function (props: Page) {
-  return (<Dashboards>
-    <Dashboard
-      name="Response Times"
-      metric="response_time_ms"
-      timestamp={props.page.timestamp}
-    />
-    <Dashboard
-      name="Request Rates"
-      metric="request_rates_ms"
-      timestamp={props.page.timestamp}
-    />
-  </Dashboards>
+  return (
+    <Dashboards>
+      <Dashboard
+        name="Response Times"
+        metric="response_time_ms"
+        timestamp={props.page.timestamp}
+      />
+      <Dashboard
+        name="Request Rates"
+        metric="request_rates_ms"
+        timestamp={props.page.timestamp}
+      />
+    </Dashboards>
   )
 }
 ```
@@ -173,9 +177,9 @@ Why is this better?
 1. The user/developer receives code-completion and type safety. They will receive hints that `<Dashboard />` must be a child of `<Dashboards>`, and receive compile-time errors if any properties from `<Dashboard />` are missing.
 1. The user/developer can consume templates from someone else without using strings. For example, the user could `import { Dashboard } from 'our-shared-templates';` and never need to know that YAML is even involved.
 1. The developer can use logic and default-setting easily and clearly.
-1. No on needs to worry about preserving the final whitespace of YAML, a common problem with intermediate templating languages.
+1. No one needs to worry about preserving the final whitespace of YAML, a common problem with intermediate templating languages.
 
-Unfortunately, we don't live in a perfect world, yet. JSX as TypeScript has implemented it [treats the result type of JSX as opaque](https://www.typescriptlang.org/docs/handbook/jsx.html#the-jsx-result-type). It doesn't manifest greatly in the example above, but this choice places restrictions on what can and cannot be type-checked within JSX: React `children` cannot be strongly typed. You can specify that `children` must be present, but unfortunately it simplies, eventually, into something like `{} | undefined | null`.
+Unfortunately, we don't live in a perfect world, yet. JSX as TypeScript has implemented it [treats the result type of JSX as opaque](https://www.typescriptlang.org/docs/handbook/jsx.html#the-jsx-result-type). It doesn't manifest greatly in the example above, but this choice places restrictions on what can and cannot be type-checked within JSX: React `children` cannot be strongly typed. You can specify that `children` must be present, but unfortunately it simplies, eventually, into `{} | undefined | null`.
 
 Something like this is impossible to enforce:
 
@@ -188,9 +192,9 @@ Something like this is impossible to enforce:
 </Dashboards>
 ```
 
-[Full Example Link](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wG4AocmATzCUWJmQGcBXAGxgB4BhOJAB4wkAOwAmzOAAoAdHJRQA5swBccFCOoBtALoBKOAF4AfOs2nDDdDBnJrAUXZIQo7uThwACgpQvhUZl5jLQAGHQAadzgecmMKKlp6TxwwSUsAbyiAeiy4ABUAC2BJAH12CAgAa2YSuGYYHBFFdmo4GjoxcLgoYEUCmAB+bNyAIQBVPLgASTyAcgBlOAA5AHk8mWG4ACl5gA0ZR2dXOGK4CDAUAEdWeg0xODEIJEkRCHgwImYkKAA3ekVRN9gGgTiJMNAQCgYMAICINh4cnB5hA4K84JCYP44AB3ApQtqJAC0imoIBEKHqwMk2Pojy6+JgBXoonuwHgnwg7D+zE2MBRKAJdDg7GAlXoAAM0EV2GIiCI1FJ0gBfOAAH1RHHYargrHESEwwBESDEel0USlwBlcrUdgwLA43HaSAgmDgABEKQUAEYQBRiYI6ChK+KYXUYGEid2en1+5hSD7nVReFLMAyZDxEGCsKCRrjGdIJ1IyC1W0RKrhZOLkJWUUMicOwqPMb2+qBieMptTpVG+JBqeo9JqkOBKtNRTPZ3P5wvMGTklzlytB2th6GNuVib5SMcZpBZnPSKIeLge5sxtvMYxHjxwE-R1v3edIQz4FiQERffKgZ74SvXjzpFkABU+RMnA4LsOU2KGoodQFBAHD3F69BEPczDXL0zTPGY9yYCglptCiaC4GAlr0F6rDwGyDxPC8bwAIRwEBWQ1jeN5cGIwA-MYFacdx14VqeLaxleHh6MuQA).
+See the [full example ink](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wG4AocmATzCUWJmQGcBXAGxgB4BhOJAB4wkAOwAmzOAAoAdHJRQA5swBccFCOoBtALoBKOAF4AfOs2nDDdDBnJrAUXZIQo7uThwACgpQvhUZl5jLQAGHQAadzgecmMKKlp6TxwwSUsAbyiAeiy4ABUAC2BJAH12CAgAa2YSuGYYHBFFdmo4GjoxcLgoYEUCmAB+bNyAIQBVPLgASTyAcgBlOAA5AHk8mWG4ACl5gA0ZR2dXOGK4CDAUAEdWeg0xODEIJEkRCHgwImYkKAA3ekVRN9gGgTiJMNAQCgYMAICINh4cnB5hA4K84JCYP44AB3ApQtqJAC0imoIBEKHqwMk2Pojy6+JgBXoonuwHgnwg7D+zE2MBRKAJdDg7GAlXoAAM0EV2GIiCI1FJ0gBfOAAH1RHHYargrHESEwwBESDEel0USlwBlcrUdgwLA43HaSAgmDgABEKQUAEYQBRiYI6ChK+KYXUYGEid2en1+5hSD7nVReFLMAyZDxEGCsKCRrjGdIJ1IyC1W0RKrhZOLkJWUUMicOwqPMb2+qBieMptTpVG+JBqeo9JqkOBKtNRTPZ3P5wvMGTklzlytB2th6GNuVib5SMcZpBZnPSKIeLge5sxtvMYxHjxwE-R1v3edIQz4FiQERffKgZ74SvXjzpFkABU+RMnA4LsOU2KGoodQFBAHD3F69BEPczDXL0zTPGY9yYCglptCiaC4GAlr0F6rDwGyDxPC8bwAIRwEBWQ1jeN5cGIwA-MYFacdx14VqeLaxleHh6MuQA) demonstrating the lack of red squiggles.
 
-Until JSX via TS supports generics in `JSX.Element`, we're kind of stuck with "better than strings" but still not quite eloquent enough.
+Until JSX via TS supports generics in `JSX.Element`, we're kind of stuck with the above. It's better than strings but still not quite eloquent enough to warrant the investment.
 
 ## A Solution Today
 
@@ -199,13 +203,13 @@ An alternative that works today is to just use functions, and avoid JSX complete
 We have two problems to solve then:
 
 1. What do they look like? e.g. What is the API and what syntax will we use?
-1. How do we actually output YAML? (We skipped this problem when talking about JSX...): SPOILERS! We're going to cheat a bit (later).
+1. How do we actually output YAML? (We skipped this problem when talking about JSX...) SPOILERS! We're going to cheat a bit.
 
 ### Syntax
 
 Assuming we stick to something close to the transpiled output of JSX, we have a few options. None are amazing.
 
-But first, some background. JSX, since it transpiles to function calls, calls everything in reverse (inside-out) from how a markup language would actually be parsed (outside-in). It also adjusts `children` to be within the `props`, which mandates a bit of complexity.
+But first, some background. JSX, since it transpiles to function calls, executes everything in reverse (inside-out) from how a markup language would actually be parsed (outside-in). It also adjusts `children` to be within the `props`, which mandates a bit of complexity.
 
 ```tsx
 const React = {
@@ -256,7 +260,7 @@ The important summary:
 
 - JSX transpiles to Function calls
 - Those Function calls output a _description_ of the Component and the props it will receive (including its `children` descriptions)
-- The description(s) are walked to eventually output a DOM (or another target)
+- The description(s) are walked, and the Components executed, to eventually output a DOM (or another target)
 
 We can either try to hew close to JSX's transpiled output, or go with something simpler or more ergonomic. First, back to our dashboard example:
 
@@ -299,7 +303,9 @@ Arrays / s-expression-like:
 ]
 ```
 
-But really, it comes down to two more important questions:
+And there's the s-expression + varargs version too that I'll skip for now.
+
+So there are lots of options. How to choose? These two questions might help:
 
 1. How will the developer specify the schema and data restrictions (e.g. what's the authoring experience like)?
 1. What is the least ambiguous syntax for a human to write and read?
@@ -311,7 +317,7 @@ I'm sick of `Dashboards`, let's switch to something more fun. Like Pokemon! Let'
 - A "bench" can contain between 1 - 6 "Pokemon"
 - A "Pokemon" has some data, like "name", "level", etc.
 - A "Pokemon" can have between 1 - 4 "moves"
-- A "move" has some statistics, like "power".
+- A "move" has a name and some statistics, like "power".
 
 In YAML (just the data, no rules):
 
@@ -357,7 +363,7 @@ Some things to note here:
 - We've encoded the 1-6 pokemon by using [TS tuple syntax](https://www.typescriptlang.org/docs/handbook/basic-types.html#tuple).
 - We're using `ReturnType` to say "Whatever the `Pokemon` component returns" rather than some sort of `React.ElementType` or `JSX.Element` or otherwise intermediate generic representation.
 - We've named the `children` explicitly as what they are, in this case `pokemon`. There's no need to have an implcit convention for `children` when we're dealing with strongly typed objects.
-- We're returning just a simple JS object. This is because we're actually going to cheat when it comes to YAML. It's much easier to convert from JSON-like to YAML than to manually build a YAML AST. I looked into using building YAML directly, and unfortunately hit some obstacles due to [types being out of date](https://github.com/eemeli/yaml/issues/102). Since my main mission here is type-safe config and not a JS -> YAML React Reconciler, we'll just cheat a bit. 
+- We're returning just a simple JS object. It's much easier to convert from JSON-like to YAML than to manually build a YAML AST. I looked into building YAML directly via AST, and unfortunately hit some obstacles due to [types being out of date](https://github.com/eemeli/yaml/issues/102). Since my main mission here is type-safe config and not a JS -> YAML React Reconciler, we're going to cheat (as SPOILED above!). 
 
 What usage looks like:
 
@@ -408,7 +414,7 @@ function Move(props: {
 }
 ```
 
-[The full example](https://www.typescriptlang.org/play?#code/GYVwdgxgLglg9mABAIQKaQBYAoAOAnOHAZwC5EBvAKEURzgGtUBbBMgbWpsQCVUoQ8YACoBPHKgA8UMajjBEABQbMEAPgA0nGr36DR4qTLmLlLMKoD8mrjz4DhMw+ONLGZy9a477+ydOfyrirmVlq2ug4G-rKBpmqhNt56jtEucSGcALoA3JQAvgCUFJx4doLFNgBG6BAYZPiERAB0dG4InHm5eZSUoJCwCCZtYLgExGRUNGAAhkyoZABEAMoAjiAweFAANqgLiAA+iAsAwhjTeDAAXucAJgu5NDsAbqhbZGAgTNV4D4gsL6REBxEmVIn4jPIALJwF4eMJJMFOGKIaGwhJeUG+JHGVGoOEgiJY1JQmF4ixZLpFSaIUoRCpcJqMhrEDpdHp9aDwJC40aNCacGZzRbIECVSo7FCoWZ7Q4LADq0ygqDwiAA4uAZUcAGJbWZ8DAEADuys1CwAol8TZT6URDTAoLVELziE1BagqWEINMiKgjiKxRK0NL+TYaLT7BREIyWmMiOpaHBjXgyAAWACsiE6YW6nu9vvNlrwCxDofD5XIUaZsfjdCTqYADJnfjQczYvT7tbq5lADYmTSWbGWkBXo8y4wm64gAJyNrM2Vtcdv5hVKlXqsDF+mD0GR0fVifKhtN7M9Gw3VDAaYgLZQAeLhBEKCIAD6YHeqBeKoAvLRY669c2XCvoB3QtvkPSoAAHnQmyIOel7Xk+HIDCMY4TIU9JDpKmBYNSNCtME7BhDQQRmLhxFcG6iyrOsmw7AsnihogzyvGQABMADsjGhv8qCAsCTFcDyFZUX6orir6QZMHshTcUxwmIKJ8qKsqaoapmBRyVwmQUbJFGkQg5GCYpeqLKc5xXLcDEUY8H6sYgaYplpNC8fxNlCaSuEmUKnZ6j2RomhpzkeS8XlKRa3wyZp7k6UxhRhLFGldEAA).
+Checkout the [the full example](https://www.typescriptlang.org/play?#code/GYVwdgxgLglg9mABAIQKaQBYAoAOAnOHAZwC5EBvAKEURzgGtUBbBMgbWpsQCVUoQ8YACoBPHKgA8UMajjBEABQbMEAPgA0nGr36DR4qTLmLlLMKoD8mrjz4DhMw+ONLGZy9a477+ydOfyrirmVlq2ug4G-rKBpmqhNt56jtEucSGcALoA3JQAvgCUFJx4doLFNgBG6BAYZPiERAB0dG4InHm5eZSUoJCwCCZtYLgExGRUNGAAhkyoZABEAMoAjiAweFAANqgLiAA+iAsAwhjTeDAAXucAJgu5NDsAbqhbZGAgTNV4D4gsL6REBxEmVIn4jPIALJwF4eMJJMFOGKIaGwhJeUG+JHGVGoOEgiJY1JQmF4ixZLpFSaIUoRCpcJqMhrEDpdHp9aDwJC40aNCacGZzRbIECVSo7FCoWZ7Q4LADq0ygqDwiAA4uAZUcAGJbWZ8DAEADuys1CwAol8TZT6URDTAoLVELziE1BagqWEINMiKgjiKxRK0NL+TYaLT7BREIyWmMiOpaHBjXgyAAWACsiE6YW6nu9vvNlrwCxDofD5XIUaZsfjdCTqYADJnfjQczYvT7tbq5lADYmTSWbGWkBXo8y4wm64gAJyNrM2Vtcdv5hVKlXqsDF+mD0GR0fVifKhtN7M9Gw3VDAaYgLZQAeLhBEKCIAD6YHeqBeKoAvLRY669c2XCvoB3QtvkPSoAAHnQmyIOel7Xk+HIDCMY4TIU9JDpKmBYNSNCtME7BhDQQRmLhxFcG6iyrOsmw7AsnihogzyvGQABMADsjGhv8qCAsCTFcDyFZUX6orir6QZMHshTcUxwmIKJ8qKsqaoapmBRyVwmQUbJFGkQg5GCYpeqLKc5xXLcDEUY8H6sYgaYplpNC8fxNlCaSuEmUKnZ6j2RomhpzkeS8XlKRa3wyZp7k6UxhRhLFGldEAA). Don't worry, it's short.
 
 And of course, if we put something where it doesn't belong, we get errors.
 
@@ -488,7 +494,7 @@ console.log(rendered)
 console.log(expected)
 ```
 
-If we want better developer errors, we have to move towards an even _more_ declarative syntax, at the cost of worse authoring ergonomics and greater type complexity (just look at the [full type declarations for React](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/6bd457dec0fde7ac2b89b3b0dfca23b8e9eb9185/types/react/index.d.ts#L102) or the example `React.createElement` in the playground above). Our functions need to return something that cannot be structurally-matched by TS so it gives a very clear and concise error. We'd also need to create an intermediate function rather than outputting structures directly by our "components". And, we'd have to write a much more complex renderer to then walk the declarative structure and convert it to JSON / YAML.
+If we want better developer errors, we have to move towards an even _more_ declarative syntax, at the cost of worse authoring ergonomics and greater type complexity (just look at the [full type declarations for React](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/6bd457dec0fde7ac2b89b3b0dfca23b8e9eb9185/types/react/index.d.ts#L102) or the example [`React.createElement` in the playground above](https://www.typescriptlang.org/play?#code/C4TwDgpgBAygwgUQDYQLYQHbADwCgpQAKUEAHsJgCYDOUA3lAMYAWAlkpQE6YBcsiKdFgDaAXSgBfKAF56TNh24Y+8ZGkzAxkgDT4ocEuSq0AFGE4B7MNT6EAlDIB8-NUOAyoZy9dsPpz1UENXGdZOj1GVDA+OABuPXMrGyJ4iXjcADMAVwxGYFYLDCZuAEMKVw08AmIyCgwaORZ2Ll4XIJFxCV0CA1rjT0SfIj8AgXUsEJNI6P1tKEHk4gAfKAwspCQ5gDodpsVWwPHNUTsVMbdsQjm4Z3CCRkLqdwWAdVZgZjgFFqLZLyS9AQAPxyHZbBZzPY-SSAqB8BhQpSSBwlWiEdL3R7uCDtdxhWHTboEebeZKvd6fb5KPRpCKPCwoLZICwAcxMOKOdniBG4wCynCKHLcqVwuAeGCeUAAShASnkPHdirLyrjcLTMjk8gUigAREwORW8-lFEyw7CUVgAN0csII2DAjgAEjjmdgAPQOs1ui3WvRctWivX+oA)). Our functions need to return something that cannot be structurally-matched by TS so it gives a very clear and concise error. We'd also need to create an intermediate function rather than outputting structures directly by our "components". And, we'd have to write a much more complex renderer to then walk the declarative structure and convert it to JSON / YAML.
 
 So it's probably not worth it. But if you have a better idea, try it and let's talk! I probably just missed something.
 
@@ -496,7 +502,7 @@ So it's probably not worth it. But if you have a better idea, try it and let's t
 
 You can strongly-type, compile-time validate, and add logic to YAML by using TypeScript to generate YAML-compatible JSON structures.
 
-Back to our original example. If we convert it to this paradigm:
+Back to our original example, converted to this paradigm:
 
 ```ts
 function Dashboards(props: { dashboards: ReturnType<typeof Dashboard>[] }) {
@@ -558,4 +564,4 @@ Dashboards:
 
 And, it was completely type safe, using the built-in capabilities and paradigms of TypeScript, with excellent authoring experience, and we could even write unit tests if we wanted.
 
-Thanks for making it this far on this extremely long post! If you have better ideas, or just thoughts in general, please let me know. This post took weeks of on and off thinking and tinkering, as I learned about the limitations of JSX via TS and how the React typings work.
+Thanks for making it this far on this extremely long post! If you have better ideas, or just thoughts in general, please let me know. This post took weeks of on and off thinking and tinkering, as I learned about the limitations of JSX via TS and how the React typings work. I am also [not the first to consider the shortcomings of YAML at scale](https://github.com/dvdsgl/ts-yaml). 

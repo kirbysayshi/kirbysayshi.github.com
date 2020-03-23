@@ -586,8 +586,9 @@ body {
 .exploded-url .exploded-url-part { width: 40%; }
 .exploded-url .exploded-url-value { width: 55%; }
 
-.highlight { padding: 2.75% 0; background-color: #F6F6F6; }
-.highlight pre { margin: 0; }
+div.highlight { overflow-x: auto; }
+.highlight { /*padding: 2.75% 0;*/ background-color: #F6F6F6; }
+.highlight pre { margin: 0; white-space: pre; }
 .highlight .lineno:after { content: '|'; }
 
 /*** Long Form Post */
@@ -602,7 +603,7 @@ body {
 .post .row aside:first-child { margin-left: 2.75%; margin-bottom: 2.75%; padding-top: 2.75%; padding-bottom: 2.75%; }
 .post aside .project-url { display: block; position: relative; margin-top: 5.5%; font-size: 11pt; line-height: 14pt; }
 .post aside .project-url:before { content: "<"; font-size: 10em; position: absolute; right: -0.5em; top: 14px; }
-.post .post-content {  }
+.post .post-content, .post .lined-block { width: 100%; }
 .post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
 .post ul { padding: 0 2.75%; font-size: 1em; }
 .post ul li { padding: 1% 0; }
