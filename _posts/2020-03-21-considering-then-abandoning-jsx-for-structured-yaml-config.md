@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Considering, Then Abandoning React for Structured YAML Configuration
+title: Considering, Then Abandoning JSX for Structured YAML Configuration
 oneliner: Ah! A wild string template full of logic appeared! RUN
 type: post
 categories:
