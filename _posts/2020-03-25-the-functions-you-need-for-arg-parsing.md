@@ -141,7 +141,7 @@ If I'd used a library for this example, I'd have to answer all of these question
 - How to handle errors? Throw? When? Return a parsed result that you have to check?
 - If arguments are invalid, should I exit the process automatically? Does it output "help" when it exits?
 
-Digging through documentation (or lack thereof) or examples for answers to all these questions weighs me down when I could instead just choose for the specific situation I need.
+Digging through examples and documentation (or lack thereof) for answers gets me down when I could instead just choose appropriately for the specific situation at hand.
 
 ## Real World Example
 
