@@ -293,7 +293,7 @@ The important summary:
 - Those Function calls output a _description_ of the Component and the props it will receive (including its `children` descriptions)
 - The description(s) are walked, and the Components executed, to eventually output commands / mutations / instructions against a DOM (or another target)
 
-We can either try to hew close to JSX's transpiled output, or go with something simpler or more ergonomic. First, back to our dashboard example:
+We can either try to hew close to JSX's transpiled output, or go with something simpler or more ergonomic. Back to our dashboard example:
 
 ```tsx
 <Dashboards>
