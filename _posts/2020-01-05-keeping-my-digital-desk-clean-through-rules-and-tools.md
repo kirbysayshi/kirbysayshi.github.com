@@ -9,6 +9,7 @@ categories:
   - Tools
 tags:
   - Bash
+  - Tools
 ---
 
 UPDATE 2020/01/09: [I created a packaged, rewritten version of the tool described here. GET IT!](https://www.npmjs.com/package/@kirbysayshi/idier)
