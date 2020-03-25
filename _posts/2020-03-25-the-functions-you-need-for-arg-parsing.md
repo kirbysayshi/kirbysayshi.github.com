@@ -132,16 +132,16 @@ async function run() {
 run();
 ```
 
-## You Still Have To Answer Questions Regardless
+## You Still Have to Answer the Same Questions
 
-If I'd used a library for this example, I'd have to answer all of these questions regardless:
+If I'd used a library for this example, I'd have to answer all of these questions, regardless:
 
 - Deciding what logic to apply to a "command" and to a "flag".
 - Which combinations are valid, which are not.
-- How does the library handle errors? Does it throw? When? Does it return a parsed result that you have to check? That just spreads complexity throughout your code.
-- If arguments are invalid, does it exit the process automatically? Does it output "help" when it exits?
+- How to handle errors? Throw? When? Return a parsed result that you have to check?
+- If arguments are invalid, should I exit the process automatically? Does it output "help" when it exits?
 
-Digging through documentation (or lack thereof) or examples for answers to all these questions weighs me down :)
+Digging through documentation (or lack thereof) or examples for answers to all these questions weighs me down when I could instead just choose for the specific situation I need.
 
 ## Real World Example
 
