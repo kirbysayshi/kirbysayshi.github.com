@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Argument Parsing Doesn't Have to Require a Library
-oneliner: Sometimes some repetition is faster than grabbing the generic solution.
+oneliner: Sometimes a bit of repetition is faster than grabbing the generic solution.
 type: post
 categories:
   - TypeScript
@@ -104,30 +104,29 @@ And then a main function:
 
 ```ts
 async function run() {
+  if (process.argv.indexOf("--help") > -1) {
+    return showHelpAndExit();
+  }
 
-	if (process.argv.indexOf('--help') > -1) {
-		return showHelpAndExit();
-	}
+  let parsed: ParsedCLIFlags;
+  try {
+    parsed = parseCLI();
+  } catch (e) {
+    console.log(e);
+    return showHelpAndExit();
+  }
 
-	let parsed: ParsedCLIFlags;
-	try {
-		parsed = parseCLI();
-	} catch (e) {
-		console.log(e);
-		return showHelpAndExit();
-	}
-	
-	// And finally, do something with `parsed`!
-	
-	switch (parsed.command) {
-		case 'play':
-			// ...
-			break;
-		
-		case 'pause':
-			// ...
-			break;
-	}
+  // And finally, do something with `parsed`!
+
+  switch (parsed.command) {
+    case "play":
+      // ...
+      break;
+
+    case "pause":
+      // ...
+      break;
+  }
 }
 
 run();
