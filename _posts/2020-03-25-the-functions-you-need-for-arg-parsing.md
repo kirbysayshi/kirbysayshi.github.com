@@ -145,9 +145,9 @@ Digging through examples and documentation (or lack thereof) for answers gets me
 
 ## Real World Example
 
-If you want a real-world example, [check out this CLI for the NFPlayerJS I wrote very quickly when I found out the previous CLI arg library didn't quite support TypeScript after undergoing a major version bump.](https://github.com/spotify/NFPlayerJS/blob/5881a02a4e3a03dd441c4cf323395cfea4cdfc8e/src/cli.ts#L88) It has a [small utility function](https://github.com/spotify/NFPlayerJS/blob/5881a02a4e3a03dd441c4cf323395cfea4cdfc8e/src/cli.ts#L273-L308) to allow for short names, defaults, and type coercion.
+If you want a real-world example, [check out this CLI I updated recently](https://github.com/spotify/NFPlayerJS/blob/5881a02a4e3a03dd441c4cf323395cfea4cdfc8e/src/cli.ts#L88). I went to update its previous CLI parser to a new major version, only to find it had TypeScript limitations. It has a [small utility function](https://github.com/spotify/NFPlayerJS/blob/5881a02a4e3a03dd441c4cf323395cfea4cdfc8e/src/cli.ts#L273-L308) to allow for short names, defaults, and type coercion.
 
-An even simpler one is for a utility I wrote a few months ago called [Idier](/2020/01/05/keeping-my-digital-desk-clean-through-rules-and-tools.html). Its [CLI parsing](https://github.com/kirbysayshi/idier/blob/85aa052df6f8ead2a9d8eb7c2d29cc1df4dfd149/src/index.ts) is a [single function that handles exiting, help, and validation](https://github.com/kirbysayshi/idier/blob/85aa052df6f8ead2a9d8eb7c2d29cc1df4dfd149/src/index.ts#L16-L79).
+An even simpler one is for a tool I wrote a few months ago called [Idier](/2020/01/05/keeping-my-digital-desk-clean-through-rules-and-tools.html). Its [CLI parsing](https://github.com/kirbysayshi/idier/blob/85aa052df6f8ead2a9d8eb7c2d29cc1df4dfd149/src/index.ts) is a [single function that handles exiting, help, and validation](https://github.com/kirbysayshi/idier/blob/85aa052df6f8ead2a9d8eb7c2d29cc1df4dfd149/src/index.ts#L16-L79).
 
 ## But It Depends
 
