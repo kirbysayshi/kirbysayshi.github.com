@@ -154,3 +154,58 @@ An even simpler one is for a tool I wrote a few months ago called [Idier](/2020/
 Testing is one issue I haven't addressed, and it is hard to argue that some hand-rolled code is better than open source code with excellent code coverage and used by thousands of developers.
 
 But it depends on your use case. Sometimes, the simplicity of the code you can write (and will test anyway with integration) outweighs the cognitive overhead of "just use a library".
+
+## Addendum for Those That Are Fancy
+
+If you want to be a little more fancy, here are some additional functions. They operate by assuming there is always a valid default. If you wanted them to throw instead, that's fairly simple to copy/paste. :)
+
+```tsx
+function keyValueArgv<T>(argv: string[], key: string, defaultValue: T) {
+  const idx = argv.indexOf(key);
+  if (idx === -1) return defaultValue;
+  if (idx + 1 > argv.length) return defaultValue;
+  const value = argv[idx + 1];
+  if (!value) return defaultValue;
+  return value;
+}
+
+function boolArgv(argv: string[], key: string) {
+  const idx = argv.indexOf(key);
+  if (idx === -1) return false;
+  return true;
+}
+
+function restArgv<T>(argv: string[], defaultValue: T) {
+  const isFlag = (v: string) => v.indexOf('--') === 0;
+  const rest = argv.filter((arg, idx) => {
+    return !isFlag(arg) && (idx - 1 >= 0 ? !isFlag(argv[idx - 1]) : true);
+  });
+  if (rest.length === 0) return defaultValue;
+  return rest;
+}
+```
+
+Usage:
+
+```tsx
+// Copy all the argvs
+const programArgv = process.argv.slice(2);
+
+// Resolve all rest args as absolute files
+const files = restArgv(programArgv, [
+  path.join(process.cwd(), 'src'),
+]).map(p => path.resolve(p));
+
+// Default output dir is a docs/ dir
+const outputDir = keyValueArgv(
+  programArgv,
+  '--output',
+  path.join(process.cwd(), 'docs/'),
+);
+
+// Some sort of config flag
+const config1 = keyValueArgv(programArgv, '--config1', `the default`);
+
+// Presence means true
+const showHelp = boolArgv(programArgv, '--help');
+```
