@@ -473,7 +473,7 @@ export default function render() {
         level: 45,
         moves: [
           Move({ name: "Bubble Beam" }),
-          // Type '"Squirtle"' is not assignable to type
+          // Type '"Charizard"' is not assignable to type
           // '"Bubble Beam" | "Water Gun" | "Flamethrower" | "Ember"'.ts(2322)
           Pokemon({
             name: "Charizard",
