@@ -14,7 +14,7 @@ tags:
 
 ---
 
-I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][]. If that link ever dies, you can see the article via its [repo][Github].
+I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][]. If that link ever dies, you can read the [archived article](https://kirbysayshi.com/broad-phase-bng/broad-phase-collision-detection-using-spatial-partitioning.html).
 
 For this article, I wrote a demo engine, and the whole thing is on [Github][] for easy perusing. Something I discovered is that if you create a project/repo on Github, and then only push the `gh-pages` branch, it is used as the default _automatically_, and you never have to worry about committing/syncing between `master` and `gh-pages`. NEAT.
 
