@@ -567,15 +567,6 @@ body {
 #footer-container .bio-short { /*margin-left: 0;*/ margin-bottom: 1em; }
 #footer-container .bio-short p:first-child { margin-top: 0; }
 #footer-container .bio-short .contact-list { padding-left: 9.75%; }
-#footer-container .social-activity { margin-top: 1em; }
-#footer-container .social-activity ul { list-style-type: none; }
-#footer-container .social-activity .github-feed { font-size: 0.7em; }
-#footer-container .social-activity .github-feed li { padding-bottom: 1.2em; }
-#footer-container .social-activity .twitter-feed { font-size: 0.7em; }
-#footer-container .social-activity .twitter-feed li { padding-bottom: 1.2em; }
-#footer-container .social-activity .twitter-feed li .twitter-profile-img { display: none; float: left; margin-right: 0.7em; }
-#footer-container .social-activity .twitter-feed li .tweet-text { margin: 0; }
-
 
 /*** Shared */
 .lined-block { /*margin-bottom: 1.4em;*/ border-left: 1.5pt #F9D0D0 solid; }
@@ -673,9 +664,17 @@ pre { line-height: 100%; }
 code { font-size: 0.8em; }
 
 /* DISQUS */
+#load-disqus {
+	border: 0;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	height: 5em;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: #C46568;
+}
 #disqus_thread {
 	padding-left: 2.75%;
-	min-height: 300px;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;
