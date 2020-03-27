@@ -3,7 +3,7 @@ layout:     post
 title: Broad Phase Collision Detection Using Spatial Partioning
 published: true
 type:       project
-projecturl: https://buildnewgames.com/broad-phase-collision-detection
+projecturl: http://buildnewgames.com/broad-phase-collision-detection
 categories:
   - JavaScript
   - Game Design
@@ -14,10 +14,10 @@ tags:
 
 ---
 
-I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][].
+I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][]. If that link ever dies, you can see the article via its [repo][Github].
 
 For this article, I wrote a demo engine, and the whole thing is on [Github][] for easy perusing. Something I discovered is that if you create a project/repo on Github, and then only push the `gh-pages` branch, it is used as the default _automatically_, and you never have to worry about committing/syncing between `master` and `gh-pages`. NEAT.
 
 [here]: {{ page.projecturl }}
-[Build New Games]: https://buildnewgames.com
+[Build New Games]: http://buildnewgames.com
 [Github]: https://github.com/kirbysayshi/broad-phase-bng
