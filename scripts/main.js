@@ -28,57 +28,12 @@ ksh.explodeUrl = function($el){
 	$el.html(all);
 }
 
-ksh.redirector = function(){
-
-	var routes = {
-		 '/else/2009/07/01/succulent-netbeans.html': '/2009/07/01/succulent-netbeans.html'
-		,'/JavaScript/2012/03/14/introducing-twitter-sequencer.html': '/2012/03/14/introducing-twitter-sequencer.html'
-		,'/flash/2009/07/07/smashmmo.html': '/2009/07/07/smashmmo.html'
-		,'/flash/2009/07/08/portable-spacetime-displacement-unit-01.html': '/2009/07/08/portable-spacetime-displacement-unit-01.html'
-		,'/projects.html': '/'
-		,'/blog.html': '/'
-		,'/me.html': '#contact'
-		,'/2012/09/05/tablespoon-twitter-syndication-protocol.html': '/2012/09/05/teaspoon-twitter-syndication-protocol.html'
-	}
-
-	var tpl = vash.compile($('#tpl-404-match').html())
-		,matched;
-
-	if(window.location.pathname in routes){
-
-		matched = routes[window.location.pathname];
-
-		$('#content-container article').append( tpl({ redirect: matched }) );
-
-		setTimeout(function(){
-			window.location = matched;
-		}, 3000);
-	}
-}
-
 ksh.defaultInit = function(){
 
 	ghe.autoload();
 	RegexColorizer.colorizeAll(); // defaults to .regex
 
 	ksh.explodeUrl( $('.post .project-url') );
-
-	if($('body').hasClass('page-404')){
-		ksh.redirector();
-	}
-
-	var $projectUrl = $('.project-url');
-
-	if( $projectUrl.length ){
-
-		$projectUrl.on('click', function(e){
-			e.preventDefault();
-			_gaq.push(['_trackEvent', 'project-url', 'click', e.currentTarget.href]);
-			setTimeout(function(){
-				window.location = e.currentTarget.href;
-			}, 100);
-		});
-	}
 
 	$('#social-contacts-header .header-contact').on('click', function(e){
 		e.preventDefault();
