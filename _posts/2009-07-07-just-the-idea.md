@@ -18,8 +18,10 @@ This was created in response to an assignment, the constraints of which
 were to create an animation of our choosing in Flash. Because it was an
 assignment, and was meant to be viewed more as a movie than a Flash
 animation (ie, over the web), it requires a fairly well-endowed computer
-to run at a nice speed. It also was originally set to run at 1280x720
+to run at a nice speed. It was originally set to run at 1280x720
 fullscreen.
+
+This was made sometime in February/March of 2008.
 
 The subject matter is a conversation a friend of mine had with a
 stranger while smoking outside. In the city where this took place, there
