@@ -112,7 +112,7 @@ This example also includes some SQL-like language that requires string interpola
 
 Likely the only way to know if you've done everything correct in a system like this is to push to a CI server, and hope for useful feedback. The tooling is often too complicated (or impossible, if it relies on remote data or a hosted system) to install locally.
 
-## Take a Moment to Breath
+## Take a Moment to Breathe
 
 Where are we?
 
