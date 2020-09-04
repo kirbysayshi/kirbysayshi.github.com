@@ -1,5 +1,5 @@
 permalink: /:year/:month/:day/:title.html
-name: KSH
+title: KSH
 description: Thoughts, posts, and projects by KirbySaysHi (Andrew Petersen)
 url: //kirbysayshi.github.com
 exclude: ["node_modules"]
