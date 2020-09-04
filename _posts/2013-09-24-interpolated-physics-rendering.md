@@ -15,6 +15,8 @@ tags:
 
 ---
 
+Update Sept 2020: [View Part 2!]({% link _posts/2020-09-01-multithreaded-physics-rendering-on-the-web.md %})
+
 There are several articles online that attempt to explain good patterns and gotchas for a game loop. Two of the most oft-quoted and referenced, at least according to my informal analysis, are [Fix Your Timestep][] and [deWiTTERS Game Loop][]. They are both excellent resources, and I recommend reading them. What follows is my own interpretation of a basic game loop that attempts to keep rendering updates independent of physics updates, with actual running examples in JS.
 
 Why Independence?
@@ -128,6 +130,8 @@ Finally.
 --------
 
 Where to go from here? Well... to multithreaded land via web workers and beyond! Eventually. Ask questions!
+
+Update Sept 2020: [View Part 2]({% link _posts/2020-09-01-multithreaded-physics-rendering-on-the-web.md %})
 
 
 [Fixed-Time-Step Implementation]: https://lspiroengine.com/?p=378

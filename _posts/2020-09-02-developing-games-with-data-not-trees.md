@@ -6,7 +6,6 @@ type: project
 projecturl: https://youtu.be/uNVP5jDOVAY
 categories:
   - Talks
-  - JavaScript
   - Game Design
 tags:
   - Entity Component System
@@ -17,7 +16,9 @@ In 2014 I presented at JSConf EU in Berlin on topics close to my heart: game dev
 
 The code in this talk relies heavily on an architectural pattern known as [Entity-Component-System](https://en.wikipedia.org/wiki/Entity_component_system).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uNVP5jDOVAY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="aspect-ratio">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/uNVP5jDOVAY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 [Transcript](https://2014.jsconf.eu/speakers/drew-petersen-developing-games-using-data-not-trees.html)
 

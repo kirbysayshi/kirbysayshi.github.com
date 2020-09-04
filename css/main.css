@@ -698,3 +698,20 @@ code { font-size: 0.8em; }
 
 /* Gist Embed Overrides */
 .gist .gist-file .gist-data { font-size: 75% !important; }
+
+/* Embedded iFrames (youtube) */
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* The height of the item will be X% of the width. */
+}
+
+.aspect-ratio iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
