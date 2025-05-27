@@ -1,5 +1,27 @@
 Some stuff I've made.
 
+Getting jekyll (https://jekyllrb.com/docs/installation/macos/):
+
+```
+# one time:
+brew install chruby ruby-install
+ruby-install ruby 3.4.1
+# assuming there is chruby active in the shell...
+
+chruby # prints available ruby versions
+chruby ruby-3.4.1 # changes version
+
+# install local dependencies
+bundle install
+# if that doesn't work due to out of date bundler/dependencies:
+bundle update --bundler
+
+# Note that I also had to:
+brew install libffi
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+# in order to get ffi gem to install
+```
+
 ```
 bundle exec jekyll serve
 ```
