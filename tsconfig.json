@@ -1,0 +1,14 @@
+{
+  "include": ["**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+  "compilerOptions": {
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "moduleDetection": "force",
+    "noEmit": true,
+    "rootDirs": [".", "./.react-router/types"]
+  }
+}
