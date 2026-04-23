@@ -14,7 +14,7 @@ tags:
   - Physics
 ---
 
-Back in 2013, I wrote a [post about frame-by-frame animation interpolation]({% link _posts/2013-09-24-interpolated-physics-rendering.md %}).
+Back in 2013, I wrote a [post about frame-by-frame animation interpolation](2013-09-24-interpolated-physics-rendering.md).
 
 That was a necessary step to demonstrating multithreaded physics simulations, which I presented at EmpireJS in 2014... and then never presented again!
 

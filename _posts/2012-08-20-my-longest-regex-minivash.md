@@ -169,13 +169,13 @@ This is actually a feature that Vash doesn't have. Might have to add it in!
 
 I used [regexpal][] by [Steven Levithan][] extensively throughout this challenge. Combined with a small helper script run in firebug, it was invaluable!
 
-{% highlight js %}
+```js
 var  input = $('inputText').value
 	,re = new RegExp( $('searchText').value, 'g' );
 
 input.split(re);
 input.replace(re, function(){ console.log(arguments); });
-{% endhighlight %}
+```
 
 This easily let me test the results of a regex, with minimal back and forth, and no setup. The most important component of [regexpal][], and which other regex helpers get wrong, is the beautiful highlighting of grouping characters. Regexpal highlights parenthesis and pipes in matching colors, according to nesting level. This makes editing complex expressions much more easy: you can tell _where_ you're actually editing! 
 
@@ -183,19 +183,19 @@ Also pretty interesting is Perl's [YAPE Regex Explain][] module. Given a regex, 
 
 I made a short script that would easily perform the analysis:
 
-{% highlight perl %}
+```perl
 #!/usr/bin/perl
 use YAPE::Regex::Explain;
 $re = '@\(.*?\)@';
 print YAPE::Regex::Explain->new($re)->explain;
-{% endhighlight %}
+```
 
 It requires the module to be installed, since it doesn't come with perl by default. On Mac OS X, this is easy:
 
-{% highlight sh %}
+```sh
 $ sudo cpan
 $ install YAPE::Regex::Explain
-{% endhighlight %}
+```
 
 After installing the module, running the above helper script yields:
 

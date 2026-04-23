@@ -31,7 +31,7 @@ We could have gone with some very advanced edge detection techniques, but instea
 
 To actually accomplish this, the following hacky code was used. This is completely unedited, and does have some bugs (it was a hackday!):
 
-{% highlight js %}
+```js
 function tileize(cvs, reverse){
 
 	_reverse = reverse || false;
@@ -100,11 +100,11 @@ function tileize(cvs, reverse){
 
 	return _map;
 }
-{% endhighlight %}
+```
 
 The function can be divided into two components, and uses the raw pixel data from a canvas. The first is determining if a pixel should be considered black or white:
 
-{% highlight js %}
+```js
 while( p < _length){
 
 	px = ~~(p / 4);
@@ -118,13 +118,13 @@ while( p < _length){
 	);
 	p += 4;
 }
-{% endhighlight %}
+```
 
 This discards any alpha channel, since we assumed we were using photos. It also groups pixels based on tilesize. `px` is the "pixel index", which assumes that pixels are indexed from the top left to right, one row at a time. The raw pixel data, [_idata](https://developer.mozilla.org/en-US/docs/DOM/CanvasPixelArray), is a single array with the R, G, B, and A values one after another. Therefore `p` is incremented by `4` each step. One other note is that `~~()` is a [faster](https://jsperf.com/math-floor-vs-math-round-vs-parseint/8) shorthand for `Math.floor`.
 
 Once the pixels were converted to a form of bicolor, the next step was to make the tilemap in a format that [ImpactJS][] expected.
 
-{% highlight js %}
+```js
 t = _tiles.length - 1;
 while(t >= 0){
 	blacks = 0;
@@ -150,7 +150,7 @@ while(t >= 0){
 
 	t--
 }
-{% endhighlight %}
+```
 
 This loops through the bicolor array of arrays of `true`/`false` backwards. If the average of all tiles is black/solid, then mark the tile as solid. [ImpactJS][] expects the map to be an array of rows, each holding a single cell. The only other strange part is the `_reverse` variable, which we added to allow for images that were predominantly dark.
 
@@ -163,7 +163,7 @@ Getting ImpactJS to Load a Dynamically Generated Level
 
 Once the map data was generated clientside and sent back to the server, the server injected it into a simple template that exposed the data as global variables:
 
-{% highlight html %}
+```html
 <script type="text/javascript">
 	IMAGE = '<%= @image %>';
 	WIDTH = <%= @width %>;
@@ -173,11 +173,11 @@ Once the map data was generated clientside and sent back to the server, the serv
 	MAP = <%= @map %>;
 	BG_TILESIZE = Math.min(WIDTH, HEIGHT);
 </script>
-{% endhighlight %}
+```
 
 We then hardcoded [ImpactJS][] to look for a level called `game.levels.dynamic` in our `main.js` game initialization file:
 
-{% highlight js %}
+```js
 ig.module(
 	'game.main'
 )
@@ -208,11 +208,11 @@ MyGame = ig.Game.extend({
 ig.main( '#canvas', MyGame, 60, BG_TILESIZE, BG_TILESIZE, 1);
 
 });
-{% endhighlight %}
+```
 
 As you can see, we used the demo code from [ImpactJS][] as a start. The trickiest part was the map file itself. To avoid doing anything _super_ crazy, we simply referenced the previously defined global variables (`IMAGE`, `BG_TILESIZE`, `TILESIZE`, `MAP`) from within a static map file:
 
-{% highlight js %}
+```js
 ig.module( 'game.levels.dynamic' )
 .requires('impact.image')
 .defines(function(){
@@ -262,7 +262,7 @@ ig.module( 'game.levels.dynamic' )
 	}/*]JSON*/;
 	LevelDynamicResources=[new ig.Image(IMAGE), new ig.Image('media/tileset.png')];
 });
-{% endhighlight %}
+```
 
 Referencing these global variables allows [ImpactJS][] to still do its thing regarding its internal loading system.
 

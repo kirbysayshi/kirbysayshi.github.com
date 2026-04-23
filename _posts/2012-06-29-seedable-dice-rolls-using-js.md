@@ -18,7 +18,7 @@ When I'm testing out something that needs a generated environment (sprites, obje
 
 The solution to this is to use a [pseudo random number generator][] that is seedable, which means that if you initialize it with a specific value, it will produce the same results each time (deterministic). Given that currently [JavaScript doesn't have access to a PRNG][], the only way do this is to implement your own seedable generator. This is actually [really difficult to do][], because most algorithms assume exact calculations on known integers, such as multiplying two 32-bit integers together to get a 64-bit integer (and JavaScript does not offer that sort of specificity natively). I found one by [Johannes Baagøe][] that uses his implementation of the Alea algorithm, and wrapped it into a dice-ready interface, so you can do things like:
 
-{% highlight javascript %}
+```javascript
 var dice = new Dice(); // defaults to +new Date() as a seed, can use any number of arguments for seeding
 
 dice.d6(); // returns 1-6
@@ -28,7 +28,7 @@ dice.d49();
 
 dice.d6(2); // returns the total as a number
 dice.d6(2, true); // returns two rolls as an array
-{% endhighlight %}
+```
 
 
 [pseudo random number generator]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator

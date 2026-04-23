@@ -16,18 +16,20 @@
   "packageManager": "pnpm@10.33.0",
   "dependencies": {
     "@react-router/node": "7.14.2",
+    "front-matter": "4.0.2",
     "isbot": "5.1.39",
     "react": "19.2.5",
     "react-dom": "19.2.5",
-    "react-router": "7.14.2"
+    "react-router": "7.14.2",
+    "unist-util-visit": "5.1.0"
   },
   "devDependencies": {
     "@react-router/dev": "7.14.2",
     "@shikijs/rehype": "4.0.2",
+    "@types/hast": "3.0.4",
     "@types/node": "24.12.2",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "gray-matter": "4.0.3",
     "rehype-raw": "7.0.0",
     "rehype-stringify": "10.0.1",
     "remark-parse": "11.0.0",

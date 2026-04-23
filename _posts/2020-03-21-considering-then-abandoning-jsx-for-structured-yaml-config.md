@@ -76,7 +76,6 @@ I've seen these issues worked around using several methods:
 
 Since we're in DevOps land, have you ever seen someone do this:
 
-{% raw  %}
 ```yaml
 # dashboards.yml
 Dashboards:
@@ -87,7 +86,6 @@ Dashboards:
     query: SELECT {{ board.metric }} as m1 FROM data.time_series WHERE timestamp > {{ page.timestamp }}
 {% endfor %}
 ```
-{% endraw  %}
 
 And then consumed like this:
 

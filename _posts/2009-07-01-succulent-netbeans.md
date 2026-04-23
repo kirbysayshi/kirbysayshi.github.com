@@ -52,10 +52,10 @@ On Mac OS X there is no merge functionality using the Finder (!). To get
 around this, use the following terminal command, modified appropriately
 (this assumes that you’re inside of the succulent-netbeans folder):
 
-{% highlight sh %}
+```sh
 #!/bin/bash
 cp ./config/* ~/.netbeans/6.7/config/
-{% endhighlight %}
+```
 
 I bet you can barely tell the two apart:
 
