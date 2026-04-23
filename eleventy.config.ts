@@ -2,9 +2,23 @@ import "tsx";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { type EleventyScope, type EleventyConfig } from "11ty.ts";
+import { fromHighlighter } from "@shikijs/markdown-it/core";
+import { createHighlighter } from "shiki";
+import MarkdownIt from "markdown-it";
 
-// Populated during collection building (which runs before transforms)
-const mdUrlMap = new Map<string, string>();
+// TODO: refactor this a bit so it's less of a giant closure
+
+const highlighter = await createHighlighter({
+  // TODO: change the theme
+  themes: ["solarized-light"],
+  langs: [
+    "javascript", "typescript", "tsx", "jsx",
+    "html", "css", "json", "yaml", "markdown",
+    "bash", "sh", "python", "ruby", "coffeescript",
+    "php", "perl", "text",
+  ],
+});
+
 
 function slugify(name: string) {
   return name.toLowerCase().replace(/ /g, "-");
@@ -31,6 +45,10 @@ export default function (eleventyConfig: EleventyConfig) {
   eleventyConfig.addExtension("11ty.ts", { key: "11ty.js" });
   eleventyConfig.addTemplateFormats("11ty.ts");
 
+  eleventyConfig.amendLibrary("md", (md: MarkdownIt) =>
+    md.use(fromHighlighter(highlighter, { theme: "solarized-light" }))
+  );
+
   // Treat .markdown the same as .md
   eleventyConfig.addExtension("markdown", { key: "md" });
   eleventyConfig.addTemplateFormats("markdown");
@@ -51,6 +69,7 @@ export default function (eleventyConfig: EleventyConfig) {
   // Static assets — .eleventyignore handles template exclusion, config just copies
   for (const dir of ["css", "images", "scripts", "font", "stuff", "flash", "construction"]) {
     eleventyConfig.addPassthroughCopy(dir);
+    eleventyConfig.addWatchTarget(dir);
   }
   for (const file of ["favicon.ico", "CNAME", "google96cb3b4e5f5a4989.html"]) {
     eleventyConfig.addPassthroughCopy(file);
@@ -88,6 +107,9 @@ export default function (eleventyConfig: EleventyConfig) {
     }
     return Array.from(map.values());
   });
+
+  // Populated during collection building (which runs before transforms)
+  const mdUrlMap = new Map<string, string>();
 
   // Build inputPath → url map for the .md link resolver below
   eleventyConfig.addCollection("_mdUrlIndex", (collectionApi) => {

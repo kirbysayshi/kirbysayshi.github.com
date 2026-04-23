@@ -33,9 +33,9 @@ export default class DefaultLayout {
                   <a className="header-contact" href="#contact">Contact</a>
                 </h2>
                 <h2 className="social-icons col span_3">
-                  <a target="_blank" rel="noreferrer" className="icon-large icon-rss" href="/feed.xml"></a>
-                  <a target="_blank" rel="noreferrer" className="icon-large icon-twitter-sign" href="https://twitter.com/kirbysayshi"></a>
-                  <a target="_blank" rel="noreferrer" className="icon-large icon-github-sign" href="https://github.com/kirbysayshi"></a>
+                  <a target="_blank" rel="noreferrer" className="icon-large icon-rss" href="/feed.xml"></a>{' '}
+                  <a target="_blank" rel="noreferrer" className="icon-large icon-twitter-sign" href="https://twitter.com/kirbysayshi"></a>{' '}
+                  <a target="_blank" rel="noreferrer" className="icon-large icon-github-sign" href="https://github.com/kirbysayshi"></a>{' '}
                   <a className="icon-large icon-envelope" href="mailto:senofpeter@gmail.com"></a>
                 </h2>
               </div>
