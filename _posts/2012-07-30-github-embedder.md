@@ -17,14 +17,14 @@ So I created [ghembedder][], which is a simple way to declaratively embed any fi
 
 It turns this:
 
-{% highlight html %}
+```html
 <div data-ghuserrepo="kirbysayshi/ghembedder"
     data-ghpath="src/ghembedder.js"
     data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
     data-ghlines="329-348"
     data-ghtabsize="2">
 </div>
-{% endhighlight %}
+```
 
 into:
 

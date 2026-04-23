@@ -34,7 +34,7 @@ DISCLAIMER: There isn't any security implicitly built in here. Ideally you'd put
 
 We're going to be making a web worker (our "actor") that computes fibonacci sequences (yes, I know that this is... sigh), and when it has computed the next number in sequence, will emit a `stepped` event. When it finishes, it will emit a `stopped` event. This will be controlled by the primary script, which will listen for these events.
 
-{% highlight javascript %}
+```javascript
 // primary.js
 
 // define our actors.. there's only one for now!
@@ -61,11 +61,11 @@ var f = new actors.Fibonaci(function(){
   })
     
 });
-{% endhighlight %}
+```
 
 And the content of the worker:
 
-{% highlight javascript %}
+```javascript
 // worker.js
 
 var fibber = {
@@ -83,7 +83,7 @@ var fibber = {
 signalsInit( fibber, fibber.signals );
 fibber.acci(5);
 fibber.stopped.dispatch( 'yes, yes, I stopped' );
-{% endhighlight %}
+```
 
 Notice how the events aren't the typical string-based calls, like used in the DOM and EventEmitter? These are a form of Signals, which means we can define exactly what events something will emit, and know that we're listening to the proper events immediately (if not, an error will be thrown complaining that the property is `undefined`).
 
@@ -93,7 +93,7 @@ Now let's get to that point.
 
 First some bootstrapping code:
 
-{% highlight javascript %}
+```javascript
 // primary.js
 
 function actorsInit( actors ){
@@ -137,13 +137,13 @@ function actorsInit( actors ){
     }
   }
 }
-{% endhighlight %}
+```
 
 For each entry in the given object, create a constructor function. That constructor will create a new Web Worker using the given source, creates the proper signals (when received from the worker: more on that later), attaches an event listener that automatically dispatches the proper signal, and divorces the data from the worker message. This means that while you will still need to know what the worker is dispatching, you don't need to care that it was from a worker. In addition, when the worker is ready for signal bindings, the `cb` constructor argument will be called.
 
 ### The Worker Script(s)
 
-{% highlight javascript %}
+```javascript
 // worker.js
 
 function signalsInit(target, names){
@@ -159,7 +159,7 @@ function signalsInit(target, names){
   
   self.postMessage( { signal: 'siginit', args: names } ); 
 }
-{% endhighlight %}
+```
 
 This method looks for a `signals` property on the `target` object, and then creates the actual signal objects. It also, upon finishing creating the signals, sends a message to the parent process _describing what signals it accepts_! This means that you only need to configure signals in one place (here), and yet still refer to them by name from the primary script!
 
@@ -171,7 +171,7 @@ This is just an experiment, but I think it's pretty neat that instead of using s
 
 Here is the very basic code I used to implement a Signal in JS. For a more complete implementation, I recommend [js-signals][], or my own implementation [k-signals][], which is much smaller, but has most of the same features (it was done mostly as a learning experience).
 
-{% highlight javascript %}
+```javascript
 var Signal = function Signal(){
   this.slots = [];
 };
@@ -197,7 +197,7 @@ Signal.prototype = {
     this.slots.splice(this.slots.indexOf(f), 1);
   }
 }
-{% endhighlight %}
+```
 
 Signals are a really interesting paradigm to me, so expect a post soon with more details of my experiments!
 

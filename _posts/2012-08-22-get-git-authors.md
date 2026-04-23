@@ -13,9 +13,9 @@ In prep for a new release of [Vash][], I decided to make an AUTHORS file. I want
 
 So I went the opposite route, and decided to output all unique authors, using `git --log` formatting, and a suggestion from [linuxforums.org][] to use `sort` and `uniq`.
 
-{% highlight sh %}
+```sh
 git log --pretty=format:'%an <%ae>' | sort | uniq
-{% endhighlight %}
+```
 
 [Vash]: https://github.com/kirbysayshi/vash
 [kind of difficult]: https://stackoverflow.com/a/4262780/169491

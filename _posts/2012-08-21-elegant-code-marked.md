@@ -45,7 +45,7 @@ I think it's very interesting to study how code evolves over time.
 
 As an experiment, I applied that replace function to the regex I wrote for [MiniVash][]. For a one-shot use like this, breaking the regex up is not worth the size increase. However the comprehension and readability improve immensely:
 
-{% highlight js %}
+```js
 var re = {};
 
 re.identifier = /[a-zA-Z]+?[a-zA-Z0-9]/
@@ -63,7 +63,7 @@ re.combined = replace( re.combined, 'g' )
 	(/pAccess/g, re.pAccess)
 	(/inExp/g, re.inExp)
 	();
-{% endhighlight %}
+```
 
 [MiniVash]: https://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
 [marked]: https://github.com/chjj/marked

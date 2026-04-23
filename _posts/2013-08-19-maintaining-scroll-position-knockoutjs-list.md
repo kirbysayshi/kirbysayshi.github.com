@@ -70,7 +70,7 @@ The only real trick is partially due to using [KnockoutJS][] (KO). Using plain D
 
 I did this using a small class called `ScrollPosition`:
 
-{% highlight js %}
+```js
 function ScrollPosition(node) {
     this.node = node;
     this.previousScrollHeightMinusTop = 0;
@@ -94,7 +94,7 @@ ScrollPosition.prototype.prepareFor = function (direction) {
     this.previousScrollHeightMinusTop = this.node.scrollHeight
     	- this.node.scrollTop;
 }
-{% endhighlight %}
+```
 
 Please excuse the extremely verbose name of `previousScrollHeightMinusTop`, but I just couldn't think of something better. Please try and let me know what you come up with! It's effectively the distance from the bottom of the scroll content (which could be outside the viewport) to the line formed by the top of the viewport.
 
@@ -102,7 +102,7 @@ It's expected that before the content is added, the developer calls `ScrollPosit
 
 You can see this in the `unshift` view model method, which adds new content to the top:
 
-{% highlight js %}
+```js
 self.unshift = function () {
     self.scrollPosition.prepareFor('up');
     setTimeout(function () {
@@ -110,7 +110,7 @@ self.unshift = function () {
         self.scrollPosition.restore();
     }, 1000)
 }
-{% endhighlight %}
+```
 
 The `setTimeout` is there to simulate asynchronicity, as I've noticed that KO is sometimes inconsistent with when DOM elements are added, especially with nested structures containing `foreach`. I was also loading in content from the server in the actual app, so this was a cheap way to simulate that too.
 

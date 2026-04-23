@@ -62,4 +62,4 @@ But it's easy to look back now, and know that I made the right choice to leave. 
 
 [^4]: "Prepared" is an ambitious description.
 
-[part 2]: {% post_url 2012-03-17-biggest-mistake-not-asking-for-help-part-2 %}
+[part 2]: ./2012-03-17-biggest-mistake-not-asking-for-help-part-2.md

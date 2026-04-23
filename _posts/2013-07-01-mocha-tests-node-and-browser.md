@@ -50,7 +50,7 @@ There was one more problem that greatly exacerbated my troubles: I wanted to use
 
 Here is the typical bdd interface:
 
-{% highlight js %}
+```js
 describe('sea.observable', function(){
 
   it('defaults to undefined', function(){
@@ -65,11 +65,11 @@ describe('sea.observable', function(){
   })
 
 })
-{% endhighlight %}
+```
 
 That's fine, but I find the repeated `describe` and `it` distracting. Here's the same using the `exports` interface:
 
-{% highlight js %}
+```js
 exports.observable = {
 
   'defaults to undefined': function(){
@@ -84,7 +84,7 @@ exports.observable = {
   }
 
 }
-{% endhighlight %}
+```
 
 Honestly, it's basically the same, I know. For more complex suites I've seen it get very difficult to read, but at this point I'm mostly arguing a personal preference.
 
@@ -110,7 +110,7 @@ This is a simple project, and contains the following files:
 
 Using the library is simple:
 
-{% highlight js %}
+```js
 var sea = require('./index')
 
 var firstName = sea.observable('Johnny');
@@ -125,11 +125,11 @@ firstName('James')
 
 console.log(firstName()) // 'James'
 console.log(fullName()) // 'James Tatlock'
-{% endhighlight %}
+```
 
 And using the data-binding components (assumes a DOM):
 
-{% highlight html %}
+```html
 <ul data-foreach="items()">
   <li data-text="typeof $data === 'function' ? $data() : $data"></li>
 </ul>
@@ -150,7 +150,7 @@ setTimeout(function(){
   items.push('d', 'e', 'f')
 }, 2000)
 </script>
-{% endhighlight %}
+```
 
 If you've ever used knockoutjs, then this should look very familiar. I changed the syntax a bit for data-binding to simplify my job (I didn't want to write a full parser, so instead of using a single `data-bind` attribute, each `data-` attribute is matched against a valid registered binding).
 
@@ -158,7 +158,7 @@ If you've ever used knockoutjs, then this should look very familiar. I changed t
 
 The node tests look like (abbreviated):
 
-{% highlight js %}
+```js
 var assert = require('assert')
   , sea = require('sea')
 
@@ -182,11 +182,11 @@ exports.observableArray = {
     assert.equal(c(), '1,2,3');
   }
 }
-{% endhighlight %}
+```
 
 And the DOM tests (abbreviated):
 
-{% highlight js %}
+```js
 var assert = require('assert')
   , sea = require('../dom')
 
@@ -220,7 +220,7 @@ exports['Data Binding'] = {
     }
   }
 }
-{% endhighlight %}
+```
 
 For the most part, writing a test for the browser or node is exactly the same in terms of structure. Obviously the browser test won't run in node because of lack of DOM objects, but the structure of the tests are the same.
 
@@ -242,7 +242,7 @@ The key step is #2, otherwise there would be no way to reference the tests from 
 
 The last step is to do something super hacky: copy mocha's `exports` interface, modify it slightly, and place it into the typical test harness:
 
-{% highlight html %}
+```html
 <html>
 <head>
   <meta charset="utf-8">
@@ -299,7 +299,7 @@ The last step is to do something super hacky: copy mocha's `exports` interface, 
   </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 The key here is that I'm manually passing in `tests`, defined by our test bundle, into a modified version of mocha's `exports` interface. The only modifications were to access mocha using the global `Mocha`, and to be able to pass in the exports object and suites, instead of relying on mocha's `require` event.
 
@@ -307,12 +307,12 @@ The key here is that I'm manually passing in `tests`, defined by our test bundle
 
 I could go with a build system, like [grunt][] or a Makefile, but that's too much for this tiny project. A few simple additions to the `scripts` field of my `package.json` will do fine:
 
-{% highlight json %}
+```json
 "scripts": {
   "pretest": "node_modules/browserify/bin/cmd.js ./test/test.dom.js --standalone tests > test.bundle.js",
   "test": "node_modules/mocha/bin/mocha --recursive --ui exports"
 }
-{% endhighlight %}
+```
 
 If you use `require` and browserify, you really don't need a true build system. The worst is having to manually specify files for inclusion in said build system, and `require` takes care of that.
 

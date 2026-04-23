@@ -1,0 +1,22 @@
+{
+  "name": "kirbysayshi-github-com",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy --config=eleventy.config.ts",
+    "dev": "eleventy --config=eleventy.config.ts --serve",
+    "lint": "tsc"
+  },
+  "devDependencies": {
+    "11ty.ts": "^0.0.7",
+    "@11ty/eleventy": "^3.0.0",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "oxfmt": "^0.46.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^6.0.3"
+  }
+}
