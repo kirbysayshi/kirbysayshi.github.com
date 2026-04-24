@@ -2,7 +2,6 @@
 layout:     post
 title: Mini, Micro, and Pico Vash, An Experiment
 oneliner: Can a six-gun become a Derringer?
-published: 
 type: project
 projecturl: https://gist.github.com/3411585
 categories: 

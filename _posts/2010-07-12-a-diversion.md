@@ -6,8 +6,6 @@ type: post
 categories:
   - Blabbering Musings
 image:
-  - src:
-  - alt:
 tags:
   - Lost
   - Avatar

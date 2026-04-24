@@ -8,7 +8,7 @@ projecturl: /flash/psdu01/
 oneliner: Perfect for when you need to change your, er... point of view, either spatially or temporally.
 image:
   - src: /images/icons/psdu01.png
-  - alt: The Portable Spacetime Displacement Unit 01 icon, which is a tiny pocketwatch with it's internal gears exposed.
+    alt: The Portable Spacetime Displacement Unit 01 icon, which is a tiny pocketwatch with it's internal gears exposed.
 tags:
   - Flash
   - AS3

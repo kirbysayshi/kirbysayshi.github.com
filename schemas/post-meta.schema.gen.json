@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "string",
+      "enum": [
+        "post"
+      ]
+    },
+    "published": {
+      "type": "boolean"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Blabbering Musings",
+          "Elegant Code",
+          "else",
+          "Experiments",
+          "flash",
+          "Future Hopes",
+          "Game Design",
+          "Games",
+          "in progress",
+          "JavaScript",
+          "Opinion",
+          "Recipes",
+          "Reviews",
+          "Snippets",
+          "Stories",
+          "Talks",
+          "Tools",
+          "TypeScript",
+          "web"
+        ]
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oneliner": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "post",
+        "project"
+      ]
+    },
+    "projecturl": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "alt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ],
+            "additionalProperties": false
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "additionalProperties": false
+}

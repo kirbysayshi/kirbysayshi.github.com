@@ -8,7 +8,7 @@ categories:
   - JavaScript
 image:
   - src: /images/icons/ts.png
-  - alt: Twitter-Sequencer
+    alt: Twitter-Sequencer
 tags:
   - JavaScript
   - Parse

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import fm from "front-matter";
+import { postFrontmatterSchema } from "./post-meta.schema.js";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
@@ -49,7 +50,8 @@ export async function getAllPosts(): Promise<Post[]> {
 
   for (const file of files) {
     const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
-    const { attributes: attr, body } = fm<Record<string, unknown>>(raw);
+    const { attributes: raw_attr, body } = fm<Record<string, unknown>>(raw);
+    const attr = postFrontmatterSchema.parse(raw_attr);
 
     if (attr.published === false) continue;
 
@@ -62,17 +64,17 @@ export async function getAllPosts(): Promise<Post[]> {
     posts.push({
       slug,
       url: `/${year}/${month}/${day}/${slug}.html`,
-      title: typeof attr.title === "string" ? attr.title : slug,
+      title: attr.title,
       date: `${year}-${month}-${day}`,
       year,
       month,
       day,
-      categories: Array.isArray(attr.categories) ? attr.categories : [],
-      tags: Array.isArray(attr.tags) ? attr.tags : [],
-      oneliner: typeof attr.oneliner === "string" ? attr.oneliner : undefined,
-      type: attr.type === "post" || attr.type === "project" ? attr.type : undefined,
-      projecturl: typeof attr.projecturl === "string" ? attr.projecturl : undefined,
-      image: Array.isArray(attr.image) ? attr.image : undefined,
+      categories: attr.categories ?? [],
+      tags: attr.tags ?? [],
+      oneliner: attr.oneliner ?? undefined,
+      type: attr.type,
+      projecturl: attr.projecturl ?? undefined,
+      image: attr.image ?? undefined,
       contentHtml,
     });
   }

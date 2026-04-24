@@ -8,7 +8,7 @@ categories:
   - else
 image:
   - src: /images/icons/tm.png
-  - alt: The Textmate logo.
+    alt: The Textmate logo.
 tags:
   - Textmate
   - Git

@@ -5,10 +5,12 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "postinstall": "pnpm run --filter './vendor/*' build",
     "dev": "react-router dev",
     "build": "react-router build && tsx scripts/flatten-prerender.ts",
     "preview": "vite preview --port 3000",
-    "lint": "tsc --noEmit"
+    "lint": "concurrently 'tsc --noEmit' 'eslint .'",
+    "gen": "tsx scripts/gen-schema.ts"
   },
   "keywords": [],
   "author": "",
@@ -21,21 +23,27 @@
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "react-router": "7.14.2",
-    "unist-util-visit": "5.1.0"
+    "unist-util-visit": "5.1.0",
+    "zod": "4.3.6"
   },
   "devDependencies": {
+    "@eslint/markdown": "6.4.0",
     "@react-router/dev": "7.14.2",
     "@shikijs/rehype": "4.0.2",
     "@types/hast": "3.0.4",
     "@types/node": "24.12.2",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "concurrently": "9.2.1",
+    "eslint": "10.2.1",
+    "eslint-plugin-markdown-frontmatter-schema": "workspace:*",
     "rehype-raw": "7.0.0",
     "rehype-stringify": "10.0.1",
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.2",
     "tsx": "4.21.0",
     "typescript": "6.0.3",
+    "typescript-eslint": "8.59.0",
     "unified": "11.0.5",
     "vite": "8.0.10"
   }

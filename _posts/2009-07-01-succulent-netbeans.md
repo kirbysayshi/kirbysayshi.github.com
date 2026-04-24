@@ -8,7 +8,7 @@ projecturl: /stuff/succulent-netbeans.zip
 oneliner: I translated the Succulent/Sunburst theme (dark theme) that ships with Textmate to NetBeans for PHP/Javascript/HTML development.
 image:
   - src: /images/icons/netbeans-succulent.png
-  - alt: Example of syntax highlighting using my Succulent theme for NetBeans (PHP)
+    alt: Example of syntax highlighting using my Succulent theme for NetBeans (PHP)
 tags:
   - NetBeans
   - Textmate

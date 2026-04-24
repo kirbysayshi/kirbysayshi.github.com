@@ -8,7 +8,7 @@ categories:
 projecturl: https://johnnytatlock.com/gem
 image:
   - src: /images/icons/gem.png
-  - alt: The Google Evil Meter logo.
+    alt: The Google Evil Meter logo.
 tags:
   - Skynet
   - Twitter

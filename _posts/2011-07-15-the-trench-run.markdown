@@ -13,7 +13,7 @@ tags:
   - Star Wars
   - Tin Tin
   - Game Boy
-published: 2011-08-16
+# published 2011-08-16
 ---
 
 You are a young child, about ten years old. In this slightly-too-warm white Dodge Caravan with red plush seats and a tape deck, you have long since become car sick from playing Tetris on your original Game Boy that has the DOT MATRIX WITH STEREO SOUND screen. The van has smelled like stale pizza ever since your parents brought some to a family friend's house, three years ago. In the right-hand middle seat, you lean against your two-year-old-sister's carseat, where any attempt to become comfortable is greeted with sharp jabs of safety plastic. She is completely asleep. Your brother, four years your younger, has declared the entire backseat his domain. His fortress is covered with Tin Tin books, two pillows, a blanket, and wrappers from candy: warnings to all those that might penetrate his stronghold. He lays lengthwise across it and is so asleep that not even the commotion from arriving could wake him. Your mother is in the front passenger seat, asleep, covered with two pillows and her coat. She is so cold she shivers and has all of the air vents closed and pointed away from her. If your father, who is sweating while driving, attempts to turn the air conditioning up more than halfway from the middle, she awakes with a start and whispers, "Aren't you cold? It's so cold in here."

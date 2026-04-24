@@ -1,6 +1,6 @@
 ---
 layout: post
-originalinception: 2012-04-27
+# originalinception: 2012-04-27
 title: The Perfect Star Trek Episode
 oneliner: tl;dr It's episode 24 of season 4
 projecturl: https://en.memory-alpha.org/wiki/The_Quickening

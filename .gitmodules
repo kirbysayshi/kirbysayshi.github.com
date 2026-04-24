@@ -1,0 +1,3 @@
+[submodule "vendor/eslint-plugin-markdown-frontmatter-schema"]
+	path = vendor/eslint-plugin-markdown-frontmatter-schema
+	url = git@github.com:kirbysayshi/eslint-plugin-markdown-frontmatter-schema.git

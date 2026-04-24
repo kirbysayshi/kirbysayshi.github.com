@@ -8,7 +8,7 @@ categories:
   - else
 image:
   - src: /images/icons/lr.png
-  - alt: The face of the creature, the star of Lightning Rock.
+    alt: The face of the creature, the star of Lightning Rock.
 tags:
   - Animation
   - iMovie
