@@ -1,12 +1,19 @@
-import { mkdirSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
+import path from 'path';
 import { z } from 'zod';
 
 import { postFrontmatterSchema } from '../app/lib/post-meta.schema.js';
 
-mkdirSync('schemas', { recursive: true });
 const schema = z.toJSONSchema(postFrontmatterSchema, { target: 'draft-7' });
-writeFileSync(
-  'schemas/post-meta.schema.gen.json',
-  JSON.stringify(schema, null, 2) + '\n',
+const dest = new URL(
+  path.join(
+    path.dirname(import.meta.resolve('../app/lib/post-meta.schema.js')),
+    'post-meta.schema.gen.json',
+  ),
 );
-console.log('schemas/post-meta.schema.gen.json written');
+
+writeFileSync(dest, JSON.stringify(schema, null, 2) + '\n', {
+  encoding: 'utf-8',
+  flag: 'w',
+});
+console.log(`${dest} written`);

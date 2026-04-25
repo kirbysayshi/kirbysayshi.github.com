@@ -4,7 +4,7 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
-import postSchema from './schemas/post-meta.schema.gen.json' with { type: 'json' };
+import postSchema from './app/lib/post-meta.schema.gen.json' with { type: 'json' };
 
 export default [
   ...tseslint.configs.recommended,

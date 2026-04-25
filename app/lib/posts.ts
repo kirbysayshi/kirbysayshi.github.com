@@ -30,10 +30,9 @@ type RenderedPost = {
   contentHtml: string;
 };
 
-const posts: RenderedPost[] = [];
-
 export async function getAllPosts(): Promise<RenderedPost[]> {
-  if (posts.length) return posts;
+  // if (posts.length) return posts;
+  const posts: RenderedPost[] = [];
 
   const rawPosts = await import.meta.glob<string>(
     ['../../_posts/*.{md,markdown}'],
@@ -60,7 +59,7 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
 
     const contentHtml = String(await processor.process(body));
 
-    posts.push({
+    posts.unshift({
       slug: slug,
       url: `/${year}/${month}/${day}/${slug}.html`,
       title: attr.title,
