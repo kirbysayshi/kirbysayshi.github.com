@@ -31,19 +31,15 @@ type RenderedPost = {
 };
 
 export async function getAllPosts(): Promise<RenderedPost[]> {
-  // if (posts.length) return posts;
   const posts: RenderedPost[] = [];
 
-  const rawPosts = await import.meta.glob<string>(
-    ['../../_posts/*.{md,markdown}'],
-    {
-      query: '?raw',
-      import: 'default',
-      eager: true,
-    },
-  );
+  const rawPosts = import.meta.glob<string>(['../../_posts/*.{md,markdown}'], {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  });
 
-  const processor = await buildProcessor();
+  const processor = buildProcessor();
 
   for (const [filepath, contents] of Object.entries(rawPosts)) {
     const { attributes: raw_attr, body } =
@@ -52,18 +48,16 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
 
     if (attr.published === false) continue;
 
-    const match = matchPostFilename(filepath);
-    if (!match) continue;
-    const [, year, month, day, rawSlug] = match;
-    const slug = slugify(rawSlug);
+    const parsed = parsePostFilename(filepath);
+    if (parsed.error) throw parsed.error;
 
     const contentHtml = String(await processor.process(body));
 
     posts.unshift({
-      slug: slug,
-      url: `/${year}/${month}/${day}/${slug}.html`,
+      slug: parsed.slug,
+      url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
       title: attr.title,
-      date: `${year}-${month}-${day}`,
+      date: `${parsed.year}-${parsed.month}-${parsed.day}`,
       categories: attr.categories ?? [],
       tags: attr.tags ?? [],
       oneliner: attr.oneliner ?? '',
@@ -74,6 +68,7 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
     });
   }
 
+  // Probably not necessary, should already be in filesystem order.
   posts.sort((a, b) => b.date.localeCompare(a.date));
   return posts;
 }
@@ -81,12 +76,35 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
 /**
  * Jekyll behavior: lowercase + spaces to hyphens
  */
-export function slugify(str: string) {
-  return str.toLowerCase().replace(/\s+/g, '-');
+export function slugify(str?: string) {
+  return str?.toLowerCase().replace(/\s+/g, '-') ?? '';
 }
 
-function matchPostFilename(name?: string) {
-  return name?.match(/\/(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/) ?? [];
+type ParsedFilename =
+  | { error: null; year: string; month: string; day: string; slug: string }
+  | { error: Error };
+
+function parsePostFilename(name: string) {
+  const match =
+    name.match(/\/?(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/) ?? [];
+  const [, year, month, day, rawSlug] = match;
+  const slug = slugify(rawSlug);
+
+  const out: ParsedFilename = {
+    year: year ?? '',
+    month: month ?? '',
+    day: day ?? '',
+    slug: slug,
+    error: null as null | Error,
+  };
+
+  if (!year || !month || !day || !rawSlug) {
+    out.error = new Error(
+      `InvalidPostFileName: unable to parse [YYYY, MM, DD, slug] got: ${[year, month, day, rawSlug].join(', ')} from ${name}`,
+    );
+  }
+
+  return out;
 }
 
 // Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
@@ -94,17 +112,17 @@ function matchPostFilename(name?: string) {
 const rehypePostLinks = () => (tree: Root) => {
   visit(tree, 'element', (node: Element) => {
     if (node.tagName !== 'a') return;
-    const href = node.properties?.href;
+    const href = node.properties.href;
     if (typeof href !== 'string') return;
     // Absolute or has a protocol
     if (href.startsWith('/') || /^[a-z][a-z+\-.]*:/i.test(href)) return;
-    const filename = href.split('/').at(-1) ?? '';
-    const m = matchPostFilename(filename);
-    if (m) node.properties.href = `/${m[1]}/${m[2]}/${m[3]}/${m[4]}.html`;
+    const parsed = parsePostFilename(href);
+    if (parsed.error) throw parsed.error;
+    node.properties.href = `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`;
   });
 };
 
-async function buildProcessor() {
+function buildProcessor() {
   return unified()
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true })

@@ -13,17 +13,11 @@ export async function loader({ params }: Route.LoaderArgs) {
   return { post };
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  if (!data?.post) return [{ title: 'Not Found — KSH' }];
-  return [
-    { title: `${data.post.title} — KSH` },
-    { name: 'description', content: data.post.oneliner ?? data.post.title },
-  ];
-}
-
 export default function Post({ loaderData }: Route.ComponentProps) {
   const { post } = loaderData;
-  const hasIcon = post.image?.[0]?.src != null;
+
+  // Super old, only a few old posts have this.
+  const hasIcon = !!post.image[0]?.src;
 
   const categoriesList = useMemo(() => {
     const fmt = new Intl.ListFormat();
@@ -49,6 +43,8 @@ export default function Post({ loaderData }: Route.ComponentProps) {
 
   return (
     <article className="post">
+      <title>{`${post.title} — KSH`}</title>
+      <meta name="description" content={post.oneliner ?? post.title} />
       <header className="row">
         <div
           className={`title-wrap lined-block col ${hasIcon ? 'span_5' : ''}`}
@@ -59,7 +55,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
           <div className="post-meta">
             {post.date} {categoriesList.length && 'in'}
             {categoriesList}
-            <span className="inline-tags">
+            <div className="inline-tags">
               {' '}
               Tags:{' '}
               {post.tags.map((tag, i) => (
@@ -70,13 +66,13 @@ export default function Post({ loaderData }: Route.ComponentProps) {
                   {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
               ))}
-            </span>
+            </div>
           </div>
         </div>
         {hasIcon && (
           <div className="post-icon col span_1">
             <a href={post.url}>
-              <img src={post.image![0].src} alt={post.image![0].alt} />
+              <img src={post.image[0]?.src} alt={post.image[0]?.alt} />
             </a>
           </div>
         )}

@@ -1,6 +1,13 @@
 import { Links, Meta, Outlet, useMatches } from 'react-router';
 
 import type { Route } from './+types/root';
+import {
+  BlueskyIcon,
+  EnvelopeIcon,
+  GitHubIcon,
+  RssIcon,
+  XIcon,
+} from './components/Icons';
 
 export function links() {
   return [
@@ -100,25 +107,33 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </a>
             </h2>
             <h2 className="social-icons col span_3">
+              <a target="_blank" href="/feed.xml" aria-label="RSS feed">
+                <RssIcon />
+              </a>{' '}
               <a
                 target="_blank"
-                className="icon-large icon-rss"
-                href="/feed.xml"
-              />{' '}
-              <a
-                target="_blank"
-                className="icon-large icon-twitter-sign"
                 href="https://twitter.com/kirbysayshi"
-              />{' '}
+                aria-label="X (Twitter)"
+              >
+                <XIcon />
+              </a>{' '}
               <a
                 target="_blank"
-                className="icon-large icon-github-sign"
-                href="https://github.com/kirbysayshi"
-              />{' '}
+                href="https://bsky.app/profile/kirbysayshi.com"
+                aria-label="Bluesky"
+              >
+                <BlueskyIcon />
+              </a>{' '}
               <a
-                className="icon-large icon-envelope"
-                href="mailto:senofpeter@gmail.com"
-              />
+                target="_blank"
+                href="https://github.com/kirbysayshi"
+                aria-label="GitHub"
+              >
+                <GitHubIcon />
+              </a>{' '}
+              <a href="mailto:senofpeter@gmail.com" aria-label="Email">
+                <EnvelopeIcon />
+              </a>
             </h2>
           </div>
           {children}
@@ -136,41 +151,28 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               alt="Me, drawn in the cockpit of an aircraft that definitely doesn't exist."
             />
             <div className="bio-short col span_3">
-              <p>Hi. This is the personal blog of Andrew Petersen.</p>
+              <p>Hi. This is the personal blog of Drew Petersen.</p>
               <ul className="contact-list">
-                <li className="icon-large icon-twitter-sign">
+                <li>
+                  <XIcon />{' '}
                   <a href="https://twitter.com/kirbysayshi">@KirbySaysHi</a>
                 </li>
-                <li className="icon-large icon-github-sign">
+                <li>
+                  <BlueskyIcon />{' '}
+                  <a href="https://bsky.app/profile/kirbysayshi.com">
+                    @kirbysayshi.com
+                  </a>
+                </li>
+                <li>
+                  <GitHubIcon />{' '}
                   <a href="https://github.com/kirbysayshi">Github</a>
                 </li>
-                <li className="icon-large icon-envelope">
+                <li>
+                  <EnvelopeIcon />{' '}
                   <a href="mailto:senofpeter@gmail.com">senofpeter@gmail.com</a>
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="row">
-            This blog is hosted on{' '}
-            <a href="https://pages.github.com/">Github Pages</a>, and uses{' '}
-            <a href="https://reactrouter.com/">React Router 7</a>,{' '}
-            <a href="https://github.com/necolas/normalize.css">normalize.css</a>
-            ,{' '}
-            <a href="https://stevenlevithan.com/regex/colorizer/">
-              Regex Colorizer
-            </a>
-            ,{' '}
-            <a href="https://nicolasgallagher.com/micro-clearfix-hack/">
-              micro clearfix
-            </a>
-            ,{' '}
-            <a href="https://fortawesome.github.com/Font-Awesome/">
-              Font Awesome
-            </a>
-            , <a href="https://gridpak.com/">Gridpak</a>,{' '}
-            <a href="https://github.com/kirbysayshi">Vash</a>,{' '}
-            <a href="https://www.google.com/webfonts">Google Web Fonts</a>, and{' '}
-            <a href="https://jquery.com">jQuery</a>.
           </div>
         </footer>
       </div>

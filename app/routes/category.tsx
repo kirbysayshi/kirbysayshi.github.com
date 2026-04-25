@@ -11,18 +11,15 @@ export async function loader({ params }: Route.LoaderArgs) {
     p.categories.some((c) => slugify(c) === slug),
   );
   const catName =
-    catPosts[0]?.categories.find((c) => slugify(c) === slug) ?? slug ?? '';
+    catPosts[0]?.categories.find((c) => slugify(c) === slug) ?? slug;
   return { catPosts, catName };
-}
-
-export function meta({ data }: Route.MetaArgs) {
-  return [{ title: `Posts in ${data?.catName} — KSH` }];
 }
 
 export default function Category({ loaderData }: Route.ComponentProps) {
   const { catPosts, catName } = loaderData;
   return (
     <>
+      <title>Posts in {catName} — KSH</title>
       <h1 className="lined-block col span_6">Showing Posts in {catName}</h1>
       <PostList posts={catPosts} />
     </>

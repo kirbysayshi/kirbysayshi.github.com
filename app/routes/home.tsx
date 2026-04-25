@@ -8,16 +8,15 @@ export async function loader() {
   return { posts };
 }
 
-export function meta() {
-  return [
-    { title: 'Hi. — KSH' },
-    { name: 'description', content: 'Hi. Writing is HARD!' },
-  ];
-}
-
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
-  return <PostList posts={posts} />;
+  return (
+    <>
+      <title>Hi. — KSH</title>
+      <meta name="description" content="Hi. Writing is HARD!" />
+      <PostList posts={posts} />
+    </>
+  );
 }
 
 export function PostList({
