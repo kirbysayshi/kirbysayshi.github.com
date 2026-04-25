@@ -147,7 +147,7 @@ function ExplodedPostUrl(props: { url?: string }) {
     const value = url[part];
     if (value === '' || typeof value !== 'string') continue;
     parts.push(
-      <span className="exploded-url">
+      <span key={part} className="exploded-url">
         <span className="exploded-url-part">[{part}]</span>
         <span className="exploded-url-value">{value}</span>
       </span>,

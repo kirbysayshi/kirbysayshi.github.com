@@ -56,13 +56,14 @@ re.keyword =
   /do|for|function|(?:exp+\(\s*function)|if|switch|try|while|with/;
 
 re.combined = /(@(?!keyword)(?:exp+))|(@\(?:.*?\)@)/;
-re.combined = replace(re.combined, 'g')(
-  /keyword/g,
-  re.keyword,
-)(/exp/g, re.exp)(/identifier/g, re.identifier)(
-  /pAccess/g,
-  re.pAccess,
-)(/inExp/g, re.inExp)();
+// prettier-ignore
+re.combined = replace(re.combined, 'g')
+  (/keyword/g, re.keyword)
+  (/exp/g, re.exp)
+  (/identifier/g, re.identifier)
+  (/pAccess/g, re.pAccess)
+  (/inExp/g, re.inExp)
+  ();
 ```
 
 [MiniVash]: https://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
