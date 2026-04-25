@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Argument Parsing Doesn't Have to Require a Library
 oneliner: Sometimes a bit of repetition is faster than grabbing the generic solution.
-type: post
 categories:
   - TypeScript
 tags:

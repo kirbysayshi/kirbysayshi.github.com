@@ -1,9 +1,7 @@
 ---
-layout: post
 title: I Bought a Pair of Pants Yesterday
 oneliner:
 published: true
-type: post
 categories:
   - Stories
 tags:

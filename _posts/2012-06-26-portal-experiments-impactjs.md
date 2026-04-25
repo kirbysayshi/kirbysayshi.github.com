@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Portal Experiments Using ImpactJS
 oneliner: Keep thinking with portals... in 2D!
-type: project
 projecturl: https://dl.dropbox.com/u/52514/games/impact-portal-4/index.html
 categories:
   - JavaScript

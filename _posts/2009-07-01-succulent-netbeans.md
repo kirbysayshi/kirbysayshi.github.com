@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Dark Theme for NetBeans
-type: project
 categories:
   - else
 projecturl: /stuff/succulent-netbeans.zip

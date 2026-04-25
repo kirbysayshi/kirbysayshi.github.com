@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Is Vim Worth It?
 oneliner:
 categories:

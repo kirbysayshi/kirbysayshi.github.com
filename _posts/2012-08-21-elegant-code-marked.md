@@ -1,8 +1,6 @@
 ---
-layout: post
 title: 'Elegant Code To Notice: marked'
 oneliner:
-type: project
 projecturl: https://github.com/chjj/marked
 categories:
   - JavaScript

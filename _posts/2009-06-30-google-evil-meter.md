@@ -1,8 +1,6 @@
 ---
-layout: post
 title: The Google Evil Meter
 oneliner: "Powered by Twitter: Want to know when Google's going to channel Skynet? Keep track with the Google Evil Meter!"
-type: project
 categories:
   - web
 projecturl: https://johnnytatlock.com/gem

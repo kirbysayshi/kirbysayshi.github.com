@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Seedable Dice Rolls Using JS
 oneliner: Randomly-generated also means random bugs.
-type: project
 projecturl: https://gist.github.com/1342625
 categories:
   - JavaScript

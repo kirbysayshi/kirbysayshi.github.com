@@ -1,8 +1,6 @@
 ---
-layout: post
 title: The Github Embedder
 oneliner: Embed any file from any public repo with no server-side dependencies!
-type: project
 projecturl: https://github.com/kirbysayshi/ghembedder
 categories:
   - JavaScript

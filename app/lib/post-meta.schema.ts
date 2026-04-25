@@ -2,8 +2,6 @@ import { z } from 'zod';
 
 export const postFrontmatterSchema = z.object({
   title: z.string(),
-  // TODO: remove this or actually use it. holdover from jekyll.
-  layout: z.enum(['post']).optional(),
   published: z.boolean().optional(),
   categories: z
     .array(
@@ -34,7 +32,6 @@ export const postFrontmatterSchema = z.object({
     .optional(),
   tags: z.array(z.string()).optional(),
   oneliner: z.string().nullish(),
-  type: z.enum(['post', 'project']).optional(),
   projecturl: z.string().nullish(),
   image: z
     .array(z.object({ src: z.string(), alt: z.string() }))

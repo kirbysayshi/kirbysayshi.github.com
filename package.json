@@ -14,7 +14,8 @@
     "preview": "vite preview --port 3000",
     "lint": "concurrently 'tsc --noEmit' 'eslint . --fix'",
     "format": "oxfmt",
-    "gen": "tsx scripts/gen-schema.ts"
+    "gen": "tsx scripts/gen-schema.ts",
+    "new-post": "tsx scripts/new-post.ts"
   },
   "dependencies": {
     "@react-router/node": "7.14.2",

@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Turning Photos into ImpactJS Platform Levels
 oneliner: Shatner actually worked really well.
-type: project
 projecturl: https://vimeo.com/25640233
 categories:
   - JavaScript

@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Broad Phase Collision Detection Using Spatial Partioning
 published: true
-type: project
 projecturl: http://buildnewgames.com/broad-phase-collision-detection
 categories:
   - JavaScript

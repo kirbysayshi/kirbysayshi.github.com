@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Medical Mechanica Manhattan
 oneliner: It might kill us
-type: post
 categories:
   - Recipes
 tags:

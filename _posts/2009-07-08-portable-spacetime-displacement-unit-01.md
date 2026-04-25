@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Portable Spacetime Displacement Unit 01
-type: project
 categories:
   - flash
 projecturl: /flash/psdu01/

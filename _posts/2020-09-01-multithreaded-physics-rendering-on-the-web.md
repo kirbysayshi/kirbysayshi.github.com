@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Multithreaded Physics Rendering on the Web
 oneliner: Exploit a pocket parallel universe!
-type: project
 projecturl: https://youtu.be/p1dINlm1W9M
 categories:
   - Talks

@@ -1,8 +1,6 @@
 ---
-layout: post
 title: ...A diversion!
 oneliner: Consuming entertainment is hard work.
-type: post
 categories:
   - Blabbering Musings
 image:

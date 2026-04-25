@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'The World Ends With You: Solo Remix'
 oneliner: This is not something the Internet should be complaining about
 categories:

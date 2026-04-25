@@ -1,1 +1,6 @@
 Some stuff I've made.
+
+```sh
+pnpm install
+pnpm dev
+```

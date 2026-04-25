@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Interpolated Physics Rendering
 oneliner: Not everything has to run at 60fps.
-type: project
 projecturl: https://codepen.io/kirbysayshi/full/tfDmk
 categories:
   - JavaScript

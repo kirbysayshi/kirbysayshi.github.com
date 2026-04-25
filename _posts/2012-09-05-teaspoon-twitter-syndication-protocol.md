@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Teaspoon: Twitter Syndication Protocol'
 categories:
   - Blabbering Musings

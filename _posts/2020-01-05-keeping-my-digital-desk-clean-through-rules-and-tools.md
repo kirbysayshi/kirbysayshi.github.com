@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Keeping My Digital Desk Clean Through Rules and Tools
 oneliner: If you set rules, the tools decide for you.
-type: post
 projecturl: /stuff/archiver.sh
 categories:
   - Blabbering Musings

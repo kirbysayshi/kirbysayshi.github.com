@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Jekyll Textmate Bundle
 oneliner: Extremely basic, but saves a few keystrokes and window switching.
 projecturl: https://github.com/kirbysayshi/jekyll.tmbundle
-type: project
 categories:
   - else
 image:

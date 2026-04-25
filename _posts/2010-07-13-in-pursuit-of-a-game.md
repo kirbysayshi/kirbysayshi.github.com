@@ -1,8 +1,6 @@
 ---
-layout: post
 title: In Pursuit of a Game
 oneliner: 'Do you dare challenge Lavos? Do you dare to change what has been set in motion?'
-type: post
 categories:
   - JavaScript
   - Game Design

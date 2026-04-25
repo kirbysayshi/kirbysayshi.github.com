@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Mocha Tests for Node and the Browser
 oneliner: "This is still way more complicated than it should be. I'm doing it wrong, right? Right!?"
-type: project
 projecturl:
 categories:
   - JavaScript

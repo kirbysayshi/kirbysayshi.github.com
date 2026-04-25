@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Using Signals and Actors with Web Workers
 oneliner: Avoid strings! Do your best!
-type: project
 projecturl: https://jsbin.com/eremoc/latest
 categories:
   - JavaScript

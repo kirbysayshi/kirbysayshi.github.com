@@ -23,7 +23,6 @@ type RenderedPost = {
   categories: NonNullable<PostFrontmatter['categories']>;
   tags: NonNullable<PostFrontmatter['tags']>;
   oneliner: NonNullable<PostFrontmatter['oneliner']> | null;
-  type: NonNullable<PostFrontmatter['type']>;
   projecturl: NonNullable<PostFrontmatter['projecturl']>;
   image: NonNullable<PostFrontmatter['image']>;
 
@@ -61,7 +60,6 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
       categories: attr.categories ?? [],
       tags: attr.tags ?? [],
       oneliner: attr.oneliner ?? '',
-      type: attr.type ?? 'post',
       projecturl: attr.projecturl ?? '',
       image: attr.image ?? [],
       contentHtml,

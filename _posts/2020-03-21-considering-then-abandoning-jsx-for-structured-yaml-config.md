@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Considering, Then Abandoning JSX for Strongly-Typed YAML Configuration
 oneliner: Ah! A wild string template full of logic appeared! RUN
-type: post
 categories:
   - TypeScript
 tags:

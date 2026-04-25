@@ -95,19 +95,6 @@ export default function Post({ loaderData }: Route.ComponentProps) {
         </div>
       </div>
 
-      {post.type !== 'project' && (
-        <div className="row">
-          <p className="signoff lined-block col">
-            &mdash; <a href="https://twitter.com/kirbysayshi">@KirbySaysHi</a>{' '}
-            {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
-              month: 'short',
-              day: '2-digit',
-              year: 'numeric',
-            })}
-          </p>
-        </div>
-      )}
-
       <div className="row hn-link" />
 
       <div id="disqus_thread" className="lined-block" />

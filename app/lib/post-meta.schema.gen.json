@@ -5,12 +5,6 @@
     "title": {
       "type": "string"
     },
-    "layout": {
-      "type": "string",
-      "enum": [
-        "post"
-      ]
-    },
     "published": {
       "type": "boolean"
     },
@@ -55,13 +49,6 @@
         {
           "type": "null"
         }
-      ]
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "post",
-        "project"
       ]
     },
     "projecturl": {

@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Putting Macros into Markdown
 oneliner: Heros in a text file. Turtle power?
 published: true
-type: project
 categories:
   - JavaScript
 tags:
