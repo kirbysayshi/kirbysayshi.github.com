@@ -86,9 +86,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
               {post.projecturl && (
                 <>
                   <br />
-                  <a className="project-url" href={post.projecturl}>
-                    {post.projecturl}
-                  </a>
+                  <ExplodedPostUrl url={post.projecturl} />
                 </>
               )}
             </aside>
@@ -136,5 +134,42 @@ document.getElementById('load-disqus').addEventListener('click', loadDisqus);
         }}
       />
     </article>
+  );
+}
+
+function ExplodedPostUrl(props: { url?: string }) {
+  if (!props.url) return null;
+
+  let url;
+
+  try {
+    // projecturl might not be a url, might just be a path, etc
+    url = new URL(props.url);
+  } catch (_err) {
+    return (
+      <a className="project-url" href={props.url}>
+        {props.url}
+      </a>
+    );
+  }
+
+  const toShow = ['protocol', 'hostname', 'port', 'pathname'] as (keyof URL)[];
+  const parts = [];
+
+  for (const part of toShow) {
+    const value = url[part];
+    if (value === '' || typeof value !== 'string') continue;
+    parts.push(
+      <span className="exploded-url">
+        <span className="exploded-url-part">[{part}]</span>
+        <span className="exploded-url-value">{value}</span>
+      </span>,
+    );
+  }
+
+  return (
+    <a className="project-url" href={props.url}>
+      {parts}
+    </a>
   );
 }

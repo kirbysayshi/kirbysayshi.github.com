@@ -35,7 +35,10 @@ export default defineConfig([
       'simple-import-sort/exports': 'error',
       'unused-imports/no-unused-imports': 'error',
       '@typescript-eslint/no-unused-vars': 'off',
-      'unused-imports/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'unused-imports/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },

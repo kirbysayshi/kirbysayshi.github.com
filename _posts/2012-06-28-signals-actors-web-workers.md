@@ -14,7 +14,7 @@ tags:
   - JS Bin
 ---
 
-[Web Workers][] are relatively easy to use, especially now that shared objects are becoming more standard. A while back, I did a little experiment to see if I could make them even easier. The full code is at [JS Bin]({{ page.projecturl }}).
+[Web Workers][] are relatively easy to use, especially now that shared objects are becoming more standard. A while back, I did a little experiment to see if I could make them even easier. The full code is at [JS Bin](https://jsbin.com/eremoc/latest).
 
 The scenario is that you have many different tasks, each with their own events and scripts. They need to run in a browser, and asynchronously, so web workers would be a great choice! But wiring up all the events and decoding the payload from the events requires boilerplate (check that the domains match, then do error handling, etc), especially if there is two-way communication.
 

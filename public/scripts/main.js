@@ -2,38 +2,10 @@
 
 var ksh = {};
 
-// https://gist.github.com/964849
-ksh.parseUrl = function(a){return function(b,c,d){a.href=b;c={};for(d in a)if(""+a[d]===a[d])c[d]=a[d];return c}}(document.createElement("a"));
-
-ksh.explodeUrl = function($el){
-
-	if( $el.length === 0 ) return;
-
-	var  url = ksh.parseUrl( $el[0].href )
-		,toShow = ['protocol', 'hostname', 'port', 'pathname']
-		,i
-		,part
-		,all = '';
-
-	for(i = 0; i < toShow.length; i++){
-		part = toShow[i];
-		if( url[part] !== '' || url[part] > 0 ){
-			all += '<span class="exploded-url">'
-				+ '<span class="exploded-url-part">[' + part + ']</span>'
-				+ '<span class="exploded-url-value">' + url[part] + '</span>'
-				+ '</span>';
-		}
-	}
-
-	$el.html(all);
-}
-
 ksh.defaultInit = function(){
 
 	ghe.autoload();
 	RegexColorizer.colorizeAll(); // defaults to .regex
-
-	ksh.explodeUrl( $('.post .project-url') );
 
 	$('#social-contacts-header .header-contact').on('click', function(e){
 		e.preventDefault();
