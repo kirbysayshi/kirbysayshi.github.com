@@ -223,10 +223,11 @@ div.highlight { overflow-x: auto; }
 .post aside .project-url:before { content: "<"; font-size: 10em; position: absolute; right: -0.5em; top: 14px; }
 .post .post-content, .post .lined-block { width: 100%; }
 .post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
-.post ul { padding: 0 2.75%; font-size: 1em; }
-.post ul li { padding: 1% 0; }
-/*.post ul li:before { content: '> '; margin-left: -1em; font-size: 1.1em; }
-.post ul li ul li:before { content: ''; }
+.post ul { padding: 0 2.75%; font-size: 1em; list-style: none; }
+.post ul li { margin: 0.2em 0 0.2em 0.8em; }
+.post ul > li:before { margin-left: -0.8em; content: '– '; color: #C46568; }
+.post ul ul { padding-left: 1em; margin: 0.4em 0 0.8em 0; }
+.post ul ul > li:before { content: '· '; color: #939598 }
 .post .twt-actions li:before { content: ''; margin-left: 0; }*/
 
 .post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
