@@ -1,24 +1,23 @@
-import { getAllPosts, slugify } from "../lib/posts";
-import type { Route } from "./+types/post";
+import { useMemo } from 'react';
 
-export const handle = { classname: "page-post" };
+import { getAllPosts, slugify } from '../lib/posts';
+import type { Route } from './+types/post';
+
+export const handle = { classname: 'page-post' };
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const { year, month, day, slug } = params;
+  const { slug } = params;
   const posts = await getAllPosts();
-  const post = posts.find(
-    (p) =>
-      p.year === year && p.month === month && p.day === day && p.slug === slug
-  );
-  if (!post) throw new Response("Not Found", { status: 404 });
+  const post = posts.find((p) => p.slug === slug);
+  if (!post) throw new Response('Not Found', { status: 404 });
   return { post };
 }
 
 export function meta({ data }: Route.MetaArgs) {
-  if (!data?.post) return [{ title: "Not Found — KSH" }];
+  if (!data?.post) return [{ title: 'Not Found — KSH' }];
   return [
     { title: `${data.post.title} — KSH` },
-    { name: "description", content: data.post.oneliner ?? data.post.title },
+    { name: 'description', content: data.post.oneliner ?? data.post.title },
   ];
 }
 
@@ -26,31 +25,49 @@ export default function Post({ loaderData }: Route.ComponentProps) {
   const { post } = loaderData;
   const hasIcon = post.image?.[0]?.src != null;
 
+  const categoriesList = useMemo(() => {
+    const fmt = new Intl.ListFormat();
+    const cmp = [];
+    for (const cat of fmt.formatToParts(post.categories)) {
+      cmp.push(
+        cat.type === 'literal' ? (
+          cat.value
+        ) : (
+          <span key={cat.value}>
+            {' '}
+            <a
+              href={`/category/${encodeURIComponent(slugify(cat.value))}.html`}
+            >
+              {cat.value}
+            </a>
+          </span>
+        ),
+      );
+    }
+    return cmp;
+  }, []);
+
   return (
     <article className="post">
       <header className="row">
         <div
-          className={`title-wrap lined-block col ${hasIcon ? "span_5" : ""}`}
+          className={`title-wrap lined-block col ${hasIcon ? 'span_5' : ''}`}
         >
           <h1>
             <a href={post.url}>{post.title}</a>
           </h1>
           <div className="post-meta">
-            {post.date}
-            {post.categories.map((cat) => (
-              <span key={cat}>
-                {" "}
-                in{" "}
-                <a href={`/category/${encodeURIComponent(slugify(cat))}.html`}>{cat}</a>
-              </span>
-            ))}
+            {post.date} {categoriesList.length && 'in'}
+            {categoriesList}
             <span className="inline-tags">
-              {" "}
-              Tags:{" "}
+              {' '}
+              Tags:{' '}
               {post.tags.map((tag, i) => (
                 <span key={tag}>
-                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>{tag}</a>
-                  {i < post.tags.length - 1 ? ", " : " "}
+                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>
+                    {tag}
+                  </a>
+                  {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
               ))}
             </span>
@@ -84,15 +101,14 @@ export default function Post({ loaderData }: Route.ComponentProps) {
         </div>
       </div>
 
-      {post.type !== "project" && (
+      {post.type !== 'project' && (
         <div className="row">
           <p className="signoff lined-block col">
-            &mdash;{" "}
-            <a href="https://twitter.com/kirbysayshi">@KirbySaysHi</a>{" "}
-            {new Date(post.date + "T00:00:00").toLocaleDateString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
+            &mdash; <a href="https://twitter.com/kirbysayshi">@KirbySaysHi</a>{' '}
+            {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
+              month: 'short',
+              day: '2-digit',
+              year: 'numeric',
             })}
           </p>
         </div>

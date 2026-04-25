@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Seedable Dice Rolls Using JS
-oneliner: Randomly-generated also means random bugs. 
+oneliner: Randomly-generated also means random bugs.
 type: project
 projecturl: https://gist.github.com/1342625
 categories:
@@ -11,7 +11,6 @@ tags:
   - PRNGs
   - Dice
   - Alea
-
 ---
 
 When I'm testing out something that needs a generated environment (sprites, objects, whatever), I often use `Math.random()` with some ranges to avoid having to purposefully specify values. However, if something goes wrong, it's nearly impossible to reproduce the environment.
@@ -29,7 +28,6 @@ dice.d49();
 dice.d6(2); // returns the total as a number
 dice.d6(2, true); // returns two rolls as an array
 ```
-
 
 [pseudo random number generator]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 [really difficult to do]: https://baagoe.com/en/RandomMusings/javascript

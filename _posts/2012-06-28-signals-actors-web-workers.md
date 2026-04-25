@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Signals and Actors with Web Workers
-oneliner: Avoid strings! Do your best! 
+oneliner: Avoid strings! Do your best!
 type: project
 projecturl: https://jsbin.com/eremoc/latest
 categories:
@@ -12,7 +12,6 @@ tags:
   - Actor Model
   - Signals
   - JS Bin
-
 ---
 
 [Web Workers][] are relatively easy to use, especially now that shared objects are becoming more standard. A while back, I did a little experiment to see if I could make them even easier. The full code is at [JS Bin]({{ page.projecturl }}).
@@ -39,27 +38,25 @@ We're going to be making a web worker (our "actor") that computes fibonacci sequ
 
 // define our actors.. there's only one for now!
 var actors = {
-   'Fibonacci': { path: 'https://jsbin.com/orexal/15/js' }
-   // P.S. Did you know that JS Bin can output a raw JS file?
-   // Pretty awesome!
+  Fibonacci: { path: 'https://jsbin.com/orexal/15/js' },
+  // P.S. Did you know that JS Bin can output a raw JS file?
+  // Pretty awesome!
 };
 
 // make actors available for instantiation
 actorsInit(actors);
 
 // make a new instance
-var f = new actors.Fibonaci(function(){
-
+var f = new actors.Fibonaci(function () {
   // this function is called when signals are ready to be attached
 
-  f.stepped.add(function(){
+  f.stepped.add(function () {
     console.log('got a stepped!', arguments);
-  })
+  });
 
-  f.stopped.add(function(){
+  f.stopped.add(function () {
     console.log('got a stopped!', arguments);
-  })
-    
+  });
 });
 ```
 
@@ -69,20 +66,20 @@ And the content of the worker:
 // worker.js
 
 var fibber = {
-  signals: [ 'stepped', 'stopped' ]
-  ,acci: function(n) {
+  signals: ['stepped', 'stopped'],
+  acci: function (n) {
     if (n <= 1) return n;
-  
+
     var x = fibber.acci(n - 2) + fibber.acci(n - 1);
-  
+
     fibber.stepped.dispatch(x);
     return x;
-  }
-}
-                
-signalsInit( fibber, fibber.signals );
+  },
+};
+
+signalsInit(fibber, fibber.signals);
 fibber.acci(5);
-fibber.stopped.dispatch( 'yes, yes, I stopped' );
+fibber.stopped.dispatch('yes, yes, I stopped');
 ```
 
 Notice how the events aren't the typical string-based calls, like used in the DOM and EventEmitter? These are a form of Signals, which means we can define exactly what events something will emit, and know that we're listening to the proper events immediately (if not, an error will be thrown complaining that the property is `undefined`).
@@ -96,44 +93,46 @@ First some bootstrapping code:
 ```javascript
 // primary.js
 
-function actorsInit( actors ){
-  
-  for(var i in actors){
-    if(actors.hasOwnProperty(i)){
-      
-      actors[i] = (function(actorName, actorFace){
-        
-        var Actor = function(cb){
+function actorsInit(actors) {
+  for (var i in actors) {
+    if (actors.hasOwnProperty(i)) {
+      actors[i] = (function (actorName, actorFace) {
+        var Actor = function (cb) {
           var self = this;
           this.worker = new Worker(actorFace.path);
-          this.worker.addEventListener('message', function(e){
-            console.log('from worker', actorName, e);
-            
-            if(e.data.signal === 'siginit'){
-             
-              // setup signals
-              for(var i = 0; i < e.data.args.length; i++){
-                  self[ e.data.args[i] ] = new Signal();
+          this.worker.addEventListener(
+            'message',
+            function (e) {
+              console.log('from worker', actorName, e);
+
+              if (e.data.signal === 'siginit') {
+                // setup signals
+                for (
+                  var i = 0;
+                  i < e.data.args.length;
+                  i++
+                ) {
+                  self[e.data.args[i]] = new Signal();
+                }
+
+                if (cb) {
+                  cb(this);
+                }
+
+                return;
               }
 
-              if(cb){ cb(this); }
-              
-              return
-            }
-            
-            var sig = self[e.data.signal];
-            e.data.args.length // crappy array test
-              ? sig.dispatch.apply(sig, e.data.args)
-              : sig.dispatch.call(sig, e.data.args);
+              var sig = self[e.data.signal];
+              e.data.args.length // crappy array test
+                ? sig.dispatch.apply(sig, e.data.args)
+                : sig.dispatch.call(sig, e.data.args);
+            },
+            false,
+          );
+        };
 
-          }, false);
-          
-
-        }
-            
         return Actor;
-        
-      })(i, actors[i])
+      })(i, actors[i]);
     }
   }
 }
@@ -146,18 +145,20 @@ For each entry in the given object, create a constructor function. That construc
 ```javascript
 // worker.js
 
-function signalsInit(target, names){
+function signalsInit(target, names) {
   var slice = Array.prototype.slice;
-  names.forEach(function(name){
-    var sig = target[name] = new Signal();
-    
-    sig.add(function(){
-      self.postMessage({ signal: name, args: slice.call(arguments) }); 
+  names.forEach(function (name) {
+    var sig = (target[name] = new Signal());
+
+    sig.add(function () {
+      self.postMessage({
+        signal: name,
+        args: slice.call(arguments),
+      });
     });
-    
   });
-  
-  self.postMessage( { signal: 'siginit', args: names } ); 
+
+  self.postMessage({ signal: 'siginit', args: names });
 }
 ```
 
@@ -172,36 +173,34 @@ This is just an experiment, but I think it's pretty neat that instead of using s
 Here is the very basic code I used to implement a Signal in JS. For a more complete implementation, I recommend [js-signals][], or my own implementation [k-signals][], which is much smaller, but has most of the same features (it was done mostly as a learning experience).
 
 ```javascript
-var Signal = function Signal(){
+var Signal = function Signal() {
   this.slots = [];
 };
 
 Signal.prototype = {
-  add: function(f){
+  add: function (f) {
     this.slots.push(f);
-  }
-  ,dispatch: function(){
-    var slots = this.slots.slice()
-        ,len
-        ,i
-        ,ret;
-    
-    for (i = 0, len = slots.length; i < len; i++){
+  },
+  dispatch: function () {
+    var slots = this.slots.slice(),
+      len,
+      i,
+      ret;
+
+    for (i = 0, len = slots.length; i < len; i++) {
       ret = slots[i].apply(this, arguments);
-      if(ret === false){
+      if (ret === false) {
         break;
       }
     }
-  }
-  ,remove: function(f){
+  },
+  remove: function (f) {
     this.slots.splice(this.slots.indexOf(f), 1);
-  }
-}
+  },
+};
 ```
 
 Signals are a really interesting paradigm to me, so expect a post soon with more details of my experiments!
-
-
 
 [Actor Model]: https://en.wikipedia.org/wiki/Actor_model
 [Signals]: https://citational.com/v/5mx/signals-vs-eventemitter-vs-pubsub

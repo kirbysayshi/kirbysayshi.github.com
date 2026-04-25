@@ -1,4 +1,4 @@
 savePrefix: ''
 
 packages:
-  - "vendor/*"
+  - 'vendor/*'

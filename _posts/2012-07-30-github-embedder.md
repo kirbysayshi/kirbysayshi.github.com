@@ -3,7 +3,7 @@ layout: post
 title: The Github Embedder
 oneliner: Embed any file from any public repo with no server-side dependencies!
 type: project
-projecturl: https://github.com/kirbysayshi/ghembedder 
+projecturl: https://github.com/kirbysayshi/ghembedder
 categories:
   - JavaScript
 tags:
@@ -18,12 +18,13 @@ So I created [ghembedder][], which is a simple way to declaratively embed any fi
 It turns this:
 
 ```html
-<div data-ghuserrepo="kirbysayshi/ghembedder"
-    data-ghpath="src/ghembedder.js"
-    data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
-    data-ghlines="329-348"
-    data-ghtabsize="2">
-</div>
+<div
+  data-ghuserrepo="kirbysayshi/ghembedder"
+  data-ghpath="src/ghembedder.js"
+  data-ghref="5821e203cd02cf1455d65345989896225c4cee50"
+  data-ghlines="329-348"
+  data-ghtabsize="2"
+></div>
 ```
 
 into:

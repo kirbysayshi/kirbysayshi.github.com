@@ -12,15 +12,13 @@ tags:
   - Game Loop
   - Multi-threaded Game Engines
   - Physics
-
 ---
 
 Update Sept 2020: [View Part 2!](2020-09-01-multithreaded-physics-rendering-on-the-web.md)
 
 There are several articles online that attempt to explain good patterns and gotchas for a game loop. Two of the most oft-quoted and referenced, at least according to my informal analysis, are [Fix Your Timestep][] and [deWiTTERS Game Loop][]. They are both excellent resources, and I recommend reading them. What follows is my own interpretation of a basic game loop that attempts to keep rendering updates independent of physics updates, with actual running examples in JS.
 
-Why Independence?
------------------
+## Why Independence?
 
 The two most expensive operations in games I've built, computationally, have been drawing and physics. Separating these mean they can run at different speeds to accomodate slower or faster platforms.
 
@@ -32,8 +30,7 @@ Do you target the lowest common denominator, and make even those people with sup
 
 Nope, there's another way.
 
-Some Actual Code.
------------------
+## Some Actual Code.
 
 A possible solution is to separate your game code into two segments:
 
@@ -49,14 +46,18 @@ This allows our game to render as fast as the platform allows (in the case of [r
 Example usage:
 
 ```js
-var ssi = new StepStateInterpolator(100, function logics(dt) {
-  // Dt is the target, constant dt.
-  // Do logical or physics updates here, this will only be called
-  // every 100ms (in this example).
-}, function draws(dt, ratio) {
-  // Draw stuff here, it will be executed as often as
-  // `update` is called.
-});
+var ssi = new StepStateInterpolator(
+  100,
+  function logics(dt) {
+    // Dt is the target, constant dt.
+    // Do logical or physics updates here, this will only be called
+    // every 100ms (in this example).
+  },
+  function draws(dt, ratio) {
+    // Draw stuff here, it will be executed as often as
+    // `update` is called.
+  },
+);
 
 // And then kick off your game loop like:
 var lastTime = Date.now() - 16.666666;
@@ -67,43 +68,47 @@ var lastTime = Date.now() - 16.666666;
   // Step the game, drawing as quickly as possible.
   ssi.update(dt);
   lastTime = now;
-}());
+})();
 ```
 
 It also handles accumulation of time between frames. In the real world, your deltas between frames will likely be dirty (16.666666ms target frame time, 33.333333ms physics timestep):
 
-	Delta   Total     What Does the Engine Say?
-	10ms  :  10ms     not enough for physics update
-	15ms  :  25ms     not enough for physics update
-	18ms  :  43ms     physics tick, leaving ~9.666666 remaining
-	16ms  : ~25ms     not enough for physics update
+```
+Delta   Total     What Does the Engine Say?
+10ms  :  10ms     not enough for physics update
+15ms  :  25ms     not enough for physics update
+18ms  :  43ms     physics tick, leaving ~9.666666 remaining
+16ms  : ~25ms     not enough for physics update
+```
 
 If physics are running at 30fps (33.333333 ms), then there will always be time left over that is less than a full physics timestep. That is why the delta is added to `this.accumulator` above: unused time is carried over until it is able to be consumed.
 
 But there's still one more problem to solve. Won't the game look jittery if renders are happening at 60fps, while physics are only being updated every other frame (30fps)?
 
-ASCII Diagrams Might Help.
---------------------------
+## ASCII Diagrams Might Help.
 
 Let's pretend that your game is spending most of its time calculating physics. Separating out the physics updates from the rendering (60 fps) could result in physics being calculated every other frame:
 
-	Time (ms):       0    16    32    48   64    80    96    112
-	Physics Ticks:   *          *          *           *
-	Render Ticks:    *    *     *     *    *     *     *     *
+```
+Time (ms):       0    16    32    48   64    80    96    112
+Physics Ticks:   *          *          *           *
+Render Ticks:    *    *     *     *    *     *     *     *
+```
 
 Or even something crazy, like every few frames (every 100 milliseconds):
 
-	Time (ms):       0    16    32    48   64    80    96    112
-	Physics Ticks:   *                                       *
-	Render Ticks:    *    *     *     *    *     *     *     *
+```
+Time (ms):       0    16    32    48   64    80    96    112
+Physics Ticks:   *                                       *
+Render Ticks:    *    *     *     *    *     *     *     *
+```
 
 However, even if you're rendering at 60fps (16.666666ms between steps), if physics are only being calculated every 100ms, then the animations will appear very jittery, as the following example demonstrates:
 
 <p data-height="268" data-theme-id="1340" data-slug-hash="iwxvk" data-user="kirbysayshi" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/kirbysayshi/pen/iwxvk'>Current Position, 100ms step at 60fps</a> by Andrew Petersen (<a href='http://codepen.io/kirbysayshi'>@kirbysayshi</a>) on <a href='http://codepen.io'>CodePen</a></p>
 <script async src="https://codepen.io/assets/embed/ei.js"></script>
 
-There Is a Solution.
---------------------
+## There Is a Solution.
 
 We do have a pretty easy solution that is hinted at in [Fix Your Timestep][]: [linear interpolation][].
 
@@ -115,9 +120,10 @@ Using this ratio, we can render sometime between _the most current physics step_
 
 The formula for linear interpolation of two positions given the ratio of time progressed:
 
-	renderPosition =
-		(currentPosition * ratio)
-		+ (previousPosition * (1 - ratio))
+```js
+renderPosition =
+  currentPosition * ratio + previousPosition * (1 - ratio);
+```
 
 And if we apply this to the previous demo:
 
@@ -126,25 +132,20 @@ And if we apply this to the previous demo:
 
 Pretty smooth, eh? Any jumping near the edges are just because of crappy bounds checking.
 
-Finally.
---------
+## Finally.
 
 Where to go from here? Well... to multithreaded land via web workers and beyond! Eventually. Ask questions!
 
 Update Sept 2020: [View Part 2](2020-09-01-multithreaded-physics-rendering-on-the-web.md)
 
-
 [Fixed-Time-Step Implementation]: https://lspiroengine.com/?p=378
-
 [Fix Your Timestep]: https://gafferongames.com/game-physics/fix-your-timestep/
 [deWiTTERS Game Loop]: https://www.koonsolo.com/news/dewitters-gameloop/
 [Animate Your Way to Glory]: https://acko.net/blog/animate-your-way-to-glory/
 [requestAnimationFrame]: https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame
-
 [inspired]: https://www.unagames.com/blog/daniele/2010/06/fixed-time-step-implementation-box2d
 [from]: https://www.koonsolo.com/news/dewitters-gameloop/
 [several]: https://blog.allanbishop.com/box-2d-2-1a-tutorial-part-10-fixed-time-step/
 [sources]: https://gafferongames.com/game-physics/fix-your-timestep/
-
 [Linear interpolation]: https://en.wikipedia.org/wiki/Linear_interpolation
 [Verlet integration]: https://codeflow.org/entries/2010/nov/29/verlet-collision-with-impulse-preservation/

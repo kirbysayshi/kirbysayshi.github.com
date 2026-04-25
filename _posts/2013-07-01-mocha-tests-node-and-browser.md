@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout: post
 title: Mocha Tests for Node and the Browser
 oneliner: "This is still way more complicated than it should be. I'm doing it wrong, right? Right!?"
 type: project
@@ -12,7 +12,6 @@ tags:
   - TDD
   - Observables
   - FRP
-
 ---
 
 To gain a better understanding of the decisions [knockoutjs][] made in terms of implementation, I decided to try and build my own version. I named it `sea` as a homonym for 'see' which is _somehow_ related to [observable properties][], I swear. I started with a simple HTML page that basically contained a series of "things that should work". The first was a simple `div` that followed the mouse cursor using two observables to track position.
@@ -44,55 +43,50 @@ There was one more problem that greatly exacerbated my troubles: I wanted to use
 
 [tdd interface]: https://visionmedia.github.io/mocha/#interfaces
 [bdd interface]: https://visionmedia.github.io/mocha/#interfaces
-
 [vash]: https://github.com/kirbysayshi/vash
 [vows]: https://vowsjs.org/
 
 Here is the typical bdd interface:
 
 ```js
-describe('sea.observable', function(){
+describe('sea.observable', function () {
+  it('defaults to undefined', function () {
+    var o = sea.observable();
+    assert.equal(o(), undefined);
+  });
 
-  it('defaults to undefined', function(){
-	  var o = sea.observable();
-	  assert.equal(o(), undefined);
-  })
-
-  it('updates value', function(){
-	  var o = sea.observable(null);
-	  assert.equal(o(), null);
-	  assert.equal(o(2), 2);
-  })
-
-})
+  it('updates value', function () {
+    var o = sea.observable(null);
+    assert.equal(o(), null);
+    assert.equal(o(2), 2);
+  });
+});
 ```
 
 That's fine, but I find the repeated `describe` and `it` distracting. Here's the same using the `exports` interface:
 
 ```js
 exports.observable = {
-
-  'defaults to undefined': function(){
+  'defaults to undefined': function () {
     var o = sea.observable();
     assert.equal(o(), undefined);
-  }
+  },
 
-  ,'updates value': function(){
+  'updates value': function () {
     var o = sea.observable(null);
     assert.equal(o(), null);
     assert.equal(o(2), 2);
-  }
-
-}
+  },
+};
 ```
 
 Honestly, it's basically the same, I know. For more complex suites I've seen it get very difficult to read, but at this point I'm mostly arguing a personal preference.
 
 Final goals for this testing environment:
 
-* Write "mocha" tests using the `exports` interface
-* Be able to `require` the in-progress library, along with anything else needed, like `assert` or [chaijs][] or [sinonjs][]
-* Write the tests without caring if they'll be running in a browser or node
+- Write "mocha" tests using the `exports` interface
+- Be able to `require` the in-progress library, along with anything else needed, like `assert` or [chaijs][] or [sinonjs][]
+- Write the tests without caring if they'll be running in a browser or node
 
 [chaijs]: https://chaijs.com/
 [sinonjs]: https://sinonjs.org/
@@ -101,54 +95,58 @@ Final goals for this testing environment:
 
 This is a simple project, and contains the following files:
 
-	/index.js        # frp-parts, node-only
-	/dom.js          # data binding, requires DOM
-	/package.json    # typical, but will have build/test commands
-	/test/
-	  runner.html    # the mocha test harness
-	  test.sea.js    # the test, run using mocha(1) or in runner.html
+```
+/index.js        # frp-parts, node-only
+/dom.js          # data binding, requires DOM
+/package.json    # typical, but will have build/test commands
+/test/
+  runner.html    # the mocha test harness
+  test.sea.js    # the test, run using mocha(1) or in runner.html
+```
 
 Using the library is simple:
 
 ```js
-var sea = require('./index')
+var sea = require('./index');
 
 var firstName = sea.observable('Johnny');
-var fullName = sea.computed(function(){
+var fullName = sea.computed(function () {
   return firstName() + ' Tatlock';
-})
+});
 
-console.log(firstName()) // 'Johnny'
-console.log(fullName()) // 'Johnny Tatlock'
+console.log(firstName()); // 'Johnny'
+console.log(fullName()); // 'Johnny Tatlock'
 
-firstName('James')
+firstName('James');
 
-console.log(firstName()) // 'James'
-console.log(fullName()) // 'James Tatlock'
+console.log(firstName()); // 'James'
+console.log(fullName()); // 'James Tatlock'
 ```
 
 And using the data-binding components (assumes a DOM):
 
 ```html
 <ul data-foreach="items()">
-  <li data-text="typeof $data === 'function' ? $data() : $data"></li>
+  <li
+    data-text="typeof $data === 'function' ? $data() : $data"
+  ></li>
 </ul>
 
 <script type="text/javascript">
-var sea = require('./dom') // decorates sea with data-binding stuff
+  var sea = require('./dom'); // decorates sea with data-binding stuff
 
-var items = sea.observableArray(['a', 'b', 'c']);
+  var items = sea.observableArray(['a', 'b', 'c']);
 
-// tell sea to parse the entire DOM
-sea.applyBindings({
-  items: items
-})
+  // tell sea to parse the entire DOM
+  sea.applyBindings({
+    items: items,
+  });
 
-// in 2 seconds, add some more elements, this will cause the ul to
-// render more items
-setTimeout(function(){
-  items.push('d', 'e', 'f')
-}, 2000)
+  // in 2 seconds, add some more elements, this will cause the ul to
+  // render more items
+  setTimeout(function () {
+    items.push('d', 'e', 'f');
+  }, 2000);
 </script>
 ```
 
@@ -159,20 +157,19 @@ If you've ever used knockoutjs, then this should look very familiar. I changed t
 The node tests look like (abbreviated):
 
 ```js
-var assert = require('assert')
-  , sea = require('sea')
+var assert = require('assert'),
+  sea = require('sea');
 
 exports.observableArray = {
-
-  'with no args defaults to empty array': function(){
+  'with no args defaults to empty array': function () {
     var a = sea.observableArray();
     assert.equal(a().length, 0);
-  }
+  },
 
-  ,'.push updates a computed': function(){
-    var a = sea.observableArray()
-      , c = sea.computed(function(){
-        return a().join(',')
+  '.push updates a computed': function () {
+    var a = sea.observableArray(),
+      c = sea.computed(function () {
+        return a().join(',');
       });
 
     assert.equal(c(), '');
@@ -180,35 +177,34 @@ exports.observableArray = {
     assert.equal(c(), '1');
     a.push('2', '3');
     assert.equal(c(), '1,2,3');
-  }
-}
+  },
+};
 ```
 
 And the DOM tests (abbreviated):
 
 ```js
-var assert = require('assert')
-  , sea = require('../dom')
+var assert = require('assert'),
+  sea = require('../dom');
 
 // skip running if not in a browser
-if(typeof window === 'undefined') return;
+if (typeof window === 'undefined') return;
 
 var scratch = document.querySelector('#scratch');
-var $  = function(query, ctx){
-  return [].slice.call((ctx || scratch).querySelectorAll(query));
-}
+var $ = function (query, ctx) {
+  return [].slice.call(
+    (ctx || scratch).querySelectorAll(query),
+  );
+};
 
 exports['Data Binding'] = {
-
   'data-text': {
-
-    before: function(){
+    before: function () {
       var html = '<p data-text="t()"></p>';
-      scratch.innerHTML = html
-    }
+      scratch.innerHTML = html;
+    },
 
-    ,'observable updates value': function(){
-
+    'observable updates value': function () {
       var t = sea.observable('Hello!');
       sea.applyBindings({ t: t }, scratch);
       var p = $('p')[0];
@@ -217,9 +213,9 @@ exports['Data Binding'] = {
 
       t('Goodbye!');
       assert.equal(p.textContent, 'Goodbye!');
-    }
-  }
-}
+    },
+  },
+};
 ```
 
 For the most part, writing a test for the browser or node is exactly the same in terms of structure. Obviously the browser test won't run in node because of lack of DOM objects, but the structure of the tests are the same.
@@ -228,7 +224,9 @@ For the most part, writing a test for the browser or node is exactly the same in
 
 Next we need to bundle the tests so that `require` works. It's pretty easy, but took a bit of fiddling with `browserify` to figure out:
 
-	node_modules/browserify/bin/cmd.js ./test/test.dom.js --standalone tests > test.bundle.js
+```sh
+node_modules/browserify/bin/cmd.js ./test/test.dom.js --standalone tests > test.bundle.js
+```
 
 This command:
 
@@ -244,60 +242,70 @@ The last step is to do something super hacky: copy mocha's `exports` interface, 
 
 ```html
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Mocha Tests</title>
-  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
-</head>
-<body>
-  <div id="mocha"></div>
-  <div id="scratch"></div>
-  <script src="../node_modules/mocha/mocha.js"></script>
-  <script>mocha.setup('exports')</script>
-  <script src="../test.bundle.js"></script>
-  <script>
-    // This code is directly from mocha/lib/interfaces/exports.js
-    // with a few modifications
-    (function manualExports(exports, suite){
-      var suites = [suite];
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/mocha/mocha.css"
+    />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <div id="scratch"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script>
+      mocha.setup('exports');
+    </script>
+    <script src="../test.bundle.js"></script>
+    <script>
+      // This code is directly from mocha/lib/interfaces/exports.js
+      // with a few modifications
+      (function manualExports(exports, suite) {
+        var suites = [suite];
 
-      visit(exports);
+        visit(exports);
 
-      function visit(obj) {
-        var suite;
-        for (var key in obj) {
-          if ('function' == typeof obj[key]) {
-            var fn = obj[key];
-            switch (key) {
-              case 'before':
-                suites[0].beforeAll(fn);
-                break;
-              case 'after':
-                suites[0].afterAll(fn);
-                break;
-              case 'beforeEach':
-                suites[0].beforeEach(fn);
-                break;
-              case 'afterEach':
-                suites[0].afterEach(fn);
-                break;
-              default:
-                suites[0].addTest(new Mocha.Test(key, fn));
+        function visit(obj) {
+          var suite;
+          for (var key in obj) {
+            if ('function' == typeof obj[key]) {
+              var fn = obj[key];
+              switch (key) {
+                case 'before':
+                  suites[0].beforeAll(fn);
+                  break;
+                case 'after':
+                  suites[0].afterAll(fn);
+                  break;
+                case 'beforeEach':
+                  suites[0].beforeEach(fn);
+                  break;
+                case 'afterEach':
+                  suites[0].afterEach(fn);
+                  break;
+                default:
+                  suites[0].addTest(
+                    new Mocha.Test(key, fn),
+                  );
+              }
+            } else {
+              var suite = Mocha.Suite.create(
+                suites[0],
+                key,
+              );
+              suites.unshift(suite);
+              visit(obj[key]);
+              suites.shift();
             }
-          } else {
-            var suite = Mocha.Suite.create(suites[0], key);
-            suites.unshift(suite);
-            visit(obj[key]);
-            suites.shift();
           }
         }
-      }
-    }(tests, mocha.suite));
+      })(tests, mocha.suite);
 
-    mocha.checkLeaks();
-    mocha.run();
-  </script>
-</body>
+      mocha.checkLeaks();
+      mocha.run();
+    </script>
+  </body>
 </html>
 ```
 
@@ -319,4 +327,3 @@ If you use `require` and browserify, you really don't need a true build system. 
 ### Conclusions
 
 Even simple projects quickly get complex when you want to be able to test in a browser and node. With the power of browserify and mocha, a lot of the hard things are taken care of, leaving just a little bit of undefined but required glue. Hopefully this helps the next time you start a small project and want some tests!
-

@@ -1,100 +1,106 @@
-import fs from "node:fs";
-import path from "node:path";
-import fm from "front-matter";
-import { postFrontmatterSchema } from "./post-meta.schema.js";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
-import rehypeShiki from "@shikijs/rehype";
-import rehypeStringify from "rehype-stringify";
-import { visit } from "unist-util-visit";
-import type { Root, Element } from "hast";
+import rehypeShiki from '@shikijs/rehype';
+import fm from 'front-matter';
+import type { Element, Root } from 'hast';
+import rehypeRaw from 'rehype-raw';
+import rehypeStringify from 'rehype-stringify';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
+import { visit } from 'unist-util-visit';
 
-export interface Post {
+import {
+  type PostFrontmatter,
+  postFrontmatterSchema,
+} from './post-meta.schema.js';
+
+type RenderedPost = {
   slug: string;
   url: string;
-  title: string;
+
   date: string;
-  year: string;
-  month: string;
-  day: string;
-  categories: string[];
-  tags: string[];
-  oneliner?: string;
-  type?: "post" | "project";
-  projecturl?: string;
-  image?: Array<{ src: string; alt: string }>;
+
+  title: PostFrontmatter['title'];
+  categories: NonNullable<PostFrontmatter['categories']>;
+  tags: NonNullable<PostFrontmatter['tags']>;
+  oneliner: NonNullable<PostFrontmatter['oneliner']> | null;
+  type: NonNullable<PostFrontmatter['type']>;
+  projecturl: NonNullable<PostFrontmatter['projecturl']>;
+  image: NonNullable<PostFrontmatter['image']>;
+
   contentHtml: string;
-}
+};
 
-const POSTS_DIR = path.join(process.cwd(), "_posts");
+const posts: RenderedPost[] = [];
 
-// Match existing Jekyll behavior: lowercase + spaces to hyphens, no other transforms
-export function slugify(str: string): string {
-  return str.toLowerCase().replace(/\s+/g, "-");
-}
+export async function getAllPosts(): Promise<RenderedPost[]> {
+  if (posts.length) return posts;
 
-let _cachedPosts: Post[] | null = null;
-
-export async function getAllPosts(): Promise<Post[]> {
-  if (_cachedPosts) return _cachedPosts;
+  const rawPosts = await import.meta.glob<string>(
+    ['../../_posts/*.{md,markdown}'],
+    {
+      query: '?raw',
+      import: 'default',
+      eager: true,
+    },
+  );
 
   const processor = await buildProcessor();
 
-  const files = fs
-    .readdirSync(POSTS_DIR)
-    .filter((f) => f.endsWith(".md") || f.endsWith(".markdown"));
-
-  const posts: Post[] = [];
-
-  for (const file of files) {
-    const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
-    const { attributes: raw_attr, body } = fm<Record<string, unknown>>(raw);
+  for (const [filepath, contents] of Object.entries(rawPosts)) {
+    const { attributes: raw_attr, body } =
+      fm<Record<string, unknown>>(contents);
     const attr = postFrontmatterSchema.parse(raw_attr);
 
     if (attr.published === false) continue;
 
-    const match = file.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/);
+    const match = matchPostFilename(filepath);
     if (!match) continue;
-    const [, year, month, day, slug] = match;
+    const [, year, month, day, rawSlug] = match;
+    const slug = slugify(rawSlug);
 
     const contentHtml = String(await processor.process(body));
 
     posts.push({
-      slug,
+      slug: slug,
       url: `/${year}/${month}/${day}/${slug}.html`,
       title: attr.title,
       date: `${year}-${month}-${day}`,
-      year,
-      month,
-      day,
       categories: attr.categories ?? [],
       tags: attr.tags ?? [],
-      oneliner: attr.oneliner ?? undefined,
-      type: attr.type,
-      projecturl: attr.projecturl ?? undefined,
-      image: attr.image ?? undefined,
+      oneliner: attr.oneliner ?? '',
+      type: attr.type ?? 'post',
+      projecturl: attr.projecturl ?? '',
+      image: attr.image ?? [],
       contentHtml,
     });
   }
 
   posts.sort((a, b) => b.date.localeCompare(a.date));
-  _cachedPosts = posts;
   return posts;
 }
 
-// Rewrite relative markdown file links to matching YYYY-MM-DD-slug.md  ->
+/**
+ * Jekyll behavior: lowercase + spaces to hyphens
+ */
+export function slugify(str: string) {
+  return str.toLowerCase().replace(/\s+/g, '-');
+}
+
+function matchPostFilename(name?: string) {
+  return name?.match(/\/(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/) ?? [];
+}
+
+// Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
 // /YYYY/MM/DD/slug.html
 const rehypePostLinks = () => (tree: Root) => {
-  visit(tree, "element", (node: Element) => {
-    if (node.tagName !== "a") return;
+  visit(tree, 'element', (node: Element) => {
+    if (node.tagName !== 'a') return;
     const href = node.properties?.href;
-    if (typeof href !== "string") return;
+    if (typeof href !== 'string') return;
     // Absolute or has a protocol
-    if (href.startsWith("/") || /^[a-z][a-z+\-.]*:/i.test(href)) return;
-    const filename = href.split("/").at(-1) ?? "";
-    const m = filename.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.(?:md|markdown)$/);
+    if (href.startsWith('/') || /^[a-z][a-z+\-.]*:/i.test(href)) return;
+    const filename = href.split('/').at(-1) ?? '';
+    const m = matchPostFilename(filename);
     if (m) node.properties.href = `/${m[1]}/${m[2]}/${m[3]}/${m[4]}.html`;
   });
 };
@@ -106,8 +112,8 @@ async function buildProcessor() {
     .use(rehypeRaw)
     .use(rehypePostLinks)
     .use(rehypeShiki, {
-      theme: "light-plus",
-      fallbackLanguage: "text",
+      theme: 'light-plus',
+      fallbackLanguage: 'text',
     })
     .use(rehypeStringify);
 }

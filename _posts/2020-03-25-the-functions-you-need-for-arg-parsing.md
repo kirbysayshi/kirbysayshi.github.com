@@ -17,11 +17,11 @@ Command-line argument parsing is one of those tasks that everyone will tell you 
 There are two core costs:
 
 - Initial learning curve: I may know exactly what I want to get done. How does this library work, and will it satisfy what needs to be done? Does it fit into my constraints and requirements? How long will it take me to figure all of this out?
-- Maintenance: the library will change and evolve, or it will die. How much effort will it take to update or replace it? 
+- Maintenance: the library will change and evolve, or it will die. How much effort will it take to update or replace it?
 
 ## Obstacles I've Encountered
 
-I've found that these two costs often completely outweigh the benefits, especially for the very specific task of parsing command line arguments. 
+I've found that these two costs often completely outweigh the benefits, especially for the very specific task of parsing command line arguments.
 
 Some of them aren't written in TypeScript (or the types don't match the implementation), so they're not type safe, at exactly the time when you want to be sure of data structures: when dealing with user input! This is a big one.
 
@@ -40,7 +40,7 @@ The concrete shape of the parsed data, ready for the logic later:
 ```ts
 type ParsedCLIFlags = {
   // a command to give the player
-  command: "play" | "pause";
+  command: 'play' | 'pause';
 
   // some sort of identifier, like a link
   track: string;
@@ -54,26 +54,30 @@ A function to output the parsed shape:
 
 ```ts
 function parseCLI(): ParsedCLIFlags {
-  const trackIdx = process.argv.indexOf("--track");
-  if (trackIdx === -1) throw new Error("No --track passed!");
+  const trackIdx = process.argv.indexOf('--track');
+  if (trackIdx === -1)
+    throw new Error('No --track passed!');
   const track = process.argv[trackIdx + 1];
 
-  const seekIdx = process.argv.indexOf("--seek");
-  const seek = seekIdx > -1 ? Number(process.argv[seekIdx + 1]) : 0;
+  const seekIdx = process.argv.indexOf('--seek');
+  const seek =
+    seekIdx > -1 ? Number(process.argv[seekIdx + 1]) : 0;
 
   const command =
-    process.argv.indexOf("play") > -1
-      ? "play"
-      : process.argv.indexOf("pause") > -1
-      ? "pause"
-      : undefined;
+    process.argv.indexOf('play') > -1
+      ? 'play'
+      : process.argv.indexOf('pause') > -1
+        ? 'pause'
+        : undefined;
   if (command === undefined)
-    throw new Error("Invalid command, expected pause or play!");
+    throw new Error(
+      'Invalid command, expected pause or play!',
+    );
 
   return {
     command,
     track,
-    seek
+    seek,
   };
 }
 ```
@@ -104,7 +108,7 @@ And then a main function:
 
 ```ts
 async function run() {
-  if (process.argv.indexOf("--help") > -1) {
+  if (process.argv.indexOf('--help') > -1) {
     return showHelpAndExit();
   }
 
@@ -119,11 +123,11 @@ async function run() {
   // And finally, do something with `parsed`!
 
   switch (parsed.command) {
-    case "play":
+    case 'play':
       // ...
       break;
 
-    case "pause":
+    case 'pause':
       // ...
       break;
   }
@@ -160,7 +164,11 @@ But it depends on your use case. Sometimes, the simplicity of the code you can w
 If you want to be a little more fancy, here are some additional functions. They operate by assuming there is always a valid default. If you wanted them to throw instead, that's fairly simple to copy/paste. :)
 
 ```tsx
-function keyValueArgv<T>(argv: string[], key: string, defaultValue: T) {
+function keyValueArgv<T>(
+  argv: string[],
+  key: string,
+  defaultValue: T,
+) {
   const idx = argv.indexOf(key);
   if (idx === -1) return defaultValue;
   if (idx + 1 > argv.length) return defaultValue;
@@ -178,7 +186,10 @@ function boolArgv(argv: string[], key: string) {
 function restArgv<T>(argv: string[], defaultValue: T) {
   const isFlag = (v: string) => v.indexOf('--') === 0;
   const rest = argv.filter((arg, idx) => {
-    return !isFlag(arg) && (idx - 1 >= 0 ? !isFlag(argv[idx - 1]) : true);
+    return (
+      !isFlag(arg) &&
+      (idx - 1 >= 0 ? !isFlag(argv[idx - 1]) : true)
+    );
   });
   if (rest.length === 0) return defaultValue;
   return rest;
@@ -194,7 +205,7 @@ const programArgv = process.argv.slice(2);
 // Resolve all rest args as absolute files
 const files = restArgv(programArgv, [
   path.join(process.cwd(), 'src'),
-]).map(p => path.resolve(p));
+]).map((p) => path.resolve(p));
 
 // Default output dir is a docs/ dir
 const outputDir = keyValueArgv(
@@ -204,7 +215,11 @@ const outputDir = keyValueArgv(
 );
 
 // Some sort of config flag
-const config1 = keyValueArgv(programArgv, '--config1', `the default`);
+const config1 = keyValueArgv(
+  programArgv,
+  '--config1',
+  `the default`,
+);
 
 // Presence means true
 const showHelp = boolArgv(programArgv, '--help');

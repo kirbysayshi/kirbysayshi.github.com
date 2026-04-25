@@ -60,7 +60,7 @@ cp ./config/* ~/.netbeans/6.7/config/
 I bet you can barely tell the two apart:
 
 |                                     |                                    |
-|-------------------------------------|------------------------------------|
+| ----------------------------------- | ---------------------------------- |
 | ![](/images/netbeans-succulent.png) | ![](/images/textmate-sunburst.png) |
 
 Ok, not really… but they’re close, right?

@@ -1,15 +1,15 @@
-import { getAllPosts, slugify } from "../lib/posts";
-import { PostList } from "./home";
-import type { Route } from "./+types/tag";
+import { getAllPosts, slugify } from '../lib/posts';
+import type { Route } from './+types/tag';
+import { PostList } from './home';
 
-export const handle = { classname: "page-home" };
+export const handle = { classname: 'page-home' };
 
 export async function loader({ params }: Route.LoaderArgs) {
   const { slug } = params;
   const posts = await getAllPosts();
   const tagPosts = posts.filter((p) => p.tags.some((t) => slugify(t) === slug));
   const tagName =
-    tagPosts[0]?.tags.find((t) => slugify(t) === slug) ?? slug ?? "";
+    tagPosts[0]?.tags.find((t) => slugify(t) === slug) ?? slug ?? '';
   return { tagPosts, tagName };
 }
 

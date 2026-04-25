@@ -1,10 +1,10 @@
 ---
 layout: post
 published: false
-title: MiniVash, or My Longest Regular Expression Ever 
+title: MiniVash, or My Longest Regular Expression Ever
 oneliner: How else are you supposed to become adept with regex without abusing them?
 type: project
-projecturl: https://gist.github.com/3411585 
+projecturl: https://gist.github.com/3411585
 categories:
   - JavaScript
 tags:
@@ -16,18 +16,18 @@ tags:
 
 Here's a challenge: how small can I make a self-contained version of [Vash][]? If I limit it to the following features, the answer is about [800 bytes][]!
 
-* _Expressions_: The feature that arguably gives Vash its reason for existence. Examples:
-	* `@something.what`
-    * `@it.is[0].funcCall()`
-* _Explicit Expressions_: These enable Vash to have arbitrary JS that is still assumed to be a statement. Each is surrounded by `()`. Examples:
-	* `@( model.doIt ? 'Yes, you should' : 'Nope!' )`
-	* `@( it.total + it.tax )` 
+- _Expressions_: The feature that arguably gives Vash its reason for existence. Examples:
+  - `@something.what`
+  - `@it.is[0].funcCall()`
+- _Explicit Expressions_: These enable Vash to have arbitrary JS that is still assumed to be a statement. Each is surrounded by `()`. Examples:
+  - `@( model.doIt ? 'Yes, you should' : 'Nope!' )`
+  - `@( it.total + it.tax )`
 
 Noticeably left out is block support, which is Vash's most complex feature. To fully implement it requires a full lexer/parser. This means NO:
 
-* `@for(i; i<0; i++){ <markup> }`
-* `@if(){ <markup> } else {}`
-* `@it.forEach(function(){ <markup> })`
+- `@for(i; i<0; i++){ <markup> }`
+- `@if(){ <markup> } else {}`
+- `@it.forEach(function(){ <markup> })`
 
 One more change in approach had to be made. Typically, JS templates are a big string concatenated together, and then compiled using the `Function` constructor, which is basically `eval`. For this experiment, I tried two alternatives:
 
@@ -100,14 +100,18 @@ Then `valid expression` breaks down into:
 
 Luckily, regexs allow for implicit recursion. The `valid expression` is repeated one or more times, which allows all of the following to match:
 
-	@it.Do 
-	@it.rea6lize()
-	@it.everyone[0]
-	@it.everyone('param').go
+```js
+@it.Do
+@it.rea6lize()
+@it.everyone[0]
+@it.everyone('param').go
+```
 
 This will fail, however, due to nested parentheses (more on this later):
 
-	@it.everyone(it.another('param')[0]).go
+```js
+@it.everyone(it.another('param')[0]).go
+```
 
 One of the most complex sections, visually, is the `<keyword or <<valid expression> containing function expression>>` because it has the rather complex `<valid expression>` nested within. Taking that out, it becomes a bit more manageable:
 
@@ -116,13 +120,15 @@ One of the most complex sections, visually, is the `<keyword or <<valid expressi
 
 It prevents the following from matching (ellipses added):
 
-	@for(...
-	@if(...
-	@valid.expression.cb(function...
+```js
+@for(...
+@if(...
+@valid.expression.cb(function...
+```
 
 We can't allow `@valid.expression.cb(function...` to match because the `function` call implies a new block, which could contain markup. Since this doesn't support any sort of blocks, we just ignore it all.
 
-One interesting note is the `dot notation` section. We want to distinguish between tricky scenarios like `@property.`, in which the period is meant to be content (the period at the end of a sentence, for example), and even things like `"@property."` where both the period and the quotes are meant to be content, eventhough quotes are valid inside of bracket property access and function calls. Therefore, the `dot notation` section only accepts a period if it is followed by the start of a valid identifier: `[a-zA-Z_]+`. 
+One interesting note is the `dot notation` section. We want to distinguish between tricky scenarios like `@property.`, in which the period is meant to be content (the period at the end of a sentence, for example), and even things like `"@property."` where both the period and the quotes are meant to be content, eventhough quotes are valid inside of bracket property access and function calls. Therefore, the `dot notation` section only accepts a period if it is followed by the start of a valid identifier: `[a-zA-Z_]+`.
 
 ### Explicit Expression (and Nested Parentheses)
 
@@ -145,23 +151,25 @@ What surprised me about this project, was that limiting MiniVash to only express
 
 But a neat way around this is implicit iteration. This means that if an array is passed as a model to a MiniVash template, it will automatically iterate through the array, and apply the template to each one, returning the total output. For example:
 
-	// template
-	<li>@it.value</li>
+```jsx
+// template
+<li>@it.value</li>
 
-	// compile it:
-	var t = vash.compile( document.getElementById('tpl').innerHTML );
+// compile it:
+var t = vash.compile( document.getElementById('tpl').innerHTML );
 
-	// single model:
-	console.log( t( { value: 'HEY!' } )
+// single model:
+console.log( t( { value: 'HEY!' } )
 
-	// outputs:
-	<li>HEY!</li>
+// outputs:
+<li>HEY!</li>
 
-	// multiple models:
-	console.log( t( [ { value: 'HEY!' }, { value: 'YOU!' }, { value: 'OFF!' } ] )
+// multiple models:
+console.log( t( [ { value: 'HEY!' }, { value: 'YOU!' }, { value: 'OFF!' } ] )
 
-	// outputs:
-	<li>HEY!</li><li>YOU!</li><li>OFF!</li>
+// outputs:
+<li>HEY!</li><li>YOU!</li><li>OFF!</li>
+```
 
 This is actually a feature that Vash doesn't have. Might have to add it in!
 
@@ -170,14 +178,16 @@ This is actually a feature that Vash doesn't have. Might have to add it in!
 I used [regexpal][] by [Steven Levithan][] extensively throughout this challenge. Combined with a small helper script run in firebug, it was invaluable!
 
 ```js
-var  input = $('inputText').value
-	,re = new RegExp( $('searchText').value, 'g' );
+var input = $('inputText').value,
+  re = new RegExp($('searchText').value, 'g');
 
 input.split(re);
-input.replace(re, function(){ console.log(arguments); });
+input.replace(re, function () {
+  console.log(arguments);
+});
 ```
 
-This easily let me test the results of a regex, with minimal back and forth, and no setup. The most important component of [regexpal][], and which other regex helpers get wrong, is the beautiful highlighting of grouping characters. Regexpal highlights parenthesis and pipes in matching colors, according to nesting level. This makes editing complex expressions much more easy: you can tell _where_ you're actually editing! 
+This easily let me test the results of a regex, with minimal back and forth, and no setup. The most important component of [regexpal][], and which other regex helpers get wrong, is the beautiful highlighting of grouping characters. Regexpal highlights parenthesis and pipes in matching colors, according to nesting level. This makes editing complex expressions much more easy: you can tell _where_ you're actually editing!
 
 Also pretty interesting is Perl's [YAPE Regex Explain][] module. Given a regex, it will output an explanation of what it does in english. If you've ever had a regular expression misbehaving, this tool can really help explain why it's not working how you think it should.
 
@@ -199,34 +209,36 @@ $ install YAPE::Regex::Explain
 
 After installing the module, running the above helper script yields:
 
-	The regular expression:
+```text
+The regular expression:
 
-	(?-imsx:@\(.*?\)@)
+(?-imsx:@\(.*?\)@)
 
-	matches as follows:
-	
-	NODE                     EXPLANATION
-	----------------------------------------------------------------------
-	(?-imsx:                 group, but do not capture (case-sensitive)
-							(with ^ and $ matching normally) (with . not
-							matching \n) (matching whitespace and #
-							normally):
-	----------------------------------------------------------------------
-	@                        '@'
-	----------------------------------------------------------------------
-	\(                       '('
-	----------------------------------------------------------------------
-	.*?                      any character except \n (0 or more times
-							(matching the least amount possible))
-	----------------------------------------------------------------------
-	\)                       ')'
-	----------------------------------------------------------------------
-	@                        '@'
-	----------------------------------------------------------------------
-	)                        end of grouping
-	----------------------------------------------------------------------
+matches as follows:
 
-As you can see, it's pretty useful with longer expressions. 
+NODE                     EXPLANATION
+----------------------------------------------------------------------
+(?-imsx:                 group, but do not capture (case-sensitive)
+            (with ^ and $ matching normally) (with . not
+            matching \n) (matching whitespace and #
+            normally):
+----------------------------------------------------------------------
+@                        '@'
+----------------------------------------------------------------------
+\(                       '('
+----------------------------------------------------------------------
+.*?                      any character except \n (0 or more times
+            (matching the least amount possible))
+----------------------------------------------------------------------
+\)                       ')'
+----------------------------------------------------------------------
+@                        '@'
+----------------------------------------------------------------------
+)                        end of grouping
+----------------------------------------------------------------------
+```
+
+As you can see, it's pretty useful with longer expressions.
 
 ## Conclusions
 
@@ -241,4 +253,4 @@ Wow, did you really make it all the way down here? If so, I congratulate you! [M
 [YAPE Regex Explain]: https://search.cpan.org/~gsullivan/YAPE-Regex-Explain-4.01/Explain.pm
 [MiniVash]: https://gist.github.com/3411585
 [a gist]: https://gist.github.com/3411585
-[800 bytes]: https://gist.github.com/3411585 
+[800 bytes]: https://gist.github.com/3411585

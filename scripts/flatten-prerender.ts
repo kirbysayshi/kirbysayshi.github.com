@@ -1,5 +1,5 @@
-import { readdirSync, statSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { join } from "path";
+import { readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 // React-router prerenders any URL ending in .html into a directory named
 // slug.html/ containing index.html. Convert them to flat files so slug.html
@@ -10,8 +10,8 @@ function flatten(dir: string) {
     const full = join(dir, name);
     const stat = statSync(full);
     if (!stat.isDirectory()) continue;
-    if (name.endsWith(".html")) {
-      const indexFile = join(full, "index.html");
+    if (name.endsWith('.html')) {
+      const indexFile = join(full, 'index.html');
       const content = readFileSync(indexFile);
       rmSync(full, { recursive: true });
       writeFileSync(full, content);
@@ -21,5 +21,5 @@ function flatten(dir: string) {
   }
 }
 
-flatten("build/client");
-console.log("Flattened .html directory pre-renders to flat files.");
+flatten('build/client');
+console.log('Flattened .html directory pre-renders to flat files.');

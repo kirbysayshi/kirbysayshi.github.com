@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Just the Idea"
+title: 'Just the Idea'
 categories:
   - flash
 type: project
 projecturl: /flash/justtheidea/
 oneliner: An animation short about an idea about a conversation about everything, had while smoking while talking about something else.
-image: 
+image:
   - src: /images/icons/justtheidea.png
     alt: Icon for a Flash animation short called "Just the Idea"
 tags:

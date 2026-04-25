@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Citational: Quote things. On the internet."
+title: 'Citational: Quote things. On the internet.'
 categories:
-  - web 
-type: post 
-oneliner: 
+  - web
+type: post
+oneliner:
 tags:
-  - JavaScript 
+  - JavaScript
   - nodejs
 ---
 

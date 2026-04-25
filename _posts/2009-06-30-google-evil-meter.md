@@ -23,7 +23,7 @@ wool over our heads with innovation![1]
 
 The Google Evil Meter is a fun and silly, yet slightly meaningful,
 experiment in Twitter data mining and HTML5. Every 15 minutes or so, the
-GEM trawls the Twitter search API with a few *secret* terms (if the GEM
+GEM trawls the Twitter search API with a few _secret_ terms (if the GEM
 were a hamburger, this would be the secret sauce!) and then stores all
 the tweets it finds in a database. During the trawling, it also flags
 each tweet as either **good** or **evil**. Based on these tweets, we get

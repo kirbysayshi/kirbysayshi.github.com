@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Elegant Code To Notice: marked"
-oneliner: 
+title: 'Elegant Code To Notice: marked'
+oneliner:
 type: project
-projecturl: https://github.com/chjj/marked 
+projecturl: https://github.com/chjj/marked
 categories:
   - JavaScript
   - Elegant Code
@@ -48,21 +48,23 @@ As an experiment, I applied that replace function to the regex I wrote for [Mini
 ```js
 var re = {};
 
-re.identifier = /[a-zA-Z]+?[a-zA-Z0-9]/
-re.inExp = /[a-zA-Z0-9'".()=?:]/
-re.pAccess = /(?:[.]+(?!\s|$|"|'|\?))/
+re.identifier = /[a-zA-Z]+?[a-zA-Z0-9]/;
+re.inExp = /[a-zA-Z0-9'".()=?:]/;
+re.pAccess = /(?:[.]+(?!\s|$|"|'|\?))/;
 
-re.exp = /(?:identifier*(?:pAccess|(?:\[inExp+\])|(?:\(inExp*\)))*)/
-re.keyword = /do|for|function|(?:exp+\(\s*function)|if|switch|try|while|with/
+re.exp =
+  /(?:identifier*(?:pAccess|(?:\[inExp+\])|(?:\(inExp*\)))*)/;
+re.keyword =
+  /do|for|function|(?:exp+\(\s*function)|if|switch|try|while|with/;
 
-re.combined = /(@(?!keyword)(?:exp+))|(@\(?:.*?\)@)/
-re.combined = replace( re.combined, 'g' )
-	(/keyword/g, re.keyword)
-	(/exp/g, re.exp)
-	(/identifier/g, re.identifier)
-	(/pAccess/g, re.pAccess)
-	(/inExp/g, re.inExp)
-	();
+re.combined = /(@(?!keyword)(?:exp+))|(@\(?:.*?\)@)/;
+re.combined = replace(re.combined, 'g')(
+  /keyword/g,
+  re.keyword,
+)(/exp/g, re.exp)(/identifier/g, re.identifier)(
+  /pAccess/g,
+  re.pAccess,
+)(/inExp/g, re.inExp)();
 ```
 
 [MiniVash]: https://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html

@@ -21,18 +21,18 @@ will transport you wherever and whenever you wish (hopefully)!
 
 Operation is as simple as four easy steps:
 
--   Choose a Flux mode: Temporal or Spatial. Contrary to popular belief,
-    you cannot travel through both time *and* space concurrently.
--   Pick your destination: by clicking once on the rate slider, you can
-    choose your destination DateTime. Although your PSDU-01 is a
-    high-precision instrument, even it cannot completely predict the
-    rifts and eddies of the Space-Time Continuum. Choose your
-    destination wisely!
--   Start it up: pull the ripcord located in the lower right corner. Be
-    careful about your fuel consumption, as higher rates (in both
-    directions) conserve your ever-precious fuel reserves.
--   Go: press the actuation clicker located at the top of the device.
-    You’ll phase out momentarily.
+- Choose a Flux mode: Temporal or Spatial. Contrary to popular belief,
+  you cannot travel through both time _and_ space concurrently.
+- Pick your destination: by clicking once on the rate slider, you can
+  choose your destination DateTime. Although your PSDU-01 is a
+  high-precision instrument, even it cannot completely predict the
+  rifts and eddies of the Space-Time Continuum. Choose your
+  destination wisely!
+- Start it up: pull the ripcord located in the lower right corner. Be
+  careful about your fuel consumption, as higher rates (in both
+  directions) conserve your ever-precious fuel reserves.
+- Go: press the actuation clicker located at the top of the device.
+  You’ll phase out momentarily.
 
 In addition to the obvious uses as a temporal manipulation device, the
 PSDU-01 also functions as a pocketwatch. Press the “Cancel” button to

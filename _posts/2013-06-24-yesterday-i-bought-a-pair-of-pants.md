@@ -1,15 +1,14 @@
 ---
-layout:     post
+layout: post
 title: I Bought a Pair of Pants Yesterday
 oneliner:
-published:  true
+published: true
 type: post
 categories:
   - Stories
 tags:
   - LA
   - Windshields
-
 ---
 
 Yesterday, I bought a pair of black pants from The Gap in San Francisco. They were $50, and I could have bought a second pair for $25. I did not.

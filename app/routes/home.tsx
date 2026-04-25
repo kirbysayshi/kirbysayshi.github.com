@@ -1,7 +1,7 @@
-import { getAllPosts, slugify } from "../lib/posts";
-import type { Route } from "./+types/home";
+import { getAllPosts, slugify } from '../lib/posts';
+import type { Route } from './+types/home';
 
-export const handle = { classname: "page-home" };
+export const handle = { classname: 'page-home' };
 
 export async function loader() {
   const posts = await getAllPosts();
@@ -10,8 +10,8 @@ export async function loader() {
 
 export function meta() {
   return [
-    { title: "Hi. — KSH" },
-    { name: "description", content: "Hi. Writing is HARD!" },
+    { title: 'Hi. — KSH' },
+    { name: 'description', content: 'Hi. Writing is HARD!' },
   ];
 }
 
@@ -37,21 +37,25 @@ export function PostList({
           </time>
           <div className="row">
             <div className="post-tags col span_4">
-              Tags:{" "}
+              Tags:{' '}
               {post.tags.map((tag, i) => (
                 <span key={tag}>
-                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>{tag}</a>
-                  {i < post.tags.length - 1 ? ", " : " "}
+                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>
+                    {tag}
+                  </a>
+                  {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
               ))}
             </div>
             <div className="post-category col span_2">
               {post.categories.map((cat, i) => (
                 <span key={cat}>
-                  <a href={`/category/${encodeURIComponent(slugify(cat))}.html`}>
+                  <a
+                    href={`/category/${encodeURIComponent(slugify(cat))}.html`}
+                  >
                     {cat.toUpperCase()}
                   </a>
-                  {i < post.categories.length - 1 ? ", " : " "}
+                  {i < post.categories.length - 1 ? ', ' : ' '}
                 </span>
               ))}
             </div>

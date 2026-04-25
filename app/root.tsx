@@ -1,15 +1,16 @@
-import { Links, Meta, Outlet, useMatches } from "react-router";
-import type { Route } from "./+types/root";
+import { Links, Meta, Outlet, useMatches } from 'react-router';
+
+import type { Route } from './+types/root';
 
 export function links() {
   return [
-    { rel: "preload", as: "image", href: "/images/me.jpg" },
-    { rel: "stylesheet", href: "/css/main.css" },
+    { rel: 'preload', as: 'image', href: '/images/me.jpg' },
+    { rel: 'stylesheet', href: '/css/main.css' },
     {
-      rel: "alternate",
-      type: "application/rss+xml",
-      title: "Hi! - KSH",
-      href: "/feed.xml",
+      rel: 'alternate',
+      type: 'application/rss+xml',
+      title: 'Hi! - KSH',
+      href: '/feed.xml',
     },
   ];
 }
@@ -49,8 +50,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const matches = useMatches();
   const classname =
-    (matches.at(-1)?.handle as { classname?: string } | undefined)
-      ?.classname ?? "page-home";
+    (matches.at(-1)?.handle as { classname?: string } | undefined)?.classname ??
+    'page-home';
   return <PageBody classname={classname} />;
 }
 
@@ -99,17 +100,17 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                 target="_blank"
                 className="icon-large icon-rss"
                 href="/feed.xml"
-              />
+              />{' '}
               <a
                 target="_blank"
                 className="icon-large icon-twitter-sign"
                 href="https://twitter.com/kirbysayshi"
-              />
+              />{' '}
               <a
                 target="_blank"
                 className="icon-large icon-github-sign"
                 href="https://github.com/kirbysayshi"
-              />
+              />{' '}
               <a
                 className="icon-large icon-envelope"
                 href="mailto:senofpeter@gmail.com"
@@ -140,36 +141,32 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                   <a href="https://github.com/kirbysayshi">Github</a>
                 </li>
                 <li className="icon-large icon-envelope">
-                  <a href="mailto:senofpeter@gmail.com">
-                    senofpeter@gmail.com
-                  </a>
+                  <a href="mailto:senofpeter@gmail.com">senofpeter@gmail.com</a>
                 </li>
               </ul>
             </div>
           </div>
           <div className="row">
-            This blog is hosted on{" "}
-            <a href="https://pages.github.com/">Github Pages</a>, and uses{" "}
-            <a href="https://reactrouter.com/">React Router 7</a>,{" "}
-            <a href="https://github.com/necolas/normalize.css">
-              normalize.css
-            </a>
-            ,{" "}
+            This blog is hosted on{' '}
+            <a href="https://pages.github.com/">Github Pages</a>, and uses{' '}
+            <a href="https://reactrouter.com/">React Router 7</a>,{' '}
+            <a href="https://github.com/necolas/normalize.css">normalize.css</a>
+            ,{' '}
             <a href="https://stevenlevithan.com/regex/colorizer/">
               Regex Colorizer
             </a>
-            ,{" "}
+            ,{' '}
             <a href="https://nicolasgallagher.com/micro-clearfix-hack/">
               micro clearfix
             </a>
-            ,{" "}
+            ,{' '}
             <a href="https://fortawesome.github.com/Font-Awesome/">
               Font Awesome
             </a>
-            , <a href="https://gridpak.com/">Gridpak</a>,{" "}
-            <a href="https://github.com/kirbysayshi">Vash</a>,{" "}
-            <a href="https://www.google.com/webfonts">Google Web Fonts</a>,
-            and <a href="https://jquery.com">jQuery</a>.
+            , <a href="https://gridpak.com/">Gridpak</a>,{' '}
+            <a href="https://github.com/kirbysayshi">Vash</a>,{' '}
+            <a href="https://www.google.com/webfonts">Google Web Fonts</a>, and{' '}
+            <a href="https://jquery.com">jQuery</a>.
           </div>
         </footer>
       </div>

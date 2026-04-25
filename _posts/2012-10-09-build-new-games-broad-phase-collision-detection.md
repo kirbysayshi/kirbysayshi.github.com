@@ -1,8 +1,8 @@
 ---
-layout:     post
+layout: post
 title: Broad Phase Collision Detection Using Spatial Partioning
 published: true
-type:       project
+type: project
 projecturl: http://buildnewgames.com/broad-phase-collision-detection
 categories:
   - JavaScript
@@ -11,7 +11,6 @@ tags:
   - Spatial Partitioning
   - Spatial Grid
   - FUS RO DAH
-
 ---
 
 I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][]. If that link ever dies, you can read the [archived article](https://kirbysayshi.com/broad-phase-bng/broad-phase-collision-detection-using-spatial-partitioning.html).

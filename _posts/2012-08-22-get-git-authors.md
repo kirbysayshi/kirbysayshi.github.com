@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Grab All Authors From a Git Repo 
+title: Grab All Authors From a Git Repo
 oneliner: Give credit where credit is due...
 categories:
-  - Snippets 
+  - Snippets
 tags:
   - Git
   - Bash
