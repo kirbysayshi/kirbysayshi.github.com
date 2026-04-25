@@ -82,7 +82,11 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <div id="header-container">
         <header>
           <a href="/">
-            <img src="/images/ascii_kirby.svg" alt="ASCII Kirby" />
+            <img
+              src="/images/ascii_kirby.svg"
+              alt="ASCII Kirby"
+              style={{ display: 'block', width: '75%' }}
+            />
             <h1>Hi.</h1>
           </a>
         </header>
