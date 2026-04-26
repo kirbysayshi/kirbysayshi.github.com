@@ -2,6 +2,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>"Just the Idea"</title>
+<script type="text/javascript">
+window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = {
+	...window.RufflePlayer.config,
+	letterbox: 'on',
+	// note: the og settings below are also having an effect, specifically:
+	// - scale: 'showall'
+	//
+	// Otherwise, the letterbox setting doesn't mask properly.
+}
+</script>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 <script language="JavaScript" type="text/javascript">
 <!--
 //v1.7
@@ -294,7 +306,7 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
 		'align', 'middle',
 		'play', 'true',
 		'loop', 'true',
-		'scale', 'noscale',
+		'scale', 'showall',
 		'wmode', 'window',
 		'devicefont', 'false',
 		'id', 'justTheIdeaLoader',
