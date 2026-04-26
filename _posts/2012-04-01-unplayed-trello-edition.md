@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Unplayed, Trello Edition!'
 oneliner: Does anyone actually enjoy server management?
 projecturl: https://trello.com/board/unplayed/4f28b9b689c9bdd93629f09d

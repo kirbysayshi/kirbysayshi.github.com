@@ -1,8 +1,6 @@
 ---
-layout: post
 title: The SPACEBIRD Log
-oneliner: Roleplay yourself into a motivated self 
-type: post
+oneliner: Roleplay yourself into a motivated self
 categories:
   - Blabbering Musings
   - Tools

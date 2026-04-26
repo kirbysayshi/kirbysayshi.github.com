@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  # id-token: verifies the deployment originates from a github server running a
+  # github workflow from a specific branch for a specific github environment.
+  # See
+  # https://github.com/actions/deploy-pages/issues/329#issuecomment-2030446649
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          submodules: true
+      - uses: ./.github/actions/generate
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: build/client
+      - uses: actions/deploy-pages@v5.0.0
+        id: deploy

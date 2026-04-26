@@ -1,0 +1,17 @@
+name: Generate
+description: Generate the static site
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v6.4.0
+      with:
+        node-version: 24
+    - uses: pnpm/action-setup@v5.0.0
+      with:
+        cache: true
+    - run: pnpm install
+      shell: bash
+    - run: pnpm lint
+      shell: bash
+    - run: pnpm build
+      shell: bash

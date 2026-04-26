@@ -1,8 +1,6 @@
 ---
-layout: post
 title: I want to use HTML/CSS for print layout
 oneliner: It was not fine.
-type: post
 categories:
   - JavaScript
   - Future Hopes

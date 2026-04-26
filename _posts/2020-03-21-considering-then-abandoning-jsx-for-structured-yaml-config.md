@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Considering, Then Abandoning JSX for Strongly-Typed YAML Configuration
 oneliner: Ah! A wild string template full of logic appeared! RUN
-type: post
 categories:
   - TypeScript
 tags:
@@ -38,17 +36,16 @@ It's easy to accidentally make something a literal string instead of a list:
 
 ```yaml
 A list:
+  # this is an structured item with two sub items
+  - Named1:
+      - Has another
+      - and another
 
- # this is an structured item with two sub items
- - Named1:
-   - Has another
-   - and another
-
- # this is a single item as a literal string
- # "Named2 - Has another - and another"
- - Named2
-  - Has another
-  - and another
+  # this is a single item as a literal string
+  # "Named2 - Has another - and another"
+  - Named2
+    - Has another
+    - and another
 ```
 
 And finally, it's tough to know what's truly valid according to an arbitrary schema. Take a snippet from a typical [.travis.yml](https://github.com/spotify/NFPlayerJS/blob/master/.travis.yml):
@@ -56,10 +53,10 @@ And finally, it's tough to know what's truly valid according to an arbitrary sch
 ```yaml
 language: node_js
 before_install:
-- npm i -g npm@6.8
+  - npm i -g npm@6.8
 cache: npm
 node_js:
-- '10'
+  - '10'
 ```
 
 How is the author supposed to know which keys are valid (e.g. that `language` is a valid key)? And what about the values? Which are lists, which are properties? Which are exclusive, or which depend on other keys and values being present?
@@ -76,7 +73,6 @@ I've seen these issues worked around using several methods:
 
 Since we're in DevOps land, have you ever seen someone do this:
 
-{% raw  %}
 ```yaml
 # dashboards.yml
 Dashboards:
@@ -87,17 +83,16 @@ Dashboards:
     query: SELECT {{ board.metric }} as m1 FROM data.time_series WHERE timestamp > {{ page.timestamp }}
 {% endfor %}
 ```
-{% endraw  %}
 
 And then consumed like this:
 
 ```yaml
 template: dashboards.yml
-Dashboards: 
-- name: Response Times
-  metric: response_time_ms
-- name: Request Rates
-  metric: request_rate_ms
+Dashboards:
+  - name: Response Times
+    metric: response_time_ms
+  - name: Request Rates
+    metric: request_rate_ms
 ```
 
 Effectively, templated YAML.
@@ -187,7 +182,11 @@ export function Dashboard({ name, metric, unit = 'ms', timestamp }: DashProps) {
 And the user would consume it like:
 
 ```tsx
-import { Page, Dashboard, Dashboards } from 'shared-templates';
+import {
+  Page,
+  Dashboard,
+  Dashboards,
+} from 'shared-templates';
 
 // Convention would be that the default export is the primary entrypoint
 // so the "renderer" doesn't need to know the name of this root component.
@@ -206,7 +205,7 @@ export default function (props: Page) {
         timestamp={props.page.timestamp}
       />
     </Dashboards>
-  )
+  );
 }
 ```
 
@@ -225,7 +224,7 @@ Something like this is impossible to enforce as incorrect behavior:
 
 ```tsx
 <Dashboards>
-  <Dashboard name="Response Times"/>
+  <Dashboard name="Response Times" />
   <Dashboard name="Request Rates" />
   {/* This "div" should be an error but will be allowed! */}
   <div />
@@ -251,11 +250,11 @@ const React = {
   ) => {
     const element = {
       cmp,
-      props: props ? { ...props, children } : { children }
+      props: props ? { ...props, children } : { children },
     };
     console.log(element);
     return element;
-  }
+  },
 };
 
 function D() {
@@ -273,19 +272,22 @@ D();
 
 ```tsx
 function D() {
-  return React.createElement("div", null,
-    React.createElement("p", null, "Hello"));
+  return React.createElement(
+    'div',
+    null,
+    React.createElement('p', null, 'Hello'),
+  );
 }
 ```
 
 And the output:
 
 ```
-{ "cmp": "p", "props": { "children": [ "Hello" ] } } 
-{ "cmp": "div", "props": { "children": [ { "cmp": "p", "props": { "children": [ "Hello" ] } } ] } } 
+{ "cmp": "p", "props": { "children": [ "Hello" ] } }
+{ "cmp": "div", "props": { "children": [ { "cmp": "p", "props": { "children": [ "Hello" ] } } ] } }
 ```
 
-I've purposefully left the types in the above examples as "open" (using `any`) as possible. Once you try to narrow them, they [get  complex and nearly circular](https://www.typescriptlang.org/play?#code/C4TwDgpgBAygwgUQDYQLYQHbADwCgpQAKUEAHsJgCYDOUA3lAMYAWAlkpQE6YBcsiKdFgDaAXSgBfKAF56TNh24Y+8ZGkzAxkgDT4ocEuSq0AFGE4B7MNT6EAlDIB8-NUOAyoZy9dsPpz1UENXGdZOj1GVDA+OABuPXMrGyJ4iXjcADMAVwxGYFYLDCZuAEMKVw08AmIyCgwaORZ2Ll4XIJFxCV0CA1rjT0SfIj8AgXUsEJNI6P1tKEHk4gAfKAwspCQ5gDodpsVWwPHNUTsVMbdsQjm4Z3CCRkLqdwWAdVZgZjgFFqLZLyS9AQAPxyHZbBZzPY-SSAqB8BhQpSSBwlWiEdL3R7uCDtdxhWHTboEebeZKvd6fb5KPRpCKPCwoLZICwAcxMOKOdniBG4wCynCKHLcqVwuAeGCeUAAShASnkPHdirLyrjcLTMjk8gUigAREwORW8-lFEyw7CUVgAN0csII2DAjgAEjjmdgAPQOs1ui3WvRctWivX+oA).
+I've purposefully left the types in the above examples as "open" (using `any`) as possible. Once you try to narrow them, they [get complex and nearly circular](https://www.typescriptlang.org/play?#code/C4TwDgpgBAygwgUQDYQLYQHbADwCgpQAKUEAHsJgCYDOUA3lAMYAWAlkpQE6YBcsiKdFgDaAXSgBfKAF56TNh24Y+8ZGkzAxkgDT4ocEuSq0AFGE4B7MNT6EAlDIB8-NUOAyoZy9dsPpz1UENXGdZOj1GVDA+OABuPXMrGyJ4iXjcADMAVwxGYFYLDCZuAEMKVw08AmIyCgwaORZ2Ll4XIJFxCV0CA1rjT0SfIj8AgXUsEJNI6P1tKEHk4gAfKAwspCQ5gDodpsVWwPHNUTsVMbdsQjm4Z3CCRkLqdwWAdVZgZjgFFqLZLyS9AQAPxyHZbBZzPY-SSAqB8BhQpSSBwlWiEdL3R7uCDtdxhWHTboEebeZKvd6fb5KPRpCKPCwoLZICwAcxMOKOdniBG4wCynCKHLcqVwuAeGCeUAAShASnkPHdirLyrjcLTMjk8gUigAREwORW8-lFEyw7CUVgAN0csII2DAjgAEjjmdgAPQOs1ui3WvRctWivX+oA).
 
 The important summary:
 
@@ -297,7 +299,7 @@ We can either try to hew close to JSX's transpiled output, or go with something 
 
 ```tsx
 <Dashboards>
-  <Dashboard name="Response Times"/>
+  <Dashboard name="Response Times" />
   <Dashboard name="Request Rates" />
 </Dashboards>
 ```
@@ -310,7 +312,7 @@ Dashboards(
   // "children" become varargs
   Dashboard({ name: 'Response Times' }),
   Dashboard({ name: 'Request Rates' }),
-)
+);
 ```
 
 Straight functions with 1:1 between props & children:
@@ -320,18 +322,19 @@ Dashboards({
   children: [
     Dashboard({ name: 'Response Times' }),
     Dashboard({ name: 'Request Rates' }),
-  ]
-})
+  ],
+});
 ```
 
 Arrays / s-expression-like:
 
 ```tsx
-[Dashboards,
+[
+  Dashboards,
   null,
   [Dashboard, { name: 'Response Times' }],
   [Dashboard, { name: 'Request Rates' }],
-]
+];
 ```
 
 And there's the s-expression + varargs version too that I'll skip for now.
@@ -395,11 +398,11 @@ function Bench(props: {
     ReturnType<typeof Pokemon>?,
     ReturnType<typeof Pokemon>?,
     ReturnType<typeof Pokemon>?,
-    ReturnType<typeof Pokemon>?
+    ReturnType<typeof Pokemon>?,
   ];
 }) {
   return {
-    bench: props.pokemon
+    bench: props.pokemon,
   };
 }
 ```
@@ -418,13 +421,11 @@ export default function render() {
   return Bench({
     pokemon: [
       Pokemon({
-        name: "Squirtle",
+        name: 'Squirtle',
         level: 45,
-        moves: [
-          Move({ name: "Bubble Beam" }),
-        ]
-      })
-    ]
+        moves: [Move({ name: 'Bubble Beam' })],
+      }),
+    ],
   });
 }
 ```
@@ -433,22 +434,26 @@ Note that the `Move` component does not specify the `power` value, since that is
 
 ```tsx
 function Move(props: {
-  name: "Bubble Beam" | "Water Gun" | "Flamethrower" | "Ember";
+  name:
+    | 'Bubble Beam'
+    | 'Water Gun'
+    | 'Flamethrower'
+    | 'Ember';
 }) {
   switch (props.name) {
-    case "Bubble Beam": {
+    case 'Bubble Beam': {
       return { ...props, power: 45 };
     }
 
-    case "Ember": {
+    case 'Ember': {
       return { ...props, power: 40 };
     }
 
-    case "Flamethrower": {
+    case 'Flamethrower': {
       return { ...props, power: 90 };
     }
 
-    case "Water Gun": {
+    case 'Water Gun': {
       return { ...props, power: 40 };
     }
 
@@ -469,20 +474,20 @@ export default function render() {
   return Bench({
     pokemon: [
       Pokemon({
-        name: "Squirtle",
+        name: 'Squirtle',
         level: 45,
         moves: [
-          Move({ name: "Bubble Beam" }),
+          Move({ name: 'Bubble Beam' }),
           // Type '"Charizard"' is not assignable to type
           // '"Bubble Beam" | "Water Gun" | "Flamethrower" | "Ember"'.ts(2322)
           Pokemon({
-            name: "Charizard",
+            name: 'Charizard',
             level: 55,
-            moves: [Move({ name: "Flamethrower" })]
-          })
-        ]
-      })
-    ]
+            moves: [Move({ name: 'Flamethrower' })],
+          }),
+        ],
+      }),
+    ],
   });
 }
 ```
@@ -496,29 +501,30 @@ export default function render() {
   return Bench({
     pokemon: [
       Pokemon({
-        name: "Squirtle",
+        name: 'Squirtle',
         level: 27,
         moves: [
-          Move({ name: "Bubble Beam" }),
-          Move({ name: "Water Gun" }),
-        ]
+          Move({ name: 'Bubble Beam' }),
+          Move({ name: 'Water Gun' }),
+        ],
       }),
       Pokemon({
-        name: "Charizard",
+        name: 'Charizard',
         level: 54,
         moves: [
-          Move({ name: "Flamethrower" }),
-          Move({ name: "Ember" }),
-        ]
-      })
-    ]
+          Move({ name: 'Flamethrower' }),
+          Move({ name: 'Ember' }),
+        ],
+      }),
+    ],
   });
 }
 
 import yaml from 'js-yaml';
-const rendered = yaml.safeDump(render())
-const expected = '' +
-`bench:
+const rendered = yaml.safeDump(render());
+const expected =
+  '' +
+  `bench:
   - name: Squirtle
     level: 27
     moves:
@@ -533,11 +539,11 @@ const expected = '' +
         power: 90
       - name: Ember
         power: 40
-`
+`;
 
 console.log(rendered === expected); // true!
-console.log(rendered)
-console.log(expected)
+console.log(rendered);
+console.log(expected);
 ```
 
 ### More Easily-Read Errors
@@ -553,21 +559,23 @@ You can strongly-type, compile-time validate, and add logic to YAML (or any data
 Back to our original example, converted to this paradigm:
 
 ```ts
-function Dashboards(props: { dashboards: ReturnType<typeof Dashboard>[] }) {
+function Dashboards(props: {
+  dashboards: ReturnType<typeof Dashboard>[];
+}) {
   return { Dashboards: props.dashboards };
 }
 
 function Dashboard(props: {
   name: string;
-  metric: "response_time_ms" | "request_rate_ms";
+  metric: 'response_time_ms' | 'request_rate_ms';
   timestamp: number;
   unit?: string;
 }) {
-  const unit = props.unit || "ms";
+  const unit = props.unit || 'ms';
   return {
     ...props,
     unit,
-    query: `SELECT ${props.metric} as m1 FROM data.time_series WHERE timestamp > ${props.timestamp}`
+    query: `SELECT ${props.metric} as m1 FROM data.time_series WHERE timestamp > ${props.timestamp}`,
   };
 }
 
@@ -575,17 +583,23 @@ function render({ timestamp }: { timestamp: number }) {
   return Dashboards({
     dashboards: [
       Dashboard({
-        name: "Response Times",
-        metric: "response_time_ms",
-        timestamp
+        name: 'Response Times',
+        metric: 'response_time_ms',
+        timestamp,
       }),
-      Dashboard({ name: "Request Rates", metric: "request_rate_ms", timestamp })
-    ]
+      Dashboard({
+        name: 'Request Rates',
+        metric: 'request_rate_ms',
+        timestamp,
+      }),
+    ],
   });
 }
 
-import yaml from "js-yaml";
-const rendered = yaml.safeDump(render({ timestamp: Date.now() }));
+import yaml from 'js-yaml';
+const rendered = yaml.safeDump(
+  render({ timestamp: Date.now() }),
+);
 
 console.log(rendered);
 ```
@@ -612,6 +626,6 @@ Dashboards:
 
 And, it was completely type safe, using the built-in capabilities and paradigms of TypeScript, with excellent authoring experience, and we could even write unit tests if we wanted.
 
-Thanks for making it this far on this extremely long post! If you have better ideas, or just thoughts in general, please let me know. This post took weeks of on and off thinking and tinkering, as I learned about the limitations of JSX via TS and how the React typings work. I am also [not the first to consider the shortcomings of YAML at scale](https://github.com/dvdsgl/ts-yaml). 
+Thanks for making it this far on this extremely long post! If you have better ideas, or just thoughts in general, please let me know. This post took weeks of on and off thinking and tinkering, as I learned about the limitations of JSX via TS and how the React typings work. I am also [not the first to consider the shortcomings of YAML at scale](https://github.com/dvdsgl/ts-yaml).
 
 > Special thanks to Jose Falcon for providing feedback on this post.

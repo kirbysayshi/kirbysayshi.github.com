@@ -1,0 +1,330 @@
+/*! normalize.css 2012-03-06T10:21 UTC - https://github.com/necolas/normalize.css */
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}
+audio,canvas,video{display:inline;zoom:1;}
+audio:not([controls]){display:none;height:0;}
+[hidden]{display:none;}
+html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+html,button,input,select,textarea{font-family:sans-serif;}
+a:focus{outline:thin dotted;}
+a:hover,a:active{outline:0;}
+h1{font-size:2em;margin:.67em 0;}
+h2{font-size:1.5em;margin:.83em 0;}
+h3{font-size:1.17em;margin:1em 0;}
+h4{font-size:1em;margin:1.33em 0;}
+h5{font-size:.83em;margin:1.67em 0;}
+h6{font-size:.75em;margin:2.33em 0;}
+abbr[title]{border-bottom:1px dotted;}
+b,strong{font-weight:bold;}
+blockquote{margin:1em 40px;}
+dfn{font-style:italic;}
+mark{background:#ff0;color:#000;}
+pre,code,kbd,samp{font-family:monospace, serif;_font-family:'courier new', monospace;font-size:1em;}
+pre{white-space:pre-wrap;word-wrap:break-word;}
+q{quotes:none;}
+q:before,q:after{content:none;}
+small{font-size:75%;}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
+sup{top:-.5em;}
+sub{bottom:-.25em;}
+dd{margin:0 0 0 40px;}
+menu,ol,ul{padding:0 0 0 40px;}
+nav ul,nav ol{list-style:none;list-style-image:none;}
+img{border:0;-ms-interpolation-mode:bicubic;}
+svg:not(:root){overflow:hidden;}
+fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em;}
+legend{border:0;white-space:normal;margin-left:-7px;padding:0;}
+button,input,select,textarea{font-size:100%;vertical-align:middle;margin:0;}
+button,input{line-height:normal;}
+button,input[type="button"],input[type="reset"],input[type="submit"]{cursor:pointer;-webkit-appearance:button;overflow:visible;}
+button[disabled],input[disabled]{cursor:default;}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;height:13px;width:13px;padding:0;}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+textarea{overflow:auto;vertical-align:top;}
+table{border-collapse:collapse;border-spacing:0;}
+body,figure,form{margin:0;}
+p,pre,dl,menu,ol,ul{margin:1em 0;}
+
+/* micro-clearfix: https://nicolasgallagher.com/micro-clearfix-hack/ */
+/* For modern browsers */
+.cf:before,
+.cf:after { content:""; display:table; }
+.cf:after { clear:both; }
+/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom:1; }
+
+
+
+/*////////////////////////////////////////////////////////////////////////////
+// GRIDPAK */
+
+/*!
+ * Gridpak Beta CSS
+ *
+ * Generator - https://gridpak.com/
+ * Created by @erskinedesign
+ */
+ 
+/* Reusable column setup */
+.col {
+	border:0px solid rgba(0,0,0,0);
+	float:left;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	-moz-background-clip:padding-box !important;
+	-webkit-background-clip:padding-box !important;
+	background-clip:padding-box !important;
+}
+
+/* Reuseable Row setup (basically clearfix) */
+.row:before,
+.row:after { content:""; display:table; }
+.row:after { clear:both; }
+/* For IE 6/7 (trigger hasLayout) */
+.row { zoom:1; }
+
+/* 1. 6 Column Grid 0px - 579px 
+----------------------------------------------------------------------------- 
+
+Span 1:    14.375%
+Span 2:    31.5%
+Span 3:    48.625%
+Span 4:    65.75%
+Span 5:    82.875%
+Span 6:    100%
+
+----------------------------------------------------------------------------- */
+
+/*@media screen and (min-width: 0px) and (max-width: 579px) {*/
+@media screen and (min-width: 0px) {
+	
+	.col { margin-left:2.75%; padding:0 2.75%; }
+	.row .col:first-child {	margin-left:0; }
+	
+	/*
+	Add your semantic classnames in alongside their corresponding spans here. e.g.
+	
+	.span_3,
+	.my_semantic_class_name {
+		...
+	}
+	*/
+	
+	.span_1 { width:14.375%; }
+	.span_2 { width:31.5%; }
+	.span_3 { width:48.625%; }
+	.span_4 { width:65.75%;	}
+	.span_5 { width:82.875%; }
+	.span_6 { margin-left:0; width:100%; }
+}
+
+/* GRIDPAK 
+////////////////////////////////////////////////////////////////////////////*/
+
+/*
+colors:
+	pink: #F9D0D0;
+	strawberry: #C46568;
+	dark grey: #939598 or #A7A9AC; // need to decide
+	very light grey: #F6F6F6;
+
+
+*/
+
+/*/////// LAYOUT */
+body {
+	background-color: #F6F6F6;
+	color: #4D4D4D;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 12pt;
+}
+
+#header-container header,
+#content-container article,
+#footer-container footer { 
+	max-width: 580px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/*** master head */
+#header-container {
+	background-color: #FFFFFF;
+	border-bottom: 16pt #F9D0D0 solid;
+}
+
+#ascii-kirby {
+	display: block;
+	width: 75%;
+}
+
+#header-container header a { display: block; }
+#header-container header h1 { 
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	font-size: 100pt;
+	line-height: 76pt;
+	color: #F9D0D0;
+}
+
+@media screen and (min-width: 0px) and (max-width: 560px) {
+	#header-container header h1 { display: none; }
+	#header-container header #ascii-kirby { width: 100%; }
+}
+
+#social-contacts-header { margin-bottom: 1em; }
+
+#social-contacts-header h2 {
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+	font-size: 14pt;
+	line-height: 14pt;
+}
+
+#social-contacts-header .social-icons { text-align: right; }
+
+#footer-container { margin-top: 13.75%; margin-bottom: 8.25%; }
+
+#footer-container .bio-short { /*margin-left: 0;*/ margin-bottom: 1em; }
+#footer-container .bio-short p:first-child { margin-top: 0; }
+#footer-container .bio-short .contact-list { padding-left: 9.75%; list-style-type: none; }
+
+/*** Shared */
+.lined-block { /*margin-bottom: 1.4em;*/ border-left: 1.5pt #F9D0D0 solid; }
+.subheading { color: #939598; }
+
+.exploded-url { display: block; display: flex; width: 100%; }
+.exploded-url .exploded-url-part, .exploded-url .exploded-url-value { display: inline-block; }
+.exploded-url .exploded-url-part { width: 40%; flex: 1; }
+.exploded-url .exploded-url-value { width: 55%; flex: 1; }
+
+div.highlight { overflow-x: auto; }
+.highlight { /*padding: 2.75% 0;*/ background-color: #F6F6F6; }
+.highlight pre { margin: 0; white-space: pre; }
+.highlight .lineno:after { content: '|'; }
+
+/*** Long Form Post */
+.post {}
+.post header h1 { margin-top: 2.75%; margin-bottom: 0; font-size: 30pt; line-height: 34pt; }
+.post header .post-icon { margin-top: 2.75%; padding-left: 0; }
+.post header .post-icon a { display: block; border-radius: 5px; padding: 5px; background-color: #C46568; }
+.post header .post-icon img { display: block; width: 100%; }
+.post header .title-wrap { margin-bottom: 2.75%; padding-bottom: 2.75%; }
+.post header .post-meta { font-size: 11pt; }
+.post aside { float: right; padding-right: 0; border-left: 1.5pt #F9D0D0 solid; font-size: 18pt; line-height: 145%; }
+.post .row aside:first-child { margin-left: 2.75%; margin-bottom: 2.75%; padding-top: 2.75%; padding-bottom: 2.75%; }
+.post aside .project-url { display: block; position: relative; margin-top: 5.5%; font-size: 11pt; line-height: 14pt; }
+.post aside .project-url:before { content: "<"; font-size: 10em; position: absolute; right: -0.5em; top: 50%; transform: translateY(-50%); }
+.post .post-content, .post .lined-block { width: 100%; }
+.post .post-content { margin-bottom: 2.75%; }
+.post .hn-prompt { margin-top: 0; padding-top: 5.5%; padding-bottom: 2.75%; }
+.post ul { padding: 0 2.75%; font-size: 1em; list-style: none; }
+.post ul li { margin: 0.2em 0 0.2em 0.8em; }
+.post ul > li:before { margin-left: -0.8em; content: '– '; color: #C46568; }
+.post ul ul { padding-left: 1em; margin: 0.4em 0 0.8em 0; }
+.post ul ul > li:before { content: '· '; color: #939598 }
+.post .twt-actions li:before { content: ''; margin-left: 0; }*/
+
+.post blockquote { margin: 2.75% 0 2.75% 2.75%; font-family: 'Open Sans Condensed',sans-serif; }
+
+/* These are both generated syntax highlighting and hand-written "figures", apparently */
+.post figure, .post [data-role=figure] { margin-bottom: 2.75%; }
+/* We only want to center the content within hand-written "figures" */
+.post [data-role=figure] { text-align: center; }
+.post figcaption, .post [data-role=figcaption] { display: block; font-size: 0.8em; }
+
+.footnotes { font-size: 0.7em; }
+.footnotes hr { opacity: 0.1; }
+.footnotes ol p { display: inline; }
+
+/*** Lists */
+ul { margin: 0; padding: 0; }
+li {}
+.post-list { list-style-type: none; }
+.post-list h3 { margin: 0; font-size: 14pt; }
+.post-list time { /*padding-right: 0;*/ font-size: 14pt; text-align: right; }
+.post-list .post-tags, .post-list .post-category { font-size: 9pt; }
+.post-list .post-category { text-align: right; }
+.post-list .post-summary { 
+	margin-bottom: 0em;
+	/*margin-left: 2.75%;*/
+	padding-bottom: 1em;
+	/*border-bottom: 1.5pt #F0D0D0 solid; */
+}
+.post-list .post-summary .col:first-child {  }
+
+/*/////// TYPOGRAPHY */
+h1,h2,h3,h4,h5,h6,a,time,aside,figcaption,[data-role=figcaption],
+.post header .post-meta, .post-summary .post-tags {
+	font-family: 'Open Sans Condensed', sans-serif;
+	vertical-align: baseline;
+}
+
+/*h1 { font-size: 44pt; }*/
+/*h2 { font-size: 32pt; }*/
+/*h3 { font-size: 20pt; }*/
+/*h4 { font-size: 14pt; }*/
+/*h5 { font-size: 14pt; }*/
+/*h6 { font-size: 11pt; }*/
+
+h1 { font-size: 14pt; }
+h2 { font-size: 14pt; }
+h3 { font-size: 14pt; }
+h4 { font-size: 14pt; }
+h5 { font-size: 14pt; }
+h6 { font-size: 11pt; }
+
+h1, h2, h3, h4, h5, h6, time, aside, figcaption, [data-role=figcaption],
+.post header .post-meta, .post-summary .post-tags, .post-summary .post-category, .post blockquote {
+	color: #939598; /* or: #A7A9AC; */
+}
+
+a, a > time { color: #C46568; text-decoration: none; }
+a:hover {  }
+
+p { line-height: 135%; }
+pre { line-height: 100%; }
+code { font-size: 0.8em; }
+
+/* DISQUS */
+#load-disqus {
+	border: 0;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	height: 5em;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: #C46568;
+}
+#disqus_thread {
+	padding-left: 2.75%;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+} 
+
+/* Gist Embed Overrides */
+.gist .gist-file .gist-data { font-size: 75% !important; }
+
+/* Embedded iFrames (youtube) */
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* The height of the item will be X% of the width. */
+}
+
+.aspect-ratio iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+

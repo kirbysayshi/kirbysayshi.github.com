@@ -1,14 +1,12 @@
 ---
-layout: post
 title: The Google Evil Meter
 oneliner: "Powered by Twitter: Want to know when Google's going to channel Skynet? Keep track with the Google Evil Meter!"
-type: project
 categories:
   - web
 projecturl: https://johnnytatlock.com/gem
 image:
   - src: /images/icons/gem.png
-  - alt: The Google Evil Meter logo.
+    alt: The Google Evil Meter logo.
 tags:
   - Skynet
   - Twitter
@@ -23,7 +21,7 @@ wool over our heads with innovation![1]
 
 The Google Evil Meter is a fun and silly, yet slightly meaningful,
 experiment in Twitter data mining and HTML5. Every 15 minutes or so, the
-GEM trawls the Twitter search API with a few *secret* terms (if the GEM
+GEM trawls the Twitter search API with a few _secret_ terms (if the GEM
 were a hamburger, this would be the secret sauce!) and then stores all
 the tweets it finds in a database. During the trawling, it also flags
 each tweet as either **good** or **evil**. Based on these tweets, we get

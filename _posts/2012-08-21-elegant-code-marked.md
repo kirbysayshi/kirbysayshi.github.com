@@ -1,9 +1,7 @@
 ---
-layout: post
-title: "Elegant Code To Notice: marked"
-oneliner: 
-type: project
-projecturl: https://github.com/chjj/marked 
+title: 'Elegant Code To Notice: marked'
+oneliner:
+projecturl: https://github.com/chjj/marked
 categories:
   - JavaScript
   - Elegant Code
@@ -45,25 +43,28 @@ I think it's very interesting to study how code evolves over time.
 
 As an experiment, I applied that replace function to the regex I wrote for [MiniVash][]. For a one-shot use like this, breaking the regex up is not worth the size increase. However the comprehension and readability improve immensely:
 
-{% highlight js %}
+```js
 var re = {};
 
-re.identifier = /[a-zA-Z]+?[a-zA-Z0-9]/
-re.inExp = /[a-zA-Z0-9'".()=?:]/
-re.pAccess = /(?:[.]+(?!\s|$|"|'|\?))/
+re.identifier = /[a-zA-Z]+?[a-zA-Z0-9]/;
+re.inExp = /[a-zA-Z0-9'".()=?:]/;
+re.pAccess = /(?:[.]+(?!\s|$|"|'|\?))/;
 
-re.exp = /(?:identifier*(?:pAccess|(?:\[inExp+\])|(?:\(inExp*\)))*)/
-re.keyword = /do|for|function|(?:exp+\(\s*function)|if|switch|try|while|with/
+re.exp =
+  /(?:identifier*(?:pAccess|(?:\[inExp+\])|(?:\(inExp*\)))*)/;
+re.keyword =
+  /do|for|function|(?:exp+\(\s*function)|if|switch|try|while|with/;
 
-re.combined = /(@(?!keyword)(?:exp+))|(@\(?:.*?\)@)/
-re.combined = replace( re.combined, 'g' )
-	(/keyword/g, re.keyword)
-	(/exp/g, re.exp)
-	(/identifier/g, re.identifier)
-	(/pAccess/g, re.pAccess)
-	(/inExp/g, re.inExp)
-	();
-{% endhighlight %}
+re.combined = /(@(?!keyword)(?:exp+))|(@\(?:.*?\)@)/;
+// prettier-ignore
+re.combined = replace(re.combined, 'g')
+  (/keyword/g, re.keyword)
+  (/exp/g, re.exp)
+  (/identifier/g, re.identifier)
+  (/pAccess/g, re.pAccess)
+  (/inExp/g, re.inExp)
+  ();
+```
 
 [MiniVash]: https://kirbysayshi.com/2012/08/20/my-longest-regex-minivash.html
 [marked]: https://github.com/chjj/marked

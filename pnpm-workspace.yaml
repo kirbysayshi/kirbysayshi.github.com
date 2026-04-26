@@ -1,0 +1,4 @@
+savePrefix: ''
+
+packages:
+  - 'vendor/*'

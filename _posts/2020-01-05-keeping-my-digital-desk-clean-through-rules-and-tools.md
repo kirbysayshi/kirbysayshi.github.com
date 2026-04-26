@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Keeping My Digital Desk Clean Through Rules and Tools
 oneliner: If you set rules, the tools decide for you.
-type: post
 projecturl: /stuff/archiver.sh
 categories:
   - Blabbering Musings
@@ -25,4 +23,3 @@ The [fragile bash script](/stuff/archiver.sh) looks at every file in every proje
 Initially I set a limit of 30 days. My list of ~300 projects went down to 2! Wait, am I that unproductive? I compromised and set a limit, for now, of 180 days (~half a year). Nine folders! Even seeing this simple data point, similar to [the considerations caused by rewriting your TODO list every week](https://bulletjournal.com/blogs/bulletjournalist/migration), was enlightening. Look, it's only a few incomplete things instead of hundreds!
 
 It's early days for this experiment, but I already feel better. The tools I use to creatively express myself are technological. And it's amazing that technology today provides nearly immediate access to all of the artifacts of that creativity. But sometimes I'd rather have creative output in a drawer, just out of thought, rather than on my shelves, constantly reminding me of their imperfections.
-

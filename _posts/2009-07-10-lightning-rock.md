@@ -1,14 +1,12 @@
 ---
-layout: post
 title: The Lightning That Rocked
 oneliner: A hand-drawn (Charcoal == Analog) animation about a rock, some lightning, and a squirrel.
-type: project
 projecturl: https://www.youtube.com/watch?v=jYF0U6XxHeo
 categories:
   - else
 image:
   - src: /images/icons/lr.png
-  - alt: The face of the creature, the star of Lightning Rock.
+    alt: The face of the creature, the star of Lightning Rock.
 tags:
   - Animation
   - iMovie

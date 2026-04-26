@@ -1,34 +1,15 @@
-Some stuff I've made.
+Some stuff I've made. Currently a static site rendered with React Router 7 (fmr Remix).
 
-Getting jekyll (https://jekyllrb.com/docs/installation/macos/):
-
-```
-# one time:
-brew install chruby ruby-install
-ruby-install ruby 3.4.1
-# assuming there is chruby active in the shell...
-
-chruby # prints available ruby versions
-chruby ruby-3.4.1 # changes version
-
-# install local dependencies
-bundle install
-# if that doesn't work due to out of date bundler/dependencies:
-bundle update --bundler
-
-# Note that I also had to:
-brew install libffi
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
-# in order to get ffi gem to install
+```sh
+pnpm install
+pnpm dev
+pnpm new-post "Initial Title Goes Here"
 ```
 
-```
-bundle exec jekyll serve
-```
+Pushing to main will trigger a build+deploy via github actions.
 
-Remember to regen the tags and categories with:
+Features:
 
-```
-node _buildscripts/generate-categories.js
-node _buildscripts/generate-tags.js
-```
+- markdown code snippets automatically formatted/wrapped to the narrow layout (oxfmt)
+- inter-post relative markdown links are automatically turned into site links
+- frontmatter is linted against a schema (eslint + vendored plugin + zod-generated schema)

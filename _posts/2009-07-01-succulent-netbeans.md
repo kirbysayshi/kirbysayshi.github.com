@@ -1,14 +1,12 @@
 ---
-layout: post
 title: Dark Theme for NetBeans
-type: project
 categories:
   - else
 projecturl: /stuff/succulent-netbeans.zip
 oneliner: I translated the Succulent/Sunburst theme (dark theme) that ships with Textmate to NetBeans for PHP/Javascript/HTML development.
 image:
   - src: /images/icons/netbeans-succulent.png
-  - alt: Example of syntax highlighting using my Succulent theme for NetBeans (PHP)
+    alt: Example of syntax highlighting using my Succulent theme for NetBeans (PHP)
 tags:
   - NetBeans
   - Textmate
@@ -52,15 +50,15 @@ On Mac OS X there is no merge functionality using the Finder (!). To get
 around this, use the following terminal command, modified appropriately
 (this assumes that you’re inside of the succulent-netbeans folder):
 
-{% highlight sh %}
+```sh
 #!/bin/bash
 cp ./config/* ~/.netbeans/6.7/config/
-{% endhighlight %}
+```
 
 I bet you can barely tell the two apart:
 
 |                                     |                                    |
-|-------------------------------------|------------------------------------|
+| ----------------------------------- | ---------------------------------- |
 | ![](/images/netbeans-succulent.png) | ![](/images/textmate-sunburst.png) |
 
 Ok, not really… but they’re close, right?

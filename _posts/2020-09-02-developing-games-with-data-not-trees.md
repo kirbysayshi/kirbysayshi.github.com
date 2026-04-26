@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Developing Games with Data not Trees
 oneliner: Focus on the data and functions instead of hierarchies!
-type: project
 projecturl: https://youtu.be/uNVP5jDOVAY
 categories:
   - Talks

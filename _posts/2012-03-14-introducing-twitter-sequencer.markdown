@@ -1,14 +1,12 @@
 ---
-layout: post
 title: Introducing Twitter Sequencer
 oneliner: And all vowels are intact!
-type: post
 projecturl: https://kirbysayshi.github.com/twitter-sequencer
 categories:
   - JavaScript
 image:
   - src: /images/icons/ts.png
-  - alt: Twitter-Sequencer
+    alt: Twitter-Sequencer
 tags:
   - JavaScript
   - Parse

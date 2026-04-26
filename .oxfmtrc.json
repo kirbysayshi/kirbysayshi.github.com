@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "printWidth": 80,
+  "overrides": [
+    {
+      // embedded code is easier to read when narrow to avoid horizontal
+      // scrolling!
+      "files": ["_posts/*.md", "_posts/*.markdown"],
+      "options": { "printWidth": 60 }
+    }
+  ],
+  "ignorePatterns": [
+    "build/**",
+    "node_modules/**",
+    "vendor/**",
+    "public/**",
+    ".react-router/**",
+    // Generated files, like the schema
+    "*.gen.*"
+  ]
+}
