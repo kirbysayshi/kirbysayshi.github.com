@@ -4,7 +4,7 @@ import { getAllPosts, slugify } from './app/lib/posts';
 
 export default {
   async prerender() {
-    const posts = await getAllPosts();
+    const posts = await getAllPosts(true);
     const tags = [...new Set(posts.flatMap((p) => p.tags))];
     const categories = [...new Set(posts.flatMap((p) => p.categories))];
 

@@ -4,19 +4,19 @@ import { PostList } from './home';
 
 export const handle = { classname: 'page-home' };
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const { slug } = params;
-  const posts = await getAllPosts();
+const posts = await getAllPosts();
+
+export function loader({ params }: Route.LoaderArgs) {
+  return { slug: params.slug };
+}
+
+export default function Category({ loaderData }: Route.ComponentProps) {
+  const { slug } = loaderData;
   const catPosts = posts.filter((p) =>
     p.categories.some((c) => slugify(c) === slug),
   );
   const catName =
     catPosts[0]?.categories.find((c) => slugify(c) === slug) ?? slug;
-  return { catPosts, catName };
-}
-
-export default function Category({ loaderData }: Route.ComponentProps) {
-  const { catPosts, catName } = loaderData;
   return (
     <>
       <title>Posts in {catName} — KSH</title>

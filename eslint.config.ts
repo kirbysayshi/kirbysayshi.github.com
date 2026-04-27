@@ -1,26 +1,21 @@
-import markdown from '@eslint/markdown';
-import type { ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
-import frontmatterSchema from 'eslint-plugin-markdown-frontmatter-schema';
+import * as mdx from 'eslint-plugin-mdx';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
 
-import postSchema from './app/lib/post-meta.schema.gen.json' with { type: 'json' };
-
-function ignoreMD(c: (typeof tseslint)['configs']['base']) {
+function ignoreMDX(c: (typeof tseslint)['configs']['base']) {
   return {
     ...c,
-    ignores: ['**/*.md', '**/*.markdown'],
+    ignores: ['**/*.mdx'],
   };
 }
 
 export default defineConfig([
-  ...tseslint.configs.strictTypeChecked.map((c) => ignoreMD(c)),
-  ...tseslint.configs.stylistic.map((c) => ignoreMD(c)),
+  ...tseslint.configs.strictTypeChecked.map((c) => ignoreMDX(c)),
+  ...tseslint.configs.stylistic.map((c) => ignoreMDX(c)),
   {
-    // no type information for markdown
-    ignores: ['**/*.md', '**/*.markdown'],
+    ignores: ['**/*.mdx'],
     languageOptions: {
       parserOptions: {
         projectService: true,
@@ -43,8 +38,6 @@ export default defineConfig([
         'error',
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
-      // I just find `type` more useful/versatile, `interface` is better for OOP
-      // or when you need interface merging.
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/only-throw-error': ['error', { allow: ['Response'] }],
     },
@@ -59,26 +52,8 @@ export default defineConfig([
       '.react-router/**',
     ],
   },
-
   {
-    files: ['**/*.md', '**/*.markdown'],
-
-    // See:
-    // - https://github.com/eslint/markdown/pull/648
-    // - https://github.com/eslint/json/issues/213
-    plugins: { markdown } as Record<string, ESLint.Plugin>,
-    language: 'markdown/commonmark',
-    languageOptions: { frontmatter: 'yaml' },
-  },
-
-  {
-    files: ['_posts/**/*.md', '_posts/**/*.markdown'],
-    plugins: { 'frontmatter-schema': frontmatterSchema },
-    rules: {
-      'frontmatter-schema/frontmatter-schema': [
-        'error',
-        { defaultSchema: postSchema },
-      ],
-    },
+    files: ['_posts/**/*.mdx', '**/*.mdx'],
+    ...mdx.flat,
   },
 ]);

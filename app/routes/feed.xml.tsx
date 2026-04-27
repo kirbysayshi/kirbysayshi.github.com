@@ -22,7 +22,7 @@ function buildRssXml(posts: Awaited<ReturnType<typeof getAllPosts>>): string {
     .map(
       (p) => `  <item>
     <title>${escape(p.title)}</title>
-    <description>${escape(p.contentHtml)}</description>
+    <description>${escape(p.oneliner ?? '')}</description>
     <link>https://kirbysayshi.github.com${p.url}</link>
   </item>`,
     )

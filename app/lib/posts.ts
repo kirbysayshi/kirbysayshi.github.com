@@ -1,69 +1,58 @@
-import rehypeShiki from '@shikijs/rehype';
-import fm from 'front-matter';
-import type { Element, Root } from 'hast';
-import rehypeRaw from 'rehype-raw';
-import rehypeStringify from 'rehype-stringify';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import { unified } from 'unified';
-import { visit } from 'unist-util-visit';
+import type { MDXContent, MDXModule } from 'mdx/types.js';
 
-import {
-  type PostFrontmatter,
-  postFrontmatterSchema,
-} from './post-meta.schema.js';
+import type { PostFrontmatter } from './post-meta.schema.js';
 
-type RenderedPost = {
+export type Post = {
   slug: string;
   url: string;
-
   date: string;
-
   title: PostFrontmatter['title'];
   categories: NonNullable<PostFrontmatter['categories']>;
   tags: NonNullable<PostFrontmatter['tags']>;
   oneliner: NonNullable<PostFrontmatter['oneliner']> | null;
   projecturl: NonNullable<PostFrontmatter['projecturl']>;
   image: NonNullable<PostFrontmatter['image']>;
-
-  contentHtml: string;
+  Cmp: MDXContent;
 };
 
-export async function getAllPosts(): Promise<RenderedPost[]> {
-  const posts: RenderedPost[] = [];
+type PostModule = { meta: PostFrontmatter; default: MDXContent };
 
-  const rawPosts = import.meta.glob<string>(['../../_posts/*.{md,markdown}'], {
-    query: '?raw',
-    import: 'default',
-    eager: true,
-  });
+function isPostModule(mod: MDXModule): mod is PostModule {
+  if ('meta' in mod) return true;
+  return false;
+}
 
-  const processor = buildProcessor();
+export async function getAllPosts(rr7cc = false): Promise<Post[]> {
+  const posts: Post[] = [];
 
-  for (const [filepath, contents] of Object.entries(rawPosts)) {
-    const { attributes: raw_attr, body } =
-      fm<Record<string, unknown>>(contents);
-    const attr = postFrontmatterSchema.parse(raw_attr);
+  // rr7cc: "react-router 7 config context" aka this is being called from
+  // react-router's internal vite instance used to evaluate the
+  // react-router.config.ts file, which _ignores_ vite.config.ts, thus ignoring
+  // our mdx plugin. Instead, do it ourselves since we need `meta`.
 
-    if (attr.published === false) continue;
-
-    const parsed = parsePostFilename(filepath);
-    if (parsed.error) throw parsed.error;
-
-    const contentHtml = String(await processor.process(body));
-
-    posts.unshift({
-      slug: parsed.slug,
-      url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
-      title: attr.title,
-      date: `${parsed.year}-${parsed.month}-${parsed.day}`,
-      categories: attr.categories ?? [],
-      tags: attr.tags ?? [],
-      oneliner: attr.oneliner ?? '',
-      projecturl: attr.projecturl ?? '',
-      image: attr.image ?? [],
-      contentHtml,
+  if (rr7cc) {
+    const rawPosts = import.meta.glob<string>('../../_posts/*.mdx', {
+      query: '?raw',
+      import: 'default',
     });
+    const mdxMod = await import('@mdx-js/mdx');
+    const jsxMod = await import('react/jsx-runtime');
+    for (const [filepath, load] of Object.entries(rawPosts)) {
+      const content = await load();
+      const mod = await mdxMod.evaluate(content, jsxMod);
+      if (!isPostModule(mod)) continue; // todo: warn?
+      const post = postFrom(filepath, mod);
+      if (!post) continue;
+      posts.unshift(post);
+    }
+  } else {
+    const postModules = import.meta.glob<PostModule>('../../_posts/*.mdx');
+    for (const [filepath, load] of Object.entries(postModules)) {
+      const mod = await load();
+      const post = postFrom(filepath, mod);
+      if (!post) continue;
+      posts.unshift(post);
+    }
   }
 
   // Probably not necessary, should already be in filesystem order.
@@ -71,9 +60,27 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
   return posts;
 }
 
-/**
- * Jekyll behavior: lowercase + spaces to hyphens
- */
+export function postFrom(filepath: string, mod: PostModule): Post | null {
+  if (mod.meta.published === false) return null;
+
+  const parsed = parsePostFilename(filepath);
+  if (parsed.error) throw parsed.error;
+
+  return {
+    slug: parsed.slug,
+    url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
+    title: mod.meta.title,
+    date: `${parsed.year}-${parsed.month}-${parsed.day}`,
+    categories: mod.meta.categories ?? [],
+    tags: mod.meta.tags ?? [],
+    oneliner: mod.meta.oneliner ?? '',
+    projecturl: mod.meta.projecturl ?? '',
+    image: mod.meta.image ?? [],
+    Cmp: mod.default,
+  };
+}
+
+/** Jekyll behavior: lowercase + spaces to hyphens */
 export function slugify(str?: string) {
   return str?.toLowerCase().replace(/\s+/g, '-') ?? '';
 }
@@ -82,17 +89,17 @@ type ParsedFilename =
   | { error: null; year: string; month: string; day: string; slug: string }
   | { error: Error };
 
-function parsePostFilename(name: string) {
+export function parsePostFilename(name: string): ParsedFilename {
   const match =
-    name.match(/\/?(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/) ?? [];
+    name.match(/\/?(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown|mdx)$/) ?? [];
   const [, year, month, day, rawSlug] = match;
   const slug = slugify(rawSlug);
 
-  const out: ParsedFilename = {
+  const out = {
     year: year ?? '',
     month: month ?? '',
     day: day ?? '',
-    slug: slug,
+    slug,
     error: null as null | Error,
   };
 
@@ -103,32 +110,4 @@ function parsePostFilename(name: string) {
   }
 
   return out;
-}
-
-// Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
-// /YYYY/MM/DD/slug.html
-const rehypePostLinks = () => (tree: Root) => {
-  visit(tree, 'element', (node: Element) => {
-    if (node.tagName !== 'a') return;
-    const href = node.properties.href;
-    if (typeof href !== 'string') return;
-    // Absolute or has a protocol
-    if (href.startsWith('/') || /^[a-z][a-z+\-.]*:/i.test(href)) return;
-    const parsed = parsePostFilename(href);
-    if (parsed.error) throw parsed.error;
-    node.properties.href = `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`;
-  });
-};
-
-function buildProcessor() {
-  return unified()
-    .use(remarkParse)
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypePostLinks)
-    .use(rehypeShiki, {
-      theme: 'light-plus',
-      fallbackLanguage: 'text',
-    })
-    .use(rehypeStringify);
 }

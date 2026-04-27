@@ -4,16 +4,16 @@ import { PostList } from './home';
 
 export const handle = { classname: 'page-home' };
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const { slug } = params;
-  const posts = await getAllPosts();
-  const tagPosts = posts.filter((p) => p.tags.some((t) => slugify(t) === slug));
-  const tagName = tagPosts[0]?.tags.find((t) => slugify(t) === slug) ?? slug;
-  return { tagPosts, tagName };
+const posts = await getAllPosts();
+
+export function loader({ params }: Route.LoaderArgs) {
+  return { slug: params.slug };
 }
 
 export default function Tag({ loaderData }: Route.ComponentProps) {
-  const { tagPosts, tagName } = loaderData;
+  const { slug } = loaderData;
+  const tagPosts = posts.filter((p) => p.tags.some((t) => slugify(t) === slug));
+  const tagName = tagPosts[0]?.tags.find((t) => slugify(t) === slug) ?? slug;
   return (
     <>
       <title>Posts Tagged With {tagName} — KSH</title>

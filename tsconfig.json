@@ -3,7 +3,8 @@
     "**/*",
     "**/.server/**/*",
     "**/.client/**/*",
-    ".react-router/types/**/*"
+    ".react-router/types/**/*",
+    "_posts/*"
   ],
   "exclude": ["node_modules", "vendor"],
   "compilerOptions": {
@@ -24,5 +25,9 @@
     "skipLibCheck": true,
     "strict": true,
     "noUncheckedIndexedAccess": true
+  },
+  "mdx": {
+    // Enable strict type checking in MDX files.
+    "checkMdx": true
   }
 }

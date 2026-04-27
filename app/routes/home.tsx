@@ -3,13 +3,13 @@ import type { Route } from './+types/home';
 
 export const handle = { classname: 'page-home' };
 
-export async function loader() {
-  const posts = await getAllPosts();
-  return { posts };
+const posts = await getAllPosts();
+
+export function loader() {
+  return {};
 }
 
-export default function Home({ loaderData }: Route.ComponentProps) {
-  const { posts } = loaderData;
+export default function Home(_: Route.ComponentProps) {
   return (
     <>
       <title>Hi. — KSH</title>

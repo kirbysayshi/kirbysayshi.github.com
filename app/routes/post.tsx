@@ -1,20 +1,23 @@
 import { useMemo } from 'react';
 
+import { mdxComponents } from '../components/mdx-components';
 import { getAllPosts, slugify } from '../lib/posts';
 import type { Route } from './+types/post';
 
-export const handle = { classname: 'page-post' };
+const posts = await getAllPosts();
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const { slug } = params;
-  const posts = await getAllPosts();
-  const post = posts.find((p) => p.slug === slug);
+export function loader({ request }: Route.LoaderArgs) {
+  const url = new URL(request.url);
+  const post = posts.find((p) => p.url === url.pathname);
   if (!post) throw new Response('Not Found', { status: 404 });
-  return { post };
+  return { url: post.url };
 }
 
 export default function Post({ loaderData }: Route.ComponentProps) {
-  const { post } = loaderData;
+  const { url } = loaderData;
+  const post = posts.find((p) => p.url === url);
+
+  if (!post) throw new Error(`Unreachable: Post must exist ${url}`);
 
   // Super old, only a few old posts have this.
   const hasIcon = !!post.image[0]?.src;
@@ -91,7 +94,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
               )}
             </aside>
           )}
-          <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+          <post.Cmp components={mdxComponents} />
         </div>
       </div>
 

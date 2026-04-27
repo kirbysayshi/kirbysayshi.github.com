@@ -1,11 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import mdx from '@mdx-js/rollup';
 import { reactRouter } from '@react-router/dev/vite';
+import rehypeShiki from '@shikijs/rehype';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
+    {
+      enforce: 'pre',
+      ...mdx({
+        rehypePlugins: [[rehypeShiki, { theme: 'light-plus', fallbackLanguage: 'text' }]],
+      }),
+    },
     {
       // This is specifically to simulate ghpages' ability to default load
       // index.html, which happens for the old old flash files :)
