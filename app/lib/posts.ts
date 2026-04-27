@@ -1,6 +1,7 @@
 import rehypeShiki from '@shikijs/rehype';
 import fm from 'front-matter';
 import type { Element, Root } from 'hast';
+import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
@@ -111,9 +112,14 @@ const rehypePostLinks = () => (tree: Root) => {
   visit(tree, 'element', (node: Element) => {
     if (node.tagName !== 'a') return;
     const href = node.properties.href;
-    if (typeof href !== 'string') return;
-    // Absolute or has a protocol
-    if (href.startsWith('/') || /^[a-z][a-z+\-.]*:/i.test(href)) return;
+    if (
+      typeof href !== 'string' ||
+      // Absolute or has a protocol
+      href.startsWith('/') ||
+      /^[a-z][a-z+\-.]*:/i.test(href)
+    )
+      return;
+
     const parsed = parsePostFilename(href);
     if (parsed.error) throw parsed.error;
     node.properties.href = `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`;
@@ -126,6 +132,7 @@ function buildProcessor() {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypePostLinks)
+    .use(rehypeExternalLinks)
     .use(rehypeShiki, {
       theme: 'light-plus',
       fallbackLanguage: 'text',
