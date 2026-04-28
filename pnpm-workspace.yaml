@@ -1,4 +1,7 @@
-savePrefix: ''
 
 packages:
   - 'vendor/*'
+allowBuilds:
+  esbuild: true
+  unrs-resolver: false
+savePrefix: ''

@@ -1,5 +1,5 @@
 import rehypeShiki from '@shikijs/rehype';
-import type { Element, Root } from 'hast';
+import type { Element, Root as HastRoot } from 'hast';
 import type { Root as MdastRoot } from 'mdast';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
@@ -87,7 +87,7 @@ function parsePostFilename(name: string) {
 
 // Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
 // /YYYY/MM/DD/slug.html
-const rehypePostLinks = () => (tree: Root) => {
+const rehypePostLinks = () => (tree: HastRoot) => {
   visit(tree, 'element', (node: Element) => {
     if (node.tagName !== 'a') return;
     const href = node.properties.href;
