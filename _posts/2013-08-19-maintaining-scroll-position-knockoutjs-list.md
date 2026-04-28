@@ -19,7 +19,7 @@ Loading in new content is easy. The difficult part is that when adding content t
 
 Content starts like:
 
-```
+```text
 content top:     -----------
                   B
 viewport top:    ===========
@@ -30,7 +30,7 @@ viewport bottom: ===========
 
 And then a new item is added to the top (`A`):
 
-```
+```text
 content top:     -----------
                   A
 viewport top:    ===========
@@ -42,7 +42,7 @@ viewport bottom: ===========
 
 Instead of the user continuing to see `C` at the top of the viewport, `C` and `D` have been jarringly pushed down due to the way content typically flows. What we want to happen is:
 
-```
+```text
 content top:     -----------
                   A
                   B

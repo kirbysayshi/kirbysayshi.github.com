@@ -1,6 +1,6 @@
-import { default as FM } from 'front-matter';
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
+import { parse } from 'yaml';
 
 // Dump all categories and tags
 
@@ -11,11 +11,13 @@ for (const name of readdirSync('_posts')) {
   const full = join('_posts', name);
   if (name.endsWith('.md') || name.endsWith('.markdown')) {
     const content = readFileSync(full, { encoding: 'utf8' });
-    const fm = FM<{ categories: string[] | undefined; tags?: string[] }>(
-      content,
-    );
-    for (const cat of fm.attributes.categories ?? []) cats.add(cat);
-    for (const tag of fm.attributes.tags ?? []) tags.add(tag);
+    const parts = content.split('---');
+    const fm = parse(parts[1] ?? '') as {
+      categories?: string[];
+      tags?: string[];
+    };
+    for (const cat of fm.categories ?? []) cats.add(cat);
+    for (const tag of fm.tags ?? []) tags.add(tag);
   }
 }
 

@@ -17,7 +17,7 @@ tags:
 
 I use Google everyday, and many of its services are invaluable for my
 work. But we must be vigilant! We cannot allow Google to slowly pull the
-wool over our heads with innovation![1]
+wool over our heads with innovation![^1]
 
 The Google Evil Meter is a fun and silly, yet slightly meaningful,
 experiment in Twitter data mining and HTML5. Every 15 minutes or so, the
@@ -31,6 +31,7 @@ evil since May 30, 2009.
 If you’re wondering why nothing is showing up, click one of the
 **CHECK** toggle switches!
 
-[1] Ok, end the crazy, but keep in mind: Google has all (or at least
-much of) the information created by the human race. It’s only a matter
-of time before one if its data centers becomes sentient!
+[^1]:
+    Ok, end the crazy, but keep in mind: Google has all (or at least
+    much of) the information created by the human race. It’s only a matter
+    of time before one if its data centers becomes sentient!

@@ -14,7 +14,7 @@ One of the "films" I hosted was FLCL, which is actually a six episode experiment
 
 And of course I had to have a drink, so I modified something to make it a little more special. It's lived on only as a text file until now. Presenting, the "Spicy FLCL Manhattan", otherwise known as the "Medical Mechanica Manhattan".
 
-```
+```text
 Spicy FLCL Manhattan (2016-05-12)
 
 Modified from: http://www.saveur.com/article/recipes/massamanhattan?cmpid=pin

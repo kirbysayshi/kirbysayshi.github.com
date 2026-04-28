@@ -5,6 +5,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import remarkFrontmatter from 'remark-frontmatter';
+import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { type Plugin, unified } from 'unified';
@@ -93,9 +94,9 @@ const rehypePostLinks = () => (tree: HastRoot) => {
     const href = node.properties.href;
     if (
       typeof href !== 'string' ||
-      // Absolute or has a protocol
-      href.startsWith('/') ||
-      /^[a-z][a-z+\-.]*:/i.test(href)
+      href[0] === '/' ||
+      /^[a-z][a-z+\-.]*:/i.test(href) ||
+      href[0] === '#'
     )
       return;
 
@@ -121,6 +122,7 @@ function buildProcessor() {
     .use(remarkParse)
     .use(remarkFrontmatter)
     .use(remarkExtractFrontmatter)
+    .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypePostLinks)

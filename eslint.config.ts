@@ -1,12 +1,9 @@
 import markdown from '@eslint/markdown';
 import type { ESLint } from 'eslint';
 import { defineConfig } from 'eslint/config';
-import frontmatterSchema from 'eslint-plugin-markdown-frontmatter-schema';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 import tseslint from 'typescript-eslint';
-
-import postSchema from './app/lib/post-meta.schema.gen.json' with { type: 'json' };
 
 function ignoreMD(c: (typeof tseslint)['configs']['base']) {
   return {
@@ -67,18 +64,8 @@ export default defineConfig([
     // - https://github.com/eslint/markdown/pull/648
     // - https://github.com/eslint/json/issues/213
     plugins: { markdown } as Record<string, ESLint.Plugin>,
-    language: 'markdown/commonmark',
+    language: 'markdown/gfm',
     languageOptions: { frontmatter: 'yaml' },
-  },
-
-  {
-    files: ['_posts/**/*.md', '_posts/**/*.markdown'],
-    plugins: { 'frontmatter-schema': frontmatterSchema },
-    rules: {
-      'frontmatter-schema/frontmatter-schema': [
-        'error',
-        { defaultSchema: postSchema },
-      ],
-    },
+    extends: ['markdown/recommended'],
   },
 ]);

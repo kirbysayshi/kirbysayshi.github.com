@@ -93,7 +93,7 @@ Final goals for this testing environment:
 
 This is a simple project, and contains the following files:
 
-```
+```sh
 /index.js        # frp-parts, node-only
 /dom.js          # data binding, requires DOM
 /package.json    # typical, but will have build/test commands

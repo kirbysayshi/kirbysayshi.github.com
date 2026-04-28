@@ -71,7 +71,7 @@ var lastTime = Date.now() - 16.666666;
 
 It also handles accumulation of time between frames. In the real world, your deltas between frames will likely be dirty (16.666666ms target frame time, 33.333333ms physics timestep):
 
-```
+```text
 Delta   Total     What Does the Engine Say?
 10ms  :  10ms     not enough for physics update
 15ms  :  25ms     not enough for physics update
@@ -87,7 +87,7 @@ But there's still one more problem to solve. Won't the game look jittery if rend
 
 Let's pretend that your game is spending most of its time calculating physics. Separating out the physics updates from the rendering (60 fps) could result in physics being calculated every other frame:
 
-```
+```text
 Time (ms):       0    16    32    48   64    80    96    112
 Physics Ticks:   *          *          *           *
 Render Ticks:    *    *     *     *    *     *     *     *
@@ -95,7 +95,7 @@ Render Ticks:    *    *     *     *    *     *     *     *
 
 Or even something crazy, like every few frames (every 100 milliseconds):
 
-```
+```text
 Time (ms):       0    16    32    48   64    80    96    112
 Physics Ticks:   *                                       *
 Render Ticks:    *    *     *     *    *     *     *     *

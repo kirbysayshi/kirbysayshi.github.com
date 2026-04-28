@@ -282,7 +282,7 @@ function D() {
 
 And the output:
 
-```
+```json
 { "cmp": "p", "props": { "children": [ "Hello" ] } }
 { "cmp": "div", "props": { "children": [ { "cmp": "p", "props": { "children": [ "Hello" ] } } ] } }
 ```
