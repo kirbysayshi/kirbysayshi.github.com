@@ -189,8 +189,8 @@ body {
 
 #social-contacts-header .social-icons { text-align: right; }
 
-#footer-container { margin-top: 13.75%; margin-bottom: 8.25%; }
-
+#footer-container { margin-top: 13.75%; padding-bottom: 8.25%; }
+#footer-container footer { padding-bottom: 1em;}
 #footer-container .bio-short { /*margin-left: 0;*/ margin-bottom: 1em; }
 #footer-container .bio-short p:first-child { margin-top: 0; }
 #footer-container .bio-short .contact-list { padding-left: 9.75%; list-style-type: none; }

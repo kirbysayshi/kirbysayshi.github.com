@@ -5,6 +5,9 @@ import { reactRouter } from '@react-router/dev/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+  },
   plugins: [
     {
       // This is specifically to simulate ghpages' ability to default load
