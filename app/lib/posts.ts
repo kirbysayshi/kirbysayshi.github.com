@@ -1,13 +1,15 @@
 import rehypeShiki from '@shikijs/rehype';
-import fm from 'front-matter';
 import type { Element, Root } from 'hast';
+import type { Root as MdastRoot } from 'mdast';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
+import remarkFrontmatter from 'remark-frontmatter';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
-import { unified } from 'unified';
+import { type Plugin, unified } from 'unified';
 import { visit } from 'unist-util-visit';
+import { parse } from 'yaml';
 
 import {
   type PostFrontmatter,
@@ -31,40 +33,17 @@ type RenderedPost = {
 };
 
 export async function getAllPosts(): Promise<RenderedPost[]> {
-  const posts: RenderedPost[] = [];
-
-  const rawPosts = import.meta.glob<string>(['../../_posts/*.{md,markdown}'], {
+  const rawPosts = import.meta.glob<string>('../../_posts/*.{md,markdown}', {
     query: '?raw',
     import: 'default',
     eager: true,
   });
 
   const processor = buildProcessor();
+  const posts: RenderedPost[] = [];
 
   for (const [filepath, contents] of Object.entries(rawPosts)) {
-    const { attributes: raw_attr, body } =
-      fm<Record<string, unknown>>(contents);
-    const attr = postFrontmatterSchema.parse(raw_attr);
-
-    if (attr.published === false) continue;
-
-    const parsed = parsePostFilename(filepath);
-    if (parsed.error) throw parsed.error;
-
-    const contentHtml = String(await processor.process(body));
-
-    posts.unshift({
-      slug: parsed.slug,
-      url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
-      title: attr.title,
-      date: `${parsed.year}-${parsed.month}-${parsed.day}`,
-      categories: attr.categories ?? [],
-      tags: attr.tags ?? [],
-      oneliner: attr.oneliner ?? '',
-      projecturl: attr.projecturl ?? '',
-      image: attr.image ?? [],
-      contentHtml,
-    });
+    posts.unshift(await postFrom(filepath, contents, processor));
   }
 
   // Probably not necessary, should already be in filesystem order.
@@ -126,9 +105,22 @@ const rehypePostLinks = () => (tree: Root) => {
   });
 };
 
+const remarkExtractFrontmatter: Plugin<[], MdastRoot> = () => {
+  return (tree, file) => {
+    visit(tree, 'yaml', (node, index, parent) => {
+      if (index === undefined || !parent) return;
+      file.data.frontmatter = parse(node.value);
+      parent.children.splice(index, 1);
+      return index;
+    });
+  };
+};
+
 function buildProcessor() {
   return unified()
     .use(remarkParse)
+    .use(remarkFrontmatter)
+    .use(remarkExtractFrontmatter)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypePostLinks)
@@ -138,4 +130,30 @@ function buildProcessor() {
       fallbackLanguage: 'text',
     })
     .use(rehypeStringify);
+}
+
+async function postFrom(
+  filename: string,
+  contents: string,
+  proc: ReturnType<typeof buildProcessor>,
+) {
+  const file = await proc.process(contents);
+  if (!file.data.frontmatter)
+    throw new Error(`Processed frontmatter missing for ${filename}`);
+  const fm = postFrontmatterSchema.parse(file.data.frontmatter);
+  const parsed = parsePostFilename(filename);
+  if (parsed.error) throw parsed.error;
+
+  return {
+    slug: parsed.slug,
+    url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
+    title: fm.title,
+    date: `${parsed.year}-${parsed.month}-${parsed.day}`,
+    categories: fm.categories ?? [],
+    tags: fm.tags ?? [],
+    oneliner: fm.oneliner ?? '',
+    projecturl: fm.projecturl ?? '',
+    image: fm.image ?? [],
+    contentHtml: String(file.value),
+  };
 }
