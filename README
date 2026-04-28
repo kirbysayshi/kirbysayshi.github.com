@@ -12,4 +12,5 @@ Features:
 
 - markdown code snippets automatically formatted/wrapped to the narrow layout (oxfmt)
 - inter-post relative markdown links are automatically turned into site links
-- frontmatter is linted against a schema (eslint + vendored plugin + zod-generated schema)
+- frontmatter is validated using zod to keep me from going category-wild
+- gfm is enabled (both transforming and linting), meaning footnotes are back
