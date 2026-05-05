@@ -3,10 +3,11 @@ import { Links, Meta, Outlet, useMatches } from 'react-router';
 import type { Route } from './+types/root';
 import {
   BlueskyIcon,
+  DeadTwitterIcon,
   EnvelopeIcon,
   GitHubIcon,
+  LinkedInHopeTheyDoNotSueMeLol,
   RssIcon,
-  XIcon,
 } from './components/Icons';
 
 export function links() {
@@ -107,29 +108,36 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </a>
             </h2>
             <h2 className="social-icons col span_3">
-              <a target="_blank" href="/feed.xml" aria-label="RSS feed">
+              <a rel="noopener" href="/feed.xml" aria-label="RSS feed">
                 <RssIcon />
               </a>{' '}
               <a
-                target="_blank"
+                rel="noopener"
                 href="https://twitter.com/kirbysayshi"
-                aria-label="X (Twitter)"
+                aria-label="X (Twitter aka Dead)"
               >
-                <XIcon />
+                <DeadTwitterIcon />
               </a>{' '}
               <a
-                target="_blank"
+                rel="noopener"
                 href="https://bsky.app/profile/kirbysayshi.com"
                 aria-label="Bluesky"
               >
                 <BlueskyIcon />
               </a>{' '}
               <a
-                target="_blank"
+                rel="noopener"
                 href="https://github.com/kirbysayshi"
                 aria-label="GitHub"
               >
                 <GitHubIcon />
+              </a>{' '}
+              <a
+                rel="noopener"
+                href="https://www.linkedin.com/in/drew-petersen-a61656b9/"
+                aria-label="LinkedIn"
+              >
+                <LinkedInHopeTheyDoNotSueMeLol />
               </a>{' '}
               <a href="mailto:senofpeter@gmail.com" aria-label="Email">
                 <EnvelopeIcon />
@@ -154,22 +162,40 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               <p>Hi. This is the personal blog of Drew Petersen.</p>
               <ul className="contact-list">
                 <li>
-                  <XIcon />{' '}
-                  <a href="https://twitter.com/kirbysayshi">@KirbySaysHi</a>
+                  <DeadTwitterIcon />{' '}
+                  <a rel="noopener" href="https://twitter.com/kirbysayshi">
+                    @KirbySaysHi
+                  </a>
                 </li>
                 <li>
                   <BlueskyIcon />{' '}
-                  <a href="https://bsky.app/profile/kirbysayshi.com">
+                  <a
+                    rel="noopener"
+                    href="https://bsky.app/profile/kirbysayshi.com"
+                  >
                     @kirbysayshi.com
                   </a>
                 </li>
                 <li>
                   <GitHubIcon />{' '}
-                  <a href="https://github.com/kirbysayshi">Github</a>
+                  <a rel="noopener" href="https://github.com/kirbysayshi">
+                    Github
+                  </a>
+                </li>
+                <li>
+                  <LinkedInHopeTheyDoNotSueMeLol />{' '}
+                  <a
+                    rel="noopener"
+                    href="https://www.linkedin.com/in/drew-petersen-a61656b9/"
+                  >
+                    LinkedIn
+                  </a>{' '}
                 </li>
                 <li>
                   <EnvelopeIcon />{' '}
-                  <a href="mailto:senofpeter@gmail.com">senofpeter@gmail.com</a>
+                  <a rel="noopener" href="mailto:senofpeter@gmail.com">
+                    senofpeter@gmail.com
+                  </a>
                 </li>
               </ul>
             </div>
