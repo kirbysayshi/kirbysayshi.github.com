@@ -4,18 +4,11 @@ import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import os from 'os';
 import path from 'path';
 
-type Artifact = {
-  type: 'image' | 'video';
-  contentType: string;
-  label: string;
-  width: number;
-  height: number;
-  /** 0 if an image */
-  duration: number;
+import type { MediaManifest, MediaManifestVariant } from '../app/lib/media';
+
+type Artifact = MediaManifestVariant & {
   /** local file on disk to upload */
   localPath: string;
-  /** remote key */
-  pathName: string;
 };
 
 type EncodeJob = {
@@ -38,16 +31,6 @@ type EncodeContext = {
   duration: number;
   hasAudio: boolean;
   raw: Artifact;
-};
-
-type ManifestVariant = Omit<Artifact, 'localPath'>;
-
-type MediaManifest = {
-  slug: string;
-  /** ISO Date */
-  uploadedAt: string;
-  thumbnail: ManifestVariant[];
-  variants: ManifestVariant[];
 };
 
 type Stream = { codec_type: string; width?: number; height?: number };
@@ -153,7 +136,7 @@ function wrangler(
   if (r.status !== 0) throw new Error(`Upload failed: ${remoteKey}`);
 }
 
-function toManifestVariant(a: Artifact): ManifestVariant {
+function toManifestVariant(a: Artifact): MediaManifestVariant {
   return {
     type: a.type,
     contentType: a.contentType,
@@ -181,7 +164,7 @@ function planVariant(
       height: outHeight,
       duration: ctx.duration,
       localPath: destPath,
-      pathName: `videos/${ctx.slug}_${label}.mp4`,
+      pathName: `videos/${ctx.slug}/${label}.mp4`,
     },
     job: {
       sourcePath: ctx.absSource,
@@ -219,56 +202,118 @@ function runEncodeJob(job: EncodeJob): void {
   );
 }
 
-function extractThumbnail(
-  ctx: EncodeContext,
-  // TODO: this should probably be a height that matches a TIER
-  label: string,
-): Artifact {
-  const { absSource, duration, tmpDir, slug } = ctx;
+type ThumbFormat = {
+  ext: string;
+  contentType: string;
+  codecArgs: string[];
+};
 
-  console.log('\nExtracting thumbnail...');
-  const thumbSeek = firstContentTimestamp(absSource, duration);
-  console.log(`  first content at ${thumbSeek.toFixed(2)}s`);
+const THUMB_RAW: ThumbFormat = {
+  ext: 'jpg',
+  contentType: 'image/jpeg',
+  codecArgs: ['-q:v', '2'],
+};
 
-  const localPath = path.join(tmpDir, `${slug}_thumb.jpg`);
-
-  ffmpeg(
-    [
-      '-ss',
-      String(thumbSeek),
-      '-i',
-      absSource,
-      '-frames:v',
+const THUMB_FORMATS: ThumbFormat[] = [
+  { ext: 'jpg', contentType: 'image/jpeg', codecArgs: ['-q:v', '5'] },
+  {
+    ext: 'webp',
+    contentType: 'image/webp',
+    codecArgs: ['-c:v', 'libwebp', '-quality', '85'],
+  },
+  {
+    ext: 'avif',
+    contentType: 'image/avif',
+    // libaom-av1 with still-picture beats libsvtav1 for stills; encode time
+    // is fine since there are only a few thumbs per upload.
+    codecArgs: [
+      '-c:v',
+      'libaom-av1',
+      '-still-picture',
       '1',
-      '-q:v',
-      '2',
-      '-y',
-      localPath,
+      '-crf',
+      '30',
+      '-b:v',
+      '0',
     ],
-    'thumbnail',
-  );
+  },
+];
 
-  const { width, height } = probe(localPath);
-  console.log(`  thumbnail ${String(width)}x${String(height)}`);
-
-  return {
-    type: 'image',
-    contentType: 'image/jpeg',
-    label,
-    width,
-    height,
-    duration: 0,
-    localPath,
-    pathName: `videos/${slug}_thumb.jpg`,
-  };
-}
-
-const TIER_PROFILES = [
+const VIDEO_TIER_PROFILES = [
   { height: 2160 },
   { height: 1080 },
   { height: 720 },
   { height: 360 },
 ] as const;
+
+function encodeThumb(
+  ctx: EncodeContext,
+  seekTime: number,
+  outWidth: number,
+  outHeight: number,
+  label: string,
+  format: ThumbFormat,
+): Artifact {
+  const fileName = `thumb_${label}.${format.ext}`;
+  const localPath = path.join(ctx.tmpDir, fileName);
+  const isNative = outWidth === ctx.width && outHeight === ctx.height;
+  const scaleArgs = isNative
+    ? []
+    : ['-vf', `scale=${String(outWidth)}:${String(outHeight)}`];
+
+  ffmpeg(
+    [
+      '-ss',
+      String(seekTime),
+      '-i',
+      ctx.absSource,
+      ...scaleArgs,
+      '-frames:v',
+      '1',
+      ...format.codecArgs,
+      '-y',
+      localPath,
+    ],
+    `thumb ${label} ${format.ext}`,
+  );
+
+  return {
+    type: 'image',
+    contentType: format.contentType,
+    label,
+    width: outWidth,
+    height: outHeight,
+    duration: 0,
+    localPath,
+    pathName: `videos/${ctx.slug}/${fileName}`,
+  };
+}
+
+function extractThumbnails(ctx: EncodeContext): Artifact[] {
+  console.log('\nExtracting thumbnails...');
+  const seek = firstContentTimestamp(ctx.absSource, ctx.duration);
+  console.log(`  first content at ${seek.toFixed(2)}s`);
+
+  const artifacts: Artifact[] = [];
+
+  // Native-resolution high-quality JPEG, reference copy
+  artifacts.push(
+    encodeThumb(ctx, seek, ctx.width, ctx.height, 'raw', THUMB_RAW),
+  );
+
+  for (const tier of VIDEO_TIER_PROFILES) {
+    if (ctx.height < tier.height) continue;
+
+    const outWidth = Math.round((ctx.width * tier.height) / ctx.height / 2) * 2;
+    const label = `${String(tier.height)}p`;
+
+    for (const fmt of THUMB_FORMATS) {
+      artifacts.push(encodeThumb(ctx, seek, outWidth, tier.height, label, fmt));
+    }
+  }
+
+  return artifacts;
+}
 
 function createEncodeContext(): EncodeContext {
   const root = path.resolve(import.meta.dirname, '..');
@@ -314,7 +359,7 @@ function createEncodeContext(): EncodeContext {
     height,
     duration,
     localPath: absSource,
-    pathName: `videos/${slug}_raw${rawExt}`,
+    pathName: `videos/${slug}/raw${rawExt}`,
   };
 
   return {
@@ -331,23 +376,23 @@ function createEncodeContext(): EncodeContext {
   };
 }
 
-function processVariants(
-  ctx: EncodeContext,
-  out_variantArtifacts: Artifact[],
-  out_encodeJobs: EncodeJob[],
-) {
+function processVariants(ctx: EncodeContext) {
   const { width, height } = ctx;
   const EPSILON_PIXELS = 50;
-  const largestMatchingTier = TIER_PROFILES.find((t) => height >= t.height);
+  const largestMatchingTier = VIDEO_TIER_PROFILES.find(
+    (t) => height >= t.height,
+  );
+  const variantArtifacts: Artifact[] = [];
+  const encodeJobs: EncodeJob[] = [];
 
-  for (const tier of TIER_PROFILES) {
+  for (const tier of VIDEO_TIER_PROFILES) {
     if (height < tier.height) continue;
 
     const outWidth = Math.round((width * tier.height) / height / 2) * 2;
     const label = `${String(tier.height)}p`;
     const planned = planVariant(ctx, outWidth, tier.height, label);
-    out_variantArtifacts.push(planned.artifact);
-    out_encodeJobs.push(planned.job);
+    variantArtifacts.push(planned.artifact);
+    encodeJobs.push(planned.job);
   }
 
   // If the native height doesn't snap close to a standard tier, add an extra
@@ -359,28 +404,22 @@ function processVariants(
   ) {
     const plusLabel = `${String(largestMatchingTier.height)}p+`;
     const plus = planVariant(ctx, width, height, plusLabel);
-    out_variantArtifacts.push(plus.artifact);
-    out_encodeJobs.push(plus.job);
+    variantArtifacts.push(plus.artifact);
+    encodeJobs.push(plus.job);
   }
 
-  const largestVariant = out_variantArtifacts.find(
-    (a) => a.height === largestMatchingTier?.height,
-  );
-  if (!largestVariant) {
-    throw new Error('must have largest variant, no work to do!');
+  if (variantArtifacts.length === 0) {
+    throw new Error('source has no matching tier; nothing to encode');
   }
 
-  return largestVariant;
+  return { variantArtifacts: variantArtifacts, encodeJobs: encodeJobs };
 }
 
 function main(): void {
   const ctx = createEncodeContext();
   const { manifestPath, tmpDir, slug, raw, root } = ctx;
 
-  const variantArtifacts: Artifact[] = [];
-  const encodeJobs: EncodeJob[] = [];
-
-  const largestVariant = processVariants(ctx, variantArtifacts, encodeJobs);
+  const { variantArtifacts, encodeJobs } = processVariants(ctx);
 
   console.log(
     `Variants: \n${variantArtifacts.map((a) => JSON.stringify(a)).join('\n  ')}`,
@@ -391,10 +430,14 @@ function main(): void {
     runEncodeJob(job);
   }
 
-  const thumbArtifact = extractThumbnail(ctx, largestVariant.label);
+  const thumbArtifacts = extractThumbnails(ctx);
 
   console.log('\nUploading...');
-  const allArtifacts: Artifact[] = [...variantArtifacts, thumbArtifact, raw];
+  const allArtifacts: Artifact[] = [
+    ...variantArtifacts,
+    ...thumbArtifacts,
+    raw,
+  ];
   for (const a of allArtifacts) {
     wrangler(a.localPath, a.pathName, a.contentType, root);
   }
@@ -402,7 +445,7 @@ function main(): void {
   const manifest: MediaManifest = {
     slug,
     uploadedAt: new Date().toISOString(),
-    thumbnail: [toManifestVariant(thumbArtifact)],
+    thumbnail: thumbArtifacts.map(toManifestVariant),
     variants: [...variantArtifacts, raw].map(toManifestVariant),
   };
 
