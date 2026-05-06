@@ -4,6 +4,52 @@ import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
 import os from 'os';
 import path from 'path';
 
+type Artifact = {
+  type: 'image' | 'video';
+  contentType: string;
+  label: string;
+  width: number;
+  height: number;
+  /** 0 if an image */
+  duration: number;
+  /** local file on disk to upload */
+  localPath: string;
+  /** remote key */
+  pathName: string;
+};
+
+type EncodeJob = {
+  sourcePath: string;
+  destPath: string;
+  crf: number;
+  audioArgs: string[];
+  scaleArgs: string[];
+  label: string;
+};
+
+type EncodeContext = {
+  absSource: string;
+  root: string;
+  tmpDir: string;
+  manifestPath: string;
+  slug: string;
+  width: number;
+  height: number;
+  duration: number;
+  hasAudio: boolean;
+  raw: Artifact;
+};
+
+type ManifestVariant = Omit<Artifact, 'localPath'>;
+
+type MediaManifest = {
+  slug: string;
+  /** ISO Date */
+  uploadedAt: string;
+  thumbnail: ManifestVariant[];
+  variants: ManifestVariant[];
+};
+
 type Stream = { codec_type: string; width?: number; height?: number };
 type FfprobeOutput = { streams: Stream[]; format: { duration: string } };
 type ProbeResult = {
@@ -28,19 +74,12 @@ function probe(filePath: string): ProbeResult {
     ],
     { encoding: 'utf-8' },
   );
-  if (r.status !== 0) {
-    console.error('ffprobe failed:', r.stderr);
-    process.exit(1);
-  }
+  if (r.status !== 0) throw new Error(`ffprobe failed: ${r.stderr}`);
   const data = JSON.parse(r.stdout) as FfprobeOutput;
   const video = data.streams.find((s) => s.codec_type === 'video');
-  if (!video) {
-    console.error('No video stream found');
-    process.exit(1);
-  }
+  if (!video) throw new Error('No video stream found');
   if (!video.width || !video.height) {
-    console.error('No video dimensions in stream');
-    process.exit(1);
+    throw new Error('No video dimensions in stream');
   }
   const hasAudio = data.streams.some((s) => s.codec_type === 'audio');
   return {
@@ -70,10 +109,7 @@ function ffmpeg(args: string[], label: string) {
   if (ffmpegPath === null) throw new Error(`ffmpeg path is falsy!`);
   console.log(`  ${label}...`);
   const r = spawnSync(ffmpegPath, args, { stdio: 'inherit' });
-  if (r.status !== 0) {
-    console.error(`ffmpeg failed: ${label}`);
-    process.exit(1);
-  }
+  if (r.status !== 0) throw new Error(`ffmpeg failed: ${label}`);
 }
 
 const VIDEO_CONTENT_TYPES: Record<string, string> = {
@@ -114,26 +150,87 @@ function wrangler(
     ],
     { cwd: root, stdio: 'inherit' },
   );
-  if (r.status !== 0) {
-    console.error(`Upload failed: ${remoteKey}`);
-    process.exit(1);
-  }
+  if (r.status !== 0) throw new Error(`Upload failed: ${remoteKey}`);
+}
+
+function toManifestVariant(a: Artifact): ManifestVariant {
+  return {
+    type: a.type,
+    contentType: a.contentType,
+    label: a.label,
+    width: a.width,
+    height: a.height,
+    duration: a.duration,
+    pathName: a.pathName,
+  };
+}
+
+function planVariant(
+  ctx: EncodeContext,
+  outWidth: number,
+  outHeight: number,
+  label: string,
+): { artifact: Artifact; job: EncodeJob } {
+  const destPath = path.join(ctx.tmpDir, `${ctx.slug}_${label}.mp4`);
+  return {
+    artifact: {
+      type: 'video',
+      contentType: 'video/mp4',
+      label,
+      width: outWidth,
+      height: outHeight,
+      duration: ctx.duration,
+      localPath: destPath,
+      pathName: `videos/${ctx.slug}_${label}.mp4`,
+    },
+    job: {
+      sourcePath: ctx.absSource,
+      destPath,
+      crf: 23,
+      audioArgs: ctx.hasAudio ? ['-c:a', 'aac', '-b:a', '256k'] : ['-an'],
+      scaleArgs: ['-vf', `scale=${String(outWidth)}:${String(outHeight)}`],
+      label,
+    },
+  };
+}
+
+function runEncodeJob(job: EncodeJob): void {
+  ffmpeg(
+    [
+      '-i',
+      job.sourcePath,
+      ...job.scaleArgs,
+      '-map',
+      '0:v:0',
+      ...(job.audioArgs.length ? ['-map', '0:a:0'] : []),
+      '-c:v',
+      'libx264',
+      '-crf',
+      String(job.crf),
+      '-preset',
+      'slow',
+      ...job.audioArgs,
+      '-movflags',
+      '+faststart',
+      '-y',
+      job.destPath,
+    ],
+    `encode ${job.label}`,
+  );
 }
 
 function extractThumbnail(
-  absSource: string,
-  duration: number,
-  tmpDir: string,
-  slug: string,
+  ctx: EncodeContext,
   // TODO: this should probably be a height that matches a TIER
   label: string,
-): EncoderTask {
-  // Thumbnail
+): Artifact {
+  const { absSource, duration, tmpDir, slug } = ctx;
+
   console.log('\nExtracting thumbnail...');
   const thumbSeek = firstContentTimestamp(absSource, duration);
   console.log(`  first content at ${thumbSeek.toFixed(2)}s`);
 
-  const destPath = path.join(tmpDir, `${slug}_thumb.jpg`);
+  const localPath = path.join(tmpDir, `${slug}_thumb.jpg`);
 
   ffmpeg(
     [
@@ -146,330 +243,184 @@ function extractThumbnail(
       '-q:v',
       '2',
       '-y',
-      destPath,
+      localPath,
     ],
     'thumbnail',
   );
 
-  const { width, height } = probe(destPath);
+  const { width, height } = probe(localPath);
   console.log(`  thumbnail ${String(width)}x${String(height)}`);
 
   return {
     type: 'image',
+    contentType: 'image/jpeg',
     label,
-    crf: 0,
-    audioArgs: [],
-    scaleArgs: [],
     width,
     height,
     duration: 0,
-
-    sourcePath: absSource,
-    destPath,
+    localPath,
     pathName: `videos/${slug}_thumb.jpg`,
-    contentType: 'image/jpeg',
   };
 }
-
-type MediaManifest = {
-  slug: string;
-  /** ISO Date */
-  uploadedAt: string;
-  thumbnail: ManifestVariant[];
-  variants: ManifestVariant[];
-};
-
-type ManifestVariant = {
-  type: 'image' | 'video';
-  contentType: string;
-  label: string;
-  width: number;
-  height: number;
-  /** 0 if an image */
-  duration: number;
-  pathName: string;
-};
-
-type EncoderTask = {
-  type: 'image' | 'video';
-  contentType: string;
-  label: string;
-  width: number;
-  height: number;
-
-  // will be filled in by task?
-  duration: number;
-
-  crf: number;
-  audioArgs: string[];
-  scaleArgs: string[];
-
-  /** Absolute path to source file */
-  sourcePath: string;
-  /** destination ondisk path */
-  destPath: string;
-  /** remote path */
-  pathName: string;
-};
-
-type UploadTask = {
-  sourcePath: string;
-  pathName: string;
-  contentType: string;
-};
-
-function uploadTaskfromEncoderTask(task: EncoderTask): UploadTask {
-  return {
-    contentType: task.contentType,
-    sourcePath: task.destPath,
-    pathName: task.pathName,
-  };
-}
-
-function manifestVariantFromEncoderTask(task: EncoderTask): ManifestVariant {
-  return {
-    type: task.type,
-    contentType: task.contentType,
-    duration: task.duration,
-    width: task.width,
-    height: task.height,
-    label: task.label,
-    pathName: task.pathName,
-  };
-}
-
-// --- Main ---
 
 const TIER_PROFILES = [
-  {
-    height: 2160,
-    crf: 23,
-    audioArgs: ['-c:a', 'aac', '-b:a', '256k'],
-    scaleArgs: (width: number, height: number) => [
-      '-vf',
-      `scale=${String(width)}:${String(height)}`,
-    ],
-  },
-  {
-    height: 1080,
-    crf: 23,
-    audioArgs: ['-c:a', 'aac', '-b:a', '256k'],
-    scaleArgs: (width: number, height: number) => [
-      '-vf',
-      `scale=${String(width)}:${String(height)}`,
-    ],
-  },
-  {
-    height: 720,
-    crf: 23,
-    audioArgs: ['-c:a', 'aac', '-b:a', '256k'],
-    scaleArgs: (width: number, height: number) => [
-      '-vf',
-      `scale=${String(width)}:${String(height)}`,
-    ],
-  },
-  {
-    height: 360,
-    crf: 23,
-    audioArgs: ['-c:a', 'aac', '-b:a', '256k'],
-    scaleArgs: (width: number, height: number) => [
-      '-vf',
-      `scale=${String(width)}:${String(height)}`,
-    ],
-  },
-];
+  { height: 2160 },
+  { height: 1080 },
+  { height: 720 },
+  { height: 360 },
+] as const;
 
-const root = path.resolve(import.meta.dirname, '..');
-const videosDir = path.join(root, 'videos');
+function createEncodeContext(): EncodeContext {
+  const root = path.resolve(import.meta.dirname, '..');
+  const videosDir = path.join(root, 'videos');
 
-const sourcePath = process.argv[2];
-if (!sourcePath) {
-  console.error('Usage: pnpm upload-video <path/to/video>');
-  process.exit(1);
-}
-
-const absSource = path.resolve(sourcePath);
-if (!existsSync(absSource)) {
-  console.error(`File not found: ${absSource}`);
-  process.exit(1);
-}
-
-const basename = path.basename(absSource, path.extname(absSource));
-const slug = basename
-  .toLowerCase()
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/^-|-$/g, '');
-
-const manifestPath = path.join(videosDir, `${slug}.json`);
-if (existsSync(manifestPath)) {
-  console.error(`Already uploaded: ${manifestPath}`);
-  process.exit(1);
-}
-
-console.log(`\nSource: ${absSource}`);
-const { width, height, duration, hasAudio } = probe(absSource);
-console.log(
-  `  ${String(width)}x${String(height)}, ${duration.toFixed(1)}s, audio=${String(hasAudio)}`,
-);
-
-const tmpDir = path.join(os.tmpdir(), `upload-video-${slug}`);
-mkdirSync(tmpDir, { recursive: true });
-
-const encoderTasks: EncoderTask[] = [];
-let hasPlus = false;
-
-for (const tier of TIER_PROFILES) {
-  if (height < tier.height) continue;
-
-  const outWidth = Math.round((width * tier.height) / height / 2) * 2;
-  const label = `${String(tier.height)}p`;
-
-  encoderTasks.push({
-    type: 'video',
-    contentType: 'video/mp4',
-    label,
-    width: outWidth,
-    height: tier.height,
-    duration,
-
-    crf: tier.crf,
-    audioArgs: hasAudio ? tier.audioArgs : ['-an'],
-    scaleArgs: tier.scaleArgs(outWidth, tier.height),
-
-    sourcePath: absSource,
-    destPath: path.join(tmpDir, `${slug}_${label}.mp4`),
-    pathName: `videos/${slug}_${label}.mp4`,
-  });
-
-  const EPSILON_PIXELS = 50;
-
-  if (
-    // if the native height is larger than the tier by EPSILON add an extra
-    // transcode to keep maximum quality, labeling it as "nearest tier +"
-    !hasPlus &&
-    height !== tier.height &&
-    Math.abs(height - tier.height) > EPSILON_PIXELS
-  ) {
-    hasPlus = true;
-    const plusLabel = `${label}+`;
-    encoderTasks.push({
-      type: 'video',
-      contentType: 'video/mp4',
-      label: plusLabel,
-      width: width,
-      height: height,
-      duration,
-      crf: tier.crf,
-      audioArgs: hasAudio ? tier.audioArgs : ['-an'],
-      scaleArgs: tier.scaleArgs(width, height),
-
-      sourcePath: absSource,
-      destPath: path.join(tmpDir, `${slug}_${plusLabel}.mp4`),
-      pathName: `videos/${slug}_${plusLabel}.mp4`,
-    });
+  const sourcePath = process.argv[2];
+  if (!sourcePath) {
+    throw new Error('Usage: pnpm upload-video <path/to/video>');
   }
-}
 
-console.log(
-  `Variants: \n${encoderTasks.map((t) => JSON.stringify(t)).join('\n  ')}`,
-);
+  const absSource = path.resolve(sourcePath);
+  if (!existsSync(absSource)) {
+    throw new Error(`File not found: ${absSource}`);
+  }
 
-// Encode variants
-console.log('\nEncoding variants...');
+  const basename = path.basename(absSource, path.extname(absSource));
+  const slug = basename
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 
-const uploads: UploadTask[] = [];
+  const manifestPath = path.join(videosDir, `${slug}.json`);
+  if (existsSync(manifestPath)) {
+    throw new Error(`Already uploaded: ${manifestPath}`);
+  }
 
-for (const task of encoderTasks) {
-  ffmpeg(
-    [
-      '-i',
-      task.sourcePath,
-      ...task.scaleArgs,
-      '-map',
-      '0:v:0',
-      ...(task.audioArgs.length ? ['-map', '0:a:0'] : []),
-      '-c:v',
-      'libx264',
-      '-crf',
-      String(task.crf),
-      '-preset',
-      'slow',
-      ...task.audioArgs,
-      '-movflags',
-      '+faststart',
-      '-y',
-      task.destPath,
-    ],
-    `encode ${task.label}`,
+  console.log(`\nSource: ${absSource}`);
+  const { width, height, duration, hasAudio } = probe(absSource);
+  console.log(
+    `  ${String(width)}x${String(height)}, ${duration.toFixed(1)}s, audio=${String(hasAudio)}`,
   );
 
-  uploads.push(uploadTaskfromEncoderTask(task));
+  const tmpDir = path.join(os.tmpdir(), `upload-video-${slug}`);
+  mkdirSync(tmpDir, { recursive: true });
+  mkdirSync(videosDir, { recursive: true });
+
+  const rawExt = path.extname(absSource);
+  const rawArtifact: Artifact = {
+    type: 'video',
+    contentType: videoContentType(rawExt),
+    label: 'raw',
+    width,
+    height,
+    duration,
+    localPath: absSource,
+    pathName: `videos/${slug}_raw${rawExt}`,
+  };
+
+  return {
+    absSource,
+    root,
+    tmpDir,
+    manifestPath,
+    slug,
+    duration,
+    hasAudio,
+    height,
+    width,
+    raw: rawArtifact,
+  };
 }
 
-const largestTask = encoderTasks.at(0);
-if (!largestTask) throw new Error('must have largest task, no work to do!');
+function processVariants(
+  ctx: EncodeContext,
+  out_variantArtifacts: Artifact[],
+  out_encodeJobs: EncodeJob[],
+) {
+  const { width, height } = ctx;
+  const EPSILON_PIXELS = 50;
+  const largestMatchingTier = TIER_PROFILES.find((t) => height >= t.height);
 
-const thumbResult = extractThumbnail(
-  absSource,
-  duration,
-  tmpDir,
-  slug,
-  largestTask.label,
-);
+  for (const tier of TIER_PROFILES) {
+    if (height < tier.height) continue;
 
-uploads.push(uploadTaskfromEncoderTask(thumbResult));
+    const outWidth = Math.round((width * tier.height) / height / 2) * 2;
+    const label = `${String(tier.height)}p`;
+    const planned = planVariant(ctx, outWidth, tier.height, label);
+    out_variantArtifacts.push(planned.artifact);
+    out_encodeJobs.push(planned.job);
+  }
 
-const rawExt = path.extname(absSource);
-const rawKey = `videos/${slug}_raw${rawExt}`;
+  // If the native height doesn't snap close to a standard tier, add an extra
+  // transcode at native dimensions to preserve quality, labeled "nearest tier +"
+  if (
+    largestMatchingTier &&
+    height !== largestMatchingTier.height &&
+    Math.abs(height - largestMatchingTier.height) > EPSILON_PIXELS
+  ) {
+    const plusLabel = `${String(largestMatchingTier.height)}p+`;
+    const plus = planVariant(ctx, width, height, plusLabel);
+    out_variantArtifacts.push(plus.artifact);
+    out_encodeJobs.push(plus.job);
+  }
 
-const rawTask: EncoderTask = {
-  // nonsense values
-  crf: 99999,
-  audioArgs: [],
-  scaleArgs: [],
+  const largestVariant = out_variantArtifacts.find(
+    (a) => a.height === largestMatchingTier?.height,
+  );
+  if (!largestVariant) {
+    throw new Error('must have largest variant, no work to do!');
+  }
 
-  // they are the same
-  destPath: absSource,
-  sourcePath: absSource,
-
-  type: 'video',
-  contentType: videoContentType(rawExt),
-  label: 'raw',
-  width,
-  height,
-  duration,
-  pathName: rawKey,
-};
-
-uploads.push(uploadTaskfromEncoderTask(rawTask));
-
-// Upload
-console.log('\nUploading...');
-for (const up of uploads) {
-  wrangler(up.sourcePath, up.pathName, up.contentType, root);
+  return largestVariant;
 }
 
-// Create Manifest versions
-const manifestVariants: ManifestVariant[] = [];
+function main(): void {
+  const ctx = createEncodeContext();
+  const { manifestPath, tmpDir, slug, raw, root } = ctx;
 
-for (const t of encoderTasks) {
-  manifestVariants.push(manifestVariantFromEncoderTask(t));
+  const variantArtifacts: Artifact[] = [];
+  const encodeJobs: EncodeJob[] = [];
+
+  const largestVariant = processVariants(ctx, variantArtifacts, encodeJobs);
+
+  console.log(
+    `Variants: \n${variantArtifacts.map((a) => JSON.stringify(a)).join('\n  ')}`,
+  );
+
+  console.log('\nEncoding variants...');
+  for (const job of encodeJobs) {
+    runEncodeJob(job);
+  }
+
+  const thumbArtifact = extractThumbnail(ctx, largestVariant.label);
+
+  console.log('\nUploading...');
+  const allArtifacts: Artifact[] = [...variantArtifacts, thumbArtifact, raw];
+  for (const a of allArtifacts) {
+    wrangler(a.localPath, a.pathName, a.contentType, root);
+  }
+
+  const manifest: MediaManifest = {
+    slug,
+    uploadedAt: new Date().toISOString(),
+    thumbnail: [toManifestVariant(thumbArtifact)],
+    variants: [...variantArtifacts, raw].map(toManifestVariant),
+  };
+
+  writeFileSync(
+    manifestPath,
+    JSON.stringify(manifest, null, 2) + '\n',
+    'utf-8',
+  );
+
+  rmSync(tmpDir, { recursive: true, force: true });
+
+  console.log(`\nDone!`);
+  console.log(`  manifest: videos/${slug}.json`);
 }
 
-manifestVariants.push(manifestVariantFromEncoderTask(rawTask));
-
-// Manifest
-mkdirSync(videosDir, { recursive: true });
-const manifest: MediaManifest = {
-  slug,
-  uploadedAt: new Date().toISOString(),
-  thumbnail: [manifestVariantFromEncoderTask(thumbResult)],
-  variants: manifestVariants,
-};
-
-writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf-8');
-
-rmSync(tmpDir, { recursive: true, force: true });
-
-console.log(`\nDone!`);
-console.log(`  manifest: videos/${slug}.json`);
+try {
+  main();
+} catch (e) {
+  console.error(e instanceof Error ? e.message : String(e));
+  process.exit(1);
+}
