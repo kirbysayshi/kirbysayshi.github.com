@@ -1,7 +1,9 @@
-
 packages:
   - 'vendor/*'
 allowBuilds:
   esbuild: true
+  ffmpeg-ffprobe-static: true
+  sharp: false
   unrs-resolver: false
+  workerd: false
 savePrefix: ''

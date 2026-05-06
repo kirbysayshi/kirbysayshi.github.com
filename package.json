@@ -14,7 +14,8 @@
     "lint": "react-router typegen && concurrently 'tsc --noEmit' 'eslint .'",
     "format": "oxfmt",
     "dump": "tsx scripts/category-tag-dumper.ts",
-    "new-post": "tsx scripts/new-post.ts"
+    "new-post": "tsx scripts/new-post.ts",
+    "upload-video": "tsx scripts/upload-video.ts"
   },
   "dependencies": {
     "@react-router/node": "7.14.2",
@@ -47,12 +48,14 @@
     "eslint": "10.2.1",
     "eslint-plugin-simple-import-sort": "13.0.0",
     "eslint-plugin-unused-imports": "4.4.1",
+    "ffmpeg-ffprobe-static": "6.1.2-rc.1",
     "jiti": "2.6.1",
     "oxfmt": "0.46.0",
     "tsx": "4.21.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.59.0",
-    "vite": "8.0.10"
+    "vite": "8.0.10",
+    "wrangler": "4.88.0"
   },
   "packageManager": "pnpm@10.33.0"
 }
