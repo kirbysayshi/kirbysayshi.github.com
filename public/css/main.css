@@ -236,7 +236,7 @@ div.highlight { overflow-x: auto; }
 /* These are both generated syntax highlighting and hand-written "figures", apparently */
 .post figure, .post [data-role=figure] { margin-bottom: 2.75%; }
 /* We only want to center the content within hand-written "figures" */
-.post [data-role=figure] { text-align: center; }
+.post figure, .post [data-role=figure] { text-align: center; }
 .post figcaption, .post [data-role=figcaption] { display: block; font-size: 0.8em; }
 
 .footnotes { font-size: smaller; }
@@ -248,7 +248,6 @@ div.highlight { overflow-x: auto; }
 
 /*** Lists */
 ul { margin: 0; padding: 0; }
-li {}
 .post-list { list-style-type: none; }
 .post-list h3 { margin: 0; font-size: 14pt; }
 .post-list time { /*padding-right: 0;*/ font-size: 14pt; text-align: right; }
@@ -260,7 +259,6 @@ li {}
 	padding-bottom: 1em;
 	/*border-bottom: 1.5pt #F0D0D0 solid; */
 }
-.post-list .post-summary .col:first-child {  }
 
 /*/////// TYPOGRAPHY */
 h1,h2,h3,h4,h5,h6,a,time,aside,figcaption,[data-role=figcaption],

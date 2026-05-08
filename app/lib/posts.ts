@@ -12,10 +12,12 @@ import { type Plugin, unified } from 'unified';
 import { visit } from 'unist-util-visit';
 import { parse } from 'yaml';
 
+import { CDNVideoPlayer } from '../components/CDNVideoPlayer.js';
 import {
   type PostFrontmatter,
   postFrontmatterSchema,
 } from './post-meta.schema.js';
+import { rehypeReactComponents } from './rehype-react-components.js';
 
 type RenderedPost = {
   slug: string;
@@ -125,6 +127,11 @@ function buildProcessor() {
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
+    .use(rehypeReactComponents, {
+      components: {
+        'cdn-video-player': CDNVideoPlayer,
+      },
+    })
     .use(rehypePostLinks)
     .use(rehypeExternalLinks)
     .use(rehypeShiki, {

@@ -22,3 +22,5 @@ export const MediaManifest = z.object({
 
 export type MediaManifest = z.infer<typeof MediaManifest>;
 export type MediaManifestVariant = z.infer<typeof MediaManifestVariant>;
+
+export const cdnUrl = (p: string) => `https://assets.kirbysayshi.com/${p}`;
