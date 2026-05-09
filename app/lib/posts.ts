@@ -43,7 +43,10 @@ type RenderedPost = PostMeta & {
   contentHtml: string;
 };
 
+let CACHED: RenderedPost[] | null = null;
+
 export async function getAllPosts(): Promise<RenderedPost[]> {
+  if (CACHED) return CACHED;
   const rawPosts = import.meta.glob<string>('../../_posts/*.{md,markdown}', {
     query: '?raw',
     import: 'default',
@@ -65,6 +68,7 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
 
   // Probably not necessary, should already be in filesystem order.
   posts.sort((a, b) => b.date.localeCompare(a.date));
+  CACHED = posts;
   return posts;
 }
 
