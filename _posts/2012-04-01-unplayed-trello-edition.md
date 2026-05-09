@@ -8,6 +8,7 @@ tags:
   - Trello
   - Unplayed
   - More Lists To Manage
+permalinks: [/p/unplayed-trello-edition, /2012/04/01/unplayed-trello-edition.html]
 ---
 
 [Shaun Inman][] had a great idea, [Unplayed][], which is a list of all the games he's playing, trying to play, given up playing, or beaten. He has a more in-depth explanation on [his blog][], along with the source for making your own list.

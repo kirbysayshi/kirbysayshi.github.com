@@ -9,6 +9,7 @@ tags:
   - PRNGs
   - Dice
   - Alea
+permalinks: [/p/seedable-dice-rolls-using-js, /2012/06/29/seedable-dice-rolls-using-js.html]
 ---
 
 When I'm testing out something that needs a generated environment (sprites, objects, whatever), I often use `Math.random()` with some ranges to avoid having to purposefully specify values. However, if something goes wrong, it's nearly impossible to reproduce the environment.

@@ -10,6 +10,7 @@ image:
 tags:
   - Textmate
   - Git
+permalinks: [/p/jekyll-textmate-bundle, /2009/07/01/jekyll-textmate-bundle.html]
 ---
 
 This bundle is super simple: press CMD + CTRL + B (for build), and

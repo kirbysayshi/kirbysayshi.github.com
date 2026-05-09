@@ -9,6 +9,7 @@ tags:
   - Avatar
   - Titanic
   - Trigun
+permalinks: [/p/a-diversion, /2010/07/12/a-diversion.html]
 ---
 
 Thought today: it would be so nice to watch a movie instead of catching up on TV, since that would be over in a few hours, and done. A diversion.

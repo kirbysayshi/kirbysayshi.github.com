@@ -10,6 +10,7 @@ image:
 tags:
   - Animation
   - Flash
+permalinks: [/p/just-the-idea, /2009/07/07/just-the-idea.html]
 ---
 
 This was created in response to an assignment, the constraints of which

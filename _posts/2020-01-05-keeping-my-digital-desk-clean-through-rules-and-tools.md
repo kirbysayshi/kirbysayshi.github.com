@@ -8,6 +8,7 @@ categories:
 tags:
   - Bash
   - Tools
+permalinks: [/p/keeping-my-digital-desk-clean-through-rules-and-tools, /2020/01/05/keeping-my-digital-desk-clean-through-rules-and-tools.html]
 ---
 
 UPDATE 2020/01/09: [I created a packaged, rewritten version of the tool described here. GET IT!](https://www.npmjs.com/package/@kirbysayshi/idier)

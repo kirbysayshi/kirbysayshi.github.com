@@ -28,6 +28,7 @@ categories:
   -
 tags:
   -
+permalinks: [] # will default to filename slug
 ---
 
 `;

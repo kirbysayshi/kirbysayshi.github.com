@@ -9,6 +9,7 @@ tags:
   - Portal
   - Portile
   - 2D
+permalinks: [/p/portal-experiments-impactjs, /2012/06/26/portal-experiments-impactjs.html]
 ---
 
 > UPDATE 06-29-2012: The demo now shows the what you can "see" through the portals in a limited way!

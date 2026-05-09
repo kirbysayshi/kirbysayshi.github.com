@@ -13,6 +13,7 @@ tags:
   - PHP
   - MySQL
   - HTML5
+permalinks: [/p/google-evil-meter, /2009/06/30/google-evil-meter.html]
 ---
 
 I use Google everyday, and many of its services are invaluable for my

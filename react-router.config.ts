@@ -13,6 +13,7 @@ export default {
       '/feed.xml',
       '/404.html',
       ...posts.map((p) => p.url),
+      ...posts.flatMap((p) => p.permalinks),
       ...tags.map((t) => `/tag/${encodeURIComponent(slugify(t))}.html`),
       ...categories.map(
         (c) => `/category/${encodeURIComponent(slugify(c))}.html`,

@@ -7,6 +7,7 @@ categories:
 tags:
   - Github
   - JSBin
+permalinks: [/p/github-embedder, /2012/07/30/github-embedder.html]
 ---
 
 I was working on a tutorial post, and realized that it was extremely tedious to keep copying, pasting, referencing, and updating code. It's also easy for a code sample to make your markdown very cluttered. There are server-side scripts and services ([gist-it][] comes to mind), but I wanted something that was self-contained, and didn't rely on a server.

@@ -7,6 +7,7 @@ categories:
 image:
 tags:
   - JavaScript
+permalinks: [/p/use-html-css-print-layout, /2011/01/04/use-html-css-print-layout.html]
 ---
 
 Imagine, for a minute, being able to design paged layouts for print in a browser environment. You get to use JS for data/templating, and HTML/CSS for the structure/style, and don't have to worry about cross-browser compatibility.

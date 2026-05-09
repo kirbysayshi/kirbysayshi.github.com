@@ -6,6 +6,7 @@ categories:
 tags:
   - FLCL
   - cocktail
+permalinks: [/p/medical-mechanica-manhattan, /2019/09/18/medical-mechanica-manhattan.html]
 ---
 
 For a few years at work, some of my friends started what eventually became the Fancy Film Foundation. It was simple: one person picks a movie and a pairing (food or drink) and then we all watch the movie. At the time we had a dark room at the office we could sneak into.

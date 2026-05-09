@@ -5,6 +5,7 @@ import type { Element, Root as HastRoot } from 'hast';
 import { h } from 'hastscript';
 import type { Root as MdastRoot } from 'mdast';
 import rehypeExternalLinks from 'rehype-external-links';
+import rehypeParse from 'rehype-parse';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import remarkFrontmatter from 'remark-frontmatter';
@@ -22,9 +23,11 @@ import {
 } from './post-meta.schema.js';
 import { rehypeReactComponents } from './rehype-react-components.js';
 
-type RenderedPost = {
+type PostMeta = {
+  filename: string;
   slug: string;
   url: string;
+  permalinks: string[];
 
   date: NonNullable<PostFrontmatter['date']>;
 
@@ -34,7 +37,9 @@ type RenderedPost = {
   oneliner: NonNullable<PostFrontmatter['oneliner']> | null;
   projecturl: NonNullable<PostFrontmatter['projecturl']>;
   image: NonNullable<PostFrontmatter['image']>;
+};
 
+type RenderedPost = PostMeta & {
   contentHtml: string;
 };
 
@@ -45,11 +50,17 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
     eager: true,
   });
 
-  const processor = buildProcessor();
+  const processor = buildMarkdownProcessor();
   const posts: RenderedPost[] = [];
 
   for (const [filepath, contents] of Object.entries(rawPosts)) {
     posts.unshift(await postFrom(filepath, contents, processor));
+  }
+
+  const proc2 = buildHTMLProcessor(posts);
+  for (const post of posts) {
+    const fixed = await proc2.process(post.contentHtml);
+    post.contentHtml = fixed.toString();
   }
 
   // Probably not necessary, should already be in filesystem order.
@@ -93,22 +104,24 @@ function parsePostFilename(name: string) {
 
 // Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
 // /YYYY/MM/DD/slug.html
-const rehypePostLinks = () => (tree: HastRoot) => {
+const rehypePostLinks = (posts: PostMeta[]) => () => (tree: HastRoot) => {
   visit(tree, 'element', (node: Element) => {
     if (node.tagName !== 'a') return;
     const href = node.properties.href;
+
     if (
       typeof href !== 'string' ||
       href[0] === '/' ||
       /^[a-z][a-z+\-.]*:/i.test(href) ||
-      !/\.(markdown|md)^/i.test(href) ||
+      !/\.(markdown|md)$/i.test(href) ||
       href[0] === '#'
     )
       return;
 
-    const parsed = parsePostFilename(href);
-    if (parsed.error) throw parsed.error;
-    node.properties.href = `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`;
+    const filename = path.basename(href);
+    const target = posts.find((p) => p.filename === filename);
+    if (!target) throw new Error(`Could not find post named ${filename}`);
+    node.properties.href = target.url;
   });
 };
 
@@ -200,7 +213,14 @@ const remarkExtractFrontmatter: Plugin<[], MdastRoot> = () => {
   };
 };
 
-function buildProcessor() {
+function buildHTMLProcessor(posts: PostMeta[]) {
+  return unified()
+    .use(rehypeParse)
+    .use(rehypePostLinks(posts))
+    .use(rehypeStringify);
+}
+
+function buildMarkdownProcessor() {
   return unified()
     .use(remarkParse)
     .use(remarkFrontmatter)
@@ -214,7 +234,6 @@ function buildProcessor() {
       },
     })
     .use(rehypeCDNVideo)
-    .use(rehypePostLinks)
     .use(rehypeExternalLinks)
     .use(rehypeShiki, {
       theme: 'light-plus',
@@ -226,7 +245,7 @@ function buildProcessor() {
 async function postFrom(
   filename: string,
   contents: string,
-  proc: ReturnType<typeof buildProcessor>,
+  proc: ReturnType<typeof buildMarkdownProcessor>,
 ): Promise<RenderedPost> {
   const file = await proc.process(contents);
   if (!file.data.frontmatter)
@@ -237,9 +256,25 @@ async function postFrom(
 
   const date = fm.date ?? `${parsed.year}-${parsed.month}-${parsed.day}`;
 
+  const permalinks =
+    typeof fm.permalinks === 'string'
+      ? [fm.permalinks]
+      : fm.permalinks && fm.permalinks.length > 0
+        ? fm.permalinks
+        : [`/p/${parsed.slug}`];
+
+  permalinks.map((l) => (l.startsWith('/') ? l : `/${l}`));
+
+  const url = permalinks.at(0);
+  if (!url) throw new Error('Cannot happen: no permalinks to post');
+
   return {
+    filename: path.basename(filename),
     slug: parsed.slug,
-    url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
+
+    url,
+    permalinks,
+
     title: fm.title,
     date,
     categories: fm.categories ?? [],

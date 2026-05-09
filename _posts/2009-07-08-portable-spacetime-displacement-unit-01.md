@@ -11,6 +11,7 @@ tags:
   - Flash
   - AS3
   - Temporal Displacement
+permalinks: [/p/portable-spacetime-displacement-unit-01, /2009/07/08/portable-spacetime-displacement-unit-01.html]
 ---
 
 Congratulations on your purchase of the Portable Spacetime Displacement

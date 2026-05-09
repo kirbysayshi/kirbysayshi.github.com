@@ -8,6 +8,7 @@ categories:
 tags:
   - Star Trek
   - Science Fiction
+permalinks: [/p/the-perfect-star-trek-episode, /2013/09/22/the-perfect-star-trek-episode.html]
 ---
 
 Spoilers ahead! If you haven't seen this episode and continue reading... It doesn't matter! The episode is just that good.

@@ -10,6 +10,7 @@ image:
 tags:
   - NetBeans
   - Textmate
+permalinks: [/p/succulent-netbeans, /2009/07/01/succulent-netbeans.html]
 ---
 
 [Textmate](https://macromates.com) is easily my favorite tool to use

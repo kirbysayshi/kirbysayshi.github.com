@@ -6,6 +6,7 @@ categories:
 tags:
   - CLI
   - Tools
+permalinks: [/p/the-functions-you-need-for-arg-parsing, /2020/03/25/the-functions-you-need-for-arg-parsing.html]
 ---
 
 I've written quite a few command-line tools, whether for public consumption or at work. They often take the form of a script that does one thing, but then needs some flags to make it truly useful. At some point you probably want to pass a list of files to even the most basic tool you write!

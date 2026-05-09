@@ -10,6 +10,7 @@ tags:
   - Regex
   - Markdown
   - marked
+permalinks: [/p/elegant-code-marked, /2012/08/21/elegant-code-marked.html]
 ---
 
 I was looking at Markdown parsers written in JS, and found [marked][]. Ever curious about how different people tackle parsers, I was completely blown away by the elegance of its code. One function in particular stood out:

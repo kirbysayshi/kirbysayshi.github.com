@@ -6,6 +6,7 @@ categories:
 tags:
   - Git
   - Bash
+permalinks: [/p/get-git-authors, /2012/08/22/get-git-authors.html]
 ---
 
 In prep for a new release of [Vash][], I decided to make an AUTHORS file. I wanted to make sure I didn't forget anyone, eventhough there haven't been that many contributors. Turns out it's [kind of difficult][] to get all [commits NOT by a particular author][].

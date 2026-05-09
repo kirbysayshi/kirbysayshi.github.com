@@ -6,6 +6,7 @@ categories:
 tags:
   - LA
   - Windshields
+permalinks: [/p/yesterday-i-bought-a-pair-of-pants, /2013/06/24/yesterday-i-bought-a-pair-of-pants.html]
 ---
 
 Yesterday, I bought a pair of black pants from The Gap in San Francisco. They were $50, and I could have bought a second pair for $25. I did not.

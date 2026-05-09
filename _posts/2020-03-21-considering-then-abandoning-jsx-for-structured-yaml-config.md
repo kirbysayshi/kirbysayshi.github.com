@@ -10,6 +10,7 @@ tags:
   - JSX
   - DevOps
   - Dashboards
+permalinks: [/p/considering-then-abandoning-jsx-for-structured-yaml-config, /2020/03/21/considering-then-abandoning-jsx-for-structured-yaml-config.html]
 ---
 
 What follows is an exploration into strongly-typed alternatives to writing templated YAML by hand (wait, what?). If you just want the answers, skip ahead! But part of this realization is the journey, as with most things.

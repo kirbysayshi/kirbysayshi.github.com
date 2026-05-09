@@ -11,6 +11,7 @@ tags:
   - JavaScript
   - Parse
   - Twitter
+permalinks: [/p/introducing-twitter-sequencer, /2012/03/14/introducing-twitter-sequencer.html]
 ---
 
 I had a problem. Problems are good for programmers.

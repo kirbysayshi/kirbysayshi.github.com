@@ -9,6 +9,7 @@ tags:
   - ImpactJS
   - Foursquare
   - Edge Detection
+permalinks: [/p/team-drainvalve-gamehackday-photos-become-impactjs-levels, /2012/09/28/team-drainvalve-gamehackday-photos-become-impactjs-levels.html]
 ---
 
 More than a year ago [@tiegz](https://twitter.com/tiegz), [@shinyee_au](https://twitter.com/shinyee_au), and I participated in [gamehackday](https://gamehackday.org). We started off with this idea for importing photos from a foursquare location into a game, and then battling your friends that were also at the same location.

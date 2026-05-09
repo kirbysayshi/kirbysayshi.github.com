@@ -10,6 +10,7 @@ tags:
   - UI
   - scrollTop
   - scrollHeight
+permalinks: [/p/maintaining-scroll-position-knockoutjs-list, /2013/08/19/maintaining-scroll-position-knockoutjs-list.html]
 ---
 
 I recently had to create a widget that would lazy load content when scrolled to the top, and also maintain the currently scrolled position. This is something that we encounter everyday on the web, but is actually a little tricky to do seamlessly.

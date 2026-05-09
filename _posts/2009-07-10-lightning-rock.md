@@ -11,6 +11,7 @@ tags:
   - Animation
   - iMovie
   - Charcoal
+permalinks: [/p/lightning-rock, /2009/07/10/lightning-rock.html]
 ---
 
 This animation was a group project created using a single sheet of

@@ -10,6 +10,7 @@ tags:
   - Actor Model
   - Signals
   - JS Bin
+permalinks: [/p/signals-actors-web-workers, /2012/06/28/signals-actors-web-workers.html]
 ---
 
 [Web Workers][] are relatively easy to use, especially now that shared objects are becoming more standard. A while back, I did a little experiment to see if I could make them even easier. The full code is at [JS Bin](https://jsbin.com/eremoc/latest).

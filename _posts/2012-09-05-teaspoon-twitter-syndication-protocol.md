@@ -8,6 +8,11 @@ tags:
   - Twitter
   - PubSubHubbub
   - Feeds
+permalinks:
+  [
+    /p/teaspoon-twitter-syndication-protocol,
+    /2012/09/05/teaspoon-twitter-syndication-protocol.html,
+  ]
 ---
 
 Feed readers and I always fall into a loveless relationship. I start off saying, "Yes, this time I will religiously check it." And then I never do, because Twitter is just so much more useful. Why filter things manually when all of the people I follow on Twitter do it for me? I follow people typically because I trust their tastes in one aspect or another. Perhaps my Twitter usage is not common place in this regard, but I have a feeling I'm not alone.
@@ -41,7 +46,7 @@ User register/setup flow:
 
 1. OAuth via Twitter on TSP website
 2. Creation of TSP user
-3. Give user unique email address, like SOMELONGHASH@twittersyndicationprotocol.com
+3. Give user unique email address, like `SOMELONGHASH@twittersyndicationprotocol.com`
 4. User creates new Twitter account using above email address
 
 Once the new Twitter user is created, then it would be trivial to add a [Follow][] button that the user could click from the TSP settings page.

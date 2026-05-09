@@ -8,6 +8,7 @@ tags:
   - Vash
   - HTML
   - Macros
+permalinks: [/p/putting-macros-into-markdown, /2012/09/17/putting-macros-into-markdown.html]
 ---
 
 **tl;dr**: Use a JS templating language to add macros to Markdown. It can be as simple as:

@@ -7,6 +7,7 @@ tags:
   - Vim
   - Sublime Text 2
   - Text Editors
+permalinks: [/p/sublime-text-and-vim, /2012/08/23/sublime-text-and-vim.html]
 ---
 
 When I discovered [Sublime Text 2][] in February of 2011, I thought I had finally found THE EDITOR that I could just use forever. It's cross platform (I was on Windows at work then), and was being updated almost every week.

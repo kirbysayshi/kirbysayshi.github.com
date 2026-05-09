@@ -8,6 +8,7 @@ tags:
   - iOS
   - iPad
   - iPhone
+permalinks: [/p/the-world-ends-with-you-solo-remix, /2012/08/27/the-world-ends-with-you-solo-remix.html]
 ---
 
 Last night, at 11pm EST, [The World Ends With You][] was released for iPad and iOS. I found out about the release yesterday morning. For a week there was a teaser site up with a countdown (which plays a major role in the game itself), and there was rife speculation: could a long-awaited sequel be in the works?

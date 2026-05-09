@@ -10,6 +10,7 @@ tags:
   - TDD
   - Observables
   - FRP
+permalinks: [/p/mocha-tests-node-and-browser, /2013/07/01/mocha-tests-node-and-browser.html]
 ---
 
 To gain a better understanding of the decisions [knockoutjs][] made in terms of implementation, I decided to try and build my own version. I named it `sea` as a homonym for 'see' which is _somehow_ related to [observable properties][], I swear. I started with a simple HTML page that basically contained a series of "things that should work". The first was a simple `div` that followed the mouse cursor using two observables to track position.

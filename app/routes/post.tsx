@@ -5,10 +5,10 @@ import type { Route } from './+types/post';
 
 export const handle = { classname: 'page-post' };
 
-export async function loader({ params }: Route.LoaderArgs) {
-  const { slug } = params;
+export async function loader({ request }: Route.LoaderArgs) {
+  const { pathname } = new URL(request.url);
   const posts = await getAllPosts();
-  const post = posts.find((p) => p.slug === slug);
+  const post = posts.find((p) => p.permalinks.includes(pathname));
   if (!post) throw new Response('Not Found', { status: 404 });
   return { post };
 }
@@ -44,6 +44,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
   return (
     <article className="post">
       <title>{`${post.title} — KSH`}</title>
+      <link rel="canonical" href={`https://kirbysayshi.com${post.url}`} />
       <meta name="description" content={post.oneliner ?? post.title} />
       <header className="row">
         <div

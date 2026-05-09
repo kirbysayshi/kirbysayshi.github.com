@@ -9,6 +9,7 @@ image:
     alt: Do you dare challenge Lavos? Do you dare to change what has been set in motion?
 tags:
   - Chrono Trigger
+permalinks: [/p/in-pursuit-of-a-game, /2010/07/13/in-pursuit-of-a-game.html]
 ---
 
 Several months ago, I began work on a [JavaScript-powered RPG engine](https://github.com/kirbysayshi/CT), named CT (for now). I started it with the goal of learning about the challenges of game design, and to figure out how the heck those old masters of the 16-bit era did things. Frankly, I think the sprites from _Chrono Trigger_ have a lot more character than the typical 3D environment seen today. It’s really about your imagination, and the sprites give it room. Look at the original Pokemon. The battle sprites were literally _ugly_, but I didn’t care, because in my head was where the real battle was.

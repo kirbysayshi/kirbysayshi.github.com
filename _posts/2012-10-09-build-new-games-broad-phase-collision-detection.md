@@ -8,6 +8,7 @@ tags:
   - Spatial Partitioning
   - Spatial Grid
   - FUS RO DAH
+permalinks: [/p/build-new-games-broad-phase-collision-detection, /2012/10/09/build-new-games-broad-phase-collision-detection.html]
 ---
 
 I wrote an article on collision detection for [Build New Games][], and it's live! Check it out [here][]. If that link ever dies, you can read the [archived article](https://kirbysayshi.com/broad-phase-bng/broad-phase-collision-detection-using-spatial-partitioning.html).

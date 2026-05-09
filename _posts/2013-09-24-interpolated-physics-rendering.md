@@ -10,6 +10,7 @@ tags:
   - Game Loop
   - Multi-threaded Game Engines
   - Physics
+permalinks: [/p/interpolated-physics-rendering, /2013/09/24/interpolated-physics-rendering.html]
 ---
 
 Update Sept 2020: [View Part 2!](2020-09-01-multithreaded-physics-rendering-on-the-web.md)

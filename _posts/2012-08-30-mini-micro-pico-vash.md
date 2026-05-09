@@ -8,6 +8,7 @@ tags:
   - Templates
   - Vash
   - RegExp
+permalinks: [/p/mini-micro-pico-vash, /2012/08/30/mini-micro-pico-vash.html]
 ---
 
 Here's a challenge: how small can I make a compatible version of [Vash][]? If I limit features, the answer is less than [800 bytes][]!

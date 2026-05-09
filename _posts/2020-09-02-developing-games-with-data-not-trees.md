@@ -8,6 +8,7 @@ categories:
 tags:
   - Entity Component System
   - Data Oriented Design
+permalinks: [/p/developing-games-with-data-not-trees, /2020/09/02/developing-games-with-data-not-trees.html]
 ---
 
 In 2014 I presented at JSConf EU in Berlin on topics close to my heart: game development patterns and data-oriented design. This talk is a mix of (hopefully) humorous performance and information, but at its core is the notion that encoding your experience as data and functions that operate on that data allows for a more malleable system than one relying strictly on a class hierarchy.
