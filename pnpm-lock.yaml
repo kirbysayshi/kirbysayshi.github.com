@@ -102,6 +102,9 @@ importers:
       ffmpeg-ffprobe-static:
         specifier: 6.1.2-rc.1
         version: 6.1.2-rc.1
+      hastscript:
+        specifier: 9.0.1
+        version: 9.0.1
       jiti:
         specifier: 2.6.1
         version: 2.6.1

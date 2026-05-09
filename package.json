@@ -51,6 +51,7 @@
     "eslint-plugin-simple-import-sort": "13.0.0",
     "eslint-plugin-unused-imports": "4.4.1",
     "ffmpeg-ffprobe-static": "6.1.2-rc.1",
+    "hastscript": "9.0.1",
     "jiti": "2.6.1",
     "oxfmt": "0.46.0",
     "tsx": "4.21.0",
