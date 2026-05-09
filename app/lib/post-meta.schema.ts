@@ -2,6 +2,9 @@ import { z } from 'zod';
 
 export const postFrontmatterSchema = z.object({
   title: z.string(),
+  /** If present, overrides the visible date. */
+  date: z.iso.date().optional(),
+  /** If `false` will prevent the post from being included. */
   published: z.boolean().optional(),
   categories: z
     .array(
@@ -33,6 +36,7 @@ export const postFrontmatterSchema = z.object({
   tags: z.array(z.string()).optional(),
   oneliner: z.string().nullish(),
   projecturl: z.string().nullish(),
+  /** @deprecated really only for very old posts */
   image: z
     .array(z.object({ src: z.string(), alt: z.string() }))
     .nullable()

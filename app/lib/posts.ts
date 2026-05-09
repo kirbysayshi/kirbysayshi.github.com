@@ -26,7 +26,7 @@ type RenderedPost = {
   slug: string;
   url: string;
 
-  date: string;
+  date: NonNullable<PostFrontmatter['date']>;
 
   title: PostFrontmatter['title'];
   categories: NonNullable<PostFrontmatter['categories']>;
@@ -227,7 +227,7 @@ async function postFrom(
   filename: string,
   contents: string,
   proc: ReturnType<typeof buildProcessor>,
-) {
+): Promise<RenderedPost> {
   const file = await proc.process(contents);
   if (!file.data.frontmatter)
     throw new Error(`Processed frontmatter missing for ${filename}`);
@@ -235,15 +235,18 @@ async function postFrom(
   const parsed = parsePostFilename(filename);
   if (parsed.error) throw parsed.error;
 
+  const date = fm.date ?? `${parsed.year}-${parsed.month}-${parsed.day}`;
+
   return {
     slug: parsed.slug,
     url: `/${parsed.year}/${parsed.month}/${parsed.day}/${parsed.slug}.html`,
     title: fm.title,
-    date: `${parsed.year}-${parsed.month}-${parsed.day}`,
+    date,
     categories: fm.categories ?? [],
     tags: fm.tags ?? [],
     oneliner: fm.oneliner ?? '',
     projecturl: fm.projecturl ?? '',
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     image: fm.image ?? [],
     contentHtml: String(file.value),
   };

@@ -1,7 +1,6 @@
 ---
 title: Maintaining Scroll Position When Adding Content to the Top of a Container
 oneliner: Sometimes libraries complicate your task.
-published: true
 projecturl: https://jsfiddle.net/kirbysayshi/57HbV/
 categories:
   - JavaScript

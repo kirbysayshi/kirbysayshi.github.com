@@ -1,7 +1,6 @@
 ---
 title: I Bought a Pair of Pants Yesterday
 oneliner:
-published: true
 categories:
   - Stories
 tags:
