@@ -12,38 +12,32 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
+import remarkStringify from 'remark-stringify';
 import { type Plugin, unified } from 'unified';
 import { SKIP, visit } from 'unist-util-visit';
 import { parse } from 'yaml';
 
 import { cdnUrl, MediaManifest } from './media.js';
 import {
-  type PostFrontmatter,
-  postFrontmatterSchema,
-} from './post-meta.schema.js';
+  type PostMeta,
+  postMetaSchema,
+  type RenderedPost,
+} from './post.schema.js';
 import { rehypeReactComponents } from './rehype-react-components.js';
 
-type PostMeta = {
-  filename: string;
-  slug: string;
-  url: string;
-  permalinks: string[];
+type VFile = ReturnType<(typeof unified)['processSync']>;
 
-  date: NonNullable<PostFrontmatter['date']>;
-
-  title: PostFrontmatter['title'];
-  categories: NonNullable<PostFrontmatter['categories']>;
-  tags: NonNullable<PostFrontmatter['tags']>;
-  oneliner: NonNullable<PostFrontmatter['oneliner']> | null;
-  projecturl: NonNullable<PostFrontmatter['projecturl']>;
-  image: NonNullable<PostFrontmatter['image']>;
+type VFileWithFrontmatter = VFile & {
+  data: {
+    frontmatter: Record<string, unknown>;
+  };
 };
 
-type RenderedPost = PostMeta & {
-  contentHtml: string;
-};
+type UnrenderedPost = { meta: PostMeta; contents: string };
 
-let CACHED: RenderedPost[] | null = null;
+let CACHED: null | RenderedPost[] = null;
+const CATS = new Map<string, string>(); // slug, Display Name
+const TAGS = new Map<string, string>(); // slug, Display Name
 
 export async function getAllPosts(): Promise<RenderedPost[]> {
   if (CACHED) return CACHED;
@@ -53,17 +47,30 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
     eager: true,
   });
 
-  const processor = buildMarkdownProcessor();
-  const posts: RenderedPost[] = [];
-
+  const unrendereds: UnrenderedPost[] = [];
+  const metas: PostMeta[] = [];
+  const fmProc = buildFrontmatterExtractor();
+  const mkProc = buildMarkdownProcessor();
+  const htmlProc = buildHTMLProcessor(metas);
   for (const [filepath, contents] of Object.entries(rawPosts)) {
-    posts.unshift(await postFrom(filepath, contents, processor));
+    const fm = (await fmProc.process(contents)) as VFileWithFrontmatter;
+    const filename = path.basename(filepath);
+    const meta = postMetaSchema.parse({ filename, fm: fm.data.frontmatter });
+    unrendereds.unshift({ meta, contents });
+    metas.push(meta);
+    for (const cat of meta.categories) CATS.set(cat.slug, cat.name);
+    for (const tag of meta.tags) TAGS.set(tag.slug, tag.name);
   }
 
-  const proc2 = buildHTMLProcessor(posts);
-  for (const post of posts) {
-    const fixed = await proc2.process(post.contentHtml);
-    post.contentHtml = fixed.toString();
+  const posts: RenderedPost[] = [];
+  for (const meta of unrendereds) {
+    const results0 = (await mkProc.process(meta.contents)).value.toString();
+    const results1 = (await htmlProc.process(results0)).value.toString();
+    const post: RenderedPost = {
+      ...meta.meta,
+      contentHtml: results1,
+    };
+    posts.unshift(post);
   }
 
   // Probably not necessary, should already be in filesystem order.
@@ -72,43 +79,34 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
   return posts;
 }
 
-/**
- * Jekyll behavior: lowercase + spaces to hyphens
- */
-export function slugify(str?: string) {
-  return str?.toLowerCase().replace(/\s+/g, '-') ?? '';
+export async function getPostsByTagSlug(slug: string) {
+  const posts = await getAllPosts();
+  const tagPosts = posts.filter((p) => p.tags.some((t) => t.slug === slug));
+  const tagName = TAGS.get(slug);
+  if (!tagName) throw new Error(`No tag name for slug ${slug}`);
+  return { tagPosts, tagName };
 }
 
-type ParsedFilename =
-  | { error: null; year: string; month: string; day: string; slug: string }
-  | { error: Error };
-
-function parsePostFilename(name: string) {
-  const match =
-    name.match(/\/?(\d{4})-(\d{2})-(\d{2})-(.+)\.(md|markdown)$/) ?? [];
-  const [, year, month, day, rawSlug] = match;
-  const slug = slugify(rawSlug);
-
-  const out: ParsedFilename = {
-    year: year ?? '',
-    month: month ?? '',
-    day: day ?? '',
-    slug: slug,
-    error: null as null | Error,
-  };
-
-  if (!year || !month || !day || !rawSlug) {
-    out.error = new Error(
-      `InvalidPostFileName: unable to parse [YYYY, MM, DD, slug] got: ${[year, month, day, rawSlug].join(', ')} from ${name}`,
-    );
-  }
-
-  return out;
+export async function getPostsByCategorySlug(slug: string) {
+  const posts = await getAllPosts();
+  const catPosts = posts.filter((p) =>
+    p.categories.some((c) => c.slug === slug),
+  );
+  const catName = CATS.get(slug);
+  if (!catName) throw new Error(`No cat name for slug ${slug}`);
+  return { catPosts, catName };
 }
 
-// Rewrite relative markdown file links: YYYY-MM-DD-slug.md  ->
-// /YYYY/MM/DD/slug.html
-const rehypePostLinks = (posts: PostMeta[]) => () => (tree: HastRoot) => {
+export function getAllTags(): Readonly<typeof TAGS> {
+  return TAGS;
+}
+
+export function getAllCats(): Readonly<typeof CATS> {
+  return CATS;
+}
+
+// Rewrite markdown file links YYYY-MM-DD-slug.md to the canonical post url.
+const rehypePostLinks = (metas: PostMeta[]) => () => (tree: HastRoot) => {
   visit(tree, 'element', (node: Element) => {
     if (node.tagName !== 'a') return;
     const href = node.properties.href;
@@ -123,7 +121,7 @@ const rehypePostLinks = (posts: PostMeta[]) => () => (tree: HastRoot) => {
       return;
 
     const filename = path.basename(href);
-    const target = posts.find((p) => p.filename === filename);
+    const target = metas.find((p) => p.filename === filename);
     if (!target) throw new Error(`Could not find post named ${filename}`);
     node.properties.href = target.url;
   });
@@ -217,18 +215,25 @@ const remarkExtractFrontmatter: Plugin<[], MdastRoot> = () => {
   };
 };
 
-function buildHTMLProcessor(posts: PostMeta[]) {
+function buildHTMLProcessor(metas: PostMeta[]) {
   return unified()
     .use(rehypeParse)
-    .use(rehypePostLinks(posts))
+    .use(rehypePostLinks(metas))
     .use(rehypeStringify);
+}
+
+function buildFrontmatterExtractor() {
+  return unified()
+    .use(remarkParse)
+    .use(remarkFrontmatter)
+    .use(remarkExtractFrontmatter)
+    .use(remarkStringify);
 }
 
 function buildMarkdownProcessor() {
   return unified()
     .use(remarkParse)
     .use(remarkFrontmatter)
-    .use(remarkExtractFrontmatter)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
@@ -244,49 +249,4 @@ function buildMarkdownProcessor() {
       fallbackLanguage: 'text',
     })
     .use(rehypeStringify);
-}
-
-async function postFrom(
-  filename: string,
-  contents: string,
-  proc: ReturnType<typeof buildMarkdownProcessor>,
-): Promise<RenderedPost> {
-  const file = await proc.process(contents);
-  if (!file.data.frontmatter)
-    throw new Error(`Processed frontmatter missing for ${filename}`);
-  const fm = postFrontmatterSchema.parse(file.data.frontmatter);
-  const parsed = parsePostFilename(filename);
-  if (parsed.error) throw parsed.error;
-
-  const date = fm.date ?? `${parsed.year}-${parsed.month}-${parsed.day}`;
-
-  const permalinks =
-    typeof fm.permalinks === 'string'
-      ? [fm.permalinks]
-      : fm.permalinks && fm.permalinks.length > 0
-        ? fm.permalinks
-        : [`/p/${parsed.slug}`];
-
-  permalinks.map((l) => (l.startsWith('/') ? l : `/${l}`));
-
-  const url = permalinks.at(0);
-  if (!url) throw new Error('Cannot happen: no permalinks to post');
-
-  return {
-    filename: path.basename(filename),
-    slug: parsed.slug,
-
-    url,
-    permalinks,
-
-    title: fm.title,
-    date,
-    categories: fm.categories ?? [],
-    tags: fm.tags ?? [],
-    oneliner: fm.oneliner ?? '',
-    projecturl: fm.projecturl ?? '',
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
-    image: fm.image ?? [],
-    contentHtml: String(file.value),
-  };
 }

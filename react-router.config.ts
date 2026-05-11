@@ -1,23 +1,26 @@
 import type { Config } from '@react-router/dev/config';
 
-import { getAllPosts, slugify } from './app/lib/posts';
+import { getAllCats, getAllPosts, getAllTags } from './app/lib/posts';
 
 export default {
   async prerender() {
     const posts = await getAllPosts();
-    const tags = [...new Set(posts.flatMap((p) => p.tags))];
-    const categories = [...new Set(posts.flatMap((p) => p.categories))];
+
+    const tags = Array.from(getAllTags().keys()).map(
+      (t) => `/tag/${encodeURIComponent(t)}.html`,
+    );
+
+    const cats = Array.from(getAllCats().keys()).map(
+      (c) => `/category/${encodeURIComponent(c)}.html`,
+    );
 
     return [
       '/',
       '/feed.xml',
       '/404.html',
-      ...posts.map((p) => p.url),
       ...posts.flatMap((p) => p.permalinks),
-      ...tags.map((t) => `/tag/${encodeURIComponent(slugify(t))}.html`),
-      ...categories.map(
-        (c) => `/category/${encodeURIComponent(slugify(c))}.html`,
-      ),
+      ...tags,
+      ...cats,
     ];
   },
 } satisfies Config;

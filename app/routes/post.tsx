@@ -1,6 +1,4 @@
-import { useMemo } from 'react';
-
-import { getAllPosts, slugify } from '../lib/posts';
+import { getAllPosts } from '../lib/posts';
 import type { Route } from './+types/post';
 
 export const handle = { classname: 'page-post' };
@@ -17,29 +15,16 @@ export default function Post({ loaderData }: Route.ComponentProps) {
   const { post } = loaderData;
 
   // Super old, only a few old posts have this.
-  const hasIcon = !!post.image[0]?.src;
+  // eslint-disable-next-line @typescript-eslint/no-deprecated
+  const image = post.image[0];
 
-  const categoriesList = useMemo(() => {
-    const fmt = new Intl.ListFormat();
-    const cmp = [];
-    for (const cat of fmt.formatToParts(post.categories)) {
-      cmp.push(
-        cat.type === 'literal' ? (
-          cat.value
-        ) : (
-          <span key={cat.value}>
-            {' '}
-            <a
-              href={`/category/${encodeURIComponent(slugify(cat.value))}.html`}
-            >
-              {cat.value}
-            </a>
-          </span>
-        ),
-      );
-    }
-    return cmp;
-  }, []);
+  const cats = post.categories.map((cat, i) => (
+    <span key={cat.slug}>
+      {' '}
+      <a href={`/category/${encodeURIComponent(cat.slug)}.html`}>{cat.name}</a>
+      {i < post.categories.length - 1 ? ', ' : ' '}
+    </span>
+  ));
 
   return (
     <article className="post">
@@ -47,22 +32,20 @@ export default function Post({ loaderData }: Route.ComponentProps) {
       <link rel="canonical" href={`https://kirbysayshi.com${post.url}`} />
       <meta name="description" content={post.oneliner ?? post.title} />
       <header className="row">
-        <div
-          className={`title-wrap lined-block col ${hasIcon ? 'span_5' : ''}`}
-        >
+        <div className={`title-wrap lined-block col ${image ? 'span_5' : ''}`}>
           <h1>
             <a href={post.url}>{post.title}</a>
           </h1>
           <div className="post-meta">
-            {post.date} {categoriesList.length && 'in'}
-            {categoriesList}
+            {post.date} {cats.length && 'in'}
+            {cats}
             <div className="inline-tags">
               {' '}
               Tags:{' '}
               {post.tags.map((tag, i) => (
-                <span key={tag}>
-                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>
-                    {tag}
+                <span key={tag.slug}>
+                  <a href={`/tag/${encodeURIComponent(tag.slug)}.html`}>
+                    {tag.name}
                   </a>
                   {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
@@ -70,10 +53,10 @@ export default function Post({ loaderData }: Route.ComponentProps) {
             </div>
           </div>
         </div>
-        {hasIcon && (
+        {image && (
           <div className="post-icon col span_1">
             <a href={post.url}>
-              <img src={post.image[0]?.src} alt={post.image[0]?.alt} />
+              <img src={image.src} alt={image.alt} />
             </a>
           </div>
         )}

@@ -1,4 +1,4 @@
-import { getAllPosts, slugify } from '../lib/posts';
+import { getAllPosts } from '../lib/posts';
 import type { Route } from './+types/home';
 
 export const handle = { classname: 'page-home' };
@@ -38,9 +38,9 @@ export function PostList({
             <div className="post-tags col span_4">
               Tags:{' '}
               {post.tags.map((tag, i) => (
-                <span key={tag}>
-                  <a href={`/tag/${encodeURIComponent(slugify(tag))}.html`}>
-                    {tag}
+                <span key={tag.slug}>
+                  <a href={`/tag/${encodeURIComponent(tag.slug)}.html`}>
+                    {tag.name}
                   </a>
                   {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
@@ -48,11 +48,9 @@ export function PostList({
             </div>
             <div className="post-category col span_2">
               {post.categories.map((cat, i) => (
-                <span key={cat}>
-                  <a
-                    href={`/category/${encodeURIComponent(slugify(cat))}.html`}
-                  >
-                    {cat.toUpperCase()}
+                <span key={cat.slug}>
+                  <a href={`/category/${encodeURIComponent(cat.slug)}.html`}>
+                    {cat.name.toUpperCase()}
                   </a>
                   {i < post.categories.length - 1 ? ', ' : ' '}
                 </span>
