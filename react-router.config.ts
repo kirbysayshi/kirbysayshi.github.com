@@ -4,23 +4,13 @@ import { getAllCats, getAllPosts, getAllTags } from './app/lib/posts';
 
 export default {
   async prerender() {
-    const posts = await getAllPosts();
-
-    const tags = Array.from(getAllTags().keys()).map(
-      (t) => `/tag/${encodeURIComponent(t)}.html`,
-    );
-
-    const cats = Array.from(getAllCats().keys()).map(
-      (c) => `/category/${encodeURIComponent(c)}.html`,
-    );
-
     return [
       '/',
       '/feed.xml',
       '/404.html',
-      ...posts.flatMap((p) => p.permalinks),
-      ...tags,
-      ...cats,
+      ...(await getAllPosts()).flatMap((p) => p.permalinks),
+      ...Array.from(getAllTags().values()).map((t) => t.url),
+      ...Array.from(getAllCats().values()).map((c) => c.url),
     ];
   },
 } satisfies Config;

@@ -10,14 +10,14 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export default function Tag({ loaderData }: Route.ComponentProps) {
-  const { tagPosts, tagName } = loaderData;
+  const { posts, info } = loaderData;
   return (
     <>
-      <title>{`Posts Tagged With ${tagName} — KSH`}</title>
+      <title>{`Posts Tagged With ${info.name} — KSH`}</title>
       <h1 className="lined-block col span_6">
-        Showing Posts Tagged With {tagName}
+        Showing Posts Tagged With {info.name}
       </h1>
-      <PostList posts={tagPosts} />
+      <PostList posts={posts} />
     </>
   );
 }

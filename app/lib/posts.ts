@@ -36,8 +36,8 @@ type VFileWithFrontmatter = VFile & {
 type UnrenderedPost = { meta: PostMeta; contents: string };
 
 let CACHED: null | RenderedPost[] = null;
-const CATS = new Map<string, string>(); // slug, Display Name
-const TAGS = new Map<string, string>(); // slug, Display Name
+const CATS = new Map<string, { name: string; slug: string; url: string }>(); // slug is key
+const TAGS = new Map<string, { name: string; slug: string; url: string }>(); // slug is key
 
 export async function getAllPosts(): Promise<RenderedPost[]> {
   if (CACHED) return CACHED;
@@ -58,8 +58,8 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
     const meta = postMetaSchema.parse({ filename, fm: fm.data.frontmatter });
     unrendereds.unshift({ meta, contents });
     metas.push(meta);
-    for (const cat of meta.categories) CATS.set(cat.slug, cat.name);
-    for (const tag of meta.tags) TAGS.set(tag.slug, tag.name);
+    for (const cat of meta.categories) CATS.set(cat.slug, cat);
+    for (const tag of meta.tags) TAGS.set(tag.slug, tag);
   }
 
   const posts: RenderedPost[] = [];
@@ -81,20 +81,20 @@ export async function getAllPosts(): Promise<RenderedPost[]> {
 
 export async function getPostsByTagSlug(slug: string) {
   const posts = await getAllPosts();
-  const tagPosts = posts.filter((p) => p.tags.some((t) => t.slug === slug));
-  const tagName = TAGS.get(slug);
-  if (!tagName) throw new Error(`No tag name for slug ${slug}`);
-  return { tagPosts, tagName };
+  const filtered = posts.filter((p) => p.tags.some((t) => t.slug === slug));
+  const info = TAGS.get(slug);
+  if (!info) throw new Error(`No tag name for slug ${slug}`);
+  return { posts: filtered, info };
 }
 
 export async function getPostsByCategorySlug(slug: string) {
   const posts = await getAllPosts();
-  const catPosts = posts.filter((p) =>
+  const filtered = posts.filter((p) =>
     p.categories.some((c) => c.slug === slug),
   );
-  const catName = CATS.get(slug);
-  if (!catName) throw new Error(`No cat name for slug ${slug}`);
-  return { catPosts, catName };
+  const info = CATS.get(slug);
+  if (!info) throw new Error(`No cat name for slug ${slug}`);
+  return { posts: filtered, info: info };
 }
 
 export function getAllTags(): Readonly<typeof TAGS> {

@@ -97,15 +97,23 @@ export const postMetaSchema = z
       return z.NEVER;
     }
 
-    const categories = inc.fm.categories.map((cat) => ({
-      name: cat,
-      slug: z.string().slugify().parse(cat),
-    }));
+    const categories = inc.fm.categories.map((cat) => {
+      const slug = z.string().slugify().parse(cat);
+      return {
+        name: cat,
+        slug,
+        url: `/category/${encodeURIComponent(slug)}`,
+      };
+    });
 
-    const tags = inc.fm.tags.map((cat) => ({
-      name: cat,
-      slug: z.string().slugify().parse(cat),
-    }));
+    const tags = inc.fm.tags.map((cat) => {
+      const slug = z.string().slugify().parse(cat);
+      return {
+        name: cat,
+        slug,
+        url: `/tag/${encodeURIComponent(slug)}`,
+      };
+    });
 
     return {
       ...inc.fm,

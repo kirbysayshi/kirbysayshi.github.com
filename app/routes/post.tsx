@@ -21,7 +21,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
   const cats = post.categories.map((cat, i) => (
     <span key={cat.slug}>
       {' '}
-      <a href={`/category/${encodeURIComponent(cat.slug)}.html`}>{cat.name}</a>
+      <a href={cat.url}>{cat.name}</a>
       {i < post.categories.length - 1 ? ', ' : ' '}
     </span>
   ));
@@ -44,9 +44,7 @@ export default function Post({ loaderData }: Route.ComponentProps) {
               Tags:{' '}
               {post.tags.map((tag, i) => (
                 <span key={tag.slug}>
-                  <a href={`/tag/${encodeURIComponent(tag.slug)}.html`}>
-                    {tag.name}
-                  </a>
+                  <a href={tag.url}>{tag.name}</a>
                   {i < post.tags.length - 1 ? ', ' : ' '}
                 </span>
               ))}
@@ -87,12 +85,19 @@ export default function Post({ loaderData }: Route.ComponentProps) {
       </button>
       <script
         dangerouslySetInnerHTML={{
-          __html: `
+          __html: DISQUS_SNIPPET(post.url),
+        }}
+      />
+    </article>
+  );
+}
+
+const DISQUS_SNIPPET = (url: string) => `
 function loadDisqus() {
   var btn = document.querySelector('#load-disqus');
   btn.parentNode.removeChild(btn);
   var disqus_shortname = 'kirbysayshi'
-    ,disqus_identifier = '//kirbysayshi.com${post.url}'
+    ,disqus_identifier = '//kirbysayshi.com${url}'
     ,disqus_developer = window.location.href.indexOf('localhost') > -1 ? 1 : 0;
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -101,12 +106,7 @@ function loadDisqus() {
   })();
 }
 document.getElementById('load-disqus').addEventListener('click', loadDisqus);
-`,
-        }}
-      />
-    </article>
-  );
-}
+`;
 
 function ExplodedPostUrl(props: { url?: string }) {
   if (!props.url) return null;
