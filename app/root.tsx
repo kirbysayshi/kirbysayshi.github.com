@@ -9,6 +9,7 @@ import {
   LinkedInHopeTheyDoNotSueMeLol,
   RssIcon,
 } from './components/Icons';
+import type { Handle } from './handles';
 
 export function links() {
   return [
@@ -57,26 +58,28 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const matches = useMatches();
-  const classname =
-    (matches.at(-1)?.handle as { classname?: string } | undefined)?.classname ??
-    'page-home';
-  return <PageBody classname={classname} />;
+  const h = matches.at(-1)?.handle as Handle | undefined;
+  return <PageBody classname={h?.classname ?? 'page-home'} />;
 }
 
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+export function ErrorBoundary(props: Route.ErrorBoundaryProps) {
   return (
     <body className="page-404">
       <SiteShell>
         <h1>Something went wrong</h1>
-        <p>{error instanceof Error ? error.message : String(error)}</p>
+        <p>
+          {props.error instanceof Error
+            ? props.error.message
+            : String(props.error)}
+        </p>
       </SiteShell>
     </body>
   );
 }
 
-function PageBody({ classname }: { classname: string }) {
+function PageBody(props: Handle) {
   return (
-    <body className={classname}>
+    <body className={props.classname}>
       <SiteShell>
         <Outlet />
       </SiteShell>
@@ -84,7 +87,7 @@ function PageBody({ classname }: { classname: string }) {
   );
 }
 
-export function SiteShell({ children }: { children: React.ReactNode }) {
+export function SiteShell(props: { children: React.ReactNode }) {
   return (
     <>
       <div id="header-container">
@@ -144,7 +147,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </a>
             </h2>
           </div>
-          {children}
+          {props.children}
         </article>
       </div>
       <div id="footer-container">

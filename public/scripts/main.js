@@ -41,7 +41,8 @@ ksh.defaultInit = function(){
 		);
 		animOut.play;
 		await animOut.finished;
-		window.location.hash = "contact";
+		if (window.history.state && window.history.state['ksh-contact-scroll']) return;
+		window.history.pushState({'ksh-contact-scroll': true}, '', '#contact');
 	}
 
 	document

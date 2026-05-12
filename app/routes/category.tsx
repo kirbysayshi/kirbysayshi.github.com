@@ -1,8 +1,9 @@
+import { PostList } from '../components/PostList';
+import type { Handle } from '../handles';
 import { getPostsByCategorySlug } from '../lib/posts';
 import type { Route } from './+types/category';
-import { PostList } from './home';
 
-export const handle = { classname: 'page-home' };
+export const handle: Handle = { classname: 'page-home' };
 
 export async function loader({ params }: Route.LoaderArgs) {
   const { slug } = params;

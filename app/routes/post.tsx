@@ -1,7 +1,8 @@
+import type { Handle } from '../handles';
 import { getAllPosts } from '../lib/posts';
 import type { Route } from './+types/post';
 
-export const handle = { classname: 'page-post' };
+export const handle: Handle = { classname: 'page-post' };
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { pathname } = new URL(request.url);

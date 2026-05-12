@@ -102,7 +102,7 @@ export const postMetaSchema = z
       return {
         name: cat,
         slug,
-        url: `/category/${encodeURIComponent(slug)}`,
+        url: `/c/${encodeURIComponent(slug)}`,
       };
     });
 
@@ -111,7 +111,7 @@ export const postMetaSchema = z
       return {
         name: cat,
         slug,
-        url: `/tag/${encodeURIComponent(slug)}`,
+        url: `/t/${encodeURIComponent(slug)}`,
       };
     });
 
